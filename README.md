@@ -10,9 +10,8 @@
 
 Требования:
 -----------
-SourceMod <a href="//sourcemod.net/downloads.php?branch=stable">1.9.0.6241</a> / <a href="//sourcemod.net/downloads.php?branch=dev">1.10.6412</a> и выше (только stable-версия)
-
-
+- SourceMod <a href="//sourcemod.net/downloads.php?branch=stable">1.9.0.6241</a> / <a href="//sourcemod.net/downloads.php?branch=dev">1.10.6412</a> и выше (только stable-версия)
+-----------
 <details><summary>Скриншоты</summary>
 <p>
 	<a href="//levels-ranks.ru/content/core/MainMenu.jpg"><img src="https://levels-ranks.ru/content/core/MainMenu.jpg"/></a>
