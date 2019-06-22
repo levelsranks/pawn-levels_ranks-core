@@ -1,0 +1,115 @@
+"Phrases"
+{
+	//	Наименование блока из ( addons/sourcemod/configs/levels_ranks/settings_ranks.ini ) использует тот блок фраз переводов, где наименование совпадают
+	//	Пример: если блок ранга в settings_ranks.ini имеет наименование rank_3, то блок фраз перевода будет использоваться под названием rank_3
+	//		en - наименование звания для тех, кто пользуется английским языком в игре
+	//		ru - наименование звания для тех, кто пользуется русским языком в игре
+	//
+	//	Демонстранция использования :
+	//	Блок нужного ранга со значением из addons/sourcemod/configs/levels_ranks/settings_ranks.ini
+	//	"rank_3"
+	//	{
+	//		"value_2"		"900"
+	//		"value_1"		"800"
+	//		"value_0"		"25"
+	//	}
+	//
+	//	Блок нужного ранга с переводом из данной конфигурации
+	//	"rank_3"
+	//	{
+	//		"en"		"Silver III"
+	//		"ru"		"Серебро - III"
+	//	}
+	//
+
+	"rank_1"
+	{
+		"en"		"Silver I"
+		"ru"		"Серебро - I"
+	}
+	"rank_2"
+	{
+		"en"		"Silver II"
+		"ru"		"Серебро - II"
+	}
+	"rank_3"
+	{
+		"en"		"Silver III"
+		"ru"		"Серебро - III"
+	}
+	"rank_4"
+	{
+		"en"		"Silver IV"
+		"ru"		"Серебро - IV"
+	}
+	"rank_5"
+	{
+		"en"		"Silver Elite"
+		"ru"		"Серебро Элита"
+	}
+	"rank_6"
+	{
+		"en"		"Silver Elite Master"
+		"ru"		"Серебро - Великий Магистр"
+	}
+	"rank_7"
+	{
+		"en"		"Gold Nova I"
+		"ru"		"Золотая Звезда - I"
+	}
+	"rank_8"
+	{
+		"en"		"Gold Nova II"
+		"ru"		"Золотая Звезда - II"
+	}
+	"rank_9"
+	{
+		"en"		"Gold Nova III"
+		"ru"		"Золотая Звезда - III"
+	}
+	"rank_10"
+	{
+		"en"		"Gold Nova Master"
+		"ru"		"Золотая Звезда - Магистр"
+	}
+	"rank_11"
+	{
+		"en"		"Master Guardian I"
+		"ru"		"Магистр-хранитель - I"
+	}
+	"rank_12"
+	{
+		"en"		"Master Guardian II"
+		"ru"		"Магистр-хранитель - II"
+	}
+	"rank_13"
+	{
+		"en"		"Master Guardian Elite"
+		"ru"		"Магистр-хранитель - Элита"
+	}
+	"rank_14"
+	{
+		"en"		"Distinguished Master Guardian"
+		"ru"		"Заслуженный Магистр-хранитель"
+	}
+	"rank_15"
+	{
+		"en"		"Legendary Eagle"
+		"ru"		"Легендарный Беркут"
+	}
+	"rank_16"
+	{
+		"en"		"Legendary Eagle Master"
+		"ru"		"Легендарный Беркут-магистр"
+	}
+	"rank_17"
+	{
+		"en"		"Supreme Master First Class"
+		"ru"		"Великий Магистр - Высшего Ранга"
+	}
+	"rank_18"
+	{
+		"en"		"The Global Elite"
+		"ru"		"Всемирная Элита"
+	}
+}
