@@ -38,7 +38,6 @@
 	<a href="//levels-ranks.ru/content/core/ChatRankStats.jpg"><img src="https://levels-ranks.ru/content/core/ChatRankStats.jpg"/></a>
 </p>
 </details>
-----------------------------
 
 Онлайн-поддержка:
 ----------------
