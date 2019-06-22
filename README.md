@@ -16,7 +16,7 @@
 - Рейтинговый :: Простой ( lr_type_statistics 2 )
 	- Данный вид статистики является аналогом RankMe. Суть данного вида такая же, как и у вида статистики выше (рейтинговый расширенный), но здесь отсутствуют дополнительные бонусы, отсутствует умножающий коэффициент для регулирования статистики, а также в этом виде заложена другая формула подсчета очков опыта.
 
-<details><summary>Скриншоты</summary>
+<details><summary>**Скриншоты**</summary>
 <p>
 	<a href="//levels-ranks.ru/content/core/MainMenu.jpg"><img src="https://levels-ranks.ru/content/core/MainMenu.jpg"/></a>
 	<a href="//levels-ranks.ru/content/core/MenuMyStats.jpg"><img src="https://levels-ranks.ru/content/core/MenuMyStats.jpg"/></a>
