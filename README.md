@@ -39,11 +39,11 @@ Levels Ranks Core - это плагин статистики, который д�
 
 ```
 "levels_ranks"
-	{
-		"driver"	"mysql" 
-		"host"	"host" 
-		"database"	"database" 
-		"user"	"login" 
-		"pass"	"password"
-	}
+{
+	"driver"	"mysql" 
+	"host"	"host" 
+	"database"	"database" 
+	"user"	"login" 
+	"pass"	"password"
+}
 ```
