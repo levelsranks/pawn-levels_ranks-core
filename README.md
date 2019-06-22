@@ -38,11 +38,11 @@
 
 Требования:
 -----------
-- SourceMod <a href="//sourcemod.net/downloads.php?branch=stable">1.9.0.6241</a> / <a href="//sourcemod.net/downloads.php?branch=dev">1.10.6412</a> и выше
+- SourceMod <a href="//sourcemod.net/downloads.php?branch=stable">1.9.0.6241</a> / <a href="//sourcemod.net/downloads.php?branch=dev">1.10.6412</a> и выше.
 
 Команды:
 -------
-- **sm_lvl_reload** - перезагружает все конфигурационные файлы плагина
+- **sm_lvl_reload** - перезагружает все конфигурационные файлы плагина.
 
 Установка:
 ---------
