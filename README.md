@@ -14,6 +14,7 @@
 	<a href="//levels-ranks.ru/content/core/MenuTop.jpg"><img src="https://levels-ranks.ru/content/core/MenuTopPoints.jpg"/></a>
 	<a href="//levels-ranks.ru/content/core/MenuTop.jpg"><img src="https://levels-ranks.ru/content/core/MenuTopActivity.jpg"/></a>
 	<a href="//levels-ranks.ru/content/core/MenuTop.jpg"><img src="https://levels-ranks.ru/content/core/MenuRanks.jpg"/></a>
+	<a href="//levels-ranks.ru/content/core/ChatRankStats.jpg"><img src="https://levels-ranks.ru/content/core/ChatRankStats.jpg"/></a>
 </p>
 </details>
 
