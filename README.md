@@ -76,5 +76,6 @@
 		"pass"	"password"
 	}
 ```
-<a href"https://github.com/levelsranks/levels-ranks-modules">Список модулей</a>
-<a href="https://discord.gg/Jc58wjF">Официальный Discord-канал поддержки Levels Ranks</a>
+<a href="//github.com/levelsranks/levels-ranks-modules">Список модулей</a>
+
+<a href="//discord.gg/Jc58wjF">Официальный Discord-канал поддержки Levels Ranks</a>
