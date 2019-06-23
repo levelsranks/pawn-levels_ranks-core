@@ -70,10 +70,10 @@
 	"levels_ranks"
 	{
 		"driver"	"mysql" 
-		"host"	"host" 
+		"host"		"host" 
 		"database"	"database" 
-		"user"	"login" 
-		"pass"	"password"
+		"user"		"login" 
+		"pass"		"password"
 	}
 ```
 ----------------------------------------------------------------------------------
