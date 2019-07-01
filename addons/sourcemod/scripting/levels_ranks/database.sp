@@ -8,19 +8,18 @@ void ConnectDB()
 	}
 	else g_hDatabase = SQLite_UseDatabase("lr_base", sError, 256);
 
-	g_hDatabase.Driver.GetIdentifier(sIdent, sizeof(sIdent));
-	if(sIdent[0] == 's')
-	{
-		g_bDatabaseSQLite = true;
-	}
-
 	if(!g_hDatabase)
 	{
 		delete g_hDatabase;
 		CrashLR("Could not connect to the database (%s)", sError);
 	}
 
+	g_hDatabase.Driver.GetIdentifier(sIdent, 16);
+	g_bDatabaseSQLite = (sIdent[0] == 's');
+
 	SQL_LockDatabase(g_hDatabase);
+
+	g_hDatabase.SetCharset("utf8");
 
 	FormatEx(sQuery, 640, "CREATE TABLE IF NOT EXISTS `%s` (`steam` varchar(32) NOT NULL PRIMARY KEY default '', `name` varchar(128) NOT NULL default '', `value` NUMERIC, `rank` NUMERIC, `kills` NUMERIC, `deaths` NUMERIC, `shoots` NUMERIC, `hits` NUMERIC, `headshots` NUMERIC, `assists` NUMERIC, `round_win` NUMERIC, `round_lose` NUMERIC, `playtime` NUMERIC, `lastconnect` NUMERIC)%s", g_sTableName, g_bDatabaseSQLite ? ";" : " CHARSET=utf8 COLLATE utf8_general_ci");
 	if(!SQL_FastQuery(g_hDatabase, sQuery)) CrashLR("ConnectDB - could not create table");
@@ -36,9 +35,7 @@ void ConnectDB()
 
 	SQL_UnlockDatabase(g_hDatabase);
 
-	g_hDatabase.SetCharset("utf8");
 	GetCountPlayers();
-
 	Call_StartForward(g_hForward_OnCoreIsReady);
 	Call_Finish();
 }
@@ -85,7 +82,7 @@ void GetPlacePlayer(int iClient)
 	else
 	{
 		char sQuery[256];
-		FormatEx(sQuery, 256, "SELECT COUNT(*) AS `position` FROM (SELECT DISTINCT `value` FROM `%s` WHERE `value` >= %d AND `lastconnect` > 0) t;", g_sTableName, g_iClientData[iClient][ST_EXP]);
+		FormatEx(sQuery, 256, "SELECT 1 FROM `%s` WHERE value >= %d AND `lastconnect` > 0;", g_sTableName, g_iClientData[iClient][ST_EXP]);
 		g_hDatabase.Query(GetPlacePlayer_Callback, sQuery, iClient);
 	}
 }
@@ -102,15 +99,12 @@ public void GetPlacePlayer_Callback(Database db, DBResultSet dbRs, const char[] 
 		return;
 	}
 
-	if(dbRs.HasResults && dbRs.FetchRow())
-	{
-		int iPos = dbRs.FetchInt(0);
-		g_iClientData[iClient][ST_PLACEINTOP] = iPos;
-		Call_StartForward(g_hForward_OnPlayerPlace);
-		Call_PushCell(iClient);
-		Call_PushCell(iPos);
-		Call_Finish();
-	}
+	int iPos = dbRs.RowCount;
+	g_iClientData[iClient][ST_PLACEINTOP] = iPos;
+	Call_StartForward(g_hForward_OnPlayerPlace);
+	Call_PushCell(iClient);
+	Call_PushCell(iPos);
+	Call_Finish();
 }
 
 void CreateDataPlayer(int iClient)
@@ -121,7 +115,7 @@ void CreateDataPlayer(int iClient)
 	}
 	else
 	{
-		if(IsClientConnected(iClient) && IsClientInGame(iClient) && !IsFakeClient(iClient))
+		if(IsClientInGame(iClient) && !IsFakeClient(iClient))
 		{
 			char sQuery[512];
 			g_hDatabase.Format(sQuery, sizeof(sQuery), "INSERT INTO `%s` (`value`, `steam`, `name`, `lastconnect`) VALUES ('%d', '%s', '%s', '%d');", g_sTableName, !g_iTypeStatistics ? 0 : 1000, g_sSteamID[iClient], GetFixNamePlayer(iClient), GetTime());
@@ -142,7 +136,7 @@ public void CreateDataPlayer_Callback(Database db, DBResultSet dbRs, const char[
 		return;
 	}
 
-	if(IsClientConnected(iClient) && IsClientInGame(iClient))
+	if(IsClientInGame(iClient))
 	{
 		g_iClientData[iClient][ST_EXP] = !g_iTypeStatistics ? 0 : 1000;
 		for(int i = 1; i != view_as<int>(LR_StatsType)-1; i++)
@@ -194,7 +188,7 @@ public void LoadDataPlayer_Callback(Database db, DBResultSet dbRs, const char[] 
 	
 	if(dbRs.HasResults && dbRs.FetchRow())
 	{
-		if(IsClientConnected(iClient) && IsClientInGame(iClient))
+		if(IsClientInGame(iClient))
 		{
 			for(int i = 0; i != view_as<int>(LR_StatsType)-1; i++)
 			{
@@ -235,6 +229,8 @@ void SaveDataPlayer(int iClient, bool bDisconnect)
 			Call_PushCellRef(hQuery);
 			Call_Finish();
 
+			g_hDatabase.Execute(hQuery, _, SaveDataPlayer_ErrorCallback, _, DBPrio_High);
+
 			if(bDisconnect)
 			{
 				for(int i = 0; i != view_as<int>(LR_StatsType); i++)
@@ -252,7 +248,7 @@ void SaveDataPlayer(int iClient, bool bDisconnect)
 				g_bHaveBomb[iClient] = false;
 				g_bInitialized[iClient] = false;
 			}
-			g_hDatabase.Execute(hQuery, _, SaveDataPlayer_ErrorCallback, _, DBPrio_High);
+			else GetPlacePlayer(iClient);
 		}
 	}
 }

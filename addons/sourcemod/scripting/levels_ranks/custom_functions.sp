@@ -16,7 +16,7 @@ void NotifClient(int iClient, int iValue, char[] sTitlePhrase)
 		if(g_iUsualMessage == 1)
 		{
 			char sBuffer[64];
-			FormatEx(sBuffer, sizeof(sBuffer), iValue > 0 ? "+%d" : "%d", iValue);
+			FormatEx(sBuffer, 64, iValue > 0 ? "+%d" : "%d", iValue);
 			LR_PrintToChat(iClient, "%T", sTitlePhrase, iClient, g_iClientData[iClient][ST_EXP], sBuffer);
 		}
 	}
@@ -24,7 +24,7 @@ void NotifClient(int iClient, int iValue, char[] sTitlePhrase)
 
 bool CheckStatus(int iClient)
 {
-	return (iClient && IsClientConnected(iClient) && IsClientInGame(iClient) && !IsFakeClient(iClient) && g_bInitialized[iClient]) || (g_bInitialized[iClient] = false);
+	return (iClient && IsClientInGame(iClient) && !IsFakeClient(iClient) && g_bInitialized[iClient]) || (g_bInitialized[iClient] = false);
 }
 
 void CheckRank(int iClient)
@@ -33,7 +33,7 @@ void CheckRank(int iClient)
 	{
 		int iRank = g_iClientData[iClient][ST_RANK];
 
-		for(int i = g_iCountRanks; i >= 1; i--)
+		for(int i = g_iCountRanks; i != 0; i--)
 		{
 			if(i == 1)
 			{

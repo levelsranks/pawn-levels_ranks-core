@@ -21,11 +21,11 @@ void MainMenu(int iClient)
 
 	int flags = GetUserFlagBits(iClient);
 	if(flags & g_iAdminFlag || flags & ADMFLAG_ROOT)
-	FormatEx(sText, sizeof(sText), "%T\n ", "MainMenu_IamAdmin", iClient), hMenu.AddItem("0", sText);
-	FormatEx(sText, sizeof(sText), "%T", "MainMenu_MyStats", iClient); hMenu.AddItem("1", sText);
-	FormatEx(sText, sizeof(sText), "%T\n ", "MainMenu_MyPrivilegesSettings", iClient); hMenu.AddItem("2", sText);
-	FormatEx(sText, sizeof(sText), "%T", "MainMenu_TopPlayers", iClient); hMenu.AddItem("3", sText);
-	FormatEx(sText, sizeof(sText), "%T", "MainMenu_Ranks", iClient); hMenu.AddItem("4", sText);
+	FormatEx(sText, 128, "%T\n ", "MainMenu_IamAdmin", iClient), hMenu.AddItem("0", sText);
+	FormatEx(sText, 128, "%T", "MainMenu_MyStats", iClient); hMenu.AddItem("1", sText);
+	FormatEx(sText, 128, "%T\n ", "MainMenu_MyPrivilegesSettings", iClient); hMenu.AddItem("2", sText);
+	FormatEx(sText, 128, "%T", "MainMenu_TopPlayers", iClient); hMenu.AddItem("3", sText);
+	FormatEx(sText, 128, "%T", "MainMenu_Ranks", iClient); hMenu.AddItem("4", sText);
 	hMenu.ExitButton = true;
 	hMenu.Display(iClient, MENU_TIME_FOREVER);
 }
@@ -58,12 +58,12 @@ void IamAdmin(int iClient)
 	Menu hMenu = new Menu(IamAdminHandler);
 	hMenu.SetTitle("%s | %T\n ", g_sPluginTitle, "MainMenu_IamAdmin", iClient);
 
-	FormatEx(sText, sizeof(sText), "%T", "ReloadAllConfigs", iClient);
+	FormatEx(sText, 192, "%T", "ReloadAllConfigs", iClient);
 	hMenu.AddItem("0", sText);
 
 	if(!g_iTypeStatistics)
 	{
-		FormatEx(sText, sizeof(sText), "%T", "GiveTakeMenuExp", iClient);
+		FormatEx(sText, 192, "%T", "GiveTakeMenuExp", iClient);
 		hMenu.AddItem("1", sText);
 	}
 
@@ -121,7 +121,7 @@ void GiveTakeValue(int iClient)
 
 	for(int i = 1; i <= MaxClients; i++)
 	{
-		if(IsClientConnected(i) && CheckStatus(i))
+		if(CheckStatus(i))
 		{
 			IntToString(GetClientUserId(i), sID, 16);
 			sNickName[0] = '\0';
@@ -301,7 +301,20 @@ public int MyStatsResetHandler(Menu hMenu, MenuAction mAction, int iClient, int 
 			if(!iSlot)
 			{
 				g_iClientData[iClient][ST_EXP] = !g_iTypeStatistics ? 0 : 1000;
-				g_iClientData[iClient][ST_RANK] = 1;
+
+				for(int i = g_iCountRanks; i != 0; i--)
+				{
+					if(i == 1)
+					{
+						g_iClientData[iClient][ST_RANK] = 1;
+					}
+					else if(g_iShowExp[i-1] <= g_iClientData[iClient][ST_EXP])
+					{
+						g_iClientData[iClient][ST_RANK] = i;
+						break;
+					}
+				}
+
 				for(int i = 2; i != view_as<int>(LR_StatsType)-1; i++)
 				{
 					g_iClientData[iClient][i] = 0;
@@ -351,8 +364,6 @@ public int MyPrivilegesSettingsHandler(Menu hMenu, MenuAction mAction, int iClie
 			Call_Finish();
 		}
 	}
-
-	return 0;
 }
 
 void OverallTopPlayers(int iClient)
@@ -388,12 +399,12 @@ public int OverallTopPlayersHandler(Menu hMenu, MenuAction mAction, int iClient,
 			char sInfo[32];
 			hMenu.GetItem(iSlot, sInfo, sizeof(sInfo));
 
-			if(strcmp(sInfo, "0") == 0)
+			if(!strcmp(sInfo, "0"))
 			{
 				OverallTopPlayersExp(iClient);
 			}
 
-			if(strcmp(sInfo, "1") == 0)
+			if(!strcmp(sInfo, "1"))
 			{
 				OverallTopPlayersTime(iClient);
 			}

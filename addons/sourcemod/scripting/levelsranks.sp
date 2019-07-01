@@ -2,7 +2,7 @@
 ****
 ****		Date of creation :		November 27, 2014
 ****		Date of official release :	April 12, 2015
-****		Last update :			June 12, 2019
+****		Last update :			July 1, 2019
 ****
 ****************************************************************************
 ****
@@ -11,6 +11,9 @@
 ****		RoadSide Romeo
 ****		( main development )
 ****
+****		Wend4r
+****		( fix errors and optimization )
+****
 ****		Development assistance:
 ****
 ****		R1KO
@@ -18,9 +21,6 @@
 ****
 ****		White Wolf (aka TiBarification)
 ****		( training - method of transaction, fix errors and optimization )
-****
-****		Wend4r
-****		( fix errors and optimization )
 ****
 ****		Kruzya
 ****		( fix errors and optimization )
@@ -52,7 +52,7 @@
 #include <lvl_ranks>
 
 #define PLUGIN_NAME "Levels Ranks"
-#define PLUGIN_AUTHOR "RoadSide Romeo"
+#define PLUGIN_AUTHOR "RoadSide Romeo & Wend4r"
 #define MAX_COUNT_RANKS 128
 
 #define LogLR(%0) LogError("[" ... PLUGIN_NAME ... " Core] " ... %0)
@@ -96,7 +96,7 @@ Database	g_hDatabase = null;
 #include "levels_ranks/hooks.sp"
 #include "levels_ranks/natives.sp"
 
-public Plugin myinfo = {name = "[" ... PLUGIN_NAME ... "] Core", author = PLUGIN_AUTHOR, version = PLUGIN_VERSION}
+public Plugin myinfo = {name = "[" ... PLUGIN_NAME ... "] Core", author = PLUGIN_AUTHOR, version = "v3.0 SR1"}
 public void OnPluginStart()
 {
 	switch((EngineGame = GetEngineVersion()))

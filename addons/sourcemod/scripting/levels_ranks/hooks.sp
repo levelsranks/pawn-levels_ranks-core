@@ -92,15 +92,16 @@ public void LRHooks(Handle hEvent, char[] sEvName, bool bDontBroadcast)
 									case 1:
 									{
 										int iExpAttacker = RoundToNearest(float(g_iClientData[iClient][ST_EXP]) / float(g_iClientData[iAttacker][ST_EXP]) * 5.0);
-										int iExpVictim = RoundToNearest(iExpAttacker * g_fKillCoeff);
-
-										if(iExpAttacker < 1) iExpAttacker = 1;
-										if(iExpVictim < 1) iExpVictim = 1;
 
 										Call_PushCellRef(iExpAttacker);
 										Call_PushCell(g_iClientData[iClient][ST_EXP]);
 										Call_PushCell(g_iClientData[iAttacker][ST_EXP]);
 										Call_Finish();
+
+										int iExpVictim = RoundToNearest(iExpAttacker * g_fKillCoeff);
+
+										if(iExpAttacker < 1) iExpAttacker = 1;
+										if(iExpVictim < 1) iExpVictim = 1;
 
 										NotifClient(iAttacker, iExpAttacker, "Kill");
 										NotifClient(iClient, -iExpVictim, "MyDeath");
@@ -109,12 +110,13 @@ public void LRHooks(Handle hEvent, char[] sEvName, bool bDontBroadcast)
 									case 2:
 									{
 										int iExpDiff = g_iClientData[iClient][ST_EXP] - g_iClientData[iAttacker][ST_EXP];
-										iExpDiff = iExpDiff < 0 ? 2 : (iExpDiff / 100) + 2;
 
 										Call_PushCellRef(iExpDiff);
 										Call_PushCell(g_iClientData[iClient][ST_EXP]);
 										Call_PushCell(g_iClientData[iAttacker][ST_EXP]);
 										Call_Finish();
+
+										iExpDiff = iExpDiff < 0 ? 2 : (iExpDiff / 100) + 2;
 
 										NotifClient(iAttacker, iExpDiff, "Kill");
 										NotifClient(iClient, -iExpDiff, "MyDeath");
@@ -220,14 +222,13 @@ public void LRHooks(Handle hEvent, char[] sEvName, bool bDontBroadcast)
 					{
 						if(CheckStatus(i) && GetClientTeam(i) > 1)
 						{
-							GetPlacePlayer(i);
 							g_iCountPlayers++;
 						}
 					}
 
 					if(g_bSpawnMessage)
 					{
-						bool bWarningMessage = false;
+						bool bWarningMessage;
 						if(g_iCountPlayers < g_iMinimumPlayers)
 						{
 							bWarningMessage = true;

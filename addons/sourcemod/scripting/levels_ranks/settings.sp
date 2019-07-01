@@ -19,7 +19,7 @@ int		g_iCountRanks,
 		g_iBombPickup,
 		g_iHostageKilled,
 		g_iHostageRescued,
-		g_iShowExp[MAX_COUNT_RANKS+1],
+		g_iShowExp[MAX_COUNT_RANKS+2],
 		g_iBonus[11];
 float		g_fKillCoeff,
 		g_fDBReconnectTime;
@@ -36,7 +36,7 @@ char		g_sTableName[32],
 		g_sPluginTitle[64],
 		g_sSoundUp[256],
 		g_sSoundDown[256],
-		g_sShowRank[MAX_COUNT_RANKS+1][192];
+		g_sShowRank[MAX_COUNT_RANKS+2][192];
 
 void SetSettings(bool bReload = false)
 {
