@@ -302,7 +302,7 @@ public int MyStatsResetHandler(Menu hMenu, MenuAction mAction, int iClient, int 
 			{
 				g_iClientData[iClient][ST_EXP] = !g_iTypeStatistics ? 0 : 1000;
 
-				for(int i = g_iCountRanks; i != 0; i--)
+				for(int i = g_iCountRanks; i >= 1; i--)
 				{
 					if(i == 1)
 					{

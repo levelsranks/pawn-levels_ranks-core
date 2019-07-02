@@ -33,7 +33,7 @@ void CheckRank(int iClient)
 	{
 		int iRank = g_iClientData[iClient][ST_RANK];
 
-		for(int i = g_iCountRanks; i != 0; i--)
+		for(int i = g_iCountRanks; i >= 1; i--)
 		{
 			if(i == 1)
 			{

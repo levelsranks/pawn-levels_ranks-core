@@ -15,11 +15,12 @@ void ConnectDB()
 	}
 
 	g_hDatabase.Driver.GetIdentifier(sIdent, 16);
-	g_bDatabaseSQLite = (sIdent[0] == 's');
+	if(sIdent[0] == 's')
+	{
+		g_bDatabaseSQLite = true;
+	}
 
 	SQL_LockDatabase(g_hDatabase);
-
-	g_hDatabase.SetCharset("utf8");
 
 	FormatEx(sQuery, 640, "CREATE TABLE IF NOT EXISTS `%s` (`steam` varchar(32) NOT NULL PRIMARY KEY default '', `name` varchar(128) NOT NULL default '', `value` NUMERIC, `rank` NUMERIC, `kills` NUMERIC, `deaths` NUMERIC, `shoots` NUMERIC, `hits` NUMERIC, `headshots` NUMERIC, `assists` NUMERIC, `round_win` NUMERIC, `round_lose` NUMERIC, `playtime` NUMERIC, `lastconnect` NUMERIC)%s", g_sTableName, g_bDatabaseSQLite ? ";" : " CHARSET=utf8 COLLATE utf8_general_ci");
 	if(!SQL_FastQuery(g_hDatabase, sQuery)) CrashLR("ConnectDB - could not create table");
@@ -35,6 +36,7 @@ void ConnectDB()
 
 	SQL_UnlockDatabase(g_hDatabase);
 
+	g_hDatabase.SetCharset("utf8");
 	GetCountPlayers();
 	Call_StartForward(g_hForward_OnCoreIsReady);
 	Call_Finish();
