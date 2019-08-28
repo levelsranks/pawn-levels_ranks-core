@@ -26,90 +26,108 @@
 	{
 		"en"		"Silver I"
 		"ru"		"Серебро - I"
+		"chi"		"白银 ー I"
 	}
 	"rank_2"
 	{
 		"en"		"Silver II"
 		"ru"		"Серебро - II"
+		"chi"		"白银 ー II"
 	}
 	"rank_3"
 	{
 		"en"		"Silver III"
 		"ru"		"Серебро - III"
+		"chi"		"白银 ー III"
 	}
 	"rank_4"
 	{
 		"en"		"Silver IV"
 		"ru"		"Серебро - IV"
+		"chi"		"白银 ー IV"
 	}
 	"rank_5"
 	{
 		"en"		"Silver Elite"
 		"ru"		"Серебро Элита"
+		"chi"		"白银 ー 精英"
 	}
 	"rank_6"
 	{
 		"en"		"Silver Elite Master"
 		"ru"		"Серебро - Великий Магистр"
+		"chi"		"白银 ー 大师级精英"
 	}
 	"rank_7"
 	{
 		"en"		"Gold Nova I"
 		"ru"		"Золотая Звезда - I"
+		"chi"		"黄金新星 ー I"
 	}
 	"rank_8"
 	{
 		"en"		"Gold Nova II"
 		"ru"		"Золотая Звезда - II"
+		"chi"		"黄金新星 ー II"
 	}
 	"rank_9"
 	{
 		"en"		"Gold Nova III"
 		"ru"		"Золотая Звезда - III"
+		"chi"		"黄金新星 ー III"
 	}
 	"rank_10"
 	{
 		"en"		"Gold Nova Master"
 		"ru"		"Золотая Звезда - Магистр"
+		"chi"		"黄金新星 ー 大师级"
 	}
 	"rank_11"
 	{
 		"en"		"Master Guardian I"
 		"ru"		"Магистр-хранитель - I"
+		"chi"		"大师级守护者 ー I"
 	}
 	"rank_12"
 	{
 		"en"		"Master Guardian II"
 		"ru"		"Магистр-хранитель - II"
+		"chi"		"大师级守护者 ー II"
 	}
 	"rank_13"
 	{
 		"en"		"Master Guardian Elite"
 		"ru"		"Магистр-хранитель - Элита"
+		"chi"		"大师级守护者 ー 精英"
 	}
 	"rank_14"
 	{
 		"en"		"Distinguished Master Guardian"
 		"ru"		"Заслуженный Магистр-хранитель"
+		"chi"		"大师级守护者 ー 卓越"
 	}
 	"rank_15"
 	{
 		"en"		"Legendary Eagle"
 		"ru"		"Легендарный Беркут"
+		"chi"		"传奇之鹰"
 	}
 	"rank_16"
 	{
 		"en"		"Legendary Eagle Master"
 		"ru"		"Легендарный Беркут-магистр"
+		"chi"		"传奇之鹰 ー 大师级"
 	}
 	"rank_17"
 	{
 		"en"		"Supreme Master First Class"
 		"ru"		"Великий Магистр - Высшего Ранга"
+		"chi"		"无上之首席大师"
 	}
 	"rank_18"
 	{
 		"en"		"The Global Elite"
 		"ru"		"Всемирная Элита"
+		"chi"		"全球精英"
 	}
 }
