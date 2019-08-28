@@ -37,9 +37,9 @@
 	}
 	"ConfigUpdated"
 	{
-		"en"		"{RED}[Lemon] {WHITE}Configuration settings updated"
-		"ru"		"{RED}[Lemon] {WHITE}Конфигурационные настройки обновлены"
-		"chi"		"{RED}[Lemon] {WHITE}设置已更新"
+		"en"		"{RED}[LR] {WHITE}Configuration settings updated"
+		"ru"		"{RED}[LR] {WHITE}Конфигурационные настройки обновлены"
+		"chi"		"{RED}[LR] {WHITE}设置已更新"
 	}
 	"GiveTakeMenuExp"
 	{
@@ -50,16 +50,16 @@
 	"AdminGive"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {GRAY}{1} [{2} from the admin]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {GRAY}{1} [{2} от Админа]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {GRAY}{1} [管理员{2}]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {GRAY}{1} [{2} from the admin]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {GRAY}{1} [{2} от Админа]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {GRAY}{1} [管理员{2}]"
 	}
 	"AdminTake"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {GRAY}{1} [{2} from the admin]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {GRAY}{1} [{2} от Админа]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {GRAY}{1} [管理员{2}]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {GRAY}{1} [{2} from the admin]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {GRAY}{1} [{2} от Админа]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {GRAY}{1} [管理员{2}]"
 	}
 	"ExpChange"
 	{
@@ -152,9 +152,9 @@
 	"RankPlayer"
 	{
 		"#format"	"{1:N},{2:i},{3:i},{4:i},{5:i},{6:i},{7:.2f}"
-		"en"		"{RED}[Lemon] {WHITE}Player {GREEN}{1} {WHITE}is ranked at {GREEN}{2} / {3} {WHITE}with {OLIVE}{4} {WHITE}exp, {OLIVE}{5} {WHITE}kills, {OLIVE}{6} {WHITE}deaths и KDR {OLIVE}{7}"
-		"ru"		"{RED}[Lemon] {WHITE}Игрок {GREEN}{1} {WHITE}на {GREEN}{2} / {3} {WHITE}месте, с {OLIVE}{4} {WHITE}очками, {OLIVE}{5} {WHITE}убийствами, {OLIVE}{6} {WHITE}смертями и KDR {OLIVE}{7}"
-		"chi"		"{RED}[Lemon] {WHITE}玩家 {GREEN}{1} {WHITE}的段位在 {GREEN}{2} / {3} {WHITE}共获得 {OLIVE}{4} {WHITE}点经验者, {OLIVE}{5} {WHITE}击杀, {OLIVE}{6} {WHITE}死亡 и K/D比是 {OLIVE}{7}"
+		"en"		"{RED}[LR] {WHITE}Player {GREEN}{1} {WHITE}is ranked at {GREEN}{2} / {3} {WHITE}with {OLIVE}{4} {WHITE}exp, {OLIVE}{5} {WHITE}kills, {OLIVE}{6} {WHITE}deaths и KDR {OLIVE}{7}"
+		"ru"		"{RED}[LR] {WHITE}Игрок {GREEN}{1} {WHITE}на {GREEN}{2} / {3} {WHITE}месте, с {OLIVE}{4} {WHITE}очками, {OLIVE}{5} {WHITE}убийствами, {OLIVE}{6} {WHITE}смертями и KDR {OLIVE}{7}"
+		"chi"		"{RED}[LR] {WHITE}玩家 {GREEN}{1} {WHITE}的段位在 {GREEN}{2} / {3} {WHITE}共获得 {OLIVE}{4} {WHITE}点经验者, {OLIVE}{5} {WHITE}击杀, {OLIVE}{6} {WHITE}死亡 и K/D比是 {OLIVE}{7}"
 	}
     "Yes"
     {
@@ -177,9 +177,9 @@
 	"PlayerDataDeleted"
 	{
 		"#format"	"{1:s}"
-		"en"		"{RED}[Lemon] {WHITE}Deletion request sent successfully! STEAM_ID - {1}"
-		"ru"		"{RED}[Lemon] {WHITE}Запрос на удаление игрока прошел успешно! STEAM_ID - {1}"
-		"chi"		"{RED}[Lemon] {WHITE}删除请求已成功发送! STEAM_ID - {1}"
+		"en"		"{RED}[LR] {WHITE}Deletion request sent successfully! STEAM_ID - {1}"
+		"ru"		"{RED}[LR] {WHITE}Запрос на удаление игрока прошел успешно! STEAM_ID - {1}"
+		"chi"		"{RED}[LR] {WHITE}删除请求已成功发送! STEAM_ID - {1}"
 	}
 	"Back"
 	{
@@ -190,265 +190,265 @@
 	"RoundStartCheckCount"
 	{
 		"#format"	"{1:i},{2:i}"
-		"en"		"{RED}[Lemon] {WHITE}There are only {RED}{1} {WHITE}players from {RED}{2}"
-		"ru"		"{RED}[Lemon] {WHITE}Присутствует только {RED}{1} {WHITE}игрока из {RED}{2}"
-		"chi"		"{RED}[Lemon] {WHITE}这里只有 {RED}{1} {WHITE}名玩家 来自 {RED}{2}"
+		"en"		"{RED}[LR] {WHITE}There are only {RED}{1} {WHITE}players from {RED}{2}"
+		"ru"		"{RED}[LR] {WHITE}Присутствует только {RED}{1} {WHITE}игрока из {RED}{2}"
+		"chi"		"{RED}[LR] {WHITE}这里只有 {RED}{1} {WHITE}名玩家 来自 {RED}{2}"
 	}
 	"RoundStartMessageRanks"
 	{
-		"en"		"{RED}[Lemon] {WHITE}Enter: {PURPLE}!lvl {WHITE}- main menu"
-		"ru"		"{RED}[Lemon] {WHITE}Введи: {PURPLE}!lvl {WHITE}- главное меню"
-		"chi"		"{RED}[Lemon] {WHITE}输入: {PURPLE}!lvl {WHITE}- 打开主菜单"
+		"en"		"{RED}[LR] {WHITE}Enter: {PURPLE}!lvl {WHITE}- main menu"
+		"ru"		"{RED}[LR] {WHITE}Введи: {PURPLE}!lvl {WHITE}- главное меню"
+		"chi"		"{RED}[LR] {WHITE}输入: {PURPLE}!lvl {WHITE}- 打开主菜单"
 	}
 	"LevelUp"
 	{
 		"#format"	"{1:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your rank has been promoted to {LIME}{1}"
-		"ru"		"{RED}[Lemon] {WHITE}Вы повышены в звании до {LIME}{1}"
-		"chi"		"{RED}[Lemon] {WHITE}你的段位已经升级为 {LIME}{1}"
+		"en"		"{RED}[LR] {WHITE}Your rank has been promoted to {LIME}{1}"
+		"ru"		"{RED}[LR] {WHITE}Вы повышены в звании до {LIME}{1}"
+		"chi"		"{RED}[LR] {WHITE}你的段位已经升级为 {LIME}{1}"
 	}
 	"LevelDown"
 	{
 		"#format"	"{1:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your rank has been lowered to {RED}{1}"
-		"ru"		"{RED}[Lemon] {WHITE}Вы понижены в звании до {RED}{1}".
-		"chi"		"{RED}[Lemon] {WHITE}你的段位已经降级为 {LIME}{1}"
+		"en"		"{RED}[LR] {WHITE}Your rank has been lowered to {RED}{1}"
+		"ru"		"{RED}[LR] {WHITE}Вы понижены в звании до {RED}{1}".
+		"chi"		"{RED}[LR] {WHITE}你的段位已经降级为 {LIME}{1}"
 	}
 	"LevelUpAll"
 	{
 		"#format"	"{1:N},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Player {OLIVE}{1} {WHITE}raised his rank to {LIME}{2}"
-		"ru"		"{RED}[Lemon] {WHITE}Игрок {OLIVE}{1} {WHITE}повысил свое звание до {LIME}{2}"
-		"chi"		"{RED}[Lemon] {WHITE}玩家 {OLIVE}{1} {WHITE}升段到了 {LIME}{2}"
+		"en"		"{RED}[LR] {WHITE}Player {OLIVE}{1} {WHITE}raised his rank to {LIME}{2}"
+		"ru"		"{RED}[LR] {WHITE}Игрок {OLIVE}{1} {WHITE}повысил свое звание до {LIME}{2}"
+		"chi"		"{RED}[LR] {WHITE}玩家 {OLIVE}{1} {WHITE}升段到了 {LIME}{2}"
 	}
 	"LevelDownAll"
 	{
 		"#format"	"{1:N},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Player {OLIVE}{1} {WHITE}lowered his rank to {RED}{2}"
-		"ru"		"{RED}[Lemon] {WHITE}Игрок {OLIVE}{1} {WHITE}понизил свое звание до {RED}{2}"
-		"chi"		"{RED}[Lemon] {WHITE}玩家 {OLIVE}{1} {WHITE}掉段到了 {LIME}{2}"
+		"en"		"{RED}[LR] {WHITE}Player {OLIVE}{1} {WHITE}lowered his rank to {RED}{2}"
+		"ru"		"{RED}[LR] {WHITE}Игрок {OLIVE}{1} {WHITE}понизил свое звание до {RED}{2}"
+		"chi"		"{RED}[LR] {WHITE}玩家 {OLIVE}{1} {WHITE}掉段到了 {LIME}{2}"
 	}
 	"Suicide"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {RED}{1} [{2} for suicide]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {RED}{1} [{2} за самоубийство]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {RED}{1} [{2} 因为自杀]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {RED}{1} [{2} for suicide]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {RED}{1} [{2} за самоубийство]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {RED}{1} [{2} 因为自杀]"
 	}
 	"Kill"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {GREEN}{1} [{2} for a kill]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {GREEN}{1} [{2} за убийство]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {GREEN}{1} [{2} 来自击杀]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {GREEN}{1} [{2} for a kill]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {GREEN}{1} [{2} за убийство]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {GREEN}{1} [{2} 来自击杀]"
 	}
 	"MyDeath"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {RED}{1} [{2} for dying]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {RED}{1} [{2} за вашу смерть]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {RED}{1} [{2} 因为死亡]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {RED}{1} [{2} for dying]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {RED}{1} [{2} за вашу смерть]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {RED}{1} [{2} 因为死亡]"
 	}
 	"TeamKill"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {RED}{1} [{2} for teamkill]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {RED}{1} [{2} за убийство товарища]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {RED}{1} [{2} 因为击杀队友]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {RED}{1} [{2} for teamkill]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {RED}{1} [{2} за убийство товарища]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {RED}{1} [{2} 因为击杀队友]"
 	}
 	"HeadShotKill"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {OLIVE}{1} [{2} for a headshot]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {OLIVE}{1} [{2} за убийство в голову]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {OLIVE}{1} [{2} 来自爆头]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {OLIVE}{1} [{2} for a headshot]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {OLIVE}{1} [{2} за убийство в голову]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {OLIVE}{1} [{2} 来自爆头]"
 	}
 	"AssisterKill"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {BLUE}{1} [{2} for an assist]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {BLUE}{1} [{2} за помощь в убийстве]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {BLUE}{1} [{2} 来自助攻]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {BLUE}{1} [{2} for an assist]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {BLUE}{1} [{2} за помощь в убийстве]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {BLUE}{1} [{2} 来自助攻]"
 	}
 	"RoundWin"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {GREEN}{1} [{2} your team won]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {GREEN}{1} [{2} ваша команда выиграла]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {GREEN}{1} [{2} 来自团队胜利]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {GREEN}{1} [{2} your team won]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {GREEN}{1} [{2} ваша команда выиграла]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {GREEN}{1} [{2} 来自团队胜利]"
 	}
 	"RoundLose"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {RED}{1} [{2} your team lost]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {RED}{1} [{2} ваша команда проиграла]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {RED}{1} [{2} 因为团队失败]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {RED}{1} [{2} your team lost]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {RED}{1} [{2} ваша команда проиграла]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {RED}{1} [{2} 因为团队失败]"
 	}
 	"RoundMVP"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {BLUE}{1} [{2} MVP]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {BLUE}{1} [{2} MVP]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {BLUE}{1} [{2} MVP]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {BLUE}{1} [{2} MVP]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {BLUE}{1} [{2} MVP]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {BLUE}{1} [{2} MVP]"
 	}
 	"BombPlanted"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {LIME}{1} [{2} for planting the bomb]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {LIME}{1} [{2} установка бомбы]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {LIME}{1} [{2} 来自安装炸弹]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {LIME}{1} [{2} for planting the bomb]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {LIME}{1} [{2} установка бомбы]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {LIME}{1} [{2} 来自安装炸弹]"
 	}
 	"BombDefused"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {LIME}{1} [{2} for defusing the bomb]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {LIME}{1} [{2} разминирование бомбы]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {LIME}{1} [{2} 来自拆除炸弹]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {LIME}{1} [{2} for defusing the bomb]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {LIME}{1} [{2} разминирование бомбы]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {LIME}{1} [{2} 来自拆除炸弹]"
 	}
 	"BombPickup"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {GREEN}{1} [{2} for bomb pickup]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {GREEN}{1} [{2} подобрали бомбу]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {GREEN}{1} [{2} 来自捡起炸弹]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {GREEN}{1} [{2} for bomb pickup]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {GREEN}{1} [{2} подобрали бомбу]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {GREEN}{1} [{2} 来自捡起炸弹]"
 	}
 	"BombDropped"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {RED}{1} [{2} for dropping the bomb]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {RED}{1} [{2} потеряли бомбу]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {RED}{1} [{2} 因为掉落炸弹]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {RED}{1} [{2} for dropping the bomb]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {RED}{1} [{2} потеряли бомбу]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {RED}{1} [{2} 因为掉落炸弹]"
 	}
 	"HostageRescued"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {LIGHTBLUE}{1} [{2} you rescued the hostage]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {LIGHTBLUE}{1} [{2} вы спасли заложника]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {LIGHTBLUE}{1} [{2} 来自人质救援]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {LIGHTBLUE}{1} [{2} you rescued the hostage]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {LIGHTBLUE}{1} [{2} вы спасли заложника]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {LIGHTBLUE}{1} [{2} 来自人质救援]"
 	}
 	"HostageKilled"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {RED}{1} [{2} you killed the hostage]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {RED}{1} [{2} вы убили заложника]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {RED}{1} [{2} 因为击杀人质]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {RED}{1} [{2} you killed the hostage]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {RED}{1} [{2} вы убили заложника]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {RED}{1} [{2} 因为击杀人质]"
 	}
 	"DoubleKill"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {PURPLE}{1} [{2} for DoubleKill]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за DoubleKill]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自双杀]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {PURPLE}{1} [{2} for DoubleKill]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за DoubleKill]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自双杀]"
 	}
 	"TripleKill"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {PURPLE}{1} [{2} for TripleKill]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за TripleKill]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自三杀]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {PURPLE}{1} [{2} for TripleKill]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за TripleKill]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自三杀]"
 	}
 	"Domination"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {PURPLE}{1} [{2} for Domination]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за Domination]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自Domination]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {PURPLE}{1} [{2} for Domination]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за Domination]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自Domination]"
 	}
 	"Rampage"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {PURPLE}{1} [{2} for Rampage]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за Rampage]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自Rampage]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {PURPLE}{1} [{2} for Rampage]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за Rampage]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自Rampage]"
 	}
 	"MegaKill"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {PURPLE}{1} [{2} for MegaKill]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за MegaKill]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自MegaKill]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {PURPLE}{1} [{2} for MegaKill]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за MegaKill]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自MegaKill]"
 	}
 	"Ownage"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {PURPLE}{1} [{2} for Ownage]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за Ownage]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自Ownage]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {PURPLE}{1} [{2} for Ownage]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за Ownage]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自Ownage]"
 	}
 	"UltraKill"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {PURPLE}{1} [{2} for UltraKill]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за UltraKill]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自UltraKill]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {PURPLE}{1} [{2} for UltraKill]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за UltraKill]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自UltraKill]"
 	}
 	"KillingSpree"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {PURPLE}{1} [{2} for Killing Spree]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за Killing Spree]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自Killing Spree]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {PURPLE}{1} [{2} for Killing Spree]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за Killing Spree]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自Killing Spree]"
 	}
 	"MonsterKill"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {PURPLE}{1} [{2} for MonsterKill]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за MonsterKill]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自MonsterKill]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {PURPLE}{1} [{2} for MonsterKill]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за MonsterKill]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自MonsterKill]"
 	}
 	"Unstoppable"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {PURPLE}{1} [{2} for Unstoppable]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за Unstoppable]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自Unstoppable]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {PURPLE}{1} [{2} for Unstoppable]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за Unstoppable]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自Unstoppable]"
 	}
 	"GodLike"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {PURPLE}{1} [{2} for God Like]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за God Like]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自God Like]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {PURPLE}{1} [{2} for God Like]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за God Like]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自God Like]"
 	}
 	"WickedSick"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {PURPLE}{1} [{2} for WickedSick]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за WickedSick]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自WickedSick]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {PURPLE}{1} [{2} for WickedSick]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за WickedSick]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自WickedSick]"
 	}
 	"HolyShit"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"{RED}[Lemon] {WHITE}Your exp: {PURPLE}{1} [{2} for HolyShit]"
-		"ru"		"{RED}[Lemon] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за HolyShit]"
-		"chi"		"{RED}[Lemon] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自HolyShit]"
+		"en"		"{RED}[LR] {WHITE}Your exp: {PURPLE}{1} [{2} for HolyShit]"
+		"ru"		"{RED}[LR] {WHITE}Ваш опыт: {PURPLE}{1} [{2} за HolyShit]"
+		"chi"		"{RED}[LR] {WHITE}你的经验值: {PURPLE}{1} [{2} 来自HolyShit]"
 	}
 	"RoundExpResultGive"
 	{
 		"#format"	"{1:i}"
-		"en"		"{RED}[Lemon] {WHITE}You earned {GREEN}{1} {WHITE}experience points per round"
-		"ru"		"{RED}[Lemon] {WHITE}За раунд вы заработали {GREEN}{1} {WHITE}очков опыта"
-		"chi"		"{RED}[Lemon] {WHITE}你每回合可获得 {GREEN}{1} {WHITE}点经验值"
+		"en"		"{RED}[LR] {WHITE}You earned {GREEN}{1} {WHITE}experience points per round"
+		"ru"		"{RED}[LR] {WHITE}За раунд вы заработали {GREEN}{1} {WHITE}очков опыта"
+		"chi"		"{RED}[LR] {WHITE}你每回合可获得 {GREEN}{1} {WHITE}点经验值"
 	}
 	"RoundExpResultTake"
 	{
 		"#format"	"{1:i}"
-		"en"		"{RED}[Lemon] {WHITE}You lost {RED}{1} {WHITE}experience points per round"
-		"ru"		"{RED}[Lemon] {WHITE}За раунд вы потеряли {RED}{1} {WHITE}очков опыта"
-		"chi"		"{RED}[Lemon] {WHITE}你每回合将失去 {GREEN}{1} {WHITE}点经验值"
+		"en"		"{RED}[LR] {WHITE}You lost {RED}{1} {WHITE}experience points per round"
+		"ru"		"{RED}[LR] {WHITE}За раунд вы потеряли {RED}{1} {WHITE}очков опыта"
+		"chi"		"{RED}[LR] {WHITE}你每回合将失去 {GREEN}{1} {WHITE}点经验值"
 	}
 	"RoundExpResultNothing"
 	{
-		"en"		"{RED}[Lemon] {WHITE}You didn’t earn experience points in a round!"
-		"ru"		"{RED}[Lemon] {WHITE}За раунд вы не заработали очков опыта!"
-		"chi"		"{RED}[Lemon] {WHITE}你在这回合并没有获得任何经验值!"
+		"en"		"{RED}[LR] {WHITE}You didn’t earn experience points in a round!"
+		"ru"		"{RED}[LR] {WHITE}За раунд вы не заработали очков опыта!"
+		"chi"		"{RED}[LR] {WHITE}你在这回合并没有获得任何经验值!"
 	}
 	"RoundExpResultAll"
 	{
 		"#format"	"{1:i}"
-		"en"		"{RED}[Lemon] {WHITE}Total: {PURPLE}{1} {WHITE}exp. points"
-		"ru"		"{RED}[Lemon] {WHITE}Всего: {PURPLE}{1} {WHITE}очков опыта"
-		"chi"		"{RED}[Lemon] {WHITE}总共: {PURPLE}{1} {WHITE}经验值. 点数"
+		"en"		"{RED}[LR] {WHITE}Total: {PURPLE}{1} {WHITE}exp. points"
+		"ru"		"{RED}[LR] {WHITE}Всего: {PURPLE}{1} {WHITE}очков опыта"
+		"chi"		"{RED}[LR] {WHITE}总共: {PURPLE}{1} {WHITE}经验值. 点数"
 	}
 }
