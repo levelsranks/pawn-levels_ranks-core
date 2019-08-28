@@ -211,7 +211,7 @@
 	{
 		"#format"	"{1:s}"
 		"en"		"{RED}[LR] {WHITE}Your rank has been lowered to {RED}{1}"
-		"ru"		"{RED}[LR] {WHITE}Вы понижены в звании до {RED}{1}".
+		"ru"		"{RED}[LR] {WHITE}Вы понижены в звании до {RED}{1}"
 		"chi"		"{RED}[LR] {WHITE}你的段位已经降级为 {LIME}{1}"
 	}
 	"LevelUpAll"
