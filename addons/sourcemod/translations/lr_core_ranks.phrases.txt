@@ -27,107 +27,125 @@
 		"en"		"Silver I"
 		"ru"		"Серебро - I"
 		"chi"		"白银 ー I"
+		"es"		"Plata I"
 	}
 	"rank_2"
 	{
 		"en"		"Silver II"
 		"ru"		"Серебро - II"
 		"chi"		"白银 ー II"
+		"es"		"Plata II"
 	}
 	"rank_3"
 	{
 		"en"		"Silver III"
 		"ru"		"Серебро - III"
 		"chi"		"白银 ー III"
+		"es"		"Plata III"
 	}
 	"rank_4"
 	{
 		"en"		"Silver IV"
 		"ru"		"Серебро - IV"
 		"chi"		"白银 ー IV"
+		"es"		"Plata IV"
 	}
 	"rank_5"
 	{
 		"en"		"Silver Elite"
 		"ru"		"Серебро Элита"
 		"chi"		"白银 ー 精英"
+		"es"		"Plata Elite"
 	}
 	"rank_6"
 	{
 		"en"		"Silver Elite Master"
 		"ru"		"Серебро - Великий Магистр"
 		"chi"		"白银 ー 大师级精英"
+		"es"		"Plata Elite Maestro"
 	}
 	"rank_7"
 	{
 		"en"		"Gold Nova I"
 		"ru"		"Золотая Звезда - I"
 		"chi"		"黄金新星 ー I"
+		"es"		"Nova I"
 	}
 	"rank_8"
 	{
 		"en"		"Gold Nova II"
 		"ru"		"Золотая Звезда - II"
 		"chi"		"黄金新星 ー II"
+		"es"		"Nova II"
 	}
 	"rank_9"
 	{
 		"en"		"Gold Nova III"
 		"ru"		"Золотая Звезда - III"
 		"chi"		"黄金新星 ー III"
+		"es"		"Nova III"
 	}
 	"rank_10"
 	{
 		"en"		"Gold Nova Master"
 		"ru"		"Золотая Звезда - Магистр"
 		"chi"		"黄金新星 ー 大师级"
+		"es"		"Nova Maestro"
 	}
 	"rank_11"
 	{
 		"en"		"Master Guardian I"
 		"ru"		"Магистр-хранитель - I"
 		"chi"		"大师级守护者 ー I"
+		"es"		"Guardian Maestro I"
 	}
 	"rank_12"
 	{
 		"en"		"Master Guardian II"
 		"ru"		"Магистр-хранитель - II"
 		"chi"		"大师级守护者 ー II"
+		"es"		"Guardian Maestro II"
 	}
 	"rank_13"
 	{
 		"en"		"Master Guardian Elite"
 		"ru"		"Магистр-хранитель - Элита"
 		"chi"		"大师级守护者 ー 精英"
+		"es"		"Guardian Maestro Elite"
 	}
 	"rank_14"
 	{
 		"en"		"Distinguished Master Guardian"
 		"ru"		"Заслуженный Магистр-хранитель"
 		"chi"		"大师级守护者 ー 卓越"
+		"es"		"Maestro Guardian Distinguido"
 	}
 	"rank_15"
 	{
 		"en"		"Legendary Eagle"
 		"ru"		"Легендарный Беркут"
 		"chi"		"传奇之鹰"
+		"es"		"Aguila Legendario"
 	}
 	"rank_16"
 	{
 		"en"		"Legendary Eagle Master"
 		"ru"		"Легендарный Беркут-магистр"
 		"chi"		"传奇之鹰 ー 大师级"
+		"es"		"Aguila Legendario Maestro"
 	}
 	"rank_17"
 	{
 		"en"		"Supreme Master First Class"
 		"ru"		"Великий Магистр - Высшего Ранга"
 		"chi"		"无上之首席大师"
+		"es"		"Supreme Maestro"
 	}
 	"rank_18"
 	{
 		"en"		"The Global Elite"
 		"ru"		"Всемирная Элита"
 		"chi"		"全球精英"
+		"es"		"Elite Global"
 	}
 }
