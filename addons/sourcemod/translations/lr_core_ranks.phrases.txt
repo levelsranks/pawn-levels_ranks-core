@@ -26,6 +26,7 @@
 	{
 		"en"		"Silver I"
 		"ru"		"Серебро - I"
+		"ua"		"Срібло - I"
 		"chi"		"白银 ー I"
 		"es"		"Plata I"
 	}
@@ -33,6 +34,7 @@
 	{
 		"en"		"Silver II"
 		"ru"		"Серебро - II"
+		"ua"		"Срібло - II"
 		"chi"		"白银 ー II"
 		"es"		"Plata II"
 	}
@@ -40,6 +42,7 @@
 	{
 		"en"		"Silver III"
 		"ru"		"Серебро - III"
+		"ua"		"Срібло - III"
 		"chi"		"白银 ー III"
 		"es"		"Plata III"
 	}
@@ -47,6 +50,7 @@
 	{
 		"en"		"Silver IV"
 		"ru"		"Серебро - IV"
+		"ua"		"Срібло - IV"
 		"chi"		"白银 ー IV"
 		"es"		"Plata IV"
 	}
@@ -54,6 +58,7 @@
 	{
 		"en"		"Silver Elite"
 		"ru"		"Серебро Элита"
+		"ua"		"Срібло Еліта"
 		"chi"		"白银 ー 精英"
 		"es"		"Plata Elite"
 	}
@@ -61,6 +66,7 @@
 	{
 		"en"		"Silver Elite Master"
 		"ru"		"Серебро - Великий Магистр"
+		"ua"		"Срібло - Великий Магістр"
 		"chi"		"白银 ー 大师级精英"
 		"es"		"Plata Elite Maestro"
 	}
@@ -68,6 +74,7 @@
 	{
 		"en"		"Gold Nova I"
 		"ru"		"Золотая Звезда - I"
+		"ua"		"Золота Зірка - I"
 		"chi"		"黄金新星 ー I"
 		"es"		"Nova I"
 	}
@@ -75,6 +82,7 @@
 	{
 		"en"		"Gold Nova II"
 		"ru"		"Золотая Звезда - II"
+		"ua"		"Золота Зірка - II"
 		"chi"		"黄金新星 ー II"
 		"es"		"Nova II"
 	}
@@ -82,6 +90,7 @@
 	{
 		"en"		"Gold Nova III"
 		"ru"		"Золотая Звезда - III"
+		"ua"		"Золота Зірка - III"
 		"chi"		"黄金新星 ー III"
 		"es"		"Nova III"
 	}
@@ -89,6 +98,7 @@
 	{
 		"en"		"Gold Nova Master"
 		"ru"		"Золотая Звезда - Магистр"
+		"ua"		"Золота Зірка - Магістр"
 		"chi"		"黄金新星 ー 大师级"
 		"es"		"Nova Maestro"
 	}
@@ -96,6 +106,7 @@
 	{
 		"en"		"Master Guardian I"
 		"ru"		"Магистр-хранитель - I"
+		"ua"		"Магістр-хранитель - I"
 		"chi"		"大师级守护者 ー I"
 		"es"		"Guardian Maestro I"
 	}
@@ -103,6 +114,7 @@
 	{
 		"en"		"Master Guardian II"
 		"ru"		"Магистр-хранитель - II"
+		"ua"		"Магістр-хранитель - II"
 		"chi"		"大师级守护者 ー II"
 		"es"		"Guardian Maestro II"
 	}
@@ -110,6 +122,7 @@
 	{
 		"en"		"Master Guardian Elite"
 		"ru"		"Магистр-хранитель - Элита"
+		"ua"		"Магістр-хранитель - Еліта"
 		"chi"		"大师级守护者 ー 精英"
 		"es"		"Guardian Maestro Elite"
 	}
@@ -117,6 +130,7 @@
 	{
 		"en"		"Distinguished Master Guardian"
 		"ru"		"Заслуженный Магистр-хранитель"
+		"ua"		"Заслужений Магістр-хранитель"
 		"chi"		"大师级守护者 ー 卓越"
 		"es"		"Maestro Guardian Distinguido"
 	}
@@ -124,6 +138,7 @@
 	{
 		"en"		"Legendary Eagle"
 		"ru"		"Легендарный Беркут"
+		"ua"		"Легендарний Беркут"
 		"chi"		"传奇之鹰"
 		"es"		"Aguila Legendario"
 	}
@@ -131,6 +146,7 @@
 	{
 		"en"		"Legendary Eagle Master"
 		"ru"		"Легендарный Беркут-магистр"
+		"ua"		"Легендарний Беркут-магістр"
 		"chi"		"传奇之鹰 ー 大师级"
 		"es"		"Aguila Legendario Maestro"
 	}
@@ -138,6 +154,7 @@
 	{
 		"en"		"Supreme Master First Class"
 		"ru"		"Великий Магистр - Высшего Ранга"
+		"ua"		"Великий Магістр - Вищого Рангу"
 		"chi"		"无上之首席大师"
 		"es"		"Supreme Maestro"
 	}
@@ -145,6 +162,7 @@
 	{
 		"en"		"The Global Elite"
 		"ru"		"Всемирная Элита"
+		"ua"		"Всесвітня Еліта"
 		"chi"		"全球精英"
 		"es"		"Elite Global"
 	}
