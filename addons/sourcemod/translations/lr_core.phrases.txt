@@ -231,7 +231,7 @@
 		"ru"		"{RED}[LR] {WHITE}Запрос на удаление игрока прошел успешно! STEAM_ID - {1}"
 		"ua"		"{RED}[LR] {WHITE}Запит на видалення гравця пройшов успішно! STEAM_ID - {1}"
 		"chi"		"{RED}[LR] {WHITE}删除请求已成功发送! STEAM_ID - {1}"
-		"es"		"{RED}[LR] {WHITE}¡Petición de eliminación enviada correctamente! STEAM_ID - {1}
+		"es"		"{RED}[LR] {WHITE}¡Petición de eliminación enviada correctamente! STEAM_ID - {1}"
 	}
 	"Back"
 	{
