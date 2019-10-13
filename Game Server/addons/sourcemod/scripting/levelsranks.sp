@@ -34,9 +34,6 @@
 ****		Grey
 ****		( manual new syntax )
 ****
-****		Pheonix
-****		( algorithm function GetFixNamePlayer in custom_functions.sp )
-****
 ****		Testers
 ****		( test of plugin )
 ****

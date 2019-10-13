@@ -1,8 +1,8 @@
 #define SQL_CreateTable \
 "CREATE TABLE IF NOT EXISTS `%s` \
 (\
-	`steam` varchar(32) NOT NULL PRIMARY KEY default '', \
-	`name` varchar(32) NOT NULL default '', \
+	`steam` varchar(22)%s NOT NULL PRIMARY KEY DEFAULT '', \
+	`name` varchar(32)%s NOT NULL DEFAULT '', \
 	`value` int NOT NULL DEFAULT 0, \
 	`rank` int NOT NULL DEFAULT 0, \
 	`kills` int NOT NULL DEFAULT 0, \
@@ -15,14 +15,14 @@
 	`round_lose` int NOT NULL DEFAULT 0, \
 	`playtime` int NOT NULL DEFAULT 0, \
 	`lastconnect` int NOT NULL DEFAULT 0\
-)%s"
+);"
 
 #define SQL_CreateData \
 "INSERT INTO `%s` \
 (\
-	`value`, \
 	`steam`, \
 	`name`, \
+	`value`, \
 	`lastconnect`\
 ) \
 VALUES (%i, 'STEAM_%i:%i:%i', '%s', %i);"
@@ -112,11 +112,14 @@ void ConnectDB()
 
 	SQL_LockDatabase(g_hDatabase);
 
-	FormatEx(sQuery, sizeof(sQuery), SQL_CreateTable, g_sTableName, g_bDatabaseSQLite ? ";" : " CHARSET=utf8 COLLATE utf8_general_ci;");
+	FormatEx(sQuery, sizeof(sQuery), SQL_CreateTable, g_sTableName, g_bDatabaseSQLite ? NULL_STRING : " COLLATE utf8_general_ci", g_bDatabaseSQLite ? NULL_STRING : " COLLATE utf8mb4_general_ci");
 	SQL_FastQuery(g_hDatabase, sQuery);
 
-	FormatEx(sQuery, strlen(sQuery), "ALTER TABLE `%s` MODIFY COLUMN `name` varchar(32) NOT NULL default '' AFTER `steam`;", g_sTableName);
-	SQL_FastQuery(g_hDatabase, sQuery);
+	if(!g_bDatabaseSQLite)
+	{
+		FormatEx(sQuery, strlen(sQuery), "ALTER TABLE `%s` MODIFY COLUMN `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL default '' AFTER `steam`;", g_sTableName);
+		SQL_FastQuery(g_hDatabase, sQuery);
+	}
 
 	FormatEx(sQuery, sizeof(sQuery), SQL_GetCountPlayers, g_sTableName);
 
@@ -205,7 +208,7 @@ Action Call_ResetPlayer(int iClient, int iArgs)
 
 void AuthAllPlayer()
 {
-	static char sSteamID[32];
+	static char sSteamID[22];
 
 	for(int i = GetMaxPlayers(); --i;)
 	{
@@ -267,7 +270,7 @@ void SaveDataPlayer(int iClient, bool bDisconnect = false)
 
 		Transaction hTransaction = g_hDatabase ? new Transaction() : g_hTransactionLossDB;
 
-		g_hDatabase.Format(sQuery, sizeof(sQuery), SQL_UpdateData, g_sTableName, g_iPlayerInfo[iClient].iStats[ST_EXP], GetFixNamePlayer(iClient), g_iPlayerInfo[iClient].iStats[ST_RANK], g_iPlayerInfo[iClient].iStats[ST_KILLS], g_iPlayerInfo[iClient].iStats[ST_DEATHS], g_iPlayerInfo[iClient].iStats[ST_SHOOTS], g_iPlayerInfo[iClient].iStats[ST_HITS], g_iPlayerInfo[iClient].iStats[ST_HEADSHOTS], g_iPlayerInfo[iClient].iStats[ST_ASSISTS], g_iPlayerInfo[iClient].iStats[ST_ROUNDSWIN], g_iPlayerInfo[iClient].iStats[ST_ROUNDSLOSE], g_iPlayerInfo[iClient].iStats[ST_PLAYTIME], GetTime(), g_iEngine == Engine_CSGO, iAccountID & 1, iAccountID >>> 1);
+		g_hDatabase.Format(sQuery, sizeof(sQuery), SQL_UpdateData, g_sTableName, g_iPlayerInfo[iClient].iStats[ST_EXP], GetPlayerName(iClient), g_iPlayerInfo[iClient].iStats[ST_RANK], g_iPlayerInfo[iClient].iStats[ST_KILLS], g_iPlayerInfo[iClient].iStats[ST_DEATHS], g_iPlayerInfo[iClient].iStats[ST_SHOOTS], g_iPlayerInfo[iClient].iStats[ST_HITS], g_iPlayerInfo[iClient].iStats[ST_HEADSHOTS], g_iPlayerInfo[iClient].iStats[ST_ASSISTS], g_iPlayerInfo[iClient].iStats[ST_ROUNDSWIN], g_iPlayerInfo[iClient].iStats[ST_ROUNDSLOSE], g_iPlayerInfo[iClient].iStats[ST_PLAYTIME], GetTime(), g_iEngine == Engine_CSGO, iAccountID & 1, iAccountID >>> 1);
 		hTransaction.AddQuery(sQuery);
 
 		Call_StartForward(g_hForward_Hook[LR_OnPlayerSaved]);
@@ -393,7 +396,7 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 
 					static char sQuery[512];
 
-					g_hDatabase.Format(sQuery, sizeof(sQuery), SQL_CreateData, g_sTableName, g_Settings[LR_TypeStatistics] ? 1000 : 0, g_iEngine == Engine_CSGO, iAccountID & 1, iAccountID >>> 1, GetFixNamePlayer(iClient), GetTime());
+					g_hDatabase.Format(sQuery, sizeof(sQuery), SQL_CreateData, g_sTableName, g_Settings[LR_TypeStatistics] ? 1000 : 0, g_iEngine == Engine_CSGO, iAccountID & 1, iAccountID >>> 1, GetPlayerName(iClient), GetTime());
 					g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | 2);
 
 				}

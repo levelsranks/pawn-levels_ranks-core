@@ -15,94 +15,98 @@ void LR_PrintMessage(int iClient, bool bPrefix, bool bNative, const char[] sForm
 		{
 			VFormat(sMessage, sizeof(sMessage), sFormat, 5);
 		}
-
-		if(bPrefix)
+		
+		if(sMessage[0] != '\0')
 		{
-			Format(sMessage, sizeof(sMessage), g_iEngine == Engine_CSGO ? " %T %s" : "%T %s", "Prefix", iClient, sMessage);
-		}
-		else if(g_iEngine == Engine_CSGO)
-		{
-			Format(sMessage, sizeof(sMessage), " %s", sMessage);
-		}
-
-		if(g_iEngine != Engine_SourceSDK2006)
-		{
-			ReplaceString(sMessage, sizeof(sMessage), "{WHITE}", "{DEFAULT}");
-		}
-
-		switch(g_iEngine)
-		{
-			case Engine_CSGO:
+			if(bPrefix)
 			{
-				for(int i = 0; i != sizeof(sColorsBefore); i++)
-				{
-					ReplaceString(sMessage, sizeof(sMessage), sColorsBefore[i], sColors[i]);
-				}
+				Format(sMessage, sizeof(sMessage), g_iEngine == Engine_CSGO ? " %T %s" : "%T %s", "Prefix", iClient, sMessage);
+			}
+			else if(g_iEngine == Engine_CSGO)
+			{
+				Format(sMessage, sizeof(sMessage), " %s", sMessage);
 			}
 
-			case Engine_CSS:
+			if(g_iEngine != Engine_SourceSDK2006)
 			{
-				static const int iColorsCSSOB[] = {0xFFFFFF, 0x000000, 0x00AD00, 0xFF0000, 0x00FF00, 0x99FF99, 0xFF4040, 0xCCCCCC, 0xFFBD6B, 0xFA8B00, 0x99CCFF, 0x3D46FF, 0xFA00FA, 0xFF6055};
+				ReplaceString(sMessage, sizeof(sMessage), "{WHITE}", "{DEFAULT}");
+			}
 
-				static char sColor[16];
-
-				static const char sFormatColor[] = "\x07%06X";
-
-				int iLen = StrContains(sMessage, sColorsBefore[1], false);
-
-				if(iLen != -1)
+			switch(g_iEngine)
+			{
+				case Engine_CSGO:
 				{
-					static const int iColorTeamCSSOB[] = {0xFFFFFF, 0xCCCCCC, 0xFF4040, 0x99CCFF};
-
-					FormatEx(sColor, sizeof(sColor), sFormatColor, iColorTeamCSSOB[GetClientTeam(iClient)]);
-					ReplaceString(sMessage[iLen], sizeof(sMessage) - iLen, sColorsBefore[1], sColor);
+					for(int i = 0; i != sizeof(sColorsBefore); i++)
+					{
+						ReplaceString(sMessage, sizeof(sMessage), sColorsBefore[i], sColors[i]);
+					}
 				}
 
-				for(int i = 0; i != sizeof(sColorsBefore); i++)
+				case Engine_CSS:
 				{
-					if((iLen = StrContains(sMessage, sColorsBefore[i], false)) != -1)
+					static const int iColorsCSSOB[] = {0xFFFFFF, 0x000000, 0x00AD00, 0xFF0000, 0x00FF00, 0x99FF99, 0xFF4040, 0xCCCCCC, 0xFFBD6B, 0xFA8B00, 0x99CCFF, 0x3D46FF, 0xFA00FA, 0xFF6055};
+
+					static char sColor[16];
+
+					static const char sFormatColor[] = "\x07%06X";
+
+					int iLen = StrContains(sMessage, sColorsBefore[1], false);
+
+					if(iLen != -1)
 					{
-						FormatEx(sColor, sizeof(sColor), sFormatColor, iColorsCSSOB[i]);
-						ReplaceString(sMessage[iLen], sizeof(sMessage) - iLen, sColorsBefore[i], sColor);
+						static const int iColorTeamCSSOB[] = {0xFFFFFF, 0xCCCCCC, 0xFF4040, 0x99CCFF};
+
+						FormatEx(sColor, sizeof(sColor), sFormatColor, iColorTeamCSSOB[GetClientTeam(iClient)]);
+						ReplaceString(sMessage[iLen], sizeof(sMessage) - iLen, sColorsBefore[1], sColor);
+					}
+
+					for(int i = 0; i != sizeof(sColorsBefore); i++)
+					{
+						if((iLen = StrContains(sMessage, sColorsBefore[i], false)) != -1)
+						{
+							FormatEx(sColor, sizeof(sColor), sFormatColor, iColorsCSSOB[i]);
+							ReplaceString(sMessage[iLen], sizeof(sMessage) - iLen, sColorsBefore[i], sColor);
+						}
+					}
+				}
+
+				case Engine_SourceSDK2006:
+				{
+					for(int j = 0; j != 3; j++)
+					{
+						ReplaceString(sMessage, sizeof(sMessage), sColorsBefore[j], sColors[j]);
 					}
 				}
 			}
 
-			case Engine_SourceSDK2006:
+			Handle hMessage = StartMessageOne("SayText2", iClient, USERMSG_RELIABLE);
+
+			if(hMessage)
 			{
-				for(int j = 0; j != 3; j++)
+				if(GetUserMessageType() == UM_Protobuf)
 				{
-					ReplaceString(sMessage, sizeof(sMessage), sColorsBefore[j], sColors[j]);
+					Protobuf hProtobuf = view_as<Protobuf>(hMessage);
+
+					hProtobuf.SetInt("ent_idx", iClient);
+					hProtobuf.SetBool("chat", true);
+					hProtobuf.SetString("msg_name", sMessage);
+
+					for(int i = 0; i != 4; i++)
+					{
+						hProtobuf.AddString("params", NULL_STRING);
+					}
 				}
+				else
+				{
+					BfWrite hMessageStack = view_as<BfWrite>(hMessage);
+
+					hMessageStack.WriteByte(iClient);
+					hMessageStack.WriteByte(true);
+					hMessageStack.WriteString(sMessage);
+				}
+
+				EndMessage();
 			}
-		}
-
-		Handle hMessage = StartMessageOne("SayText2", iClient, USERMSG_RELIABLE);
-
-		if(hMessage)
-		{
-			if(GetUserMessageType() == UM_Protobuf)
-			{
-				Protobuf hProtobuf = view_as<Protobuf>(hMessage);
-
-				hProtobuf.SetInt("ent_idx", iClient);
-				hProtobuf.SetBool("chat", true);
-				hProtobuf.SetString("msg_name", sMessage);
-				hProtobuf.AddString("params", "");
-				hProtobuf.AddString("params", "");
-				hProtobuf.AddString("params", "");
-				hProtobuf.AddString("params", "");
-			}
-			else
-			{
-				BfWrite hMessageStack = view_as<BfWrite>(hMessage);
-
-				hMessageStack.WriteByte(iClient);
-				hMessageStack.WriteByte(true);
-				hMessageStack.WriteString(sMessage);
-			}
-
-			EndMessage();
 		}
 	}
 }
@@ -111,31 +115,14 @@ int GetMaxPlayers()
 {
 	int iSlots = GetMaxHumanPlayers();
 
-	return (iSlots < 65 ? iSlots : MaxClients) + 1;
+	return (iSlots < MaxClients + 1 ? iSlots : MaxClients) + 1;
 }
 
-char[] GetFixNamePlayer(int iClient)
+char[] GetPlayerName(int iClient)
 {
 	static char sName[32];
 
 	GetClientName(iClient, sName, sizeof(sName));
-
-	for(int i = 0, iLen = strlen(sName), iBytes; i != iLen;)
-	{
-		if((iBytes = GetCharBytes(sName[i])) == 4)
-		{
-			iLen -= iBytes;
-
-			for(int j = i; j < iLen; j++)
-			{
-				sName[j] = sName[j + iBytes];
-			}
-			
-			continue;
-		}
-
-		i += iBytes;
-	}
 
 	return sName;
 }
@@ -202,6 +189,10 @@ void CheckRank(int iClient)
 				if(0 < iNewRank && iNewRank < iMaxRanks && iNewRank != iOldRank)
 				{
 					iRank = iNewRank;
+				}
+				else
+				{
+					LogError("%i - invalid number rank.", iNewRank);
 				}
 			}
 
