@@ -122,7 +122,8 @@ char[] GetPlayerName(int iClient)
 {
 	static char sName[32];
 
-	g_hDatabase.Format(sName, sizeof(sName), "%N", iClient);
+	GetClientName(iClient, sName, sizeof(sName));
+	g_hDatabase.Format(sName, sizeof(sName), sName);
 
 	return sName;
 }

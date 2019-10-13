@@ -156,7 +156,7 @@ public void OnPluginStart()
 
 public void OnLibraryAdded(const char[] sLibraryName)
 {
-	if(!strcmp(sLibraryName, "levelsranks"))
+	if(!strcmp(sLibraryName, "levelsranks", false))
 	{
 		GlobalForward hForward_OnCoreIsReady = new GlobalForward("LR_OnCoreIsReady", ET_Ignore);
 
