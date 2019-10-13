@@ -132,7 +132,12 @@ bool NotifClient(int iClient, int iValue, char[] sTitlePhrase)
 {
 	if(!g_bWarmupPeriod && g_bRoundAllowExp && g_bRoundEndGiveExp && iValue && g_iCountPlayers >= g_Settings[LR_MinplayersCount] && CheckStatus(iClient))
 	{
-		int iExpMin = g_Settings[LR_TypeStatistics] ? 400 : 0;
+		int iExpMin = 0;
+
+		if(g_Settings[LR_TypeStatistics])
+		{
+			iExpMin = 400;
+		}
 
 		g_iPlayerInfo[iClient].iRoundExp += iValue;
 

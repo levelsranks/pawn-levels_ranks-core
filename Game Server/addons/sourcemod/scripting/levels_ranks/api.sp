@@ -169,7 +169,12 @@ int Native_LR_ChangeClientValue(Handle hPlugin, int iNumParams)
 	if(CheckStatus(iClient))
 	{
 		int iExpChange = GetNativeCell(2),
-			iExpMin = g_Settings[LR_TypeStatistics] ? 400 : 0;
+			iExpMin = 0;
+
+		if(g_Settings[LR_TypeStatistics])
+		{
+			iExpMin = 400;
+		}
 
 		if((g_iPlayerInfo[iClient].iStats[ST_EXP] += iExpChange) < iExpMin)
 		{

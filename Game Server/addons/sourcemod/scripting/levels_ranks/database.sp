@@ -91,7 +91,7 @@ WHERE \
 ) AS `exppos`, \
 (\
 	SELECT COUNT(`steam`) FROM `%s` WHERE `playtime` >= %d AND `lastconnect` != 0\
-) AS `timepos`"
+) AS `timepos`;"
 
 static const char g_sConnectionError[] = "Lost connection";
 
@@ -143,7 +143,10 @@ Action Call_ResetData(int iArgs)
 
 	Transaction hTransaction = new Transaction();
 
-	FormatEx(sQuery, sizeof(sQuery), "TRUNCATE TABLE `%s`;", g_sTableName);
+	FormatEx(sQuery, sizeof(sQuery), "DELETE FROM `%s`;", g_sTableName);
+	hTransaction.AddQuery(sQuery);
+
+	FormatEx(sQuery, sizeof(sQuery), g_bDatabaseSQLite ? "VACUUM `%s`;" : "OPTIMIZE TABLE `%s`;", g_sTableName);
 	hTransaction.AddQuery(sQuery);
 
 	Call_StartForward(g_hForward_Hook[LR_OnDatabaseCleanup]);

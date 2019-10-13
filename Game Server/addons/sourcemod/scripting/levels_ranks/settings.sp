@@ -76,7 +76,7 @@ void SetSettings(bool bReload = false)
 
 	hKv.Close();
 
-	// "settings.ini" ->
+	// settings.ini -> settings_stats.ini
 	strcopy(sPath[strlen(sPath) - 4], 12, "_stats.ini");
 
 	if(!(hKv = new KeyValues("LR_Settings")).ImportFromFile(sPath))
@@ -149,7 +149,7 @@ void SetSettings(bool bReload = false)
 
 	hKv.Close();
 
-	// settings_stats.ini ->
+	// settings_stats.ini -> settings_ranks.ini
 	strcopy(sPath[strlen(sPath) - 10], 12, "_ranks.ini");
 
 	if(!(hKv = new KeyValues("LR_Settings")).ImportFromFile(sPath))
@@ -182,6 +182,7 @@ void SetSettings(bool bReload = false)
 		Call_Finish();
 	}
 
+	// settings_ranks.ini -> settings.ini
 	strcopy(sPath[strlen(sPath) - 10], 5, ".ini");
 
 	hKv.Close();
