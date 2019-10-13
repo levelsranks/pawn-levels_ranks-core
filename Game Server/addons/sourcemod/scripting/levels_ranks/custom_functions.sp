@@ -120,10 +120,10 @@ int GetMaxPlayers()
 
 char[] GetPlayerName(int iClient)
 {
-	static char sName[32];
+	static char sName[65];
 
-	GetClientName(iClient, sName, sizeof(sName));
-	g_hDatabase.Format(sName, sizeof(sName), sName);
+	GetClientName(iClient, sName, 32);
+	g_hDatabase.Escape(sName, sName, sizeof(sName));
 
 	return sName;
 }
