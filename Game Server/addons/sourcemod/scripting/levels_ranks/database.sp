@@ -25,7 +25,7 @@
 	`value`, \
 	`lastconnect`\
 ) \
-VALUES (%i, 'STEAM_%i:%i:%i', '%s', %i);"
+VALUES ('STEAM_%i:%i:%i', '%s', %i, %i);"
 
 #define SQL_LoadData \
 "SELECT \
@@ -389,7 +389,7 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 
 					static char sQuery[512];
 
-					FormatEx(sQuery, sizeof(sQuery), SQL_CreateData, g_sTableName, g_Settings[LR_TypeStatistics] ? 1000 : 0, g_iEngine == Engine_CSGO, iAccountID & 1, iAccountID >>> 1, GetPlayerName(iClient), GetTime());
+					FormatEx(sQuery, sizeof(sQuery), SQL_CreateData, g_sTableName, g_iEngine == Engine_CSGO, iAccountID & 1, iAccountID >>> 1, g_Settings[LR_TypeStatistics] ? 1000 : 0, GetPlayerName(iClient), GetTime());
 					g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | 2);
 
 				}
