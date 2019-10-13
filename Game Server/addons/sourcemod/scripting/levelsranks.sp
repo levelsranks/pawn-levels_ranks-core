@@ -154,6 +154,19 @@ public void OnPluginStart()
 	ConnectDB();		// in database.sp
 }
 
+public void OnLibraryAdded(const char[] sLibraryName)
+{
+	if(!strcmp(sLibraryName, "levelsranks"))
+	{
+		GlobalForward hForward_OnCoreIsReady = new GlobalForward("LR_OnCoreIsReady", ET_Ignore);
+
+		Call_StartForward(hForward_OnCoreIsReady);
+		Call_Finish();
+
+		hForward_OnCoreIsReady.Close();
+	}
+}
+
 public void OnMapStart()
 {
 	if(g_Settings[LR_IsLevelSound])

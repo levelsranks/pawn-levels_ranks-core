@@ -135,13 +135,6 @@ void ConnectDB()
 	SQL_UnlockDatabase(g_hDatabase);
 
 	AuthAllPlayer();
-
-	GlobalForward hForward_OnCoreIsReady = new GlobalForward("LR_OnCoreIsReady", ET_Ignore);
-
-	Call_StartForward(hForward_OnCoreIsReady);
-	Call_Finish();
-
-	hForward_OnCoreIsReady.Close();
 }
 
 Action Call_ResetData(int iArgs)
