@@ -368,33 +368,33 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 
 			case 3:		// OnClientAuthorized
 			{
-				if(!g_iPlayerInfo[iClient].bInitialized && hResult.HasResults && hResult.FetchRow())
+				if(!g_iPlayerInfo[iClient].bInitialized)
 				{
-					for(int i = ST_EXP; i != LR_StatsType; i++)
+					if(hResult.HasResults && hResult.FetchRow())
 					{
-						g_iPlayerInfo[iClient].iStats[i] = hResult.FetchInt(i);
+						for(int i = ST_EXP; i != LR_StatsType; i++)
+						{
+							g_iPlayerInfo[iClient].iStats[i] = hResult.FetchInt(i);
+						}
+
+						g_iPlayerInfo[iClient].iSessionStats[0] = g_iPlayerInfo[iClient].iStats[ST_EXP];
+						g_iPlayerInfo[iClient].bInitialized = true;
+
+						Call_StartForward(g_hForward_Hook[LR_OnPlayerLoaded]);
+						Call_PushCell(iClient);
+						Call_PushCell(g_iPlayerInfo[iClient].iAccountID);
+						Call_Finish();
+
 					}
+					else if(g_hDatabase)		// CreateDataPlayer
+					{
+						int iAccountID = g_iPlayerInfo[iClient].iAccountID;
 
-					g_iPlayerInfo[iClient].iSessionStats[0] = g_iPlayerInfo[iClient].iStats[ST_EXP];
-					g_iPlayerInfo[iClient].bInitialized = true;
+						static char sQuery[512];
 
-					GetPlacePlayer(iClient);
-
-					Call_StartForward(g_hForward_Hook[LR_OnPlayerLoaded]);
-					Call_PushCell(iClient);
-					Call_PushCell(g_iPlayerInfo[iClient].iAccountID);
-					Call_Finish();
-
-				}
-				else if(g_hDatabase)		// CreateDataPlayer
-				{
-					int iAccountID = g_iPlayerInfo[iClient].iAccountID;
-
-					static char sQuery[512];
-
-					FormatEx(sQuery, sizeof(sQuery), SQL_CreateData, g_sTableName, g_iEngine == Engine_CSGO, iAccountID & 1, iAccountID >>> 1, g_Settings[LR_TypeStatistics] ? 1000 : 0, GetPlayerName(iClient), GetTime());
-					g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | 2);
-
+						FormatEx(sQuery, sizeof(sQuery), SQL_CreateData, g_sTableName, g_iEngine == Engine_CSGO, iAccountID & 1, iAccountID >>> 1, GetPlayerName(iClient), g_Settings[LR_TypeStatistics] ? 1000 : 0, GetTime());
+						g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | 2);
+					}
 				}
 			}
 
