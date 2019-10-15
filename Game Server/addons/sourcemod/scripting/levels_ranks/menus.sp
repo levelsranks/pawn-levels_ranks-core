@@ -101,13 +101,13 @@ void MenuAdmin(int iClient)
 	hMenu.SetTitle("%s | %T\n ", g_sPluginTitle, "MainMenu_Admin", iClient);
 
 	FormatEx(sText, sizeof(sText), "%T", "ReloadAllConfigs", iClient);
-	hMenu.AddItem(NULL_STRING, sText);			// 0
+	hMenu.AddItem(NULL_STRING, sText);
 
 	// DON'T TOUCH !!!
 	if(!g_Settings[LR_TypeStatistics])
 	{
 		FormatEx(sText, sizeof(sText), "%T", "GiveTakeMenuExp", iClient);
-		hMenu.AddItem(NULL_STRING, sText);		// 1
+		hMenu.AddItem(NULL_STRING, sText);
 	}
 
 	CreatedMenu_CallForward(LR_AdminMenu, iClient, hMenu);

@@ -30,7 +30,7 @@ public APLRes AskPluginLoad2()
 
 	g_hForward_Hook[LR_OnSettingsModuleUpdate] = new PrivateForward(ET_Ignore);
 	g_hForward_Hook[LR_OnDisconnectionWithDB] = new PrivateForward(ET_Ignore, Param_CellByRef);
-	g_hForward_Hook[LR_OnDatabaseCleanup] = new PrivateForward(ET_Ignore, Param_Cell);
+	g_hForward_Hook[LR_OnDatabaseCleanup] = new PrivateForward(ET_Ignore, Param_Cell, Param_Cell);
 	g_hForward_Hook[LR_OnLevelChangedPre] = new PrivateForward(ET_Ignore, Param_Cell, Param_CellByRef, Param_Cell);
 	g_hForward_Hook[LR_OnLevelChangedPost] = new PrivateForward(ET_Ignore, Param_Cell, Param_Cell, Param_Cell);
 	g_hForward_Hook[LR_OnPlayerKilledPre] = new PrivateForward(ET_Ignore, Param_Cell, Param_CellByRef, Param_Cell, Param_Cell);
@@ -117,7 +117,7 @@ int Native_LR_GetClientStatus(Handle hPlugin, int iNumParams)
 
 int Native_LR_CheckCountPlayers(Handle hPlugin, int iNumParams)
 {
-	return view_as<int>(!g_bWarmupPeriod && g_iCountPlayers >= g_Settings[LR_MinplayersCount]);
+	return view_as<int>(!g_bWarmupPeriod && g_iCountPlayers >= g_Settings[LR_MinplayersCount] && g_bRoundAllowExp && g_bRoundEndGiveExp);
 }
 
 int Native_LR_GetRankNames(Handle hPlugin, int iNumParams)

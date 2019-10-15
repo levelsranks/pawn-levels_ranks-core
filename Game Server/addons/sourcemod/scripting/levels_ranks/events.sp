@@ -19,8 +19,8 @@ void MakeHookEvents()
 
 void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 {
-	int iClient = GetClientOfUserId(hEvent.GetInt("userid")),
-		iAttacker = GetClientOfUserId(hEvent.GetInt("attacker"));
+	int iAttacker = GetClientOfUserId(hEvent.GetInt("attacker")),
+		iClient = GetClientOfUserId(hEvent.GetInt("userid"));
 
 	switch(sName[0])
 	{
@@ -57,9 +57,6 @@ void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 								NotifClient(iClient, -g_Settings[LR_ExpGiveSuicide], "Suicide");
 								return;
 							}
-
-							g_iPlayerInfo[iClient].iStats[ST_DEATHS]++;
-							g_iPlayerInfo[iClient].iSessionStats[2]++;
 
 							if(!g_Settings[LR_AllAgainstAll] && GetClientTeam(iClient) == GetClientTeam(iAttacker))
 							{
@@ -137,6 +134,9 @@ void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 								g_iPlayerInfo[iAttacker].iStats[ST_KILLS]++;
 								g_iPlayerInfo[iAttacker].iSessionStats[1]++;
 								g_iPlayerInfo[iAttacker].iKillStreak++;
+
+								g_iPlayerInfo[iClient].iStats[ST_DEATHS]++;
+								g_iPlayerInfo[iClient].iSessionStats[2]++;
 
 								Call_StartForward(g_hForward_Hook[LR_OnPlayerKilledPost]);
 								Call_PushCell(hEvent);

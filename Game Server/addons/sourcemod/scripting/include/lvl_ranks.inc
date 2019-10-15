@@ -5,21 +5,34 @@
 
 #define PLUGIN_VERSION "v3.1"
 
-enum LR_StatsType
+enum LR_HookType
 {
-	ST_EXP = 0,
-	ST_RANK,
-	ST_KILLS,
-	ST_DEATHS,
-	ST_SHOOTS,
-	ST_HITS,
-	ST_HEADSHOTS,
-	ST_ASSISTS,
-	ST_ROUNDSWIN,
-	ST_ROUNDSLOSE,
-	ST_PLAYTIME,
-	ST_PLACEINTOP,
-	ST_PLACEINTOPTIME
+	LR_OnSettingsModuleUpdate = 0,
+	LR_OnDisconnectionWithDB,
+	LR_OnDatabaseCleanup,
+	LR_OnLevelChangedPre,
+	LR_OnLevelChangedPost,
+	LR_OnPlayerKilledPre,
+	LR_OnPlayerKilledPost,
+	LR_OnPlayerLoaded,
+	LR_OnResetPlayerStats,
+	LR_OnPlayerPosInTop,
+	LR_OnPlayerSaved
+};
+
+enum LR_MenuType
+{
+	LR_AdminMenu = 0,
+	LR_MyStatsSecondary,
+	LR_SettingMenu,
+	LR_TopMenu
+};
+
+enum LR_CleanupType
+{
+	LR_AllData,
+	LR_ExpData,
+	LR_StatsData
 };
 
 enum LR_SettingType
@@ -29,6 +42,7 @@ enum LR_SettingType
 	LR_IsLevelSound,
 	LR_MinplayersCount,			/**< Use LR_CheckCountPlayers() to get is activate statistics. **/
 	LR_ShowResetMyStats,
+	LR_ResetMyStatsCooldown,
 	LR_ShowUsualMessage,
 	LR_ShowSpawnMessage,
 	LR_ShowLevelUpMessage,
@@ -56,27 +70,21 @@ enum LR_SettingType
 	LR_ExpHostageRescued
 };
 
-enum LR_HookType
+enum LR_StatsType
 {
-	LR_OnSettingsModuleUpdate = 0,
-	LR_OnDisconnectionWithDB,
-	LR_OnDatabaseCleanup,
-	LR_OnLevelChangedPre,
-	LR_OnLevelChangedPost,
-	LR_OnPlayerKilledPre,
-	LR_OnPlayerKilledPost,
-	LR_OnPlayerLoaded,
-	LR_OnResetPlayerStats,
-	LR_OnPlayerPosInTop,
-	LR_OnPlayerSaved
-};
-
-enum LR_MenuType
-{
-	LR_AdminMenu = 0,
-	LR_MyStatsSecondary,
-	LR_SettingMenu,
-	LR_TopMenu
+	ST_EXP = 0,
+	ST_RANK,
+	ST_KILLS,
+	ST_DEATHS,
+	ST_SHOOTS,
+	ST_HITS,
+	ST_HEADSHOTS,
+	ST_ASSISTS,
+	ST_ROUNDSWIN,
+	ST_ROUNDSLOSE,
+	ST_PLAYTIME,
+	ST_PLACEINTOP,
+	ST_PLACEINTOPTIME
 };
 
 typeset LR_HookCB 
@@ -88,7 +96,7 @@ typeset LR_HookCB
 	function void (Database& hDatabase);
 
 	// LR_OnDatabaseCleanup
-	function void (Transaction hTransaction);
+	function void (LR_CleanupType Type, Transaction hTransaction);
 
 	// LR_OnLevelChangedPre
 	function void (int iClient, int& iNewLevel, int iOldLevel);
@@ -313,9 +321,9 @@ public SharedPlugin __pl_levelsranks =
 	file = "levelsranks.smx",
 
 	#if defined REQUIRE_PLUGIN
-		required = 1,
+		required = 1
 	#else
-		required = 0,
+		required = 0
 	#endif
 };
 

@@ -236,14 +236,19 @@ void CheckRank(int iClient)
 	}
 }
 
-void ResetPlayerStats(int iClient)
+void ResetPlayerData(int iClient)
 {
 	int iAccountID = g_iPlayerInfo[iClient].iAccountID;
 
 	g_iPlayerInfo[iClient] = g_iInfoNULL;
 	g_iPlayerInfo[iClient].iAccountID = iAccountID;
-	g_iPlayerInfo[iClient].iStats[ST_EXP] = g_Settings[LR_TypeStatistics] ? 1000 : 0;
+	g_iPlayerInfo[iClient].iSessionStats[0] = (g_iPlayerInfo[iClient].iStats[ST_EXP] = g_Settings[LR_TypeStatistics] ? 1000 : 0);
 	g_iPlayerInfo[iClient].bInitialized = true;
+}
+
+void ResetPlayerStats(int iClient)
+{
+	ResetPlayerData(iClient);
 
 	CheckRank(iClient);
 
