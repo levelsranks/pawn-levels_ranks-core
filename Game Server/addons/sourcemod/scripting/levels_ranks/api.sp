@@ -1,9 +1,16 @@
 public APLRes AskPluginLoad2()
 {
+	if(LibraryExists("levelsranks"))
+	{
+		SetFailState("You have already one more core!");
+	}
+
 	if((g_iEngine = GetEngineVersion()) != Engine_CSGO && g_iEngine != Engine_CSS && g_iEngine != Engine_SourceSDK2006)
 	{
-		CrashLR("This plugin works only on CS:GO ar CS:S OB ar CS:S v34");
+		SetFailState("This plugin works only on CS:GO ar CS:S OB ar CS:S v34.");
 	}
+
+	CreateNative("LR_IsLoaded", Native_LR_IsLoaded);
 
 	CreateNative("LR_Hook", Native_LR_Hook);
 	CreateNative("LR_Unhook", Native_LR_Unhook);
@@ -28,6 +35,8 @@ public APLRes AskPluginLoad2()
 	CreateNative("LR_ShowMenu", Native_LR_ShowMenu);
 	CreateNative("LR_PrintToChat", Native_LR_PrintToChat);
 
+	g_hForward_OnCoreIsReady = new GlobalForward("LR_OnCoreIsReady", ET_Ignore);
+
 	g_hForward_Hook[LR_OnSettingsModuleUpdate] = new PrivateForward(ET_Ignore);
 	g_hForward_Hook[LR_OnDisconnectionWithDB] = new PrivateForward(ET_Ignore, Param_CellByRef);
 	g_hForward_Hook[LR_OnDatabaseCleanup] = new PrivateForward(ET_Ignore, Param_Cell, Param_Cell);
@@ -47,6 +56,11 @@ public APLRes AskPluginLoad2()
 	}
 
 	RegPluginLibrary("levelsranks");
+}
+
+int Native_LR_IsLoaded(Handle hPlugin, int iNumParams)
+{
+	return !g_hForward_OnCoreIsReady;
 }
 
 int Native_LR_Hook(Handle hPlugin, int iNumParams)

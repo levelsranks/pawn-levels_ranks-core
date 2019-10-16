@@ -67,8 +67,6 @@
 #define PLUGIN_NAME "Levels Ranks"
 #define PLUGIN_AUTHORS "RoadSide Romeo & Wend4r"
 
-#define CrashLR(%0) SetFailState("[" ... PLUGIN_NAME ... "] Core " ... %0)
-
 #include "levels_ranks/defines.sp"
 
 enum struct LR_PlayerInfo
@@ -103,6 +101,8 @@ char			g_sPluginName[] = PLUGIN_NAME,
 
 LR_PlayerInfo	g_iPlayerInfo[MAXPLAYERS+1],
 				g_iInfoNULL;
+
+GlobalForward 	g_hForward_OnCoreIsReady;
 
 PrivateForward	g_hForward_Hook[LR_HookType],
 				g_hForward_CreatedMenu[LR_MenuType],
@@ -158,12 +158,10 @@ public void OnLibraryAdded(const char[] sLibraryName)
 {
 	if(!strcmp(sLibraryName, "levelsranks", false))
 	{
-		GlobalForward hForward_OnCoreIsReady = new GlobalForward("LR_OnCoreIsReady", ET_Ignore);
-
-		Call_StartForward(hForward_OnCoreIsReady);
+		Call_StartForward(g_hForward_OnCoreIsReady);
 		Call_Finish();
 
-		hForward_OnCoreIsReady.Close();
+		delete g_hForward_OnCoreIsReady;
 	}
 }
 

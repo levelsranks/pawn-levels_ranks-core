@@ -103,7 +103,7 @@ void ConnectDB()
 
 	if(!(g_hDatabase = SQL_CheckConfig(sDBConfigName) ? SQL_Connect(sDBConfigName, false, sError, sizeof(sError)) : SQLite_UseDatabase("lr_base", sError, sizeof(sError))))
 	{
-		CrashLR("Could not connect to the database - %s", sError);
+		SetFailState("Could not connect to the database - %s", sError);
 	}
 
 	g_hDatabase.Driver.GetIdentifier(sIdent, 2);
@@ -606,7 +606,7 @@ Action TryReconnectDBTimer(Handle hTimer)
 	{
 		if(g_iSizeTransaction > 209715200)
 		{
-			CrashLR("Failed to connect to database.");
+			SetFailState("Failed to connect to database.");
 		}
 
 		LogError("\nReconnecting #%i (%i) ...\nSize of transactions: %.2f KBytes.", ++g_iCountRetryConnect, sError, g_iSizeTransaction / 1024.0);

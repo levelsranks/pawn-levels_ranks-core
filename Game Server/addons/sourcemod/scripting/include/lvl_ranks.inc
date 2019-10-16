@@ -145,6 +145,11 @@ typedef LR_SelectedMenu = function void (LR_MenuType MenuType, int iClient, cons
 forward void LR_OnCoreIsReady();
 
 /**
+ * Return if core is loaded.
+ */
+native bool LR_IsLoaded();
+
+/**
  * Hooks an LR events.
  * 
  * @param Type				Event type.
@@ -330,6 +335,8 @@ public SharedPlugin __pl_levelsranks =
 #if !defined REQUIRE_PLUGIN
 public void __pl_levelsranks_SetNTVOptional()
 {
+	MarkNativeAsOptional("LR_IsLoaded");
+
 	MarkNativeAsOptional("LR_Hook");
 	MarkNativeAsOptional("LR_Unhook");
 	MarkNativeAsOptional("LR_MenuHook");

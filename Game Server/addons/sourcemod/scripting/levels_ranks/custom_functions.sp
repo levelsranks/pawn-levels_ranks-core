@@ -50,7 +50,7 @@ void LR_PrintMessage(int iClient, bool bPrefix, bool bNative, const char[] sForm
 
 					static const char sFormatColor[] = "\x07%06X";
 
-					int iLen = StrContains(sMessage, sColorsBefore[1], false);
+					int iLen = StrContains(sMessage, sColorsBefore[0], false);
 
 					if(iLen != -1)
 					{

@@ -31,7 +31,7 @@ void SetSettings(bool bReload = false)
 
 	if(!hKv.ImportFromFile(sPath))
 	{
-		CrashLR("%s - is not found", sPath);
+		SetFailState("%s - is not found", sPath);
 	}
 
 	hKv.GotoFirstSubKey();
@@ -81,7 +81,7 @@ void SetSettings(bool bReload = false)
 
 	if(!(hKv = new KeyValues("LR_Settings")).ImportFromFile(sPath))
 	{
-		CrashLR("%s - is not found", sPath);
+		SetFailState("%s - is not found", sPath);
 	}
 
 	hKv.GotoFirstSubKey();
@@ -154,7 +154,7 @@ void SetSettings(bool bReload = false)
 
 	if(!(hKv = new KeyValues("LR_Settings")).ImportFromFile(sPath))
 	{
-		CrashLR("%s - is not found", sPath);
+		SetFailState("%s - is not found", sPath);
 	}
 
 	hKv.GotoFirstSubKey();

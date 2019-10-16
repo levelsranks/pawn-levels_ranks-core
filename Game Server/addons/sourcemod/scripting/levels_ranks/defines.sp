@@ -1,4 +1,4 @@
-// for SourceMod 1.11.
+// For SourceMod 1.11.
 
 #define LR_StatsType 13
 
