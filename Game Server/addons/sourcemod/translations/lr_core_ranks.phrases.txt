@@ -29,6 +29,7 @@
 		"ua"		"Срібло - I"
 		"chi"		"白银 ー I"
 		"es"		"Plata I"
+		"de"		"Silber I"
 	}
 	"rank_2"
 	{
@@ -37,6 +38,7 @@
 		"ua"		"Срібло - II"
 		"chi"		"白银 ー II"
 		"es"		"Plata II"
+		"de"		"Silber II"
 	}
 	"rank_3"
 	{
@@ -45,6 +47,7 @@
 		"ua"		"Срібло - III"
 		"chi"		"白银 ー III"
 		"es"		"Plata III"
+		"de"		"Silber III"
 	}
 	"rank_4"
 	{
@@ -53,6 +56,7 @@
 		"ua"		"Срібло - IV"
 		"chi"		"白银 ー IV"
 		"es"		"Plata IV"
+		"de"		"Silber IV"
 	}
 	"rank_5"
 	{
@@ -61,6 +65,7 @@
 		"ua"		"Срібло Еліта"
 		"chi"		"白银 ー 精英"
 		"es"		"Plata Elite"
+		"de"		"Silber Elite"
 	}
 	"rank_6"
 	{
@@ -69,6 +74,7 @@
 		"ua"		"Срібло - Великий Магістр"
 		"chi"		"白银 ー 大师级精英"
 		"es"		"Plata Elite Maestro"
+		"de"		"Silber Elite Meister"
 	}
 	"rank_7"
 	{
@@ -77,6 +83,7 @@
 		"ua"		"Золота Зірка - I"
 		"chi"		"黄金新星 ー I"
 		"es"		"Nova I"
+		"de"		"Gold Nova I"
 	}
 	"rank_8"
 	{
@@ -85,6 +92,7 @@
 		"ua"		"Золота Зірка - II"
 		"chi"		"黄金新星 ー II"
 		"es"		"Nova II"
+		"de"		"Gold Nova II"
 	}
 	"rank_9"
 	{
@@ -93,6 +101,7 @@
 		"ua"		"Золота Зірка - III"
 		"chi"		"黄金新星 ー III"
 		"es"		"Nova III"
+		"de"		"Gold Nova III"
 	}
 	"rank_10"
 	{
@@ -101,6 +110,7 @@
 		"ua"		"Золота Зірка - Магістр"
 		"chi"		"黄金新星 ー 大师级"
 		"es"		"Nova Maestro"
+		"de" 		"Gold Nova Meister"
 	}
 	"rank_11"
 	{
@@ -109,6 +119,7 @@
 		"ua"		"Магістр-хранитель - I"
 		"chi"		"大师级守护者 ー I"
 		"es"		"Guardian Maestro I"
+		"de"		"Meisterwächter I"
 	}
 	"rank_12"
 	{
@@ -117,6 +128,7 @@
 		"ua"		"Магістр-хранитель - II"
 		"chi"		"大师级守护者 ー II"
 		"es"		"Guardian Maestro II"
+		"de"		"Meisterwächter II"
 	}
 	"rank_13"
 	{
@@ -125,6 +137,7 @@
 		"ua"		"Магістр-хранитель - Еліта"
 		"chi"		"大师级守护者 ー 精英"
 		"es"		"Guardian Maestro Elite"
+		"de"		"Meisterwächter Elite"
 	}
 	"rank_14"
 	{
@@ -133,6 +146,7 @@
 		"ua"		"Заслужений Магістр-хранитель"
 		"chi"		"大师级守护者 ー 卓越"
 		"es"		"Maestro Guardian Distinguido"
+		"de"		"Ausgezeichneter Meisterwächter"
 	}
 	"rank_15"
 	{
@@ -141,6 +155,7 @@
 		"ua"		"Легендарний Беркут"
 		"chi"		"传奇之鹰"
 		"es"		"Aguila Legendario"
+		"de"		"Legendärer Adler"
 	}
 	"rank_16"
 	{
@@ -149,6 +164,7 @@
 		"ua"		"Легендарний Беркут-магістр"
 		"chi"		"传奇之鹰 ー 大师级"
 		"es"		"Aguila Legendario Maestro"
+		"de"		"Legendärer Adler Meister"
 	}
 	"rank_17"
 	{
@@ -157,6 +173,7 @@
 		"ua"		"Великий Магістр - Вищого Рангу"
 		"chi"		"无上之首席大师"
 		"es"		"Supreme Maestro"
+		"de"		"Oberster Meister Erster Klasse"
 	}
 	"rank_18"
 	{
@@ -165,5 +182,6 @@
 		"ua"		"Всесвітня Еліта"
 		"chi"		"全球精英"
 		"es"		"Elite Global"
+		"de"		"Die Globale Elite"
 	}
 }
