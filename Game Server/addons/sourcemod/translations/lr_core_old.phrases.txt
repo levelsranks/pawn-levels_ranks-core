@@ -12,6 +12,7 @@
 		"ru"		"{TEAM}[LR]{DEFAULT}"
 		"ua"		"{TEAM}[LR]{DEFAULT}"
 		"chi"		"{TEAM}[LR]{DEFAULT}"
+		"de"		"{TEAM}[LR]{DEFAULT}"
 	}
 	"MainMenu"
 	{
@@ -44,7 +45,7 @@
 		"ru"		"Конфигурационные настройки обновлены"
 		"ua"		"Конфігураційні налаштування оновлені"
 		"chi"		"设置已更新"
-		"de"		"{TEAM}[LR] {DEFAULT}Konfigurationseinstellungen aktualisiert"
+		"de"		"Konfigurationseinstellungen aktualisiert"
 	}
 	"GiveTakeMenuExp"
 	{
@@ -196,7 +197,7 @@
 		"ru"		"Игрок {GREEN}{1} {DEFAULT}на {GREEN}{2} / {3} {DEFAULT}месте, с {GREEN}{4} {DEFAULT}очками, {GREEN}{5} {DEFAULT}убийствами, {GREEN}{6} {DEFAULT}смертями и KDR {GREEN}{7}"
 		"ua"		"Гравець {GREEN}{1} {DEFAULT}на {GREEN}{2} / {3} {DEFAULT}місці, з {GREEN}{4} {DEFAULT}поінтами, {GREEN}{5} {DEFAULT}вбивствами, {GREEN}{6} {DEFAULT}смертями і KDR {GREEN}{7}"
 		"chi"		"玩家 {GREEN}{1} {DEFAULT}的段位在 {GREEN}{2} / {3} {DEFAULT}共获得 {GREEN}{4} {DEFAULT}点经验者, {GREEN}{5} {DEFAULT}击杀, {GREEN}{6} {DEFAULT}死亡 и K/D比是 {GREEN}{7}"
-		"de"        "Spieler {GREEN}{1} {DEFAULT}ist Platz {GREEN}{2} / {3} {DEFAULT}mit {GREEN}{4} {DEFAULT}EP, {GREEN}{5} {DEFAULT}Kills, {GREEN}{6} {DEFAULT}Toden и KD {GREEN}{7}"
+		"de"		"Spieler {GREEN}{1} {DEFAULT}ist Platz {GREEN}{2} / {3} {DEFAULT}mit {GREEN}{4} {DEFAULT}EP, {GREEN}{5} {DEFAULT}Kills, {GREEN}{6} {DEFAULT}Toden и KD {GREEN}{7}"
 	}
     "Yes"
     {
@@ -204,7 +205,7 @@
 		"ru"		"Да"
 		"ua"		"Так"
 		"chi"		"是"
-		"de"        "Ja"
+		"de"		"Ja"
 	}
     "No"
     {
@@ -212,7 +213,7 @@
 		"ru"		"Нет"
 		"ua"		"Ні"
 		"chi"		"否"
-		"de"        "Nein"
+		"de"		"Nein"
 	}
 	"BackToMainMenu"
 	{
@@ -426,7 +427,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} за DoubleKill]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Два вбивства поспіль]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自双杀]"
-		"de"        "Deine Exp: {GREEN}{1} [{2} für Doppelkill]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für Doppelkill]"
 	}
 	"TripleKill"
 	{
