@@ -20,6 +20,7 @@
 		"ru"		"Звание: {1}\nОпыт: {2}\nМесто: {3} из {4}\n "
 		"ua"		"Звання: {1}\nДосвід: {2}\nМісце: {3} из {4}\n "
 		"chi"		"段位: {1}\n经验值: {2}\n阶段: {3} of {4}\n "
+		"de"		"Rang: {1}\nExp: {2}\nPlatz: {3} von {4}"
 	}
 	"MainMenu_IamAdmin"
 	{
@@ -27,6 +28,7 @@
 		"ru"		"Панель администратора"
 		"ua"		"Панель Адміністратора"
 		"chi"		"管理员菜单"
+		"de"		"Admin Menü"
 	}
 	"ReloadAllConfigs"
 	{
@@ -34,6 +36,7 @@
 		"ru"		"Перезагрузить настройки плагина"
 		"ua"		"Перезавантажити налаштування плагіна"
 		"chi"		"重载设定"
+		"de"		"Neuladen der Plugin Einstellungen"
 	}
 	"ConfigUpdated"
 	{
@@ -41,6 +44,7 @@
 		"ru"		"Конфигурационные настройки обновлены"
 		"ua"		"Конфігураційні налаштування оновлені"
 		"chi"		"设置已更新"
+		"de"		"{TEAM}[LR] {DEFAULT}Konfigurationseinstellungen aktualisiert"
 	}
 	"GiveTakeMenuExp"
 	{
@@ -48,6 +52,7 @@
 		"ru"		"Выдать/Забрать очки опыта"
 		"ua"		"Видати/Забрати поінти досвіду"
 		"chi"		"给予/拿走 经验值. 点数"
+		"de"		"Geben/Nehmen von Erfahrungspunkten"
 	}
 	"AdminGive"
 	{
@@ -56,6 +61,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} от Админа]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} від Админа]"
 		"chi"		"你的经验值: {GREEN}{1} [管理员{2}]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} vom Admin]""
 	}
 	"AdminTake"
 	{
@@ -64,6 +70,7 @@
 		"ru"		"Ваш опыт: {DEFAULT}{1} [{2} от Админа]"
 		"ua"		"Ваш досвід: {DEFAULT}{1} [{2} від Админа]"
 		"chi"		"你的经验值: {DEFAULT}{1} [管理员{2}]"
+		"de"		"Deine Exp: {DEFAULT}{1} [{2} vom Admin]"
 	}
 	"ExpChange"
 	{
@@ -72,6 +79,7 @@
 		"ru"		"{1} - {GREEN}{2} ({3}{4})"
 		"ua"		"{1} - {GREEN}{2} ({3}{4})"
 		"chi"		"{1} - {GREEN}{2} ({3}{4})"
+		"de"		"{1} - {GREEN}{2} ({3}{4})"
 	}
 	"MainMenu_MyStats"
 	{
@@ -79,6 +87,7 @@
 		"ru"		"Моя статистика"
 		"ua"		"Моя статистика"
 		"chi"		"我的数据"
+		"de"		"Meine Statistiken"
 	}
 	"MyStatsInfo"
 	{
@@ -87,6 +96,7 @@
 		"ru"		"Моя статистика\n \nСыграно: {1} ч. {2} м. {3} сек.\n \nУбийств: {4} \nСмертей: {5} \nАссистов: {6} \nХедшотов: {7} [{8} %%] \nKDR: {9} \n \nТочность: {10} %% \nВинрейт: {11} %%"
 		"ua"		"Моя статистика\n \nзіграно: {1} ч. {2} м. {3} сек.\n \nВбивств: {4} \nСмертей: {5} \nСприянь: {6} \nПостріли в голову: {7} [{8} %%] \nKDR: {9} \n \nВлучність: {10} %% \nКоефіцієнт виграшу: {11} %%"
 		"chi"		"我的数据\n \n已游玩: {1} 小时 {2} 分 {3} 秒\n \n击杀: {4} \n死亡: {5} \n助攻: {6} \n爆头: {7} [{8} %%] \nK/D比: {9} \n \n精准度: {10} %% \n胜率: {11} %%"
+		"de"		"Meine Statistiken\n \nGespielt: {1} s {2} m {3} sek\n \nKills: {4} \nTode: {5} \nAssists: {6} \nKopfschüsse: {7} [{8} %%] \nKD: {9} \n \nGenauigkeit: {10} %% \nGewinnrate: {11} %%"
 	}
 	"MyStatsSession"
 	{
@@ -94,6 +104,7 @@
 		"ru"		"Данные за сессию"
 		"ua"		"Дані за сесію"
 		"chi"		"会话数据"
+		"de"		"Sitzungsdaten"
 	}
 	"MyStatsSessionInfo"
 	{
@@ -102,6 +113,7 @@
 		"ru"		"Данные за сессию\n \nОчки опыта: {1} \nСыграно: {2} ч {3} м {4} сек\n \nУбийств: {5} \nСмертей: {6} \nАссистов: {7} \nХедшотов: {8} [{9} %%] \nKDR: {10} \n \nТочность: {11} %% \nВинрейт: {12} %%"
 		"ua"		"Дані за сесію\n \nПоинті досвіду: {1} \nЗіграно: {2} ч {3} м {4} сек\n \nВбивств: {5} \nСмертей: {6} \nСприянь: {7} \nПостріли в голову: {8} [{9} %%] \nKDR: {10} \n \nВлучність: {11} %% \nКоефіцієнт виграшу: {12} %%"
 		"chi"		"会话数据\n \n经验值. 点数: {1} \n已游玩: {2} 小时 {3} 分 {4} 秒\n \n击杀: {5} \n死亡: {6} \n助攻: {7} \n爆头: {8} [{9} %%] \nK/D比: {10} \n \n精准度: {11} %% \n胜率: {12} %%"
+		"de"		"Sitzungsdaten\n \nErfahrungspunkte: {1} \nGespielt: {2} h {3} m {4} sek\n \nKills: {5} \nTode: {6} \nAssists: {7} \nKopfschüsse: {8} [{9} %%] \nKD: {10} \n \nGenauigkeit: {11} %% \nGewinnrate: {12} %%"
 	}
 	"MyStatsReset"
 	{
@@ -109,6 +121,7 @@
 		"ru"		"Сбросить статистику"
 		"ua"		"Скинути статистику"
 		"chi"		"重置我的数据"
+		"de"		"Meine Statistiken zurücksetzen"
 	}
 	"MyStatsResetCooldown"
 	{
@@ -117,6 +130,7 @@
 		"ru"		"Сбросить статистику\n    Доступно через: {1} ч. {2} м. {3} сек."
 		"ua"		"Скинути статистику\n    Доступно через: {1} ч. {2} м. {3} сек."
 		"chi"		"重置我的数据\n    剩余时间 {1} 小时 {2} 分 {3} 秒"
+		"de"		"Meine Statistiken zurücksetzen\n    Abklingzeit: {1} h. {2} m. {3} sek."
 	}
 	"MyStatsResetInfo"
 	{
@@ -124,6 +138,7 @@
 		"ru"		"Обнулить статистику?\n \nВы обнулите все свои параметры, \nуровни, фраги и тому подобное. \nВы точно уверены?"
 		"ua"		"Обнулити мою статистику?\n \nВи скинете всі свої параметри, \nРівні, фраги тощо. \nВи точно впевнені?"
 		"chi"		"重置自己的数据?\n \n你将重置你所有的选项, \n等级, 击杀 等等数据. \n你确定?"
+		"de"		""Alle Statistiken zurücksetzten?\n \nEs werden alle Optionen, \nLevel, Kills und Ähnliches zurückgesetzt. \nBist du sicher?"
 	}
 	"MainMenu_MyPrivilegesSettings"
 	{
@@ -131,6 +146,7 @@
 		"ru"		"Привилегии и настройки"
 		"ua"		"Привілеї та налаштування"
 		"chi"		"权限和设置"
+		"de"		"Keine Einstellungen"
 	}
 	"MainMenu_TopPlayers"
 	{
@@ -138,6 +154,7 @@
 		"ru"		"TOP игроков"
 		"ua"		"TOP гравців"
 		"chi"		"顶尖选手"
+		"de"		"TOP Spieler"
 	}
 	"OverallTopPlayersExp"
 	{
@@ -145,6 +162,7 @@
 		"ru"		"TOP-10 по очкам опыта"
 		"ua"		"TOP-10 за поінтами досвіду"
 		"chi"		"经验值排名前十"
+		"de"		"TOP-10 nach Erfahrungspunkten"
 	}
 	"OverallTopPlayersTime"
 	{
@@ -152,6 +170,7 @@
 		"ru"		"TOP-10 по активности"
 		"ua"		"TOP-10 за активністю"
 		"chi"		"活跃排名前十"
+		"de"		"TOP-10 nach Spielzeit"
 	}
 	"OverallTopPlayersTime_Slot"
 	{
@@ -160,6 +179,7 @@
 		"ru"		"{1} - [ {2} часов ] - {3}"
 		"ua"		"{1} - [ {2} Годин ] - {3}"
 		"chi"		"{1} - [ {2} 小时 ] - {3}"
+		"de"		"{1} - [ {2} Stunden ] - {3}"
 	}
 	"MainMenu_Ranks"
 	{
@@ -167,6 +187,7 @@
 		"ru"		"Все ранги"
 		"ua"		"Всі ранги"
 		"chi"		"全部段位"
+		"de"		"Alle Ränge"
 	}
 	"RankPlayer"
 	{
@@ -175,6 +196,7 @@
 		"ru"		"Игрок {GREEN}{1} {DEFAULT}на {GREEN}{2} / {3} {DEFAULT}месте, с {GREEN}{4} {DEFAULT}очками, {GREEN}{5} {DEFAULT}убийствами, {GREEN}{6} {DEFAULT}смертями и KDR {GREEN}{7}"
 		"ua"		"Гравець {GREEN}{1} {DEFAULT}на {GREEN}{2} / {3} {DEFAULT}місці, з {GREEN}{4} {DEFAULT}поінтами, {GREEN}{5} {DEFAULT}вбивствами, {GREEN}{6} {DEFAULT}смертями і KDR {GREEN}{7}"
 		"chi"		"玩家 {GREEN}{1} {DEFAULT}的段位在 {GREEN}{2} / {3} {DEFAULT}共获得 {GREEN}{4} {DEFAULT}点经验者, {GREEN}{5} {DEFAULT}击杀, {GREEN}{6} {DEFAULT}死亡 и K/D比是 {GREEN}{7}"
+		"de"        "Spieler {GREEN}{1} {DEFAULT}ist Platz {GREEN}{2} / {3} {DEFAULT}mit {GREEN}{4} {DEFAULT}EP, {GREEN}{5} {DEFAULT}Kills, {GREEN}{6} {DEFAULT}Toden и KD {GREEN}{7}"
 	}
     "Yes"
     {
@@ -182,6 +204,7 @@
 		"ru"		"Да"
 		"ua"		"Так"
 		"chi"		"是"
+		"de"        "Ja"
 	}
     "No"
     {
@@ -189,6 +212,7 @@
 		"ru"		"Нет"
 		"ua"		"Ні"
 		"chi"		"否"
+		"de"        "Nein"
 	}
 	"BackToMainMenu"
 	{
@@ -196,6 +220,7 @@
 		"ru"		"Назад в Главное Меню"
 		"ua"		"Назад в Головне Меню"
 		"chi"		"返回主菜单"
+		"de"		"Zurück zum Hauptmenü"
 	}
 	"PlayerDataDeleted"
 	{
@@ -204,6 +229,7 @@
 		"ru"		"Запрос на удаление игрока прошел успешно! STEAM_ID - {1}"
 		"ua"		"Запит на видалення гравця пройшов успішно! STEAM_ID - {1}"
 		"chi"		"删除请求已成功发送! STEAM_ID - {1}"
+		"de"		"Löschungsanfrage erfolgreich gesendet! STEAM_ID - {1}"
 	}
 	"Back"
 	{
@@ -211,6 +237,7 @@
 		"ru"		"Назад"
 		"ua"		"Назад"
 		"chi"		"返回"
+		"de"		"Zurück"
 	}
 	"RoundStartCheckCount"
 	{
@@ -219,6 +246,7 @@
 		"ru"		"Присутствует только {TEAM}{1} {DEFAULT}игрока из {TEAM}{2}"
 		"ua"		"Присутні тільки {TEAM}{1} {DEFAULT}гравця з {TEAM}{2}"
 		"chi"		"这里只有 {TEAM}{1} {DEFAULT}名玩家 来自 {TEAM}{2}"
+		"de"		"Es gibt nur {TEAM}{1} {DEFAULT}Spieler von {TEAM}{2}"
 	}
 	"RoundStartMessageRanks"
 	{
@@ -226,6 +254,7 @@
 		"ru"		"Введи: {TEAM}!lvl {DEFAULT}- главное меню"
 		"ua"		"введи: {TEAM}!lvl {DEFAULT}- Головне меню"
 		"chi"		"输入: {TEAM}!lvl {DEFAULT}- 打开主菜单"
+		"de"		"Enter: {TEAM}!lvl {DEFAULT}- Hauptmenü"
 	}
 	"LevelUp"
 	{
@@ -234,6 +263,7 @@
 		"ru"		"Вы повышены в звании до {GREEN}{1}"
 		"ua"		"Ви підвищені в званні до {GREEN}{1}"
 		"chi"		"你的段位已经升级为 {GREEN}{1}"
+		"de"		"Du wurdest befördert zu {GREEN}{1}"
 	}
 	"LevelDown"
 	{
@@ -242,6 +272,7 @@
 		"ru"		"Вы понижены в звании до {GREEN}{1}"
 		"ua"		"Ви знижені в званні до {GREEN}{1}"
 		"chi"		"你的段位已经降级为 {GREEN}{1}"
+		"de"		"Du wurdest degradiert zu {GREEN}{1}"
 	}
 	"LevelUpAll"
 	{
@@ -250,6 +281,7 @@
 		"ru"		"Игрок {TEAM}{1} {DEFAULT}повысил свое звание до {GREEN}{2}"
 		"ua"		"Гравець {TEAM}{1} {DEFAULT}підвищив своє звання до {GREEN}{2}"
 		"chi"		"玩家 {TEAM}{1} {DEFAULT}升段到了 {GREEN}{2}"
+		"de"		"Spieler {TEAM}{1} {DEFAULT}hat einen Rang auf {GREEN}{2} erhöht"
 	}
 	"LevelDownAll"
 	{
@@ -258,6 +290,7 @@
 		"ru"		"Игрок {TEAM}{1} {DEFAULT}понизил свое звание до {GREEN}{2}"
 		"ua"		"Гравець {TEAM}{1} {DEFAULT}знизив своє звання до {GREEN}{2}"
 		"chi"		"玩家 {TEAM}{1} {DEFAULT}掉段到了 {GREEN}{2}"
+		"de"		"Spieler {TEAM}{1} {DEFAULT}hat seinen Rang zu {GREEN}{2} verringert"
 	}
 	"Suicide"
 	{
@@ -266,6 +299,7 @@
 		"ru"		"Ваш опыт: {DEFAULT}{1} [{2} за самоубийство]"
 		"ua"		"Ваш досвід: {DEFAULT}{1} [{2} за самогубство]"
 		"chi"		"你的经验值: {DEFAULT}{1} [{2} 因为自杀]"
+		"de"		"Deine Exp: {DEFAULT}{1} [{2} für Selbstmord]"
 	}
 	"Kill"
 	{
@@ -274,6 +308,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} за убийство]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} за самогубство]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自击杀]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für einen Kill]"
 	}
 	"MyDeath"
 	{
@@ -282,6 +317,7 @@
 		"ru"		"Ваш опыт: {DEFAULT}{1} [{2} за вашу смерть]"
 		"ua"		"Ваш досвід: {DEFAULT}{1} [{2} за вашу смерть]"
 		"chi"		"你的经验值: {DEFAULT}{1} [{2} 因为死亡]"
+		"de"		"Deine Exp: {DEFAULT}{1} [{2} fürs Sterben]"
 	}
 	"TeamKill"
 	{
@@ -290,6 +326,7 @@
 		"ru"		"Ваш опыт: {DEFAULT}{1} [{2} за убийство товарища]"
 		"ua"		"Ваш досвід: {DEFAULT}{1} [{2} за вбивство товариша]"
 		"chi"		"你的经验值: {DEFAULT}{1} [{2} 因为击杀队友]"
+		"de"		"Deine Exp: {DEFAULT}{1} [{2} für einen Teamkill]"
 	}
 	"HeadShotKill"
 	{
@@ -298,6 +335,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} за убийство в голову]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} за вбивство в голову]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自爆头]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für einen Kopfschuss]"
 	}
 	"AssisterKill"
 	{
@@ -306,6 +344,8 @@
 		"ru"		"Ваш опыт: {TEAM}{1} [{2} за помощь в убийстве]"
 		"ua"		"Ваш досвід: {TEAM}{1} [{2} за допомогу в убивстві]"
 		"chi"		"你的经验值: {TEAM}{1} [{2} 来自助攻]"
+		"de"		"Deine Exp: {TEAM}{1} [{2} für einen Unterstützung]"
+		"de"		"Deine Exp: {TEAM}{1} [{2} für einen Unterstützung]"
 	}
 	"RoundWin"
 	{
@@ -314,6 +354,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} ваша команда выиграла]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} ваша команда виграла]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自团队胜利]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} dein Team hat gewonnen]"
 	}
 	"RoundLose"
 	{
@@ -322,6 +363,7 @@
 		"ru"		"Ваш опыт: {DEFAULT}{1} [{2} ваша команда проиграла]"
 		"ua"		"Ваш досвід: {DEFAULT}{1} [{2} ваша команда програла]"
 		"chi"		"你的经验值: {DEFAULT}{1} [{2} 因为团队失败]"
+		"de"		"Deine Exp: {DEFAULT}{1} [{2} dein Team hat verloren]"
 	}
 	"BombPlanted"
 	{
@@ -330,6 +372,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} установка бомбы]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} установка бомби]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自安装炸弹]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für das Legen der Bombe]"
 	}
 	"BombDefused"
 	{
@@ -338,6 +381,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} разминирование бомбы]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} розмінування бомби]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自拆除炸弹]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für das Entschärfen der Bombe]"
 	}
 	"BombPickup"
 	{
@@ -346,6 +390,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} подобрали бомбу]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} підібрали бомбу]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自捡起炸弹]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für das Aufnehmen der Bombe]"
 	}
 	"BombDropped"
 	{
@@ -354,6 +399,7 @@
 		"ru"		"Ваш опыт: {DEFAULT}{1} [{2} потеряли бомбу]"
 		"ua"		"Ваш досвід: {DEFAULT}{1} [{2} втратили бомбу]"
 		"chi"		"你的经验值: {DEFAULT}{1} [{2} 因为掉落炸弹]"
+		"de"		"Deine Exp: {DEFAULT}{1} [{2} für das fallenlassen der Bombe]"
 	}
 	"HostageRescued"
 	{
@@ -362,6 +408,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} вы спасли заложника]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} ви врятували заручника]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自人质救援]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für das Retten einer Geisel]"
 	}
 	"HostageKilled"
 	{
@@ -370,6 +417,7 @@
 		"ru"		"Ваш опыт: {DEFAULT}{1} [{2} вы убили заложника]"
 		"ua"		"Ваш досвід: {DEFAULT}{1} [{2} ви вбили заручника]"
 		"chi"		"你的经验值: {DEFAULT}{1} [{2} 因为击杀人质]"
+		"de"		"Deine Exp: {DEFAULT}{1} [{2} für das Töten einer Geisel]"
 	}
 	"DoubleKill"
 	{
@@ -378,6 +426,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} за DoubleKill]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Два вбивства поспіль]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自双杀]"
+		"de"        "Deine Exp: {GREEN}{1} [{2} für Doppelkill]"
 	}
 	"TripleKill"
 	{
@@ -386,6 +435,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} за TripleKill]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Потрійне вбивство]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自三杀]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für einen TripleKill]"
 	}
 	"Domination"
 	{
@@ -394,6 +444,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} за Domination]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Панування]"
 		"chi"		"你的经验值: {GREEEN}{1} [{2} 来自Domination]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für Domination]"
 	}
 	"Rampage"
 	{
@@ -402,6 +453,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} за Rampage]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Буянство]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自Rampage]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für Rampage]"
 	}
 	"MegaKill"
 	{
@@ -410,6 +462,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} за MegaKill]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Мега вбивство]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自MegaKill]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für einen MegaKill]"
 	}
 	"Ownage"
 	{
@@ -418,6 +471,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} за Ownage]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Власність]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自Ownage]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für Ownage]"
 	}
 	"UltraKill"
 	{
@@ -426,6 +480,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} за UltraKill]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} за ультра вбивство]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自UltraKill]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für einen UltraKill]"
 	}
 	"KillingSpree"
 	{
@@ -434,6 +489,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} за Killing Spree]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Серія вбивств]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自Killing Spree]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für einen Killing Spree]"
 	}
 	"MonsterKill"
 	{
@@ -442,6 +498,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} за MonsterKill]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Монстр-вбивця]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自MonsterKill]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für einen MonsterKill]"
 	}
 	"Unstoppable"
 	{
@@ -450,6 +507,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} за Unstoppable]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Нестримний]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自Unstoppable]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für Unstoppable]"
 	}
 	"GodLike"
 	{
@@ -458,6 +516,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} за God Like]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Богоподібний]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自God Like]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für God Like]"
 	}
 	"WickedSick"
 	{
@@ -466,6 +525,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} за WickedSick]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Злий-хворий]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自WickedSick]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für WickedSick]"
 	}
 	"HolyShit"
 	{
@@ -474,6 +534,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} за HolyShit]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Святе лайно]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自HolyShit]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für HolyShit]"
 	}
 	"RoundExpResultGive"
 	{
@@ -482,6 +543,7 @@
 		"ru"		"За раунд вы заработали {GREEN}{1} {DEFAULT}очков опыта"
 		"ua"		"За раунд ви заработали {GREEN}{1} {DEFAULT}поінти досвіду"
 		"chi"		"你每回合可获得 {GREEN}{1} {DEFAULT}点经验值"
+		"de"		"Du hast {GREEN}{1} {DEFAULT}Erfahrungspunkte pro Runde verdient"
 	}
 	"RoundExpResultTake"
 	{
@@ -490,6 +552,7 @@
 		"ru"		"За раунд вы потеряли {TEAM}{1} {DEFAULT}очков опыта"
 		"ua"		"За раунд ви втратили {TEAM}{1} {DEFAULT}поінти досвіду"
 		"chi"		"你每回合将失去 {TEAM}{1} {DEFAULT}点经验值"
+		"de"		"Du hast {TEAM}{1} {DEFAULT}Erfahrungspunkte pro Runde verloren"
 	}
 	"RoundExpResultNothing"
 	{
@@ -497,6 +560,7 @@
 		"ru"		"За раунд вы не заработали очков опыта!"
 		"ua"		"За раунд ви не заробили поінти досвіду!"
 		"chi"		"你在这回合并没有获得任何经验值!"
+		"de"		"Du hast keine Erfahrungspunkte in einer Runde verdient!"
 	}
 	"RoundExpResultAll"
 	{
@@ -505,5 +569,6 @@
 		"ru"		"Всего: {GREEN}{1} {DEFAULT}очков опыта"
 		"ua"		"Всього: {GREEN}{1} {DEFAULT}поінти досвіду"
 		"chi"		"总共: {GREEN}{1} {DEFAULT}经验值. 点数"
+		"de"		"Gesamt: {GREEN}{1} {DEFAULT}Erfahrungspunkte"
 	}
 }
