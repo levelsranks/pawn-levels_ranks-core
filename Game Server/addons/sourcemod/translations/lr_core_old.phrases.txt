@@ -45,7 +45,7 @@
 		"ru"		"Конфигурационные настройки обновлены"
 		"ua"		"Конфігураційні налаштування оновлені"
 		"chi"		"设置已更新"
-		"de"		"{TEAM}[LR] {DEFAULT}Konfigurationseinstellungen aktualisiert"
+		"de"		"Konfigurationseinstellungen aktualisiert"
 	}
 	"GiveTakeMenuExp"
 	{
