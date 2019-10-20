@@ -277,7 +277,7 @@
 		"ua"		"Запит на видалення гравця пройшов успішно! STEAM_ID - {1}"
 		"chi"		"删除请求已成功发送! STEAM_ID - {1}"
 		"es"		"¡Petición de eliminación enviada correctamente! STEAM_ID - {1}"
-		"de"		"Löschauftrag erfolgreich gesendet! STEAM_ID - {1}""
+		"de"		"Löschauftrag erfolgreich gesendet! STEAM_ID - {1}"
 	}
 	"Back"
 	{
