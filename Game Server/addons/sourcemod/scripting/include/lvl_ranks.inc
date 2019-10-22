@@ -32,7 +32,8 @@ enum LR_CleanupType
 {
 	LR_AllData,
 	LR_ExpData,
-	LR_StatsData
+	LR_StatsData,
+	LR_CleanData
 };
 
 enum LR_SettingType
@@ -48,9 +49,12 @@ enum LR_SettingType
 	LR_ShowLevelUpMessage,
 	LR_ShowLevelDownMessage,
 	LR_ShowRankMessage,
+	LR_ShowRankList,
 	LR_GiveExpRoundEnd,
 	LR_BlockWarmup,				/**< Use LR_CheckCountPlayers() to get is activate statistics. **/
 	LR_AllAgainstAll,
+	LR_CleanDB_Days,
+	LR_CleanDB_BanClient,
 
 	LR_ExpKill,					/**< If LR_TypeStatistics equal 0. **/
 	LR_ExpDeath,				/**< If LR_TypeStatistics equal 0. **/
@@ -238,13 +242,12 @@ native void LR_GetTableName(char[] sBuffer, int iMaxLen);
 native void LR_GetTitleMenu(char[] sBuffer, int iMaxLen);
 
 /**
- * Returns ArrayList with data about rank names (copy).
+ * Returns ArrayList with data about rank names (no copy).
  */
 native ArrayList LR_GetRankNames();
 
 /**
  * Returns ArrayList with data about rank experiences (no copy).
- * Use to get the number of ranks by means LR_GetRankExp().Length.
  */
 native ArrayList LR_GetRankExp();
 
@@ -313,7 +316,7 @@ native void LR_ShowMenu(int iClient, LR_MenuType MenuType);
  *
  * @param iClient			Client index.
  * @param bPrefix			Whether to add [LR] prefix to message.
- * @param sFormat			Formatting rules and color (https://levels-ranks.ru/wiki/sp_colors.php).
+ * @param sFormat			Formatting rules and colors (https://levels-ranks.ru/wiki/sp_colors.php).
  * @param ...				Variable number of format parameters.
  */
 native void LR_PrintToChat(int iClient, bool bPrefix, const char[] sFormat, any ...);

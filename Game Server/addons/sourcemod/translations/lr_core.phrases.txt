@@ -128,7 +128,7 @@
 		"ua"		"Додаткова статистика"
 		"chi"		"其他统计"
 		"es"		"Estadísticas secundarias"
-		"en"		"Sekundäre Statistiken"
+		"de"		"Sekundäre Statistiken"
 	}
 	"MyStatsSession"
 	{
@@ -195,7 +195,7 @@
 		"es"		"TOP jugadores"
 		"de"		"TOP Spieler"
 	}
-	"OverallTopPlayersExp"
+	"OverAllTopPlayersExp"
 	{
 		"en"		"TOP-10 by exp. points"
 		"ru"		"TOP-10 по очкам опыта"
@@ -204,7 +204,17 @@
 		"es"		"TOP-10 por puntos exp."
 		"de"		"TOP-10 nach Erfahrungspunkten"
 	}
-	"OverallTopPlayersTime"
+	"OverAllTopPlayersExp_Slot"
+	{
+		"#format"	"{1:i},{2:i},{3:s}"
+		"en"		"{1} - [ {2} ] - {3}"
+		"ru"		"{1} - [ {2} ] - {3}"
+		"ua"		"{1} - [ {2} ] - {3}"
+		"chi"		"{1} - [ {2} ] - {3}"
+		"es"		"{1} - [ {2} ] - {3}"
+		"de"		"{1} - [ {2} ] - {3}"
+	}
+	"OverAllTopPlayersTime"
 	{
 		"en"		"TOP-10 by activity"
 		"ru"		"TOP-10 по активности"

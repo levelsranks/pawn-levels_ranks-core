@@ -59,8 +59,11 @@ void MainMenu(int iClient)
 	FormatEx(sText, sizeof(sText), "%T", "MainMenu_TopPlayers", iClient); 
 	hMenu.AddItem("3", sText);
 
-	FormatEx(sText, sizeof(sText), "%T", "MainMenu_Ranks", iClient); 
-	hMenu.AddItem("4", sText);
+	if(g_Settings[LR_ShowRankList])
+	{
+		FormatEx(sText, sizeof(sText), "%T", "MainMenu_Ranks", iClient); 
+		hMenu.AddItem("4", sText);
+	}
 
 	hMenu.Display(iClient, MENU_TIME_FOREVER);
 }
@@ -542,10 +545,10 @@ void MenuTop(int iClient)
 
 	hMenu.SetTitle("%s | %T\n ", g_sPluginTitle, "MainMenu_TopPlayers", iClient);
 
-	FormatEx(sText, sizeof(sText), "%T", "OverallTopPlayersExp", iClient);
+	FormatEx(sText, sizeof(sText), "%T", "OverAllTopPlayersExp", iClient);
 	hMenu.AddItem("0", sText);
 
-	FormatEx(sText, sizeof(sText), "%T", "OverallTopPlayersTime", iClient);
+	FormatEx(sText, sizeof(sText), "%T", "OverAllTopPlayersTime", iClient);
 	hMenu.AddItem("1", sText);
 
 	CreatedMenu_CallForward(LR_TopMenu, iClient, hMenu);
@@ -694,53 +697,49 @@ public void OnClientSayCommand_Post(int iClient, const char[] sCommand, const ch
 {
 	if(CheckStatus(iClient))
 	{
-		int iValue = 0;
-
-		static StringMap hCommands;
-
-		if(!hCommands)
+		if(!strcmp(sArgs, "top") || !strcmp(sArgs, "!top"))
 		{
-			(hCommands = new StringMap()).SetValue("top", 0);
-			hCommands.SetValue("!top", 0);
-			hCommands.SetValue("toptime", 1);
-			hCommands.SetValue("!toptime", 1);
-			hCommands.SetValue("session", 2);
-			hCommands.SetValue("!session", 2);
-			hCommands.SetValue("rank", 3);
-			hCommands.SetValue("!rank", 3);
+			OverAllTopPlayers(iClient);
+
+			return;
 		}
 
-		if(hCommands.GetValue(sArgs, iValue))
+		if(!strcmp(sArgs, "toptime") || !strcmp(sArgs, "!toptime"))
 		{
-			switch(iValue)
+			OverAllTopPlayers(iClient, false);
+
+			return;
+		}
+
+		if(!strcmp(sArgs, "session") || !strcmp(sArgs, "!session"))
+		{
+			MyStatsSession(iClient);
+
+			return;
+		}
+
+		if(!strcmp(sArgs, "rank") || !strcmp(sArgs, "!rank"))
+		{
+			int iKills = g_iPlayerInfo[iClient].iStats[ST_KILLS],
+				iDeaths = g_iPlayerInfo[iClient].iStats[ST_DEATHS];
+
+			if(g_Settings[LR_ShowRankMessage])
 			{
-				case 0: OverAllTopPlayers(iClient);
-				case 1: OverAllTopPlayers(iClient, false);
-				case 2: MyStatsSession(iClient);
-				case 3: 
+				int iPlaceInTop = g_iPlayerInfo[iClient].iStats[ST_PLACEINTOP],
+					iExp = g_iPlayerInfo[iClient].iStats[ST_EXP];
+
+				for(int i = GetMaxPlayers(); --i;)
 				{
-					int iKills = g_iPlayerInfo[iClient].iStats[ST_KILLS],
-						iDeaths = g_iPlayerInfo[iClient].iStats[ST_DEATHS];
-
-					if(g_Settings[LR_ShowRankMessage])
+					if(CheckStatus(i)) 
 					{
-						int iPlaceInTop = g_iPlayerInfo[iClient].iStats[ST_PLACEINTOP],
-							iExp = g_iPlayerInfo[iClient].iStats[ST_EXP];
-
-						for(int i = GetMaxPlayers(); --i;)
-						{
-							if(CheckStatus(i)) 
-							{
-								LR_PrintMessage(i, true, false, "%T", "RankPlayer", i, iClient, iPlaceInTop, g_iDBCountPlayers, iExp, iKills, iDeaths, iKills / (iDeaths ? float(iDeaths) : 1.0));
-							}
-						}
-
-						return;
+						LR_PrintMessage(i, true, false, "%T", "RankPlayer", i, iClient, iPlaceInTop, g_iDBCountPlayers, iExp, iKills, iDeaths, iKills / (iDeaths ? float(iDeaths) : 1.0));
 					}
-
-					LR_PrintMessage(iClient, true, false, "%T", "RankPlayer", iClient, iClient, g_iPlayerInfo[iClient].iStats[ST_PLACEINTOP], g_iDBCountPlayers, g_iPlayerInfo[iClient].iStats[ST_EXP], iKills, iDeaths, iKills / (iDeaths ? float(iDeaths) : 1.0));
 				}
+
+				return;
 			}
+
+			LR_PrintMessage(iClient, true, false, "%T", "RankPlayer", iClient, iClient, g_iPlayerInfo[iClient].iStats[ST_PLACEINTOP], g_iDBCountPlayers, g_iPlayerInfo[iClient].iStats[ST_EXP], iKills, iDeaths, iKills / (iDeaths ? float(iDeaths) : 1.0));
 		}
 	}
 }

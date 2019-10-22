@@ -62,7 +62,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} от Админа]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} від Админа]"
 		"chi"		"你的经验值: {GREEN}{1} [管理员{2}]"
-		"de"		"Deine Exp: {GREEN}{1} [{2} vom Admin]""
+		"de"		"Deine Exp: {GREEN}{1} [{2} vom Admin]"
 	}
 	"AdminTake"
 	{
@@ -139,7 +139,7 @@
 		"ru"		"Обнулить статистику?\n \nВы обнулите все свои параметры, \nуровни, фраги и тому подобное. \nВы точно уверены?"
 		"ua"		"Обнулити мою статистику?\n \nВи скинете всі свої параметри, \nРівні, фраги тощо. \nВи точно впевнені?"
 		"chi"		"重置自己的数据?\n \n你将重置你所有的选项, \n等级, 击杀 等等数据. \n你确定?"
-		"de"		""Alle Statistiken zurücksetzten?\n \nEs werden alle Optionen, \nLevel, Kills und Ähnliches zurückgesetzt. \nBist du sicher?"
+		"de"		"Alle Statistiken zurücksetzten?\n \nEs werden alle Optionen, \nLevel, Kills und Ähnliches zurückgesetzt. \nBist du sicher?"
 	}
 	"MainMenu_MyPrivilegesSettings"
 	{
@@ -157,7 +157,7 @@
 		"chi"		"顶尖选手"
 		"de"		"TOP Spieler"
 	}
-	"OverallTopPlayersExp"
+	"OverAllTopPlayersExp"
 	{
 		"en"		"TOP-10 by exp. points"
 		"ru"		"TOP-10 по очкам опыта"
@@ -165,7 +165,16 @@
 		"chi"		"经验值排名前十"
 		"de"		"TOP-10 nach Erfahrungspunkten"
 	}
-	"OverallTopPlayersTime"
+	"OverAllTopPlayersExp_Slot"
+	{
+		"#format"	"{1:i},{2:i},{3:s}"
+		"en"		"{1} - [ {2} ] - {3}"
+		"ru"		"{1} - [ {2} ] - {3}"
+		"ua"		"{1} - [ {2} ] - {3}"
+		"chi"		"{1} - [ {2} ] - {3}"
+		"de"		"{1} - [ {2} ] - {3}"
+	}
+	"OverAllTopPlayersTime"
 	{
 		"en"		"TOP-10 by activity"
 		"ru"		"TOP-10 по активности"
@@ -173,7 +182,7 @@
 		"chi"		"活跃排名前十"
 		"de"		"TOP-10 nach Spielzeit"
 	}
-	"OverallTopPlayersTime_Slot"
+	"OverAllTopPlayersTime_Slot"
 	{
 		"#format"	"{1:i},{2:.1f},{3:s}"
 		"en"		"{1} - [ {2} hours ] - {3}"
@@ -345,7 +354,6 @@
 		"ru"		"Ваш опыт: {TEAM}{1} [{2} за помощь в убийстве]"
 		"ua"		"Ваш досвід: {TEAM}{1} [{2} за допомогу в убивстві]"
 		"chi"		"你的经验值: {TEAM}{1} [{2} 来自助攻]"
-		"de"		"Deine Exp: {TEAM}{1} [{2} für einen Unterstützung]"
 		"de"		"Deine Exp: {TEAM}{1} [{2} für einen Unterstützung]"
 	}
 	"RoundWin"

@@ -23,7 +23,7 @@
 ****		( training - method of transaction, fix errors )
 ****
 ****		Kruzya
-****		( fix errors )
+****		( fix errors and helpful advices )
 ****
 ****		Kaneki
 ****		( fix errors )
@@ -44,6 +44,9 @@
 ****
 ****		LemonPAKA
 ****		( translation of phrases in Chinese )
+****
+****		freakexeuLow & Wutz
+****		( translation of phrases in German )
 ****
 ****		Hackmastr
 ****		( incomplete translation of phrases in Spanish )
@@ -80,7 +83,7 @@ enum struct LR_PlayerInfo
 	int iKillStreak;
 }
 
-any		  		g_Settings[LR_SettingType];
+any				g_Settings[LR_SettingType];
 
 bool			g_bDatabaseSQLite,
 				g_bRoundEndGiveExp = true,
@@ -90,8 +93,7 @@ bool			g_bDatabaseSQLite,
 int				g_iBonus[11],
 				g_iCountRetryConnect,
 				g_iCountPlayers,
-				g_iDBCountPlayers,
-				g_iSizeTransaction;
+				g_iDBCountPlayers;
 
 char			g_sPluginName[] = PLUGIN_NAME,
 				g_sPluginTitle[64],
@@ -102,7 +104,7 @@ char			g_sPluginName[] = PLUGIN_NAME,
 LR_PlayerInfo	g_iPlayerInfo[MAXPLAYERS+1],
 				g_iInfoNULL;
 
-GlobalForward 	g_hForward_OnCoreIsReady;
+GlobalForward	g_hForward_OnCoreIsReady;
 
 PrivateForward	g_hForward_Hook[LR_HookType],
 				g_hForward_CreatedMenu[LR_MenuType],
@@ -110,7 +112,7 @@ PrivateForward	g_hForward_Hook[LR_HookType],
 
 EngineVersion	g_iEngine;
 
-ArrayList 		g_hRankNames,
+ArrayList		g_hRankNames,
 				g_hRankExp;
 
 Cookie			g_hResetMyStats;
@@ -190,6 +192,8 @@ public void OnMapStart()
 			PrecacheSound(g_sSoundDown);
 		}
 	}
+
+	OnCleanDB();
 }
 
 public void OnPluginEnd()

@@ -2,7 +2,7 @@ void LR_PrintMessage(int iClient, bool bPrefix, bool bNative, const char[] sForm
 {
 	if(iClient && IsClientInGame(iClient) && !IsFakeClient(iClient))
 	{
-		static char 		sMessage[254];
+		static char 		sMessage[384];
 
 		static const char	sColorsBefore[][] = {"{DEFAULT}", "{TEAM}", "{GREEN}", "{RED}", "{LIME}", "{LIGHTGREEN}", "{LIGHTRED}", "{GRAY}", "{LIGHTOLIVE}", "{OLIVE}", "{LIGHTBLUE}", "{BLUE}", "{PURPLE}", "{BRIGHTRED}"},
 							sColors[][] = {"\x01", "\x03", "\x04", "\x02", "\x05", "\x06", "\x07", "\x08", "\x09", "\x10", "\x0B", "\x0C", "\x0E", "\x0F"};
@@ -167,7 +167,7 @@ bool CheckStatus(int iClient)
 	return (iClient && IsClientAuthorized(iClient) && !IsFakeClient(iClient) && g_iPlayerInfo[iClient].bInitialized) || (g_iPlayerInfo[iClient].bInitialized = false);
 }
 
-void CheckRank(int iClient)
+void CheckRank(int iClient, bool bActive = true)
 {
 	if(CheckStatus(iClient))
 	{
@@ -182,56 +182,61 @@ void CheckRank(int iClient)
 
 		if(iRank != iOldRank)
 		{
-			if(GetForwardFunctionCount(g_hForward_Hook[LR_OnLevelChangedPre]))
+			g_iPlayerInfo[iClient].iStats[ST_RANK] = iRank;
+
+			if(bActive)
 			{
-				int iNewRank = iRank;
-
-				Call_StartForward(g_hForward_Hook[LR_OnLevelChangedPre]);
-				Call_PushCell(iClient);
-				Call_PushCellRef(iNewRank);
-				Call_PushCell(iOldRank);
-				Call_Finish();
-
-				if(0 < iNewRank && iNewRank < iMaxRanks && iNewRank != iOldRank)
+				if(GetForwardFunctionCount(g_hForward_Hook[LR_OnLevelChangedPre]))
 				{
-					iRank = iNewRank;
-				}
-				else
-				{
-					LogError("%i - invalid number rank.", iNewRank);
-				}
-			}
+					int iNewRank = iRank;
 
-			bool bUp = (g_iPlayerInfo[iClient].iStats[ST_RANK] = iRank) > iOldRank;
+					Call_StartForward(g_hForward_Hook[LR_OnLevelChangedPre]);
+					Call_PushCell(iClient);
+					Call_PushCellRef(iNewRank);
+					Call_PushCell(iOldRank);
+					Call_Finish();
 
-			g_hRankNames.GetString(iRank - 1, sRank, sizeof(sRank));
-
-			FormatEx(sRank, sizeof(sRank), "%T", sRank, iClient);
-			LR_PrintMessage(iClient, true, false, "%T", bUp ? "LevelUp" : "LevelDown", iClient, sRank);
-
-			if(IsClientInGame(iClient) && g_Settings[LR_IsLevelSound])
-			{
-				EmitSoundToClient(iClient, bUp ? g_sSoundUp : g_sSoundDown, SOUND_FROM_PLAYER, 80);
-			}
-
-			if(g_Settings[LR_ShowLevelUpMessage + view_as<int>(bUp)])
-			{
-				for(int i = GetMaxPlayers(); --i;)
-				{
-					if(g_iPlayerInfo[i].bInitialized && i != iClient)
+					if(0 < iNewRank && iNewRank < iMaxRanks && iNewRank != iOldRank)
 					{
-						LR_PrintMessage(i, true, false, "%T", bUp ? "LevelUpAll" : "LevelDownAll", i, iClient, sRank);
+						iRank = iNewRank;
+					}
+					else
+					{
+						LogError("%i - invalid number rank.", iNewRank);
 					}
 				}
+
+				bool bUp = iRank > iOldRank;
+
+				g_hRankNames.GetString(iRank - 1, sRank, sizeof(sRank));
+
+				FormatEx(sRank, sizeof(sRank), "%T", sRank, iClient);
+				LR_PrintMessage(iClient, true, false, "%T", bUp ? "LevelUp" : "LevelDown", iClient, sRank);
+
+				if(IsClientInGame(iClient) && g_Settings[LR_IsLevelSound])
+				{
+					EmitSoundToClient(iClient, bUp ? g_sSoundUp : g_sSoundDown, SOUND_FROM_PLAYER, 80);
+				}
+
+				if(g_Settings[LR_ShowLevelUpMessage + view_as<int>(bUp)])
+				{
+					for(int i = GetMaxPlayers(); --i;)
+					{
+						if(g_iPlayerInfo[i].bInitialized && i != iClient)
+						{
+							LR_PrintMessage(i, true, false, "%T", bUp ? "LevelUpAll" : "LevelDownAll", i, iClient, sRank);
+						}
+					}
+				}
+
+				SaveDataPlayer(iClient);		// in database.sp
+
+				Call_StartForward(g_hForward_Hook[LR_OnLevelChangedPost]);
+				Call_PushCell(iClient);
+				Call_PushCell(iRank);
+				Call_PushCell(iOldRank);
+				Call_Finish();
 			}
-
-			SaveDataPlayer(iClient);		// in database.sp
-
-			Call_StartForward(g_hForward_Hook[LR_OnLevelChangedPost]);
-			Call_PushCell(iClient);
-			Call_PushCell(iRank);
-			Call_PushCell(iOldRank);
-			Call_Finish();
 		}
 	}
 }

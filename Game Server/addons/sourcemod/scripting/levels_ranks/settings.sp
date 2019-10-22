@@ -18,7 +18,7 @@ void SetSettings(bool bReload = false)
 
 	if(sPath[0] == '\0')
 	{
-		g_hRankNames = new ArrayList(sizeof(sBuffer));
+		g_hRankNames = new ArrayList(sizeof(sBuffer) / 4 + 1);
 		g_hRankExp = new ArrayList();
 
 		BuildPath(Path_SM, sPath, sizeof(sPath), "configs/levels_ranks/settings.ini");
@@ -70,9 +70,12 @@ void SetSettings(bool bReload = false)
 	g_Settings[LR_ShowLevelUpMessage] = hKv.GetNum("lr_show_levelup_message", 0);
 	g_Settings[LR_ShowLevelDownMessage] = hKv.GetNum("lr_show_leveldown_message", 0);
 	g_Settings[LR_ShowRankMessage] = hKv.GetNum("lr_show_rankmessage", 1);
+	g_Settings[LR_ShowRankList] = hKv.GetNum("lr_show_ranklist", 1);
 	g_Settings[LR_GiveExpRoundEnd] = hKv.GetNum("lr_giveexp_roundend", 1);
 	g_Settings[LR_BlockWarmup] = hKv.GetNum("lr_block_warmup", 1);
 	g_Settings[LR_AllAgainstAll] = hKv.GetNum("lr_allagainst_all", 0);
+	g_Settings[LR_CleanDB_Days] = hKv.GetNum("lr_cleandb_days", 30);
+	g_Settings[LR_CleanDB_BanClient] = hKv.GetNum("lr_cleandb_banclient", 1);
 
 	hKv.Close();
 

@@ -1,10 +1,5 @@
 public APLRes AskPluginLoad2()
 {
-	if(LibraryExists("levelsranks"))
-	{
-		SetFailState("You have already one more core!");
-	}
-
 	if((g_iEngine = GetEngineVersion()) != Engine_CSGO && g_iEngine != Engine_CSS && g_iEngine != Engine_SourceSDK2006)
 	{
 		SetFailState("This plugin works only on CS:GO ar CS:S OB ar CS:S v34.");
@@ -136,12 +131,7 @@ int Native_LR_CheckCountPlayers(Handle hPlugin, int iNumParams)
 
 int Native_LR_GetRankNames(Handle hPlugin, int iNumParams)
 {
-	if(g_hRankNames)
-	{
-		return view_as<int>(CloneHandle(g_hRankNames, hPlugin));
-	}
-
-	return 0;
+	return view_as<int>(g_hRankNames);
 }
 
 int Native_LR_GetRankExp(Handle hPlugin, int iNumParams)
