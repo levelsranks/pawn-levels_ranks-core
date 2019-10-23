@@ -164,54 +164,57 @@ void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 
 				case 'e':	// round_end
 				{
-					g_bRoundAllowExp = true;
-
-					int iWinTeam = GetEventInt(hEvent, "winner");
-
-					if(iWinTeam > 1)
+					if(!g_bWarmupPeriod && g_iCountPlayers >= g_Settings[LR_MinplayersCount])
 					{
-						for(int i = GetMaxPlayers(), iTeam; --i;)
+						g_bRoundAllowExp = true;
+
+						int iWinTeam = GetEventInt(hEvent, "winner");
+
+						if(iWinTeam > 1)
 						{
-							if(IsClientInGame(i) && !IsFakeClient(i))
+							for(int i = GetMaxPlayers(), iTeam; --i;)
 							{
-								if(!g_bWarmupPeriod && (iTeam = GetClientTeam(i)) > 1)
+								if(IsClientInGame(i) && !IsFakeClient(i))
 								{
-									bool bLose = iTeam != iWinTeam;
-
-									if(bLose ? NotifClient(i, -g_Settings[LR_ExpRoundLose], "RoundLose") : NotifClient(i, g_Settings[LR_ExpRoundLose], "RoundWin"))
+									if((iTeam = GetClientTeam(i)) > 1)
 									{
-										g_iPlayerInfo[i].iStats[ST_ROUNDSLOSE + view_as<int>(bLose)]++;
-										g_iPlayerInfo[i].iSessionStats[7 + view_as<int>(bLose)]++;
-									}
-								}
+										bool bLose = iTeam != iWinTeam;
 
-								if(IsPlayerAlive(i))
-								{
-									GiveExpForStreakKills(i);
-								}
-
-								if(g_Settings[LR_ShowUsualMessage] == 2)
-								{
-									if(g_iPlayerInfo[i].iRoundExp)
-									{
-										LR_PrintMessage(i, true, false, "%T", g_iPlayerInfo[i].iRoundExp > 0 ? "RoundExpResultGive" : "RoundExpResultTake", i, g_iPlayerInfo[i].iRoundExp);
-									}
-									else 
-									{
-										LR_PrintMessage(i, true, false, "%T", "RoundExpResultNothing", i);
+										if(bLose ? NotifClient(i, -g_Settings[LR_ExpRoundLose], "RoundLose") : NotifClient(i, g_Settings[LR_ExpRoundLose], "RoundWin"))
+										{
+											g_iPlayerInfo[i].iStats[ST_ROUNDSLOSE + view_as<int>(bLose)]++;
+											g_iPlayerInfo[i].iSessionStats[7 + view_as<int>(bLose)]++;
+										}
 									}
 
-									LR_PrintMessage(i, true, false, "%T", "RoundExpResultAll", i, g_iPlayerInfo[i].iStats[ST_EXP]);
+									if(IsPlayerAlive(i))
+									{
+										GiveExpForStreakKills(i);
+									}
 
-									g_iPlayerInfo[i].iRoundExp = 0;
+									if(g_Settings[LR_ShowUsualMessage] == 2)
+									{
+										if(g_iPlayerInfo[i].iRoundExp)
+										{
+											LR_PrintMessage(i, true, false, "%T", g_iPlayerInfo[i].iRoundExp > 0 ? "RoundExpResultGive" : "RoundExpResultTake", i, g_iPlayerInfo[i].iRoundExp);
+										}
+										else 
+										{
+											LR_PrintMessage(i, true, false, "%T", "RoundExpResultNothing", i);
+										}
+
+										LR_PrintMessage(i, true, false, "%T", "RoundExpResultAll", i, g_iPlayerInfo[i].iStats[ST_EXP]);
+
+										g_iPlayerInfo[i].iRoundExp = 0;
+									}
 								}
 							}
 						}
-					}
 
-					if(!g_Settings[LR_GiveExpRoundEnd])
-					{
-						RequestFrame(NextFrameRound);
+						if(!g_Settings[LR_GiveExpRoundEnd])
+						{
+							RequestFrame(NextFrameRound);
+						}
 					}
 				}
 

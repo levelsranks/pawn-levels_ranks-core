@@ -105,15 +105,15 @@ WHERE \
 	SELECT COUNT(`steam`) FROM `%s` WHERE `playtime` >= %d AND `lastconnect`\
 ) AS `timepos`;"
 
-static const char g_sConnectionError[] = "Lost connection";
+static const char g_sConnectionError[] = "Lost connection",
+				  g_sDBConfigName[] = "levels_ranks";
 
 void ConnectDB()
 {
 	char sIdent[2], sError[256], sQuery[768];
 
-	static const char sDBConfigName[] = "levels_ranks";
 
-	if(!(g_hDatabase = SQL_CheckConfig(sDBConfigName) ? SQL_Connect(sDBConfigName, false, sError, sizeof(sError)) : SQLite_UseDatabase("lr_base", sError, sizeof(sError))))
+	if(!(g_hDatabase = SQL_CheckConfig(g_sDBConfigName) ? SQL_Connect(g_sDBConfigName, false, sError, sizeof(sError)) : SQLite_UseDatabase("lr_base", sError, sizeof(sError))))
 	{
 		SetFailState("Could not connect to the database - %s", sError);
 	}
@@ -602,14 +602,13 @@ void TryReconnectDB()
 	g_hTransactionLossDB = new Transaction();	
 
 	LogError("Reconnect to the Database!");
-	CreateTimer(5.0, TryReconnectDBTimer, _, TIMER_REPEAT);
+
+	Database.Connect(ConnectToDatabase, g_sDBConfigName);
 }
 
-Action TryReconnectDBTimer(Handle hTimer)
+void ConnectToDatabase(Database hDatabase, const char[] sError, any NULL)
 {
-	static char sError[4];
-
-	if((g_hDatabase = SQL_Connect("levels_ranks", false, sError, sizeof(sError))))
+	if((g_hDatabase = hDatabase))
 	{
 		LogError("Successfully! Attempt #%i.", g_iCountRetryConnect);
 
@@ -617,10 +616,12 @@ Action TryReconnectDBTimer(Handle hTimer)
 
 		AuthAllPlayer();
 
-		return Plugin_Stop;
+		return;
 	}
 
-	LogError("\nReconnecting (%i) #%i ...", sError, ++g_iCountRetryConnect);
+	Database.Connect(ConnectToDatabase, g_sDBConfigName);
 
-	return Plugin_Continue;
+	LogError("Reconnecting (%i) #%i ...", sError, ++g_iCountRetryConnect);
+
+	return;
 }
