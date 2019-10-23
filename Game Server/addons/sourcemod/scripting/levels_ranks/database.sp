@@ -622,6 +622,4 @@ void ConnectToDatabase(Database hDatabase, const char[] sError, any NULL)
 	Database.Connect(ConnectToDatabase, g_sDBConfigName);
 
 	LogError("Reconnecting (%i) #%i ...", sError, ++g_iCountRetryConnect);
-
-	return;
 }

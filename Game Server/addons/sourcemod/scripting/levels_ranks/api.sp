@@ -60,28 +60,26 @@ int Native_LR_IsLoaded(Handle hPlugin, int iNumParams)
 
 int Native_LR_Hook(Handle hPlugin, int iNumParams)
 {
-	return view_as<int>(g_hForward_Hook[GetNativeCell(1)].AddFunction(hPlugin, GetNativeCell(2)));
+	return g_hForward_Hook[GetNativeCell(1)].AddFunction(hPlugin, GetNativeCell(2));
 }
 
 int Native_LR_Unhook(Handle hPlugin, int iNumParams)
 {
-	return view_as<int>(g_hForward_Hook[GetNativeCell(1)].RemoveFunction(hPlugin, GetNativeCell(2)));
+	return g_hForward_Hook[GetNativeCell(1)].RemoveFunction(hPlugin, GetNativeCell(2));
 }
 
 int Native_LR_MenuHook(Handle hPlugin, int iNumParams)
 {
 	int iMenuType = GetNativeCell(1);
 
-	return view_as<int>(g_hForward_CreatedMenu[iMenuType].AddFunction(hPlugin, GetNativeCell(2)) &&
-						g_hForward_SelectedMenu[iMenuType].AddFunction(hPlugin, GetNativeCell(3)));
+	return g_hForward_CreatedMenu[iMenuType].AddFunction(hPlugin, GetNativeCell(2)) && g_hForward_SelectedMenu[iMenuType].AddFunction(hPlugin, GetNativeCell(3));
 }
 
 int Native_LR_MenuUnhook(Handle hPlugin, int iNumParams)
 {
 	int iMenuType = GetNativeCell(1);
 
-	return view_as<int>(g_hForward_CreatedMenu[iMenuType].RemoveFunction(hPlugin, GetNativeCell(2)) &&
-						g_hForward_SelectedMenu[iMenuType].RemoveFunction(hPlugin, GetNativeCell(3)));
+	return g_hForward_CreatedMenu[iMenuType].RemoveFunction(hPlugin, GetNativeCell(2)) && g_hForward_SelectedMenu[iMenuType].RemoveFunction(hPlugin, GetNativeCell(3));
 }
 
 int Native_LR_GetSettingsValue(Handle hPlugin, int iNumParams)
@@ -126,7 +124,7 @@ int Native_LR_GetClientStatus(Handle hPlugin, int iNumParams)
 
 int Native_LR_CheckCountPlayers(Handle hPlugin, int iNumParams)
 {
-	return view_as<int>(!g_bWarmupPeriod && g_iCountPlayers >= g_Settings[LR_MinplayersCount] && g_bRoundAllowExp && g_bRoundEndGiveExp);
+	return !g_bWarmupPeriod && g_iCountPlayers >= g_Settings[LR_MinplayersCount] && g_bRoundAllowExp && g_bRoundEndGiveExp;
 }
 
 int Native_LR_GetRankNames(Handle hPlugin, int iNumParams)
