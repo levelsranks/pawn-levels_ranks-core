@@ -1,6 +1,10 @@
 void MakeHookEvents()
 {
-	HookEvent("weapon_fire", Events, EventHookMode_Pre);
+	if(!HookEventEx("weapon_fire", Events, EventHookMode_Pre))
+	{
+		SetFailState("Bug in event analysis engine (%i)!", g_iEngine);
+	}
+
 	HookEvent("player_hurt", Events, EventHookMode_Pre);
 	HookEvent("player_death", Events, EventHookMode_Pre);
 

@@ -247,7 +247,8 @@ void ResetPlayerData(int iClient)
 
 	g_iPlayerInfo[iClient] = g_iInfoNULL;
 	g_iPlayerInfo[iClient].iAccountID = iAccountID;
-	g_iPlayerInfo[iClient].iSessionStats[0] = (g_iPlayerInfo[iClient].iStats[ST_EXP] = g_Settings[LR_TypeStatistics] ? 1000 : 0);
+	g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] = -GetTime();
+	g_iPlayerInfo[iClient].iSessionStats[0] = g_iPlayerInfo[iClient].iStats[ST_EXP] = g_Settings[LR_TypeStatistics] ? 1000 : 0;
 	g_iPlayerInfo[iClient].bInitialized = true;
 }
 
@@ -261,16 +262,4 @@ void ResetPlayerStats(int iClient)
 	Call_PushCell(iClient);
 	Call_PushCell(g_iPlayerInfo[iClient].iAccountID);
 	Call_Finish();
-}
-
-Action PlayTimeCounter(Handle hTimer)
-{
-	for(int i = GetMaxPlayers(); --i;)
-	{
-		if(CheckStatus(i))
-		{
-			g_iPlayerInfo[i].iStats[ST_PLAYTIME]++;
-			g_iPlayerInfo[i].iSessionStats[9]++;
-		}
-	}
 }

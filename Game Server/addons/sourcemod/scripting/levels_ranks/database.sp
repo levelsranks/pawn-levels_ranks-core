@@ -301,7 +301,7 @@ void GetPlacePlayer(int iClient)
 	{
 		static char sQuery[256];
 
-		FormatEx(sQuery, sizeof(sQuery), SQL_GetPlace, g_sTableName, g_iPlayerInfo[iClient].iStats[ST_EXP], g_sTableName, g_iPlayerInfo[iClient].iStats[ST_PLAYTIME]);
+		FormatEx(sQuery, sizeof(sQuery), SQL_GetPlace, g_sTableName, g_iPlayerInfo[iClient].iStats[ST_EXP], g_sTableName, g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime());
 		g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | 1, DBPrio_High);
 	}
 }
@@ -373,7 +373,7 @@ void SaveDataPlayer(int iClient, bool bDisconnect = false)
 
 		Transaction hTransaction = g_hDatabase ? new Transaction() : g_hTransactionLossDB;
 
-		FormatEx(sQuery, sizeof(sQuery), SQL_UpdateData, g_sTableName, g_iPlayerInfo[iClient].iStats[ST_EXP], GetPlayerName(iClient), g_iPlayerInfo[iClient].iStats[ST_RANK], g_iPlayerInfo[iClient].iStats[ST_KILLS], g_iPlayerInfo[iClient].iStats[ST_DEATHS], g_iPlayerInfo[iClient].iStats[ST_SHOOTS], g_iPlayerInfo[iClient].iStats[ST_HITS], g_iPlayerInfo[iClient].iStats[ST_HEADSHOTS], g_iPlayerInfo[iClient].iStats[ST_ASSISTS], g_iPlayerInfo[iClient].iStats[ST_ROUNDSWIN], g_iPlayerInfo[iClient].iStats[ST_ROUNDSLOSE], g_iPlayerInfo[iClient].iStats[ST_PLAYTIME], g_iPlayerInfo[iClient].iSessionStats[9] == -1 ? 0 : GetTime(), g_iEngine == Engine_CSGO, iAccountID & 1, iAccountID >>> 1);
+		FormatEx(sQuery, sizeof(sQuery), SQL_UpdateData, g_sTableName, g_iPlayerInfo[iClient].iStats[ST_EXP], GetPlayerName(iClient), g_iPlayerInfo[iClient].iStats[ST_RANK], g_iPlayerInfo[iClient].iStats[ST_KILLS], g_iPlayerInfo[iClient].iStats[ST_DEATHS], g_iPlayerInfo[iClient].iStats[ST_SHOOTS], g_iPlayerInfo[iClient].iStats[ST_HITS], g_iPlayerInfo[iClient].iStats[ST_HEADSHOTS], g_iPlayerInfo[iClient].iStats[ST_ASSISTS], g_iPlayerInfo[iClient].iStats[ST_ROUNDSWIN], g_iPlayerInfo[iClient].iStats[ST_ROUNDSLOSE], g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime(), g_iPlayerInfo[iClient].iSessionStats[9] == -1 ? 0 : GetTime(), g_iEngine == Engine_CSGO, iAccountID & 1, iAccountID >>> 1);
 		hTransaction.AddQuery(sQuery);
 
 		Call_StartForward(g_hForward_Hook[LR_OnPlayerSaved]);
@@ -453,7 +453,7 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 
 					ResetPlayerData(iClient);		// custom_function.sp
 
-					IntToString(g_iPlayerInfo[iClient].iStats[ST_PLAYTIME], sLastResetMyStats, sizeof(sLastResetMyStats));
+					IntToString(g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime(), sLastResetMyStats, sizeof(sLastResetMyStats));
 					g_hResetMyStats.Set(iClient, sLastResetMyStats);
 
 					g_iDBCountPlayers++;
@@ -475,6 +475,7 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 							g_iPlayerInfo[iClient].iStats[i] = hResult.FetchInt(i);
 						}
 
+						g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] += g_iPlayerInfo[iClient].iSessionStats[9] = -GetTime();
 						g_iPlayerInfo[iClient].iSessionStats[0] = g_iPlayerInfo[iClient].iStats[ST_EXP];
 						g_iPlayerInfo[iClient].bInitialized = true;
 
@@ -603,10 +604,10 @@ void TryReconnectDB()
 
 	LogError("Reconnect to the Database!");
 
-	Database.Connect(ConnectToDatabase, g_sDBConfigName);
+	Database.Connect(ReconnectToDatabase, g_sDBConfigName);
 }
 
-void ConnectToDatabase(Database hDatabase, const char[] sError, any NULL)
+void ReconnectToDatabase(Database hDatabase, const char[] sError, any NULL)
 {
 	if((g_hDatabase = hDatabase))
 	{
@@ -619,7 +620,7 @@ void ConnectToDatabase(Database hDatabase, const char[] sError, any NULL)
 		return;
 	}
 
-	Database.Connect(ConnectToDatabase, g_sDBConfigName);
+	Database.Connect(ReconnectToDatabase, g_sDBConfigName);
 
-	LogError("Reconnecting (%i) #%i ...", sError, ++g_iCountRetryConnect);
+	LogError("Reconnecting (%s) #%i ...", sError, ++g_iCountRetryConnect);
 }

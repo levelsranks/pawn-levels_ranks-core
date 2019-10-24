@@ -1,12 +1,12 @@
 Action Call_ReloadSettings(int iClient, int iArgs)
 {
-	SetSettings(true);
+	SetSettings();
 	LR_PrintMessage(iClient, true, false, "%T", "ConfigUpdated", iClient);
 
 	return Plugin_Handled;
 }
 
-void SetSettings(bool bReload = false)
+void SetSettings()
 {
 	static int  iTypeStatistics;
 
@@ -16,7 +16,9 @@ void SetSettings(bool bReload = false)
 
 	KeyValues 	hKv = new KeyValues("LR_Settings");
 
-	if(sPath[0] == '\0')
+	bool bFirstLoad = sPath[0] == '\0';
+
+	if(bFirstLoad)
 	{
 		g_hRankNames = new ArrayList(sizeof(sBuffer) / 4 + 1);
 		g_hRankExp = new ArrayList();
@@ -39,7 +41,7 @@ void SetSettings(bool bReload = false)
 
 	hKv.JumpToKey("MainSettings"); /**/
 
-	if(!bReload)
+	if(bFirstLoad)
 	{
 		hKv.GetString("lr_table", g_sTableName, sizeof(g_sTableName), "lvl_base");
 
@@ -179,7 +181,7 @@ void SetSettings(bool bReload = false)
 	}
 	while(hKv.GotoNextKey());
 
-	if(bReload)
+	if(!bFirstLoad)
 	{
 		Call_StartForward(g_hForward_Hook[LR_OnSettingsModuleUpdate]);
 		Call_Finish();

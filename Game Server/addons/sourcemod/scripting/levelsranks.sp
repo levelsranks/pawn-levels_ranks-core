@@ -1,8 +1,8 @@
 /***************************************************************************
 ****
-****		Date of creation :		November 27, 2014
+****		Date of creation :			November 27, 2014
 ****		Date of official release :	April 12, 2015
-****		Last update :			September 29, 2019
+****		Last update :				October 24, 2019
 ****
 ****************************************************************************
 ****
@@ -149,8 +149,6 @@ public void OnPluginStart()
 	RegServerCmd("sm_lvl_reset", Call_ResetData, "Сlearing all data in the database");									// in database.sp
 	RegConsoleCmd("sm_lvl", Call_MainMenu, "Opens the statistics menu");												// in menus.sp
 
-	CreateTimer(1.0, PlayTimeCounter, _, TIMER_REPEAT);			// in custom_functions.sp
-
 	SetSettings();		// in settings.sp
 	MakeHookEvents();	// in events.sp
 	ConnectDB();		// in database.sp
@@ -158,7 +156,7 @@ public void OnPluginStart()
 
 public void OnLibraryAdded(const char[] sLibraryName)
 {
-	if(!strcmp(sLibraryName, "levelsranks", false))
+	if(!strcmp(sLibraryName, "levelsranks"))
 	{
 		Call_StartForward(g_hForward_OnCoreIsReady);
 		Call_Finish();

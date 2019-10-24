@@ -129,7 +129,7 @@ int MenuAdmin_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 			{
 				case 0:
 				{
-					SetSettings(true);
+					SetSettings();
 					LR_PrintMessage(iClient, true, false, "%T", "ConfigUpdated", iClient);
 
 					MainMenu(iClient);
@@ -236,11 +236,11 @@ int ChangeExpPlayers_Callback(Menu hMenu, MenuAction mAction, int iClient, int i
 
 				LogAction(iRecipient, iClient, "%L %s exp (%i) from %L", iRecipient, sBuffer, iExp, iClient);
 				LR_PrintMessage(iClient, true, false, "%T", "ExpChange", iClient, iRecipient, iExp, sBuffer);
+
+				return;
 			}
-			else 
-			{
-				GiveTakeValue(iClient);
-			}
+
+			GiveTakeValue(iClient);
 		}
 
 		case MenuAction_Cancel: 
@@ -289,7 +289,7 @@ void MyStats(int iClient)
 {
 	int iRoundsWin = g_iPlayerInfo[iClient].iStats[ST_ROUNDSWIN],
 		iRoundsAll = iRoundsWin + g_iPlayerInfo[iClient].iStats[ST_ROUNDSLOSE],
-		iPlayTime = g_iPlayerInfo[iClient].iStats[ST_PLAYTIME],
+		iPlayTime = g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime(),
 		iKills = g_iPlayerInfo[iClient].iStats[ST_KILLS],
 		iDeaths = g_iPlayerInfo[iClient].iStats[ST_DEATHS],
 		iHeadshots = g_iPlayerInfo[iClient].iStats[ST_HEADSHOTS],
@@ -319,7 +319,7 @@ void MyStats(int iClient)
 
 		g_hResetMyStats.Get(iClient, sData, sizeof(sData));
 
-		if(!sData[0] || (iCooldown = (StringToInt(sData) - g_iPlayerInfo[iClient].iStats[ST_PLAYTIME])) < 1)
+		if(!sData[0] || (iCooldown = (StringToInt(sData) - g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime())) < 1)
 		{
 			FormatEx(sText, sizeof(sText), "%T", "MyStatsReset", iClient);
 			hMenu.AddItem("2", sText);
@@ -420,7 +420,7 @@ void MyStatsSession(int iClient)
 		iHeadshots = g_iPlayerInfo[iClient].iSessionStats[5],
 		iRoundsWin = g_iPlayerInfo[iClient].iSessionStats[7],
 		iRoundsAll = iRoundsWin + g_iPlayerInfo[iClient].iSessionStats[8],
-		iPlayTime = g_iPlayerInfo[iClient].iSessionStats[9],
+		iPlayTime = g_iPlayerInfo[iClient].iSessionStats[9] + GetTime(),
 		iDifference = g_iPlayerInfo[iClient].iStats[ST_EXP] - g_iPlayerInfo[iClient].iSessionStats[0];
 
 	FormatEx(sBuffer, sizeof(sBuffer), iDifference > 0 ? "+%d" : "%d", iDifference);
@@ -482,7 +482,7 @@ int MyStatsReset_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot
 
 			static char sLastResetMyStats[12];
 
-			IntToString(g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + g_Settings[LR_ResetMyStatsCooldown], sLastResetMyStats, sizeof(sLastResetMyStats));
+			IntToString(g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime() + g_Settings[LR_ResetMyStatsCooldown], sLastResetMyStats, sizeof(sLastResetMyStats));
 			g_hResetMyStats.Set(iClient, sLastResetMyStats);
 
 			ResetPlayerStats(iClient);

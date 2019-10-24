@@ -139,14 +139,14 @@ int Native_LR_GetRankExp(Handle hPlugin, int iNumParams)
 
 int Native_LR_GetClientInfo(Handle hPlugin, int iNumParams)
 {
-	int iClient = GetNativeCell(1);
+	int iType = GetNativeCell(2);
 
-	if(CheckStatus(iClient))
+	if(iType == ST_PLAYTIME)
 	{
-		return g_iPlayerInfo[iClient].iStats[GetNativeCell(2)];
+		return g_iPlayerInfo[GetNativeCell(1)].iStats[ST_PLAYTIME] + GetTime();
 	}
 
-	return 0;
+	return g_iPlayerInfo[GetNativeCell(1)].iStats[iType];
 }
 
 int Native_LR_ResetPlayerStats(Handle hPlugin, int iNumParams)
@@ -161,7 +161,7 @@ int Native_LR_ResetPlayerStats(Handle hPlugin, int iNumParams)
 
 int Native_LR_RefreshConfigs(Handle hPlugin, int iNumParams)
 {
-	SetSettings(true);
+	SetSettings();
 }
 
 int Native_LR_ChangeClientValue(Handle hPlugin, int iNumParams)
@@ -180,6 +180,7 @@ int Native_LR_ChangeClientValue(Handle hPlugin, int iNumParams)
 
 		if((g_iPlayerInfo[iClient].iStats[ST_EXP] += iExpChange) < iExpMin)
 		{
+			g_iPlayerInfo[iClient].iRoundExp += iExpChange - (iExpMin - g_iPlayerInfo[iClient].iStats[ST_EXP]);
 			g_iPlayerInfo[iClient].iStats[ST_EXP] = iExpMin;
 		}
 		else
@@ -189,8 +190,6 @@ int Native_LR_ChangeClientValue(Handle hPlugin, int iNumParams)
 
 		CheckRank(iClient);		// in custom_functions.sp
 	}
-
-	return 0;
 }
 
 int Native_LR_RoundWithoutValue(Handle hPlugin, int iNumParams)

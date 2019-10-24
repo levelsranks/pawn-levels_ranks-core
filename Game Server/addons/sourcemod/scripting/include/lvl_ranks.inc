@@ -93,35 +93,122 @@ enum LR_StatsType
 
 typeset LR_HookCB 
 {
-	// LR_OnSettingsModuleUpdate
+	/**
+	 * LR_OnSettingsModuleUpdate
+	 *
+	 * Сalled when the configuration has been reloaded.
+	 */
 	function void ();
 
-	// LR_OnDisconnectionWithDB
+	/**
+	 * LR_OnDisconnectionWithDB
+	 *
+	 * Called when a MySQL connection is lost.
+	 *
+	 * @param hDatabase		Empty connection. Designed to force 
+	 *						the substitution.
+	 */
 	function void (Database& hDatabase);
 
-	// LR_OnDatabaseCleanup
-	function void (LR_CleanupType Type, Transaction hTransaction);
+	/**
+	 * LR_OnDatabaseCleanup
+	 *
+	 * Called when clearing tables in the database.
+	 *
+	 * @param CleanupType	The type of cleaning.
+	 * @param hTransaction	Transaction for cleaning in thread.
+	 */
+	function void (LR_CleanupType CleanupType, Transaction hTransaction);
 
-	// LR_OnLevelChangedPre
+	/**
+	 * LR_OnLevelChangedPre
+	 *
+	 * Called before processing, when a player has upped or lowered his rank.
+	 *
+	 * @param iClient		Client index.
+	 * @param iNewLevel		New rank of the player.
+	 * @param iOldLevel		Rank, which was until obtain a new.
+	 */
 	function void (int iClient, int& iNewLevel, int iOldLevel);
 
-	// LR_OnLevelChangedPost
+	/**
+	 * LR_OnLevelChangedPost
+	 *
+	 * Called when a player has upped or lowered his rank.
+	 *
+	 * @param iClient		Client index.
+	 * @param iNewLevel		New rank of the player.
+	 * @param iOldLevel		Rank, which was until obtain a new.
+	 */
 	function void (int iClient, int iNewLevel, int iOldLevel);
 
-	// LR_OnPlayerKilledPre
-	function void (Event hEvent, int& iExpGive, int iExpVictim, int iExpAttacker);
+	/**
+	 * LR_OnPlayerKilledPre
+	 *
+	 * Called before processed the player_death event.
+	 *
+	 * @param hEvent		Handle player_death event.
+	 * @param iExpCaused	Experience points given and taken 
+	 *						depending on LR_TypeStatistics.
+	 * @param iExpVictim	Amount of experience the victim.
+	 * @param iExpAttacker	Amount of experience the attacker.
+	 */
+	function void (Event hEvent, int& iExpCaused, int iExpVictim, int iExpAttacker);
 
-	// LR_OnPlayerKilledPost
+	/**
+	 * LR_OnPlayerKilledPost
+	 *
+	 * Called after processing the player_death event.
+	 *
+	 * @param hEvent		Handle player_death event.
+	 * @param iExpCaused	Experience points given and taken 
+	 *						depending on LR_TypeStatistics.
+	 * @param iExpVictim	Amount of experience the victim.
+	 * @param iExpAttacker	Amount of experience the attacker.
+	 */
 	function void (Event hEvent, int iExpGive, int iExpVictim, int iExpAttacker);
 
-	// LR_OnPlayerLoaded
-	// LR_OnResetPlayerStats
+	/**
+	 * LR_OnPlayerLoaded
+	 *
+	 * Called when the player has booted.
+	 *
+	 * @param iClient		Client index.
+	 * @param iAccountID	Client Steam AccountID.
+	 */
 	function void (int iClient, int iAccountID);
 
-	// LR_OnPlayerPosInTop
+	/**
+	 * LR_OnResetPlayerStats
+	 *
+	 * Called when reset statistics of player.
+	 *
+	 * @param iClient		Client index. Can be 0 if it 
+	 *						offline reset.
+	 * @param iAccountID	Client Steam AccountID.
+	 */
+	function void (int iClient, int iAccountID);
+
+	/**
+	 * LR_OnPlayerPosInTop
+	 *
+	 * Called when the updated the positions in the tops.
+	 * @note The earliest getting a position in the top occurs in LR_OnPlayerLoaded.
+	 *
+	 * @param iClient		Client index. 
+	 * @param iExpPos		Client position in the top by experiences.
+	 * @param iTimePos		Client position in the top by time.
+	 */
 	function void (int iClient, int iExpPos, int iTimePos);
 
-	// LR_OnPlayerSaved
+	/**
+	 * LR_OnPlayerSaved
+	 *
+	 * Сalled when a player is saved data.
+	 *
+	 * @param iClient		Client index.
+	 * @param hTransaction	Transaction for saved in thread.
+	 */
 	function void (int iClient, Transaction hTransaction);
 }
 
@@ -129,8 +216,8 @@ typeset LR_HookCB
  * Defines a LR_MenuHook Created Menu Callback.
  *
  * @param MenuType			Menu event type.
- * @param iClient       	For whom the menu was created.
- * @param hMenu          	Handle menu (no copy).
+ * @param iClient			For whom the menu was created.
+ * @param hMenu				Handle menu (no copy).
  */
 typedef LR_CreatedMenu = function void (LR_MenuType MenuType, int iClient, Menu hMenu);
 
@@ -138,8 +225,8 @@ typedef LR_CreatedMenu = function void (LR_MenuType MenuType, int iClient, Menu 
  * Defines a LR_MenuHook Selected Menu Callback.
  *
  * @param MenuType			Menu event type.
- * @param iClient       	Who selected item.
- * @param sItem          	Item information string.
+ * @param iClient			Who selected item.
+ * @param sItem				Item information string.
  */
 typedef LR_SelectedMenu = function void (LR_MenuType MenuType, int iClient, const char[] sItem);
 
