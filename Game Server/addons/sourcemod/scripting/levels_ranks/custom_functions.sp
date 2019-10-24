@@ -247,7 +247,7 @@ void ResetPlayerData(int iClient)
 
 	g_iPlayerInfo[iClient] = g_iInfoNULL;
 	g_iPlayerInfo[iClient].iAccountID = iAccountID;
-	g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] = -GetTime();
+	g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] = g_iPlayerInfo[iClient].iSessionStats[9] = -GetTime();
 	g_iPlayerInfo[iClient].iSessionStats[0] = g_iPlayerInfo[iClient].iStats[ST_EXP] = g_Settings[LR_TypeStatistics] ? 1000 : 0;
 	g_iPlayerInfo[iClient].bInitialized = true;
 }

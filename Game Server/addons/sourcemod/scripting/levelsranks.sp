@@ -137,8 +137,8 @@ public Plugin myinfo =
 
 public void OnPluginStart()
 {
+	LoadTranslations("core.phrases");
 	LoadTranslations("common.phrases");
-
 	LoadTranslations(g_iEngine == Engine_SourceSDK2006 ? "lr_core_old.phrases" : "lr_core.phrases");
 	LoadTranslations("lr_core_ranks.phrases");
 

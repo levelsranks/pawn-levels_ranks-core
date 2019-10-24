@@ -157,6 +157,15 @@
 		"chi"		"顶尖选手"
 		"de"		"TOP Spieler"
 	}
+	"NoData"
+	{
+		"en"		"No data!"
+		"ru"		"Нет данных!"
+		"ua"		"Ніякі дані!"
+		"chi"		"无数据."
+		"es"		"Sin datos."
+		"de"		"Keine Daten!"
+	}
 	"OverAllTopPlayersExp"
 	{
 		"en"		"TOP-10 by exp. points"
@@ -208,30 +217,6 @@
 		"chi"		"玩家 {GREEN}{1} {DEFAULT}的段位在 {GREEN}{2} / {3} {DEFAULT}共获得 {GREEN}{4} {DEFAULT}点经验者, {GREEN}{5} {DEFAULT}击杀, {GREEN}{6} {DEFAULT}死亡 и K/D比是 {GREEN}{7}"
 		"de"		"Spieler {GREEN}{1} {DEFAULT}ist Platz {GREEN}{2} / {3} {DEFAULT}mit {GREEN}{4} {DEFAULT}EP, {GREEN}{5} {DEFAULT}Kills, {GREEN}{6} {DEFAULT}Toden и KD {GREEN}{7}"
 	}
-    "Yes"
-    {
-		"en"		"Yes"
-		"ru"		"Да"
-		"ua"		"Так"
-		"chi"		"是"
-		"de"		"Ja"
-	}
-    "No"
-    {
-		"en"		"No"
-		"ru"		"Нет"
-		"ua"		"Ні"
-		"chi"		"否"
-		"de"		"Nein"
-	}
-	"BackToMainMenu"
-	{
-		"en"		"Back to Main Menu"
-		"ru"		"Назад в Главное Меню"
-		"ua"		"Назад в Головне Меню"
-		"chi"		"返回主菜单"
-		"de"		"Zurück zum Hauptmenü"
-	}
 	"PlayerDataDeleted"
 	{
 		"#format"	"{1:s}"
@@ -240,14 +225,6 @@
 		"ua"		"Запит на видалення гравця пройшов успішно! STEAM_ID - {1}"
 		"chi"		"删除请求已成功发送! STEAM_ID - {1}"
 		"de"		"Löschungsanfrage erfolgreich gesendet! STEAM_ID - {1}"
-	}
-	"Back"
-	{
-		"en"		"Back"
-		"ru"		"Назад"
-		"ua"		"Назад"
-		"chi"		"返回"
-		"de"		"Zurück"
 	}
 	"RoundStartCheckCount"
 	{

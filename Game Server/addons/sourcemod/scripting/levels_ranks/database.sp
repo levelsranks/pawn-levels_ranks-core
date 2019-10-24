@@ -512,7 +512,7 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 
 					strcopy(sFrase[21 - view_as<int>(bType)], 8, "_Slot");
 
-					if(hResult.HasResults)
+					if(hResult.RowCount)
 					{
 						for(int j = 1; hResult.FetchRow(); j++)
 						{
@@ -520,6 +520,10 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 
 							FormatEx(sText[strlen(sText)], 64, "%T\n", sFrase, iClient, j, bType ? hResult.FetchInt(1) : view_as<int>(hResult.FetchFloat(1)), sName);
 						}
+					}
+					else
+					{
+						FormatEx(sText[strlen(sText)], 16, "%T", "NoData", iClient);
 					}
 
 					strcopy(sText[strlen(sText)], 4, "\n ");

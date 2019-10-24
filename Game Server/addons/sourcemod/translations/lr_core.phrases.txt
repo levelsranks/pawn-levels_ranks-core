@@ -233,6 +233,15 @@
 		"es"		"{1} - [ {2} h. ] - {3}"
 		"de"		"{1} - [ {2} s. ] - {3}"
 	}
+	"NoData"
+	{
+		"en"		"No data!"
+		"ru"		"Нет данных!"
+		"ua"		"Ніякі дані!"
+		"chi"		"无数据."
+		"es"		"Sin datos."
+		"de"		"Keine Daten!"
+	}
 	"MainMenu_Ranks"
 	{
 		"en"		"All Ranks"
@@ -252,33 +261,6 @@
 		"es"		"Jugador {GREEN}{1} {WHITE}está posicionado en {GREEN}{2} / {3} {WHITE}con {OLIVE}{4} {WHITE}exp, {OLIVE}{5} {WHITE}matado, {OLIVE}{6} {WHITE}muertes и KDR {OLIVE}{7}"
 		"de"		"Spieler {GREEN}{1} {WHITE}ist Platz {GREEN}{2} / {3} {WHITE}mit {OLIVE}{4} {WHITE}EP, {OLIVE}{5} {WHITE}Kills, {OLIVE}{6} {WHITE}Toden и KD {OLIVE}{7}"
 	}
-	"Yes"
-	{
-		"en"		"Yes"
-		"ru"		"Да"
-		"ua"		"Так"
-		"chi"		"是"
-		"es"		"Sí"
-		"de"		"Ja"
-	}
-	"No"
-	{
-		"en"		"No"
-		"ru"		"Нет"
-		"ua"		"Ні"
-		"chi"		"否"
-		"es"		"No"
-		"de"		"Nein"
-	}
-	"BackToMainMenu"
-	{
-		"en"		"Back to Main Menu"
-		"ru"		"Назад в Главное Меню"
-		"ua"		"Назад в Головне Меню"
-		"chi"		"返回主菜单"
-		"es"		"Volver al menu inicial"
-		"de"		"Zurück zum Hauptmenü"
-	}
 	"PlayerDataDeleted"
 	{
 		"#format"	"{1:s}"
@@ -288,15 +270,6 @@
 		"chi"		"删除请求已成功发送! STEAM_ID - {1}"
 		"es"		"¡Petición de eliminación enviada correctamente! STEAM_ID - {1}"
 		"de"		"Löschauftrag erfolgreich gesendet! STEAM_ID - {1}"
-	}
-	"Back"
-	{
-		"en"		"Back"
-		"ru"		"Назад"
-		"ua"		"Назад"
-		"chi"		"返回"
-		"es"		"Volver"
-		"de"		"Zurück"
 	}
 	"RoundStartCheckCount"
 	{

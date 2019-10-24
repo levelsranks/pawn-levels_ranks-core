@@ -319,7 +319,7 @@ void MyStats(int iClient)
 
 		g_hResetMyStats.Get(iClient, sData, sizeof(sData));
 
-		if(!sData[0] || (iCooldown = (StringToInt(sData) - g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime())) < 1)
+		if(!sData[0] || (iCooldown = (StringToInt(sData) - (g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime()))) < 1)
 		{
 			FormatEx(sText, sizeof(sText), "%T", "MyStatsReset", iClient);
 			hMenu.AddItem("2", sText);
