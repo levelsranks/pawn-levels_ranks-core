@@ -110,12 +110,11 @@ static const char g_sConnectionError[] = "Lost connection",
 
 void ConnectDB()
 {
-	char sIdent[2], sError[256], sQuery[768];
+	char sIdent[2], sBuffer[768];
 
-
-	if(!(g_hDatabase = SQL_CheckConfig(g_sDBConfigName) ? SQL_Connect(g_sDBConfigName, false, sError, sizeof(sError)) : SQLite_UseDatabase("lr_base", sError, sizeof(sError))))
+	if(!(g_hDatabase = SQL_CheckConfig(g_sDBConfigName) ? SQL_Connect(g_sDBConfigName, false, sBuffer, 256) : SQLite_UseDatabase("lr_base", sBuffer, 256)))
 	{
-		SetFailState("Could not connect to the database - %s", sError);
+		SetFailState("Could not connect to the database - %s", sBuffer);
 	}
 
 	g_hDatabase.Driver.GetIdentifier(sIdent, 2);
@@ -124,20 +123,20 @@ void ConnectDB()
 
 	SQL_LockDatabase(g_hDatabase);
 
-	FormatEx(sQuery, sizeof(sQuery), SQL_CreateTable, g_sTableName, g_bDatabaseSQLite ? NULL_STRING : " COLLATE utf8_general_ci", g_bDatabaseSQLite ? NULL_STRING : " COLLATE utf8mb4_general_ci");
-	SQL_FastQuery(g_hDatabase, sQuery);
+	FormatEx(sBuffer, sizeof(sBuffer), SQL_CreateTable, g_sTableName, g_bDatabaseSQLite ? NULL_STRING : " COLLATE utf8_general_ci", g_bDatabaseSQLite ? NULL_STRING : " COLLATE utf8mb4_general_ci");
+	SQL_FastQuery(g_hDatabase, sBuffer);
 
 	if(!g_bDatabaseSQLite)
 	{
-		FormatEx(sQuery, strlen(sQuery), "ALTER TABLE `%s` MODIFY COLUMN `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL default '' AFTER `steam`;", g_sTableName);
-		SQL_FastQuery(g_hDatabase, sQuery);
+		FormatEx(sBuffer, strlen(sBuffer), "ALTER TABLE `%s` MODIFY COLUMN `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL default '' AFTER `steam`;", g_sTableName);
+		SQL_FastQuery(g_hDatabase, sBuffer);
 	}
 
-	FormatEx(sQuery, sizeof(sQuery), SQL_GetCountPlayers, g_sTableName);
+	FormatEx(sBuffer, sizeof(sBuffer), SQL_GetCountPlayers, g_sTableName);
 
-	DBResultSet hResult = SQL_Query(g_hDatabase, sQuery);
+	DBResultSet hResult = SQL_Query(g_hDatabase, sBuffer);
 
-	if(hResult.HasResults && hResult.FetchRow())
+	if(hResult && hResult.HasResults && hResult.FetchRow())
 	{
 		g_iDBCountPlayers = hResult.FetchInt(0);
 	}
@@ -202,10 +201,7 @@ Action Call_ResetData(int iArgs)
 			}
 		}
 
-		Call_StartForward(g_hForward_Hook[LR_OnDatabaseCleanup]);
-		Call_PushCell(iType);
-		Call_PushCell(hTransaction);
-		Call_Finish();
+		CallForward_OnDatabaseCleanup(iType, hTransaction);
 
 		g_hDatabase.Execute(hTransaction, SQL_ResetData, SQL_TransactionFailure, iType, DBPrio_High);
 
@@ -261,10 +257,7 @@ Action Call_ResetPlayer(int iClient, int iArgs)
 			}
 		}
 
-		Call_StartForward(g_hForward_Hook[LR_OnResetPlayerStats]);
-		Call_PushCell(0);
-		Call_PushCell(iAccountID);
-		Call_Finish();
+		CallForward_OnResetPlayerStats(0, iAccountID);
 
 		Format(sBuffer, sizeof(sBuffer), SQL_UpdateResetData, g_sTableName, sBuffer);
 		g_hDatabase.Query(SQL_Callback, sBuffer, 0);
@@ -376,10 +369,7 @@ void SaveDataPlayer(int iClient, bool bDisconnect = false)
 		FormatEx(sQuery, sizeof(sQuery), SQL_UpdateData, g_sTableName, g_iPlayerInfo[iClient].iStats[ST_EXP], GetPlayerName(iClient), g_iPlayerInfo[iClient].iStats[ST_RANK], g_iPlayerInfo[iClient].iStats[ST_KILLS], g_iPlayerInfo[iClient].iStats[ST_DEATHS], g_iPlayerInfo[iClient].iStats[ST_SHOOTS], g_iPlayerInfo[iClient].iStats[ST_HITS], g_iPlayerInfo[iClient].iStats[ST_HEADSHOTS], g_iPlayerInfo[iClient].iStats[ST_ASSISTS], g_iPlayerInfo[iClient].iStats[ST_ROUNDSWIN], g_iPlayerInfo[iClient].iStats[ST_ROUNDSLOSE], g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime(), g_iPlayerInfo[iClient].iSessionStats[9] == -1 ? 0 : GetTime(), g_iEngine == Engine_CSGO, iAccountID & 1, iAccountID >>> 1);
 		hTransaction.AddQuery(sQuery);
 
-		Call_StartForward(g_hForward_Hook[LR_OnPlayerSaved]);
-		Call_PushCell(iClient);
-		Call_PushCell(hTransaction);
-		Call_Finish();
+		CallForward_OnPlayerSaved(iClient, hTransaction);
 
 		if(g_hDatabase)
 		{
@@ -433,17 +423,10 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 				{
 					if(hResult.HasResults && hResult.FetchRow())
 					{
-						int iExpPos = hResult.FetchInt(0),
-							iTimePos = hResult.FetchInt(1);
+						g_iPlayerInfo[iClient].iStats[ST_PLACEINTOP] = hResult.FetchInt(0);
+						g_iPlayerInfo[iClient].iStats[ST_PLACEINTOPTIME] = hResult.FetchInt(1);
 
-						g_iPlayerInfo[iClient].iStats[ST_PLACEINTOP] = iExpPos;
-						g_iPlayerInfo[iClient].iStats[ST_PLACEINTOPTIME] = iTimePos;
-
-						Call_StartForward(g_hForward_Hook[LR_OnPlayerPosInTop]);
-						Call_PushCell(iClient);
-						Call_PushCell(iExpPos);
-						Call_PushCell(iTimePos);
-						Call_Finish();
+						CallForward_OnPlayerPosInTop(iClient);
 					}
 				}
 
@@ -460,10 +443,7 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 
 					CheckRank(iClient);
 
-					Call_StartForward(g_hForward_Hook[LR_OnPlayerLoaded]);
-					Call_PushCell(iClient);
-					Call_PushCell(g_iPlayerInfo[iClient].iAccountID);
-					Call_Finish();
+					CallForward_OnPlayerLoaded(iClient);
 				}
 
 				case 3:		// OnClientAuthorized
@@ -479,10 +459,7 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 						g_iPlayerInfo[iClient].iSessionStats[0] = g_iPlayerInfo[iClient].iStats[ST_EXP];
 						g_iPlayerInfo[iClient].bInitialized = true;
 
-						Call_StartForward(g_hForward_Hook[LR_OnPlayerLoaded]);
-						Call_PushCell(iClient);
-						Call_PushCell(g_iPlayerInfo[iClient].iAccountID);
-						Call_Finish();
+						CallForward_OnPlayerLoaded(iClient);
 
 						return;
 					}
@@ -500,7 +477,7 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 
 				case 4, 5:		// OverAllTopPlayers in menus.sp
 				{
-					bool bType = (iData & 0xF) == 5;
+					bool bType = iQueryType == 5;
 
 					char sText[1024],
 						 sFrase[32] = "OverAllTopPlayers";
@@ -587,20 +564,17 @@ void TryReconnectDB()
 
 	if(GetForwardFunctionCount(g_hForward_Hook[LR_OnDisconnectionWithDB]))
 	{
-		Call_StartForward(g_hForward_Hook[LR_OnDisconnectionWithDB]);
-		Call_PushCellRef(g_hDatabase);
-		Call_Finish();
+		CallForward_OnDisconnectionWithDB();
 
 		if(g_hDatabase)
 		{
+			char sIdent[2];
+
+			g_hDatabase.Driver.GetIdentifier(sIdent, sizeof(sIdent));
+			g_bDatabaseSQLite = sIdent[0] == 's';
+
 			return;
 		}
-
-		char sIdent[2];
-
-		g_hDatabase.Driver.GetIdentifier(sIdent, 2);
-
-		g_bDatabaseSQLite = sIdent[0] == 's';
 	}
 
 	g_iCountRetryConnect = 0;
@@ -626,5 +600,5 @@ void ReconnectToDatabase(Database hDatabase, const char[] sError, any NULL)
 
 	Database.Connect(ReconnectToDatabase, g_sDBConfigName);
 
-	LogError("Reconnecting (%s) #%i ...", sError, ++g_iCountRetryConnect);
+	LogError("Reconnecting #%i (%s)", ++g_iCountRetryConnect, sError);
 }

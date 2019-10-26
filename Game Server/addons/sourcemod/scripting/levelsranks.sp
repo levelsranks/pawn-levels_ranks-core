@@ -85,14 +85,13 @@ enum struct LR_PlayerInfo
 
 any				g_Settings[LR_SettingType];
 
-bool			g_bDatabaseSQLite,
+bool			g_bAllowStatistic,
+				g_bDatabaseSQLite,
 				g_bRoundEndGiveExp = true,
-				g_bRoundAllowExp = true,
-				g_bWarmupPeriod;
+				g_bRoundAllowExp = true;
 
 int				g_iBonus[11],
 				g_iCountRetryConnect,
-				g_iCountPlayers,
 				g_iDBCountPlayers;
 
 char			g_sPluginName[] = PLUGIN_NAME,
@@ -154,9 +153,9 @@ public void OnPluginStart()
 	ConnectDB();		// in database.sp
 }
 
-public void OnLibraryAdded(const char[] sLibraryName)
+public void OnLibraryAdded(const char[] sLibrary)
 {
-	if(!strcmp(sLibraryName, "levelsranks"))
+	if(!strcmp(sLibrary, "levelsranks"))
 	{
 		Call_StartForward(g_hForward_OnCoreIsReady);
 		Call_Finish();

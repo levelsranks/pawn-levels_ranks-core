@@ -183,8 +183,7 @@ void SetSettings()
 
 	if(!bFirstLoad)
 	{
-		Call_StartForward(g_hForward_Hook[LR_OnSettingsModuleUpdate]);
-		Call_Finish();
+		CallForward_OnSettingsModuleUpdate();
 	}
 
 	// settings_ranks.ini -> settings.ini

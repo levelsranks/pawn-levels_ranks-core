@@ -130,7 +130,7 @@ char[] GetPlayerName(int iClient)
 
 bool NotifClient(int iClient, int iValue, char[] sTitlePhrase)
 {
-	if(!g_bWarmupPeriod && g_bRoundAllowExp && g_bRoundEndGiveExp && iValue && g_iCountPlayers >= g_Settings[LR_MinplayersCount] && CheckStatus(iClient))
+	if(g_bAllowStatistic && g_bRoundAllowExp && g_bRoundEndGiveExp && iValue && CheckStatus(iClient))
 	{
 		int iExpMin = 0;
 
@@ -190,13 +190,9 @@ void CheckRank(int iClient, bool bActive = true)
 				{
 					int iNewRank = iRank;
 
-					Call_StartForward(g_hForward_Hook[LR_OnLevelChangedPre]);
-					Call_PushCell(iClient);
-					Call_PushCellRef(iNewRank);
-					Call_PushCell(iOldRank);
-					Call_Finish();
+					CallForward_OnLevelChanged(iClient, iNewRank, iOldRank);
 
-					if(0 < iNewRank && iNewRank < iMaxRanks && iNewRank != iOldRank)
+					if(0 < iNewRank < iMaxRanks && iNewRank != iOldRank)
 					{
 						iRank = iNewRank;
 					}
@@ -231,11 +227,7 @@ void CheckRank(int iClient, bool bActive = true)
 
 				SaveDataPlayer(iClient);		// in database.sp
 
-				Call_StartForward(g_hForward_Hook[LR_OnLevelChangedPost]);
-				Call_PushCell(iClient);
-				Call_PushCell(iRank);
-				Call_PushCell(iOldRank);
-				Call_Finish();
+				CallForward_OnLevelChanged(iClient, iRank, iOldRank, false);
 			}
 		}
 	}
@@ -258,8 +250,5 @@ void ResetPlayerStats(int iClient)
 
 	CheckRank(iClient);
 
-	Call_StartForward(g_hForward_Hook[LR_OnResetPlayerStats]);
-	Call_PushCell(iClient);
-	Call_PushCell(g_iPlayerInfo[iClient].iAccountID);
-	Call_Finish();
+	CallForward_OnResetPlayerStats(iClient, g_iPlayerInfo[iClient].iAccountID);
 }

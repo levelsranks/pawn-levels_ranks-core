@@ -113,7 +113,7 @@ void MenuAdmin(int iClient)
 		hMenu.AddItem(NULL_STRING, sText);
 	}
 
-	CreatedMenu_CallForward(LR_AdminMenu, iClient, hMenu);
+	CallForward_CreatedMenu(LR_AdminMenu, iClient, hMenu);
 
 	hMenu.ExitBackButton = true;
 	hMenu.Display(iClient, MENU_TIME_FOREVER);
@@ -147,7 +147,7 @@ int MenuAdmin_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 
 				hMenu.GetItem(iSlot, sInfo, sizeof(sInfo));
 
-				SelectedMenu_CallForward(LR_AdminMenu, iClient, sInfo);
+				CallForward_SelectedMenu(LR_AdminMenu, iClient, sInfo);
 			}
 		}
 
@@ -369,7 +369,7 @@ void MyStatsSecondary(int iClient)
 
 	hMenu.SetTitle("%s | %T\n ", g_sPluginTitle, "MyStatsSecondary", iClient);
 
-	CreatedMenu_CallForward(LR_MyStatsSecondary, iClient, hMenu);
+	CallForward_CreatedMenu(LR_MyStatsSecondary, iClient, hMenu);
 
 	hMenu.ExitBackButton = true;
 	hMenu.Display(iClient, MENU_TIME_FOREVER);
@@ -393,11 +393,7 @@ int MyStatsSecondary_Callback(Menu hMenu, MenuAction mAction, int iClient, int i
 
 			hMenu.GetItem(iSlot, sInfo, sizeof(sInfo));
 
-			Call_StartForward(g_hForward_SelectedMenu[LR_MyStatsSecondary]);
-			Call_PushCell(LR_MyStatsSecondary);
-			Call_PushCell(iClient);
-			Call_PushString(sInfo);
-			Call_Finish();
+			CallForward_SelectedMenu(LR_MyStatsSecondary, iClient, sInfo);
 		}
 
 		case MenuAction_End:
@@ -503,7 +499,7 @@ void MyPrivilegesSettings(int iClient)
 
 	hMenu.SetTitle("%s | %T\n ", g_sPluginTitle, "MainMenu_MyPrivilegesSettings", iClient);
 
-	CreatedMenu_CallForward(LR_SettingMenu, iClient, hMenu);
+	CallForward_CreatedMenu(LR_SettingMenu, iClient, hMenu);
 
 	hMenu.ExitBackButton = true;
 	hMenu.Display(iClient, MENU_TIME_FOREVER);
@@ -527,7 +523,7 @@ int MyPrivilegesSettings_Callback(Menu hMenu, MenuAction mAction, int iClient, i
 
 			hMenu.GetItem(iSlot, sInfo, sizeof(sInfo));
 
-			SelectedMenu_CallForward(LR_SettingMenu, iClient, sInfo);
+			CallForward_SelectedMenu(LR_SettingMenu, iClient, sInfo);
 		}
 
 		case MenuAction_End:
@@ -551,7 +547,7 @@ void MenuTop(int iClient)
 	FormatEx(sText, sizeof(sText), "%T", "OverAllTopPlayersTime", iClient);
 	hMenu.AddItem("1", sText);
 
-	CreatedMenu_CallForward(LR_TopMenu, iClient, hMenu);
+	CallForward_CreatedMenu(LR_TopMenu, iClient, hMenu);
 
 	hMenu.ExitBackButton = true;
 	hMenu.Display(iClient, MENU_TIME_FOREVER);
@@ -588,7 +584,7 @@ int MenuTop_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 				}
 			}
 
-			SelectedMenu_CallForward(LR_TopMenu, iClient, sInfo);
+			CallForward_SelectedMenu(LR_TopMenu, iClient, sInfo);
 		}
 
 		case MenuAction_End:
@@ -673,24 +669,6 @@ int OverAllRanks_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot
 			hMenu.Close();
 		}
 	}
-}
-
-void SelectedMenu_CallForward(int iMenuType, int iClient, char[] sInfo)
-{
-	Call_StartForward(g_hForward_SelectedMenu[iMenuType]);
-	Call_PushCell(iMenuType);
-	Call_PushCell(iClient);
-	Call_PushString(sInfo);
-	Call_Finish();
-}
-
-void CreatedMenu_CallForward(int iMenuType, int iClient, Menu hMenu)
-{
-	Call_StartForward(g_hForward_CreatedMenu[iMenuType]);
-	Call_PushCell(iMenuType);
-	Call_PushCell(iClient);
-	Call_PushCell(hMenu);
-	Call_Finish();
 }
 
 public void OnClientSayCommand_Post(int iClient, const char[] sCommand, const char[] sArgs)
