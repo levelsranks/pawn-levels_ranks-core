@@ -326,6 +326,8 @@ void MyStats(int iClient)
 		}
 		else
 		{
+			iCooldown = g_Settings[LR_ResetMyStatsCooldown] - iCooldown;
+
 			FormatEx(sText, sizeof(sText), "%T", "MyStatsResetCooldown", iClient, iCooldown / 3600, iCooldown / 60 % 60, iCooldown % 60);
 			hMenu.AddItem("2", sText, ITEMDRAW_DISABLED);
 		}
