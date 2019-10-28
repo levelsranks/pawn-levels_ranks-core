@@ -203,7 +203,7 @@ Action Call_ResetData(int iArgs)
 
 		CallForward_OnDatabaseCleanup(iType, hTransaction);
 
-		g_hDatabase.Execute(hTransaction, SQL_ResetData, SQL_TransactionFailure, iType, DBPrio_High);
+		g_hDatabase.Execute(hTransaction, SQL_TransactionCallback, SQL_TransactionFailure, iType, DBPrio_High);
 
 		return Plugin_Handled;
 	}
@@ -432,12 +432,7 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 
 				case 2:		// CreateDataPlayer
 				{
-					static char sLastResetMyStats[12];
-
 					ResetPlayerData(iClient);		// custom_function.sp
-
-					IntToString(g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime(), sLastResetMyStats, sizeof(sLastResetMyStats));
-					g_hLastResetMyStats.Set(iClient, sLastResetMyStats);
 
 					g_iDBCountPlayers++;
 
@@ -526,8 +521,15 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 	}
 }
 
-public void SQL_ResetData(Database hDatabase, int iType, int iQueries, DBResultSet[] hResults, int[] iQueryData)
+public void SQL_TransactionCallback(Database hDatabase, int iType, int iQueries, DBResultSet[] hResults, int[] iQueryData)
 {
+	if(iType == 10)
+	{
+		AuthAllPlayer();
+
+		return;
+	}
+
 	static const char sTypes[][] = {"all", "exp", "stats"};
 
 	if(iType)
@@ -591,9 +593,7 @@ void ReconnectToDatabase(Database hDatabase, const char[] sError, any NULL)
 	{
 		LogError("Successfully! Attempt #%i.", g_iCountRetryConnect);
 
-		g_hDatabase.Execute(g_hTransactionLossDB, _, SQL_TransactionFailure, 2, DBPrio_High);
-
-		AuthAllPlayer();
+		g_hDatabase.Execute(g_hTransactionLossDB, SQL_TransactionCallback, SQL_TransactionFailure, 10, DBPrio_High);
 
 		return;
 	}
