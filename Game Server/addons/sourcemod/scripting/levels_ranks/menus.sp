@@ -317,9 +317,9 @@ void MyStats(int iClient)
 
 		static char sData[12];
 
-		g_hResetMyStats.Get(iClient, sData, sizeof(sData));
+		g_hLastResetMyStats.Get(iClient, sData, sizeof(sData));
 
-		if(!sData[0] || (iCooldown = (StringToInt(sData) - (g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime()))) < 1)
+		if(!sData[0] || (iCooldown = (StringToInt(sData) + GetTime())) >= g_Settings[LR_ResetMyStatsCooldown])
 		{
 			FormatEx(sText, sizeof(sText), "%T", "MyStatsReset", iClient);
 			hMenu.AddItem("2", sText);
@@ -478,8 +478,8 @@ int MyStatsReset_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot
 
 			static char sLastResetMyStats[12];
 
-			IntToString(g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime() + g_Settings[LR_ResetMyStatsCooldown], sLastResetMyStats, sizeof(sLastResetMyStats));
-			g_hResetMyStats.Set(iClient, sLastResetMyStats);
+			IntToString(-GetTime(), sLastResetMyStats, sizeof(sLastResetMyStats));
+			g_hLastResetMyStats.Set(iClient, sLastResetMyStats);
 
 			ResetPlayerStats(iClient);
 		}

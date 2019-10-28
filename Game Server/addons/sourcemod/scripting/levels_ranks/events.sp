@@ -101,7 +101,7 @@ void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 
 								CallForward_OnPlayerKilled(hEvent, iExpAttacker, iClient, iAttacker);
 
-								iExpVictim = (iExpAttacker = iExpAttacker < 2 ? 2 : (iExpAttacker / 100) + 2);
+								iExpVictim = iExpAttacker = iExpAttacker < 2 ? 2 : (iExpAttacker / 100) + 2;
 							}
 						}
 
@@ -164,7 +164,7 @@ void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 
 									if(bLose ? NotifClient(i, -g_Settings[LR_ExpRoundLose], "RoundLose") : NotifClient(i, g_Settings[LR_ExpRoundLose], "RoundWin"))
 									{
-										g_iPlayerInfo[i].iStats[ST_ROUNDSLOSE + view_as<int>(bLose)]++;
+										g_iPlayerInfo[i].iStats[ST_ROUNDSWIN + view_as<int>(bLose)]++;
 										g_iPlayerInfo[i].iSessionStats[7 + view_as<int>(bLose)]++;
 									}
 								}

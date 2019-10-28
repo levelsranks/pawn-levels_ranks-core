@@ -437,7 +437,7 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 					ResetPlayerData(iClient);		// custom_function.sp
 
 					IntToString(g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime(), sLastResetMyStats, sizeof(sLastResetMyStats));
-					g_hResetMyStats.Set(iClient, sLastResetMyStats);
+					g_hLastResetMyStats.Set(iClient, sLastResetMyStats);
 
 					g_iDBCountPlayers++;
 

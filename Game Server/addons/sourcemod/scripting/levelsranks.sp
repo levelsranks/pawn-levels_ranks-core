@@ -114,7 +114,7 @@ EngineVersion	g_iEngine;
 ArrayList		g_hRankNames,
 				g_hRankExp;
 
-Cookie			g_hResetMyStats;
+Cookie			g_hLastResetMyStats;
 
 Database		g_hDatabase;
 
@@ -141,7 +141,7 @@ public void OnPluginStart()
 	LoadTranslations(g_iEngine == Engine_SourceSDK2006 ? "lr_core_old.phrases" : "lr_core.phrases");
 	LoadTranslations("lr_core_ranks.phrases");
 
-	g_hResetMyStats = new Cookie("LR_LastResetMyStats", NULL_STRING, CookieAccess_Private);
+	g_hLastResetMyStats = new Cookie("LR_LastResetMyStats", NULL_STRING, CookieAccess_Private);
 
 	RegAdminCmd("sm_lvl_reload", Call_ReloadSettings, ADMFLAG_ROOT, "Reloads core and module configuration files");		// in settings.sp
 	RegAdminCmd("sm_lvl_del", Call_ResetPlayer, ADMFLAG_ROOT, "Resets player stats");									// in database.sp

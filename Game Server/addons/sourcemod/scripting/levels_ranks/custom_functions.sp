@@ -79,7 +79,7 @@ void LR_PrintMessage(int iClient, bool bPrefix, bool bNative, const char[] sForm
 				}
 			}
 
-			Handle hMessage = StartMessageOne("SayText2", iClient, USERMSG_RELIABLE);
+			Handle hMessage = StartMessageOne("SayText2", iClient, USERMSG_RELIABLE | USERMSG_BLOCKHOOKS);
 
 			if(hMessage)
 			{

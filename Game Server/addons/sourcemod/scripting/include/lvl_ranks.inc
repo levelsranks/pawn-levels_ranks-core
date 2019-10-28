@@ -32,8 +32,7 @@ enum LR_CleanupType
 {
 	LR_AllData,
 	LR_ExpData,
-	LR_StatsData,
-	LR_CleanData
+	LR_StatsData
 };
 
 enum LR_SettingType
