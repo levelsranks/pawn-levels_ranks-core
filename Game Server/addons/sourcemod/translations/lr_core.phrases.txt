@@ -447,7 +447,7 @@
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} подобрали бомбу]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} підібрали бомбу]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自捡起炸弹]"
-		"es"		"Tu exp: {LIME}{1} [{2} por coger la bomba]"
+		"es"		"Tu exp: {GREEN}{1} [{2} por coger la bomba]"
 		"de"		"Deine Exp: {GREEN}{1} [{2} für das Aufnehmen der Bombe]"
 	}
 	"BombDropped"
@@ -457,7 +457,7 @@
 		"ru"		"Ваш опыт: {RED}{1} [{2} потеряли бомбу]"
 		"ua"		"Ваш досвід: {RED}{1} [{2} втратили бомбу]"
 		"chi"		"你的经验值: {RED}{1} [{2} 因为掉落炸弹]"
-		"es"		"Tu exp: {LIME}{1} [{2} por tirar la bomba]"
+		"es"		"Tu exp: {RED}{1} [{2} por tirar la bomba]"
 		"de"		"Deine Exp: {RED}{1} [{2} für das fallenlassen der Bombe]"
 	}
 	"HostageRescued"
@@ -467,7 +467,7 @@
 		"ru"		"Ваш опыт: {LIGHTBLUE}{1} [{2} вы спасли заложника]"
 		"ua"		"Ваш досвід: {LIGHTBLUE}{1} [{2} ви врятували заручника]"
 		"chi"		"你的经验值: {LIGHTBLUE}{1} [{2} 来自人质救援]"
-		"es"		"Tu exp: {LIME}{1} [{2} por rescatar el rehén]"
+		"es"		"Tu exp: {LIGHTBLUE}{1} [{2} por rescatar el rehén]"
 		"de"		"Deine Exp: {LIGHTBLUE}{1} [{2} für das Retten einer Geisel]"
 	}
 	"HostageKilled"
@@ -477,7 +477,7 @@
 		"ru"		"Ваш опыт: {RED}{1} [{2} вы убили заложника]"
 		"ua"		"Ваш досвід: {RED}{1} [{2} ви вбили заручника]"
 		"chi"		"你的经验值: {RED}{1} [{2} 因为击杀人质]"
-		"es"		"Tu exp: {LIME}{1} [{2} por matar al rehén]"
+		"es"		"Tu exp: {RED}{1} [{2} por matar al rehén]"
 		"de"		"Deine Exp: {RED}{1} [{2} für das Töten einer Geisel]"
 	}
 	"DoubleKill"
@@ -487,7 +487,7 @@
 		"ru"		"Ваш опыт: {PURPLE}{1} [{2} за DoubleKill]"
 		"ua"		"Ваш досвід: {PURPLE}{1} [{2} за Два вбивства поспіль]"
 		"chi"		"你的经验值: {PURPLE}{1} [{2} 来自双杀]"
-		"es"		"Tu exp: {LIME}{1} [{2} por Doble Kill]"
+		"es"		"Tu exp: {PURPLE}{1} [{2} por Doble Kill]"
 		"de"		"Deine Exp: {PURPLE}{1} [{2} für Doppekill]"
 	}
 	"TripleKill"
@@ -517,7 +517,7 @@
 		"ru"		"Ваш опыт: {PURPLE}{1} [{2} за Rampage]"
 		"ua"		"Ваш досвід: {PURPLE}{1} [{2} за Буянство]"
 		"chi"		"你的经验值: {PURPLE}{1} [{2} 来自Rampage]"
-		"es"		"Tu exp: {LIME}{1} [{2} por Rampage]"
+		"es"		"Tu exp: {PURPLE}{1} [{2} por Rampage]"
 		"de"		"Dein Exp: {PURPLE}{1} [{2} für Rampage]"
 	}
 	"MegaKill"
@@ -527,7 +527,7 @@
 		"ru"		"Ваш опыт: {PURPLE}{1} [{2} за MegaKill]"
 		"ua"		"Ваш досвід: {PURPLE}{1} [{2} за Мега вбивство]"
 		"chi"		"你的经验值: {PURPLE}{1} [{2} 来自MegaKill]"
-		"es"		"Tu exp: {LIME}{1} [{2} por Mega Kill]"
+		"es"		"Tu exp: {PURPLE}{1} [{2} por Mega Kill]"
 		"de"		"Dein Exp: {PURPLE}{1} [{2} für einen MegaKill]"
 	}
 	"Ownage"
@@ -587,7 +587,7 @@
 		"ru"		"Ваш опыт: {PURPLE}{1} [{2} за God Like]"
 		"ua"		"Ваш досвід: {PURPLE}{1} [{2} за Богоподібний]"
 		"chi"		"你的经验值: {PURPLE}{1} [{2} 来自God Like]"
-		"es"		"Tu exp: {LIME}{1} [{2} por God Like]"
+		"es"		"Tu exp: {PURPLE}{1} [{2} por God Like]"
 		"de"		"Dein Exp: {PURPLE}{1} [{2} für God Like]"
 	}
 	"WickedSick"
@@ -597,7 +597,7 @@
 		"ru"		"Ваш опыт: {PURPLE}{1} [{2} за WickedSick]"
 		"ua"		"Ваш досвід: {PURPLE}{1} [{2} за Злий-хворий]"
 		"chi"		"你的经验值: {PURPLE}{1} [{2} 来自WickedSick]"
-		"es"		"Tu exp: {LIME}{1} [{2} por WickedSick]"
+		"es"		"Tu exp: {PURPLE}{1} [{2} por WickedSick]"
 		"de"		"Dein Exp: {PURPLE}{1} [{2} für WickedSick]"
 	}
 	"HolyShit"
@@ -607,7 +607,7 @@
 		"ru"		"Ваш опыт: {PURPLE}{1} [{2} за HolyShit]"
 		"ua"		"Ваш досвід: {PURPLE}{1} [{2} за Святе лайно]"
 		"chi"		"你的经验值: {PURPLE}{1} [{2} 来自HolyShit]"
-		"es"		"Tu exp: {LIME}{1} [{2} por Invencible]"
+		"es"		"Tu exp: {PURPLE}{1} [{2} por Invencible]"
 		"de"		"Dein Exp: {PURPLE}{1} [{2} für HolyShit]"
 	}
 	"RoundExpResultGive"
@@ -628,7 +628,7 @@
 		"ua"		"За раунд ви втратили {RED}{1} {WHITE}поінти досвіду"
 		"chi"		"你每回合将失去 {GREEN}{1} {WHITE}点经验值"
 		"es"		"Has perdido {GREEN}{1} {WHITE}puntos de experiencia por ronda"
-		"de"		"Du hast {RED}{1} {WHITE} Erfahrungspunkte pro Runde verloren"
+		"de"		"Du hast {GREEN}{1} {WHITE} Erfahrungspunkte pro Runde verloren"
 	}
 	"RoundExpResultNothing"
 	{
@@ -636,7 +636,7 @@
 		"ru"		"За раунд вы не заработали очков опыта!"
 		"ua"		"За раунд ви не заробили поінти досвіду!"
 		"chi"		"你在这回合并没有获得任何经验值!"
-		"es"		"¡No has ganado {GREEN}{1} {WHITE}puntos de experiencia en la ronda!"
+		"es"		"¡No has ganado puntos de experiencia en la ronda!"
 		"de"		"Du hast keine Erfahrungspunkte in einer Runde verdient!"
 	}
 	"RoundExpResultAll"

@@ -14,7 +14,7 @@ void SetSettings()
 
 	static char sPath[PLATFORM_MAX_PATH];
 
-	KeyValues 	hKv = new KeyValues("LR_Settings");
+	KeyValues	hKv = new KeyValues("LR_Settings");
 
 	bool bFirstLoad = sPath[0] == '\0';
 
