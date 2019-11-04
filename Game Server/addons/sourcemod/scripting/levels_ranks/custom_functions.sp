@@ -2,10 +2,27 @@ void LR_PrintMessage(int iClient, bool bPrefix, bool bNative, const char[] sForm
 {
 	if(iClient && IsClientInGame(iClient) && !IsFakeClient(iClient))
 	{
-		static char 		sMessage[384];
+		static char sMessage[384];
 
-		static const char	sColorsBefore[][] = {"{DEFAULT}", "{TEAM}", "{GREEN}", "{RED}", "{LIME}", "{LIGHTGREEN}", "{LIGHTRED}", "{GRAY}", "{LIGHTOLIVE}", "{OLIVE}", "{LIGHTBLUE}", "{BLUE}", "{PURPLE}", "{BRIGHTRED}"},
-							sColors[][] = {"\x01", "\x03", "\x04", "\x02", "\x05", "\x06", "\x07", "\x08", "\x09", "\x10", "\x0B", "\x0C", "\x0E", "\x0F"};
+		static const char sColorsBefore[][] =
+		{
+			"{DEFAULT}",
+			"{TEAM}",
+			"{GREEN}",
+			"{RED}",
+			"{LIME}",
+			"{LIGHTGREEN}",
+			"{LIGHTRED}",
+			"{GRAY}",
+			"{LIGHTOLIVE}",
+			"{OLIVE}",
+			"{LIGHTBLUE}",
+			"{BLUE}",
+			"{PURPLE}",
+			"{BRIGHTRED}"
+		},
+
+		sColors[][] = {"\x01", "\x03", "\x04", "\x02", "\x05", "\x06", "\x07", "\x08", "\x09", "\x10", "\x0B", "\x0C", "\x0E", "\x0F"};
 
 		if(bNative)
 		{
@@ -16,7 +33,7 @@ void LR_PrintMessage(int iClient, bool bPrefix, bool bNative, const char[] sForm
 			VFormat(sMessage, sizeof(sMessage), sFormat, 5);
 		}
 		
-		if(sMessage[0] != '\0')
+		if(sMessage[0])
 		{
 			if(bPrefix)
 			{
@@ -24,7 +41,8 @@ void LR_PrintMessage(int iClient, bool bPrefix, bool bNative, const char[] sForm
 			}
 			else if(g_iEngine == Engine_CSGO)
 			{
-				Format(sMessage, sizeof(sMessage), " %s", sMessage);
+				strcopy(sMessage[1], sizeof(sMessage) - 1, sMessage);
+				sMessage[0] = ' ';
 			}
 
 			if(g_iEngine != Engine_SourceSDK2006)
@@ -50,7 +68,7 @@ void LR_PrintMessage(int iClient, bool bPrefix, bool bNative, const char[] sForm
 
 					static const char sFormatColor[] = "\x07%06X";
 
-					int iLen = StrContains(sMessage, sColorsBefore[0], false);
+					int iLen = StrContains(sMessage, sColorsBefore[1], false);
 
 					if(iLen != -1)
 					{
@@ -150,16 +168,29 @@ bool NotifClient(int iClient, int iValue, char[] sTitlePhrase)
 
 		if(g_Settings[LR_ShowUsualMessage] == 1)
 		{
-			static char sBuffer[64];
-
-			FormatEx(sBuffer, sizeof(sBuffer), iValue > 0 ? "+%d" : "%d", iValue);
-			LR_PrintMessage(iClient, true, false, "%T", sTitlePhrase, iClient, g_iPlayerInfo[iClient].iStats[ST_EXP], sBuffer);
+			LR_PrintMessage(iClient, true, false, "%T", sTitlePhrase, iClient, g_iPlayerInfo[iClient].iStats[ST_EXP], GetSignValue(iValue));
 		}
 
 		return true;
 	}
 
 	return false;
+}
+
+char[] GetSignValue(int iValue)
+{
+	bool bPlus = iValue > 0;
+
+	static char sValue[16];
+
+	if(bPlus)
+	{
+		sValue[0] = '+';
+	}
+
+	IntToString(iValue, sValue[bPlus], sizeof(sValue) - view_as<int>(bPlus));
+
+	return sValue;
 }
 
 bool CheckStatus(int iClient)
@@ -225,30 +256,28 @@ void CheckRank(int iClient, bool bActive = true)
 					}
 				}
 
-				SaveDataPlayer(iClient);		// in database.sp
-
 				CallForward_OnLevelChanged(iClient, iRank, iOldRank, false);
 			}
+
+			SaveDataPlayer(iClient);		// in database.sp
 		}
 	}
 }
 
 void ResetPlayerData(int iClient)
 {
-	int iAccountID = g_iPlayerInfo[iClient].iAccountID;
-
-	g_iPlayerInfo[iClient] = g_iInfoNULL;
-	g_iPlayerInfo[iClient].iAccountID = iAccountID;
-	g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] = g_iPlayerInfo[iClient].iSessionStats[9] = -GetTime();
-	g_iPlayerInfo[iClient].iSessionStats[0] = g_iPlayerInfo[iClient].iStats[ST_EXP] = g_Settings[LR_TypeStatistics] ? 1000 : 0;
-	g_iPlayerInfo[iClient].bInitialized = true;
+	g_iPlayerInfo[iClient].iStats = g_iInfoNULL.iStats;
+	g_iPlayerInfo[iClient].iSessionStats = g_iInfoNULL.iSessionStats;
+	g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] = g_iPlayerInfo[iClient].iSessionStats[ST_PLAYTIME] -= GetTime();
+	g_iPlayerInfo[iClient].iStats[ST_EXP] = g_iPlayerInfo[iClient].iSessionStats[ST_EXP] = g_Settings[LR_TypeStatistics] ? 1000 : 0;
+	g_iPlayerInfo[iClient].iKillStreak = 0;
 }
 
 void ResetPlayerStats(int iClient)
 {
 	ResetPlayerData(iClient);
 
-	CheckRank(iClient);
+	CheckRank(iClient, false);
 
 	CallForward_OnResetPlayerStats(iClient, g_iPlayerInfo[iClient].iAccountID);
 }

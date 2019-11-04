@@ -49,7 +49,7 @@
 ****		( translation of phrases in German )
 ****
 ****		Hackmastr
-****		( incomplete translation of phrases in Spanish )
+****		( translation of phrases in Spanish )
 ****
 ***************************************************************************/
 
@@ -78,7 +78,7 @@ enum struct LR_PlayerInfo
 	bool bInitialized;
 	int iAccountID;
 	int iStats[LR_StatsType];
-	int iSessionStats[10];
+	int iSessionStats[LR_StatsType];
 	int iRoundExp;
 	int iKillStreak;
 }
@@ -94,7 +94,8 @@ int				g_iBonus[11],
 				g_iCountRetryConnect,
 				g_iDBCountPlayers;
 
-char			g_sPluginName[] = PLUGIN_NAME,
+char			g_sDBConfigName[] = "levels_ranks",
+				g_sPluginName[] = PLUGIN_NAME,
 				g_sPluginTitle[64],
 				g_sTableName[32],
 				g_sSoundUp[PLATFORM_MAX_PATH],
@@ -122,6 +123,7 @@ Transaction		g_hTransactionLossDB;
 
 #include "levels_ranks/settings.sp"
 #include "levels_ranks/database.sp"
+#include "levels_ranks/commands.sp"
 #include "levels_ranks/menus.sp"
 #include "levels_ranks/custom_functions.sp"
 #include "levels_ranks/events.sp"
@@ -143,25 +145,13 @@ public void OnPluginStart()
 
 	g_hLastResetMyStats = new Cookie("LR_LastResetMyStats", NULL_STRING, CookieAccess_Private);
 
-	RegAdminCmd("sm_lvl_reload", Call_ReloadSettings, ADMFLAG_ROOT, "Reloads core and module configuration files");		// in settings.sp
-	RegAdminCmd("sm_lvl_del", Call_ResetPlayer, ADMFLAG_ROOT, "Resets player stats");									// in database.sp
-	RegServerCmd("sm_lvl_reset", Call_ResetData, "Сlearing all data in the database");									// in database.sp
-	RegConsoleCmd("sm_lvl", Call_MainMenu, "Opens the statistics menu");												// in menus.sp
+	RegConsoleCmd("sm_lvl", Call_MainMenu, "Opens the statistics menu");												// in commands.sp
+	RegAdminCmd("sm_lvl_reload", Call_ReloadSettings, ADMFLAG_ROOT, "Reloads core and module configuration files");		// in commands.sp
+	RegServerCmd("sm_lvl_reset", Call_ResetData, "Сlearing all data in the database");									// in commands.sp
+	RegAdminCmd("sm_lvl_del", Call_ResetPlayer, ADMFLAG_ROOT, "Resets player stats");									// in commands.sp
 
 	SetSettings();		// in settings.sp
-	MakeHookEvents();	// in events.sp
-	ConnectDB();		// in database.sp
-}
-
-public void OnLibraryAdded(const char[] sLibrary)
-{
-	if(!strcmp(sLibrary, "levelsranks"))
-	{
-		Call_StartForward(g_hForward_OnCoreIsReady);
-		Call_Finish();
-
-		delete g_hForward_OnCoreIsReady;
-	}
+	ConnectDB();		// in databases.sp
 }
 
 public void OnMapStart()

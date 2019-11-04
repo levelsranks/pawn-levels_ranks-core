@@ -73,3 +73,13 @@
 #define ST_PLAYTIME 10
 #define ST_PLACEINTOP 11
 #define ST_PLACEINTOPTIME 12
+
+// for SQL Querys
+
+#define LR_GetPlacePlayer 1
+#define LR_CreateDataPlayer 2
+#define LR_LoadDataPlayer 3
+#define LR_TopPlayersExp 4
+#define LR_TopPlayersTime 5
+#define LR_ConnectToDB 10
+#define LR_ReconnectToDB 11

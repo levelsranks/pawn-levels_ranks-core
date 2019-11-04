@@ -1,9 +1,29 @@
-public APLRes AskPluginLoad2()
+public APLRes AskPluginLoad2(Handle hMySelf, bool bLate, char[] sError, int iErrorSize)
 {
 	if((g_iEngine = GetEngineVersion()) != Engine_CSGO && g_iEngine != Engine_CSS && g_iEngine != Engine_SourceSDK2006)
 	{
-		SetFailState("This plugin works only on CS:GO ar CS:S OB ar CS:S v34.");
+		strcopy(sError, iErrorSize, "This plugin works only on CS:GO, CS:S OB and CS:S v34.");
+
+		return APLRes_SilentFailure;
 	}
+
+	if(!HookEventEx("weapon_fire", Events, EventHookMode_Pre))
+	{
+		strcopy(sError, iErrorSize, "Bug in event analysis engine!");
+
+		return APLRes_SilentFailure;
+	}
+	HookEvent("player_hurt", Events, EventHookMode_Pre);
+	HookEvent("player_death", Events, EventHookMode_Pre);
+	HookEventEx("round_mvp", Events, EventHookMode_Pre);	// Missing in CS:S v34.
+	HookEvent("round_end", Events, EventHookMode_Pre);
+	HookEvent("round_start", Events, EventHookMode_Pre);
+	HookEvent("bomb_planted", Events, EventHookMode_Pre);
+	HookEvent("bomb_defused", Events, EventHookMode_Pre);
+	HookEvent("bomb_dropped", Events, EventHookMode_Pre);
+	HookEvent("bomb_pickup", Events, EventHookMode_Pre);
+	HookEvent("hostage_killed", Events, EventHookMode_Pre);
+	HookEvent("hostage_rescued", Events, EventHookMode_Pre);
 
 	CreateNative("LR_IsLoaded", Native_IsLoaded);
 	CreateNative("LR_Hook", Native_Hook);
@@ -49,107 +69,99 @@ public APLRes AskPluginLoad2()
 	}
 
 	RegPluginLibrary("levelsranks");
+
+	return APLRes_Success;
 }
 
 // Natives
 
-int Native_IsLoaded(Handle hPlugin, int iNumParams)
+int Native_IsLoaded(Handle hPlugin, int iArgs)
 {
 	return !g_hForward_OnCoreIsReady;
 }
 
-int Native_Hook(Handle hPlugin, int iNumParams)
+int Native_Hook(Handle hPlugin, int iArgs)
 {
 	return g_hForward_Hook[GetNativeCell(1)].AddFunction(hPlugin, GetNativeCell(2));
 }
 
-int Native_Unhook(Handle hPlugin, int iNumParams)
+int Native_Unhook(Handle hPlugin, int iArgs)
 {
 	return g_hForward_Hook[GetNativeCell(1)].RemoveFunction(hPlugin, GetNativeCell(2));
 }
 
-int Native_MenuHook(Handle hPlugin, int iNumParams)
+int Native_MenuHook(Handle hPlugin, int iArgs)
 {
 	int iMenuType = GetNativeCell(1);
 
 	return g_hForward_CreatedMenu[iMenuType].AddFunction(hPlugin, GetNativeCell(2)) && g_hForward_SelectedMenu[iMenuType].AddFunction(hPlugin, GetNativeCell(3));
 }
 
-int Native_MenuUnhook(Handle hPlugin, int iNumParams)
+int Native_MenuUnhook(Handle hPlugin, int iArgs)
 {
 	int iMenuType = GetNativeCell(1);
 
 	return g_hForward_CreatedMenu[iMenuType].RemoveFunction(hPlugin, GetNativeCell(2)) && g_hForward_SelectedMenu[iMenuType].RemoveFunction(hPlugin, GetNativeCell(3));
 }
 
-int Native_GetSettingsValue(Handle hPlugin, int iNumParams)
+int Native_GetSettingsValue(Handle hPlugin, int iArgs)
 {
 	return g_Settings[GetNativeCell(1)];
 }
 
-int Native_GetDatabase(Handle hPlugin, int iNumParams)
+int Native_GetDatabase(Handle hPlugin, int iArgs)
 {
-	if(g_hDatabase)
-	{
-		return view_as<int>(CloneHandle(g_hDatabase, hPlugin));
-	}
-
-	return 0;
+	return g_hDatabase ? view_as<int>(CloneHandle(g_hDatabase, hPlugin)) : 0;
 }
 
-int Native_GetDatabaseType(Handle hPlugin, int iNumParams)
+int Native_GetDatabaseType(Handle hPlugin, int iArgs)
 {
 	return g_bDatabaseSQLite;
 }
 
-int Native_GetCountPlayers(Handle hPlugin, int iNumParams)
+int Native_GetCountPlayers(Handle hPlugin, int iArgs)
 {
     return g_iDBCountPlayers;
 }
 
-int Native_GetTableName(Handle hPlugin, int iNumParams)
+int Native_GetTableName(Handle hPlugin, int iArgs)
 {
 	SetNativeString(1, g_sTableName, GetNativeCell(2), false);
 }
 
-int Native_GetTitleMenu(Handle hPlugin, int iNumParams)
+int Native_GetTitleMenu(Handle hPlugin, int iArgs)
 {
 	SetNativeString(1, g_sPluginTitle, GetNativeCell(2), false);
 }
 
-int Native_GetClientStatus(Handle hPlugin, int iNumParams)
+int Native_GetClientStatus(Handle hPlugin, int iArgs)
 {
 	return g_iPlayerInfo[GetNativeCell(1)].bInitialized;
 }
 
-int Native_CheckCountPlayers(Handle hPlugin, int iNumParams)
+int Native_CheckCountPlayers(Handle hPlugin, int iArgs)
 {
 	return g_bAllowStatistic && g_bRoundAllowExp && g_bRoundEndGiveExp;
 }
 
-int Native_GetRankNames(Handle hPlugin, int iNumParams)
+int Native_GetRankNames(Handle hPlugin, int iArgs)
 {
 	return view_as<int>(g_hRankNames);
 }
 
-int Native_GetRankExp(Handle hPlugin, int iNumParams)
+int Native_GetRankExp(Handle hPlugin, int iArgs)
 {
 	return view_as<int>(g_hRankExp);
 }
 
-int Native_GetClientInfo(Handle hPlugin, int iNumParams)
+int Native_GetClientInfo(Handle hPlugin, int iArgs)
 {
 	int iType = GetNativeCell(2);
 
-	if(iType == ST_PLAYTIME)
-	{
-		return g_iPlayerInfo[GetNativeCell(1)].iStats[ST_PLAYTIME] + GetTime();
-	}
-
-	return g_iPlayerInfo[GetNativeCell(1)].iStats[iType];
+	return iArgs == 3 && GetNativeCell(3) ? g_iPlayerInfo[GetNativeCell(1)].iSessionStats[iType] + (iType == ST_PLAYTIME ? GetTime() : 0) : g_iPlayerInfo[GetNativeCell(1)].iStats[iType];
 }
 
-int Native_ResetPlayerStats(Handle hPlugin, int iNumParams)
+int Native_ResetPlayerStats(Handle hPlugin, int iArgs)
 {
 	int iClient = GetNativeCell(1);
 
@@ -159,12 +171,12 @@ int Native_ResetPlayerStats(Handle hPlugin, int iNumParams)
 	}
 }
 
-int Native_RefreshConfigs(Handle hPlugin, int iNumParams)
+int Native_RefreshConfigs(Handle hPlugin, int iArgs)
 {
 	SetSettings();
 }
 
-int Native_ChangeClientValue(Handle hPlugin, int iNumParams)
+int Native_ChangeClientValue(Handle hPlugin, int iArgs)
 {
 	int iClient = GetNativeCell(1);
 
@@ -192,12 +204,12 @@ int Native_ChangeClientValue(Handle hPlugin, int iNumParams)
 	}
 }
 
-int Native_RoundWithoutValue(Handle hPlugin, int iNumParams)
+int Native_RoundWithoutValue(Handle hPlugin, int iArgs)
 {
 	g_bRoundAllowExp = true;
 }
 
-int Native_ShowMenu(Handle hPlugin, int iNumParams)
+int Native_ShowMenu(Handle hPlugin, int iArgs)
 {
 	int iClient = GetNativeCell(1);
 
@@ -211,7 +223,7 @@ int Native_ShowMenu(Handle hPlugin, int iNumParams)
 	}
 }
 
-int Native_PrintToChat(Handle hPlugin, int iNumParams)
+int Native_PrintToChat(Handle hPlugin, int iArgs)
 {
 	LR_PrintMessage(GetNativeCell(1), GetNativeCell(2), true, NULL_STRING);		// in custom_functions.sp
 }
@@ -309,20 +321,29 @@ void CallForward_OnPlayerSaved(int iClient, Transaction hTransaction)
 	Call_Finish();
 }
 
-void CallForward_CreatedMenu(int iMenuType, int iClient, Menu hMenu)
+void CallForward_MenuHook(int iMenuType, int iClient, Menu hMenu, char[] sInfo = NULL_STRING)
 {
-	Call_StartForward(g_hForward_CreatedMenu[iMenuType]);
-	Call_PushCell(iMenuType);
-	Call_PushCell(iClient);
-	Call_PushCell(hMenu);
-	Call_Finish();
-}
+	static int iSelectPosition = 0;
 
-void CallForward_SelectedMenu(int iMenuType, int iClient, char[] sInfo)
-{
-	Call_StartForward(g_hForward_SelectedMenu[iMenuType]);
+	Call_StartForward(hMenu ? g_hForward_CreatedMenu[iMenuType] : g_hForward_SelectedMenu[iMenuType]);
 	Call_PushCell(iMenuType);
 	Call_PushCell(iClient);
-	Call_PushString(sInfo);
-	Call_Finish();
+
+	if(hMenu)
+	{
+		Call_PushCell(hMenu);
+		Call_Finish();
+
+		hMenu.ExitBackButton = true;
+		hMenu.DisplayAt(iClient, iSelectPosition, MENU_TIME_FOREVER);
+	}
+	else
+	{
+		iSelectPosition = GetMenuSelectionPosition();
+
+		Call_PushString(sInfo);
+		Call_Finish();
+
+		iSelectPosition = 0;
+	}
 }

@@ -1,26 +1,4 @@
-void MakeHookEvents()
-{
-	if(!HookEventEx("weapon_fire", Events, EventHookMode_Pre))
-	{
-		SetFailState("Bug in event analysis engine (%i)!", g_iEngine);
-	}
-
-	HookEvent("player_hurt", Events, EventHookMode_Pre);
-	HookEvent("player_death", Events, EventHookMode_Pre);
-
-	HookEventEx("round_mvp", Events, EventHookMode_Pre);
-	HookEvent("round_end", Events, EventHookMode_Pre);
-	HookEvent("round_start", Events, EventHookMode_Pre);
-
-	HookEvent("bomb_planted", Events, EventHookMode_Pre);
-	HookEvent("bomb_defused", Events, EventHookMode_Pre);
-	HookEvent("bomb_dropped", Events, EventHookMode_Pre);
-	HookEvent("bomb_pickup", Events, EventHookMode_Pre);
-
-	HookEvent("hostage_killed", Events, EventHookMode_Pre);
-	HookEvent("hostage_rescued", Events, EventHookMode_Pre);
-}
-
+// Hook events in api.sp -> AskPluginLoad2().
 void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 {
 	int iAttacker = GetClientOfUserId(hEvent.GetInt("attacker")),
@@ -33,7 +11,7 @@ void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 			if(g_bAllowStatistic && g_iPlayerInfo[iClient].bInitialized)
 			{
 				g_iPlayerInfo[iClient].iStats[ST_SHOOTS]++;
-				g_iPlayerInfo[iClient].iSessionStats[3]++;
+				g_iPlayerInfo[iClient].iSessionStats[ST_SHOOTS]++;
 			}
 		}
 
@@ -46,7 +24,7 @@ void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 					if(g_bAllowStatistic && iAttacker != iClient && g_iPlayerInfo[iClient].bInitialized && g_iPlayerInfo[iAttacker].bInitialized)
 					{
 						g_iPlayerInfo[iAttacker].iStats[ST_HITS]++;
-						g_iPlayerInfo[iAttacker].iSessionStats[4]++;
+						g_iPlayerInfo[iAttacker].iSessionStats[ST_HITS]++;
 					}
 				}
 
@@ -57,78 +35,80 @@ void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 						if(iAttacker == iClient)
 						{
 							NotifClient(iClient, -g_Settings[LR_ExpGiveSuicide], "Suicide");
-							return;
 						}
-
-						if(!g_Settings[LR_AllAgainstAll] && GetClientTeam(iClient) == GetClientTeam(iAttacker))
+						else
 						{
-							NotifClient(iAttacker, -g_Settings[LR_ExpGiveTeamKill], "TeamKill");
-							return;
-						}
-
-						int iExpAttacker, iExpVictim;
-
-						switch(g_Settings[LR_TypeStatistics])
-						{
-							case 0:
+							if(!g_Settings[LR_AllAgainstAll] && GetClientTeam(iClient) == GetClientTeam(iAttacker))
 							{
-								iExpAttacker = g_Settings[LR_ExpKill];
-								iExpVictim = g_Settings[LR_ExpDeath];
-
-								CallForward_OnPlayerKilled(hEvent, iExpAttacker, iClient, iAttacker);
+								NotifClient(iAttacker, -g_Settings[LR_ExpGiveTeamKill], "TeamKill");
 							}
-
-							case 1:
+							else
 							{
-								iExpAttacker = RoundToNearest(float(g_iPlayerInfo[iClient].iStats[ST_EXP]) / g_iPlayerInfo[iAttacker].iStats[ST_EXP] * 5.0);
+								int iExpAttacker, iExpVictim;
 
-								CallForward_OnPlayerKilled(hEvent, iExpAttacker, iClient, iAttacker);
-
-								if(iExpAttacker < 1) 
+								switch(g_Settings[LR_TypeStatistics])
 								{
-									iExpAttacker = 1;
+									case 0:
+									{
+										iExpAttacker = g_Settings[LR_ExpKill];
+										iExpVictim = g_Settings[LR_ExpDeath];
+
+										CallForward_OnPlayerKilled(hEvent, iExpAttacker, iClient, iAttacker);
+									}
+
+									case 1:
+									{
+										iExpAttacker = RoundToNearest(float(g_iPlayerInfo[iClient].iStats[ST_EXP]) / g_iPlayerInfo[iAttacker].iStats[ST_EXP] * 5.0);
+
+										CallForward_OnPlayerKilled(hEvent, iExpAttacker, iClient, iAttacker);
+
+										if(iExpAttacker < 1) 
+										{
+											iExpAttacker = 1;
+										}
+
+										if((iExpVictim = RoundToNearest(iExpAttacker * view_as<float>(g_Settings[LR_KillCoefficient]))) < 1)
+										{
+											iExpVictim = 1;
+										}
+									}
+
+									case 2:
+									{
+										iExpAttacker = g_iPlayerInfo[iClient].iStats[ST_EXP] - g_iPlayerInfo[iAttacker].iStats[ST_EXP];
+
+										CallForward_OnPlayerKilled(hEvent, iExpAttacker, iClient, iAttacker);
+
+										iExpVictim = iExpAttacker = iExpAttacker < 2 ? 2 : (iExpAttacker / 100) + 2;
+									}
 								}
 
-								if((iExpVictim = RoundToNearest(iExpAttacker * view_as<float>(g_Settings[LR_KillCoefficient]))) < 1)
+								if(NotifClient(iAttacker, iExpAttacker, "Kill") && NotifClient(iClient, -iExpVictim, "MyDeath"))
 								{
-									iExpVictim = 1;
+									if(hEvent.GetBool("headshot") && NotifClient(iAttacker, g_Settings[LR_ExpGiveHeadShot], "HeadShotKill"))
+									{
+										g_iPlayerInfo[iAttacker].iStats[ST_HEADSHOTS]++;
+										g_iPlayerInfo[iAttacker].iSessionStats[ST_HEADSHOTS]++;
+									}
+
+									int iAssister = GetClientOfUserId(hEvent.GetInt("assister"));
+
+									if(NotifClient(iAssister, g_Settings[LR_ExpGiveAssist], "AssisterKill"))
+									{
+										g_iPlayerInfo[iAssister].iStats[ST_ASSISTS]++;
+										g_iPlayerInfo[iAssister].iSessionStats[ST_ASSISTS]++;
+									}
+
+									g_iPlayerInfo[iAttacker].iStats[ST_KILLS]++;
+									g_iPlayerInfo[iAttacker].iSessionStats[ST_KILLS]++;
+									g_iPlayerInfo[iAttacker].iKillStreak++;
+
+									g_iPlayerInfo[iClient].iStats[ST_DEATHS]++;
+									g_iPlayerInfo[iClient].iSessionStats[ST_DEATHS]++;
+
+									CallForward_OnPlayerKilled(hEvent, iExpAttacker, iClient, iAttacker, false);
 								}
 							}
-
-							case 2:
-							{
-								iExpAttacker = g_iPlayerInfo[iClient].iStats[ST_EXP] - g_iPlayerInfo[iAttacker].iStats[ST_EXP];
-
-								CallForward_OnPlayerKilled(hEvent, iExpAttacker, iClient, iAttacker);
-
-								iExpVictim = iExpAttacker = iExpAttacker < 2 ? 2 : (iExpAttacker / 100) + 2;
-							}
-						}
-
-						if(NotifClient(iAttacker, iExpAttacker, "Kill") && NotifClient(iClient, -iExpVictim, "MyDeath"))
-						{
-							if(hEvent.GetBool("headshot") && NotifClient(iAttacker, g_Settings[LR_ExpGiveHeadShot], "HeadShotKill"))
-							{
-								g_iPlayerInfo[iAttacker].iStats[ST_HEADSHOTS]++;
-								g_iPlayerInfo[iAttacker].iSessionStats[5]++;
-							}
-
-							int iAssister = GetClientOfUserId(hEvent.GetInt("assister"));
-
-							if(NotifClient(iAssister, g_Settings[LR_ExpGiveAssist], "AssisterKill"))
-							{
-								g_iPlayerInfo[iAssister].iStats[ST_ASSISTS]++;
-								g_iPlayerInfo[iAssister].iSessionStats[6]++;
-							}
-
-							g_iPlayerInfo[iAttacker].iStats[ST_KILLS]++;
-							g_iPlayerInfo[iAttacker].iSessionStats[1]++;
-							g_iPlayerInfo[iAttacker].iKillStreak++;
-
-							g_iPlayerInfo[iClient].iStats[ST_DEATHS]++;
-							g_iPlayerInfo[iClient].iSessionStats[2]++;
-
-							CallForward_OnPlayerKilled(hEvent, iExpAttacker, iClient, iAttacker, false);
 						}
 
 						GiveExpForStreakKills(iClient);
@@ -165,7 +145,7 @@ void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 									if(bLose ? NotifClient(i, -g_Settings[LR_ExpRoundLose], "RoundLose") : NotifClient(i, g_Settings[LR_ExpRoundLose], "RoundWin"))
 									{
 										g_iPlayerInfo[i].iStats[ST_ROUNDSWIN + view_as<int>(bLose)]++;
-										g_iPlayerInfo[i].iSessionStats[7 + view_as<int>(bLose)]++;
+										g_iPlayerInfo[i].iSessionStats[ST_ROUNDSWIN + view_as<int>(bLose)]++;
 									}
 								}
 
@@ -295,16 +275,27 @@ void GiveExpForStreakKills(int iClient)
 
 	if(iKillStreak > 1)
 	{
-		static const char sPhrases[][] = {"DoubleKill", "TripleKill", "Domination", "Rampage", "MegaKill", "Ownage", "UltraKill", "KillingSpree", "MonsterKill", "Unstoppable", "GodLike"};
+		static const char sPhrases[][] =
+		{
+			"DoubleKill",
+			"TripleKill",
+			"Domination",
+			"Rampage",
+			"MegaKill",
+			"Ownage",
+			"UltraKill",
+			"KillingSpree",
+			"MonsterKill",
+			"Unstoppable",
+			"GodLike"
+		};
 
-		if((iKillStreak -= 2) > 9)
+		if((iKillStreak -= 2) > 10)
 		{
-			NotifClient(iClient, g_iBonus[10], sPhrases[10]);
+			iKillStreak = 10;
 		}
-		else
-		{
-			NotifClient(iClient, g_iBonus[iKillStreak], sPhrases[iKillStreak]);
-		}
+		
+		NotifClient(iClient, g_iBonus[iKillStreak], sPhrases[iKillStreak]);
 	}
 
 	g_iPlayerInfo[iClient].iKillStreak = 0;

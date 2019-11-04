@@ -355,11 +355,12 @@ native bool LR_CheckCountPlayers();
  * Gets detailed statistics about the client.
  * 
  * @param iClient			Client index.
- * @param Stats				Type data.
+ * @param StatsType			Type data.
+ * @param bSession			Output data from session.
  *
- * @return 					Data value.
+ * @return					Data value.
  */
-native int LR_GetClientInfo(int iClient, LR_StatsType Stats);
+native int LR_GetClientInfo(int iClient, LR_StatsType StatsType, bool bSession = false);
 
 /**
  * Does not allow the core to issue experience 
@@ -425,12 +426,10 @@ public SharedPlugin __pl_levelsranks =
 public void __pl_levelsranks_SetNTVOptional()
 {
 	MarkNativeAsOptional("LR_IsLoaded");
-
 	MarkNativeAsOptional("LR_Hook");
 	MarkNativeAsOptional("LR_Unhook");
 	MarkNativeAsOptional("LR_MenuHook");
 	MarkNativeAsOptional("LR_MenuUnhook");
-
 	MarkNativeAsOptional("LR_GetSettingsValue");
 	MarkNativeAsOptional("LR_GetDatabase");
 	MarkNativeAsOptional("LR_GetDatabaseType");

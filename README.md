@@ -38,13 +38,16 @@
 
 Требования:
 -----------
-- SourceMod <a href="//sourcemod.net/downloads.php?branch=dev">1.10.6422</a> и выше.
+- SourceMod <a href="//sourcemod.net/downloads.php?branch=stable">1.10.6422</a> и выше.
 
 Команды:
 -------
 - **sm_lvl** - открывает главное меню статистики.
 - **sm_lvl_reload** - перезагружает все конфигурационные файлы плагина.
 - **sm_lvl_reset** - сбрасывает статистику у всех игроков.
+	- **all** - сбросит все данные.
+	- **exp** - сбросит данные о очках опыта (`value`, `rank`).
+	- **stats** - сбросит данные о статистике (`kills`, `deaths`, `shoots`, `hits`, `headshots`, `assists`, `round_win`, `round_lose`).
 - **sm_lvl_del** - сбрасывает статистику у конкретного игрока.
 
 Установка:

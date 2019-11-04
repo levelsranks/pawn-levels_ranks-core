@@ -1,20 +1,5 @@
 #define SQL_PrintMenu "SELECT `name`, %s FROM `%s` WHERE `lastconnect` != 0 ORDER BY %.10s DESC LIMIT 10;"
 
-Action Call_MainMenu(int iClient, int iArgs)
-{
-	if(CheckStatus(iClient) && g_hDatabase)
-	{
-		CheckRank(iClient);
-		MainMenu(iClient);
-	}
-	else 
-	{
-		LR_PrintMessage(iClient, true, false, "You account is not loaded. Please reconnect on the server!");
-	}
-
-	return Plugin_Handled;
-}
-
 void MainMenu(int iClient)
 {
 	int iRank = g_iPlayerInfo[iClient].iStats[ST_RANK];
@@ -113,10 +98,7 @@ void MenuAdmin(int iClient)
 		hMenu.AddItem(NULL_STRING, sText);
 	}
 
-	CallForward_CreatedMenu(LR_AdminMenu, iClient, hMenu);
-
-	hMenu.ExitBackButton = true;
-	hMenu.Display(iClient, MENU_TIME_FOREVER);
+	CallForward_MenuHook(LR_AdminMenu, iClient, hMenu);
 }
 
 int MenuAdmin_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
@@ -147,7 +129,7 @@ int MenuAdmin_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 
 				hMenu.GetItem(iSlot, sInfo, sizeof(sInfo));
 
-				CallForward_SelectedMenu(LR_AdminMenu, iClient, sInfo);
+				CallForward_MenuHook(LR_AdminMenu, iClient, null, sInfo);
 			}
 		}
 
@@ -189,7 +171,15 @@ void GiveTakeValue(int iClient, const char sID[] = NULL_STRING)
 	}
 	else
 	{
-		static const char sNumList[][] = {"10", "100", "1000", "-1000", "-100","-10"};
+		static const char sNumList[][] = 
+		{
+			"10",
+			"100",
+			"1000",
+			"-1000",
+			"-100",
+			"-10"
+		};
 
 		for(int j = 0; j != sizeof(sNumList);)
 		{
@@ -227,7 +217,7 @@ int ChangeExpPlayers_Callback(Menu hMenu, MenuAction mAction, int iClient, int i
 
 				int iExp = g_iPlayerInfo[iRecipient].iStats[ST_EXP];
 
-				FormatEx(sBuffer, sizeof(sBuffer), iBuffer > 0 ? "+%d" : "%d", iBuffer);
+				sBuffer = GetSignValue(iBuffer);
 
 				if(iClient != iRecipient)
 				{
@@ -236,11 +226,11 @@ int ChangeExpPlayers_Callback(Menu hMenu, MenuAction mAction, int iClient, int i
 
 				LogAction(iRecipient, iClient, "%L %s exp (%i) from %L", iRecipient, sBuffer, iExp, iClient);
 				LR_PrintMessage(iClient, true, false, "%T", "ExpChange", iClient, iRecipient, iExp, sBuffer);
-
-				return;
 			}
-
-			GiveTakeValue(iClient);
+			else
+			{
+				GiveTakeValue(iClient);
+			}
 		}
 
 		case MenuAction_Cancel: 
@@ -259,7 +249,7 @@ int ChangeExpPlayers_Callback(Menu hMenu, MenuAction mAction, int iClient, int i
 }
 
 int GiveTakeValue_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
-{	
+{
 	switch(mAction)
 	{
 		case MenuAction_Select:
@@ -287,20 +277,23 @@ int GiveTakeValue_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlo
 
 void MyStats(int iClient)
 {
-	int iRoundsWin = g_iPlayerInfo[iClient].iStats[ST_ROUNDSWIN],
-		iRoundsAll = iRoundsWin + g_iPlayerInfo[iClient].iStats[ST_ROUNDSLOSE],
-		iPlayTime = g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime(),
-		iKills = g_iPlayerInfo[iClient].iStats[ST_KILLS],
-		iDeaths = g_iPlayerInfo[iClient].iStats[ST_DEATHS],
-		iHeadshots = g_iPlayerInfo[iClient].iStats[ST_HEADSHOTS],
-		iShots = g_iPlayerInfo[iClient].iStats[ST_SHOOTS],
-		iHits = g_iPlayerInfo[iClient].iStats[ST_HITS];
+	int iStats[LR_StatsType];
+
+	iStats = g_iPlayerInfo[iClient].iStats;
+
+	int iRoundsWin = iStats[ST_ROUNDSWIN],
+		iRoundsAll = iRoundsWin + iStats[ST_ROUNDSLOSE],
+		iPlayTime = iStats[ST_PLAYTIME] + GetTime(),
+		iKills = iStats[ST_KILLS],
+		iDeaths = iStats[ST_DEATHS],
+		iHeadshots = iStats[ST_HEADSHOTS],
+		iShots = iStats[ST_SHOOTS];
 
 	static char sText[128];
 
 	Menu hMenu = new Menu(MyStats_Callback, MenuAction_Select);
 
-	hMenu.SetTitle("%s | %T\n ", g_sPluginTitle, "MyStatsInfo", iClient, iPlayTime / 3600, iPlayTime / 60 % 60, iPlayTime % 60, iKills, iDeaths, g_iPlayerInfo[iClient].iStats[ST_ASSISTS], iHeadshots, RoundToCeil(100.0 / (iKills ? iKills : 1) * iHeadshots), iKills / (iDeaths ? float(iDeaths) : 1.0), RoundToCeil(100.0 / (iShots ? float(iShots) : 1.0) * iHits), RoundToCeil(100.00 / (iRoundsAll ? float(iRoundsAll) : 1.0) * iRoundsWin));
+	hMenu.SetTitle("%s | %T\n ", g_sPluginTitle, "MyStatsInfo", iClient, iPlayTime / 3600, iPlayTime / 60 % 60, iPlayTime % 60, iKills, iDeaths, iStats[ST_ASSISTS], iHeadshots, RoundToCeil(100.0 / (iKills ? iKills : 1) * iHeadshots), iKills / (iDeaths ? float(iDeaths) : 1.0), RoundToCeil(100.0 / (iShots ? float(iShots) : 1.0) * iStats[ST_HITS]), RoundToCeil(100.00 / (iRoundsAll ? float(iRoundsAll) : 1.0) * iRoundsWin));
 
 	FormatEx(sText, sizeof(sText), "%T", "MyStatsSession", iClient);
 	hMenu.AddItem("0", sText);
@@ -371,31 +364,28 @@ void MyStatsSecondary(int iClient)
 
 	hMenu.SetTitle("%s | %T\n ", g_sPluginTitle, "MyStatsSecondary", iClient);
 
-	CallForward_CreatedMenu(LR_MyStatsSecondary, iClient, hMenu);
-
-	hMenu.ExitBackButton = true;
-	hMenu.Display(iClient, MENU_TIME_FOREVER);
+	CallForward_MenuHook(LR_MyStatsSecondary, iClient, hMenu);
 }
 
 int MyStatsSecondary_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 {
 	switch(mAction)
 	{
-		case MenuAction_Cancel: 
-		{
-			if(iSlot == MenuCancel_ExitBack) 
-			{
-				MyStats(iClient);
-			}
-		}
-
 		case MenuAction_Select:
 		{
 			static char sInfo[64];
 
 			hMenu.GetItem(iSlot, sInfo, sizeof(sInfo));
 
-			CallForward_SelectedMenu(LR_MyStatsSecondary, iClient, sInfo);
+			CallForward_MenuHook(LR_MyStatsSecondary, iClient, null, sInfo);
+		}
+
+		case MenuAction_Cancel: 
+		{
+			if(iSlot == MenuCancel_ExitBack) 
+			{
+				MyStats(iClient);
+			}
 		}
 
 		case MenuAction_End:
@@ -407,23 +397,23 @@ int MyStatsSecondary_Callback(Menu hMenu, MenuAction mAction, int iClient, int i
 
 void MyStatsSession(int iClient)
 {
-	static char sText[128], sBuffer[64];
+	static char sText[128];
 
 	Menu hMenu = new Menu(MyStatsSession_Callback, MenuAction_Select);
 
-	int iKills = g_iPlayerInfo[iClient].iSessionStats[1],
-		iDeaths = g_iPlayerInfo[iClient].iSessionStats[2],
-		iShots = g_iPlayerInfo[iClient].iSessionStats[3],
-		iHits = g_iPlayerInfo[iClient].iSessionStats[4],
-		iHeadshots = g_iPlayerInfo[iClient].iSessionStats[5],
-		iRoundsWin = g_iPlayerInfo[iClient].iSessionStats[7],
-		iRoundsAll = iRoundsWin + g_iPlayerInfo[iClient].iSessionStats[8],
-		iPlayTime = g_iPlayerInfo[iClient].iSessionStats[9] + GetTime(),
-		iDifference = g_iPlayerInfo[iClient].iStats[ST_EXP] - g_iPlayerInfo[iClient].iSessionStats[0];
+	int iSessionStats[LR_StatsType];
 
-	FormatEx(sBuffer, sizeof(sBuffer), iDifference > 0 ? "+%d" : "%d", iDifference);
+	iSessionStats = g_iPlayerInfo[iClient].iSessionStats;
 
-	hMenu.SetTitle("%s | %T\n ", g_sPluginTitle, "MyStatsSessionInfo", iClient, sBuffer, iPlayTime / 3600, iPlayTime / 60 % 60, iPlayTime % 60, iKills, iDeaths, g_iPlayerInfo[iClient].iSessionStats[6], iHeadshots, RoundToCeil(100.0 / (iKills ? iKills : 1) * iHeadshots), iKills / (iDeaths ? float(iDeaths) : 1.0), RoundToCeil(100.0 / (iShots ? iShots : 1) * iHits), RoundToCeil(100.0 / (iRoundsAll ? iRoundsAll : 1) * iRoundsWin));
+	int iRoundsWin = iSessionStats[ST_ROUNDSWIN],
+		iRoundsAll = iRoundsWin + iSessionStats[ST_ROUNDSLOSE],
+		iPlayTime = iSessionStats[ST_PLAYTIME] + GetTime(),
+		iKills = iSessionStats[ST_KILLS],
+		iDeaths = iSessionStats[ST_DEATHS],
+		iHeadshots = iSessionStats[ST_HEADSHOTS],
+		iShots = iSessionStats[ST_SHOOTS];
+
+	hMenu.SetTitle("%s | %T\n ", g_sPluginTitle, "MyStatsSessionInfo", iClient, GetSignValue(g_iPlayerInfo[iClient].iStats[ST_EXP] - iSessionStats[ST_EXP]), GetSignValue(iSessionStats[ST_PLACEINTOP]), iPlayTime / 3600, iPlayTime / 60 % 60, iPlayTime % 60, iKills, iDeaths, iSessionStats[ST_ASSISTS], iHeadshots, RoundToCeil(100.0 / (iKills ? iKills : 1) * iHeadshots), iKills / (iDeaths ? float(iDeaths) : 1.0), RoundToCeil(100.0 / (iShots ? iShots : 1) * iSessionStats[ST_HITS]), RoundToCeil(100.0 / (iRoundsAll ? iRoundsAll : 1) * iRoundsWin));
 
 	FormatEx(sText, sizeof(sText), "%T", "Back", iClient);
 	hMenu.AddItem(NULL_STRING, sText);
@@ -433,17 +423,13 @@ void MyStatsSession(int iClient)
 
 int MyStatsSession_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 {
-	switch(mAction)
+	if(mAction == MenuAction_Select)
 	{
-		case MenuAction_Select:
-		{
-			MyStats(iClient);
-		}
-
-		case MenuAction_End:
-		{
-			hMenu.Close();
-		}
+		MyStats(iClient);
+	}
+	else if(mAction == MenuAction_End)
+	{
+		hMenu.Close();
 	}
 }
 
@@ -467,17 +453,14 @@ void MyStatsReset(int iClient)
 
 int MyStatsReset_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 {
-	switch(mAction)
+	if(mAction == MenuAction_Select)
 	{
-		case MenuAction_Select:
+		if(iSlot)		// No
 		{
-			if(iSlot)		// No
-			{
-				MyStats(iClient);
-
-				return 0;
-			}
-
+			MyStats(iClient);
+		}
+		else
+		{
 			static char sLastResetMyStats[12];
 
 			IntToString(-GetTime(), sLastResetMyStats, sizeof(sLastResetMyStats));
@@ -485,14 +468,11 @@ int MyStatsReset_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot
 
 			ResetPlayerStats(iClient);
 		}
-
-		case MenuAction_End:
-		{
-			hMenu.Close();
-		}
 	}
-
-	return 0;
+	else if(mAction == MenuAction_End)
+	{
+		hMenu.Close();
+	}
 }
 
 void MyPrivilegesSettings(int iClient)
@@ -501,31 +481,28 @@ void MyPrivilegesSettings(int iClient)
 
 	hMenu.SetTitle("%s | %T\n ", g_sPluginTitle, "MainMenu_MyPrivilegesSettings", iClient);
 
-	CallForward_CreatedMenu(LR_SettingMenu, iClient, hMenu);
-
-	hMenu.ExitBackButton = true;
-	hMenu.Display(iClient, MENU_TIME_FOREVER);
+	CallForward_MenuHook(LR_SettingMenu, iClient, hMenu);
 }
 
 int MyPrivilegesSettings_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 {
 	switch(mAction)
 	{
-		case MenuAction_Cancel: 
-		{
-			if(iSlot == MenuCancel_ExitBack) 
-			{
-				MainMenu(iClient);
-			}
-		}
-
 		case MenuAction_Select:
 		{
 			static char sInfo[64];
 
 			hMenu.GetItem(iSlot, sInfo, sizeof(sInfo));
 
-			CallForward_SelectedMenu(LR_SettingMenu, iClient, sInfo);
+			CallForward_MenuHook(LR_SettingMenu, iClient, null, sInfo);
+		}
+
+		case MenuAction_Cancel: 
+		{
+			if(iSlot == MenuCancel_ExitBack) 
+			{
+				MainMenu(iClient);
+			}
 		}
 
 		case MenuAction_End:
@@ -549,24 +526,13 @@ void MenuTop(int iClient)
 	FormatEx(sText, sizeof(sText), "%T", "OverAllTopPlayersTime", iClient);
 	hMenu.AddItem("1", sText);
 
-	CallForward_CreatedMenu(LR_TopMenu, iClient, hMenu);
-
-	hMenu.ExitBackButton = true;
-	hMenu.Display(iClient, MENU_TIME_FOREVER);
+	CallForward_MenuHook(LR_TopMenu, iClient, hMenu);
 }
 
 int MenuTop_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 {
 	switch(mAction)
 	{
-		case MenuAction_Cancel: 
-		{
-			if(iSlot == MenuCancel_ExitBack) 
-			{
-				MainMenu(iClient);
-			}
-		}
-
 		case MenuAction_Select:
 		{
 			static char sInfo[64];
@@ -584,9 +550,20 @@ int MenuTop_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 				{
 					OverAllTopPlayers(iClient, false);
 				}
-			}
 
-			CallForward_SelectedMenu(LR_TopMenu, iClient, sInfo);
+				default:
+				{
+					CallForward_MenuHook(LR_TopMenu, iClient, null, sInfo);
+				}
+			}
+		}
+
+		case MenuAction_Cancel: 
+		{
+			if(iSlot == MenuCancel_ExitBack) 
+			{
+				MainMenu(iClient);
+			}
 		}
 
 		case MenuAction_End:
@@ -601,26 +578,27 @@ void OverAllTopPlayers(int iClient, bool bType = true)
 	if(CheckStatus(iClient))
 	{
 		static char sQuery[128];
-		static const char sTable[][] = {"`playtime` / 3600.0", "`value`"};
+
+		static const char sTable[][] = 
+		{
+			"`playtime` / 3600.0",
+			"`value`"
+		};
 
 		FormatEx(sQuery, sizeof(sQuery), SQL_PrintMenu, sTable[bType], g_sTableName, sTable[bType]);
-		g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | 4 + view_as<int>(bType));		// in database.sp
+		g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | LR_TopPlayersExp + view_as<int>(bType));		// in database.sp
 	}
 }
 
 int OverAllTopPlayers_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 {
-	switch(mAction)
+	if(mAction == MenuAction_Select)
+	{ 
+		MenuTop(iClient);
+	}
+	else if(mAction == MenuAction_End)
 	{
-		case MenuAction_Select: 
-		{
-			MenuTop(iClient);
-		}
-
-		case MenuAction_End:
-		{
-			hMenu.Close();
-		}
+		hMenu.Close();
 	}
 }
 
@@ -656,70 +634,15 @@ void OverAllRanks(int iClient)
 
 int OverAllRanks_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 {
-	switch(mAction)
+	if(mAction == MenuAction_Cancel)
 	{
-		case MenuAction_Cancel:
+		if(iSlot == MenuCancel_ExitBack)
 		{
-			if(iSlot == MenuCancel_ExitBack)
-			{
-				MainMenu(iClient);
-			}
-		}
-
-		case MenuAction_End:
-		{
-			hMenu.Close();
+			MainMenu(iClient);
 		}
 	}
-}
-
-public void OnClientSayCommand_Post(int iClient, const char[] sCommand, const char[] sArgs)
-{
-	if(CheckStatus(iClient))
+	else if(mAction == MenuAction_End)
 	{
-		if(!strcmp(sArgs, "top") || !strcmp(sArgs, "!top"))
-		{
-			OverAllTopPlayers(iClient);
-
-			return;
-		}
-
-		if(!strcmp(sArgs, "toptime") || !strcmp(sArgs, "!toptime"))
-		{
-			OverAllTopPlayers(iClient, false);
-
-			return;
-		}
-
-		if(!strcmp(sArgs, "session") || !strcmp(sArgs, "!session"))
-		{
-			MyStatsSession(iClient);
-
-			return;
-		}
-
-		if(!strcmp(sArgs, "rank") || !strcmp(sArgs, "!rank"))
-		{
-			int iKills = g_iPlayerInfo[iClient].iStats[ST_KILLS],
-				iDeaths = g_iPlayerInfo[iClient].iStats[ST_DEATHS];
-
-			if(g_Settings[LR_ShowRankMessage])
-			{
-				int iPlaceInTop = g_iPlayerInfo[iClient].iStats[ST_PLACEINTOP],
-					iExp = g_iPlayerInfo[iClient].iStats[ST_EXP];
-
-				for(int i = GetMaxPlayers(); --i;)
-				{
-					if(CheckStatus(i)) 
-					{
-						LR_PrintMessage(i, true, false, "%T", "RankPlayer", i, iClient, iPlaceInTop, g_iDBCountPlayers, iExp, iKills, iDeaths, iKills / (iDeaths ? float(iDeaths) : 1.0));
-					}
-				}
-
-				return;
-			}
-
-			LR_PrintMessage(iClient, true, false, "%T", "RankPlayer", iClient, iClient, g_iPlayerInfo[iClient].iStats[ST_PLACEINTOP], g_iDBCountPlayers, g_iPlayerInfo[iClient].iStats[ST_EXP], iKills, iDeaths, iKills / (iDeaths ? float(iDeaths) : 1.0));
-		}
+		hMenu.Close();
 	}
 }

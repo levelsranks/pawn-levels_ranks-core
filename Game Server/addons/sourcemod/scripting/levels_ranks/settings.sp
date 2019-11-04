@@ -1,11 +1,3 @@
-Action Call_ReloadSettings(int iClient, int iArgs)
-{
-	SetSettings();
-	LR_PrintMessage(iClient, true, false, "%T", "ConfigUpdated", iClient);
-
-	return Plugin_Handled;
-}
-
 void SetSettings()
 {
 	static int  iTypeStatistics;

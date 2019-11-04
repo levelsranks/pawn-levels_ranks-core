@@ -103,12 +103,12 @@
 	"MyStatsInfo"
 	{
 		"#format"	"{1:02d},{2:02d},{3:02d},{4:i},{5:i},{6:i},{7:i},{8:i},{9:.2f},{10:i},{11:i}"
-		"en"		"My stats\n \nPlayed: {1} h. {2} m. {3} sec.\n \nKills: {4} \nDeaths: {5} \nAssists: {6} \nHeadshots: {7} [{8}%%] \nKDR: {9} \n \nAccuracy: {10}%% \nWinrate: {11}%%"
-		"ru"		"Моя статистика\n \nСыграно: {1} ч. {2} м. {3} сек.\n \nУбийств: {4} \nСмертей: {5} \nАссистов: {6} \nХедшотов: {7} [{8}%%] \nKDR: {9} \n \nТочность: {10}%% \nВинрейт: {11}%%"
-		"ua"		"Моя статистика\n \nзіграно: {1} ч. {2} м. {3} сек.\n \nВбивств: {4} \nСмертей: {5} \nСприянь: {6} \nПостріли в голову: {7} [{8}%%] \nKDR: {9} \n \nВлучність: {10}%% \nКоефіцієнт виграшу: {11}%%"
-		"es"		"Mis estadísticas\n \nJugado: {1} h. {2} m. {3} seg.\n \nMatado: {4} \nMuerto: {5} \nAsistencias: {6} \nHeadshots: {7} ({8}%%) \nKDR: {9} \n \nPrecisión: {10}%% \nRatio de victorias: {11}%%"
-		"chi"		"我的数据\n \n已游玩: {1} 小时 {2} 分 {3} 秒\n \n击杀: {4} \n死亡: {5} \n助攻: {6} \n爆头: {7} [{8}%%] \nK/D比: {9} \n \n精准度: {10}%% \n胜率: {11}%%"
-		"de"		"Meine Statistiken\n \nGespielt: {1} s {2} m {3} sek\n \nKills: {4} \nTode: {5} \nAssists: {6} \nKopfschüsse: {7} [{8}%%] \nKD: {9} \n \nGenauigkeit: {10}%% \nGewinnrate: {11}%%"
+		"en"		"My stats\n \nPlayed: {1} h. {2} m. {3} sec.\n \nKills: {4}\nDeaths: {5}\nAssists: {6}\nHeadshots: {7} ({8}%%) \nKDR: {9}\n \nAccuracy: {10}%%\nWinrate: {11}%%"
+		"ru"		"Моя статистика\n \nСыграно: {1} ч. {2} м. {3} сек.\n \nУбийств: {4}\nСмертей: {5}\nАссистов: {6}\nХедшотов: {7} ({8}%%)\nKDR: {9}\n \nТочность: {10}%%\nВинрейт: {11}%%"
+		"ua"		"Моя статистика\n \nзіграно: {1} ч. {2} м. {3} сек.\n \nВбивств: {4}\nСмертей: {5}\nСприянь: {6}\nПостріли в голову: {7} ({8}%%)\nKDR: {9}\n \nВлучність: {10}%%\nКоефіцієнт виграшу: {11}%%"
+		"chi"		"我的数据\n \n已游玩: {1} 小时 {2} 分 {3} 秒\n \n击杀: {4}\n死亡: {5}\n助攻: {6}\n爆头: {7} ({8}%%)\nK/D比: {9}\n \n精准度: {10}%%\n胜率: {11}%%"
+		"es"		"Mis estadísticas\n \nJugado: {1} h. {2} m. {3} seg.\n \nMatado: {4}\nMuerto: {5}\nAsistencias: {6}\nHeadshots: {7} ({8}%%)\nKDR: {9}\n \nPrecisión: {10}%%\nRatio de victorias: {11}%%"
+		"de"		"Meine Statistiken\n \nGespielt: {1} s {2} m {3} sek\n \nKills: {4}\nTode: {5}\nAssists: {6}\nKopfschüsse: {7} ({8}%%)\nKD: {9}\n \nGenauigkeit: {10}%%\nGewinnrate: {11}%%"
 	}
 	"MyStatsSession"
 	{
@@ -121,13 +121,13 @@
 	}
 	"MyStatsSessionInfo"
 	{
-		"#format"	"{1:s},{2:02d},{3:02d},{4:02d},{5:i},{6:i},{7:i},{8:i},{9:i},{10:.2f},{11:i},{12:i}"
-		"en"		"Session data\n \nExp. points: {1} \nPlayed: {2} h {3} m {4} sec\n \nKills: {5} \nDeaths: {6} \nAssists: {7} \nHeadshots: {8} [{9}%%] \nKDR: {10} \n \nAccuracy: {11}%% \nWinrate: {12}%%"
-		"ru"		"Данные за сессию\n \nОчки опыта: {1} \nСыграно: {2} ч {3} м {4} сек\n \nУбийств: {5} \nСмертей: {6} \nАссистов: {7} \nХедшотов: {8} [{9}%%] \nKDR: {10} \n \nТочность: {11}%% \nВинрейт: {12}%%"
-		"ua"		"Дані за сесію\n \nПоинті досвіду: {1} \nЗіграно: {2} ч {3} м {4} сек\n \nВбивств: {5} \nСмертей: {6} \nСприянь: {7} \nПостріли в голову: {8} [{9}%%] \nKDR: {10} \n \nВлучність: {11}%% \nКоефіцієнт виграшу: {12}%%"
-		"chi"		"会话数据\n \n经验值. 点数: {1} \n已游玩: {2} 小时 {3} 分 {4} 秒\n \n击杀: {5} \n死亡: {6} \n助攻: {7} \n爆头: {8} [{9}%%] \nK/D比: {10} \n \n精准度: {11}%% \n胜率: {12}%%"
-		"es"		"Mis estadísticas\n \nJugado: {1} h. {2} m. {3} seg.\n \nMatado: {4} \nMuerto: {5} \nAsistencias: {6} \nHeadshots: {7} ({8}%%) \nKDR: {9} \n \nPrecisión: {10}%% \nRatio de victorias: {11}%%"
-		"de"		"Sitzungsdaten\n \nErfahrungspunkte: {1} \nGespielt: {2} h {3} m {4} sek\n \nKills: {5} \nTode: {6} \nAssists: {7} \nKopfschüsse: {8} [{9}%%] \nKD: {10} \n \nGenauigkeit: {11}%% \nGewinnrate: {12}%%"
+		"#format"	"{1:s},{2:s},{3:02d},{4:02d},{5:02d},{6:i},{7:i},{8:i},{9:i},{10:i},{11:.2f},{12:i},{13:i}"
+		"en"		"Session data\n \nExp. points: {1} \nPlace: {2}\n \nPlayed: {3} h {4} m {5} sec\n \nKills: {6}\nDeaths: {7}\nAssists: {8}\nHeadshots: {9} ({10}%%)\nKDR: {11}\n \nAccuracy: {12}%%\nWinrate: {13}%%"
+		"ru"		"Данные за сессию\n \nОчки опыта: {1}\nМесто в топе: {2}\n \nСыграно: {3} ч {4} м {5} сек\n \nУбийств: {6}\nСмертей: {7}\nАссистов: {8}\nХедшотов: {9} ({10}%%)\nKDR: {11}\n \nТочность: {12}%%\nВинрейт: {13}%%"
+		"ua"		"Дані за сесію\n \nПоинті досвіду: {1}\nМісце в топі: {2}\n \nЗіграно: {3} ч {4} м {5} сек\n \nВбивств: {6}\nСмертей: {7}\nСприянь: {8}\nПостріли в голову: {9} ({10}%%)\nKDR: {11}\n \nВлучність: {12}%%\nКоефіцієнт виграшу: {13}%%"
+		"chi"		"当前数据, 会话数据\n \n经验值. 点数: {1}\n放置在顶部: {2}\n \n已游玩: {3} 小时 {3} 分 {5} 秒\n \n击杀: {6}\n死亡: {7}\n助攻: {8}\n爆头: {9} ({10}%%)\nK/D比: {11}\n \n精准度: {12}%%\n胜率: {13}%%"
+		"es"		"Datos de la sesión\n \nPuntos exp.: {1}\nLugar: {2}\n \nJugado: {3} h {4} m {5} seg\n \nMatado: {6}\nMuerto: {7}\nAsistencias: {8}\nHeadshots: {9} ({10}%% \nKDR: {11}\n \nPrecisión: {12}%%\nRatio de victorias: {13}%%"
+		"de"		"Sitzungsdaten\n \nErfahrungspunkte: {1}\nPlatz: {2}\n \nGespielt: {3} s {4} m {5} sek\n \nKills: {6}\nTode: {7}\nAssists: {8}\nKopfschüsse: {9} ({10}%%)\nKD: {11}\n \nGenauigkeit: {12}%%\nGewinnrate: {13}%%"
 	}
 	"MyStatsReset"
 	{
@@ -211,6 +211,15 @@
 		"chi"		"{1} - [ {2} 小时 ] - {3}"
 		"es"		"{1} - [ {2} h. ] - {3}"
 		"de"		"{1} - [ {2} Stunden ] - {3}"
+	}
+	"You"
+	{
+		"en"		"(You)"
+		"ru"		"(Вы)"
+		"ua"		"(Ви)"
+		"chi"		"(你)"
+		"es"		"(Tú)"
+		"de"		"(Ihr)"
 	}
 	"NoData"
 	{
