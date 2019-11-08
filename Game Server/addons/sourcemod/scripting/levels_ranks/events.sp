@@ -191,13 +191,13 @@ void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 						}
 					}
 
-					g_bAllowStatistic = iPlayers >= g_Settings[LR_MinplayersCount] && !(g_Settings[LR_BlockWarmup] && g_iEngine == Engine_CSGO && GameRules_GetProp("m_bWarmupPeriod", 1));
+					bool bWarningMessage = iPlayers < g_Settings[LR_MinplayersCount];
+
+					g_bAllowStatistic = !bWarningMessage && !(g_Settings[LR_BlockWarmup] && g_iEngine == Engine_CSGO && GameRules_GetProp("m_bWarmupPeriod", 1));
 					g_bRoundEndGiveExp = true;
 
 					if(g_Settings[LR_ShowSpawnMessage])
 					{
-						bool bWarningMessage = iPlayers < g_Settings[LR_MinplayersCount];
-
 						for(int i = GetMaxPlayers(); --i;)
 						{
 							if(IsClientInGame(i))

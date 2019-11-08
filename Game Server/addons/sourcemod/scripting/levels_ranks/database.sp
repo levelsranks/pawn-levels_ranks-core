@@ -25,7 +25,7 @@
 	`value`, \
 	`lastconnect`\
 ) \
-VALUES ('STEAM_%i:%i:%i', '%s', %i, %i);"
+VALUES ('%s', '%s', %i, %i);"
 
 #define SQL_LoadData \
 "SELECT \
@@ -65,7 +65,7 @@ WHERE \
 	`playtime` = %i, \
 	`lastconnect` = %i \
 WHERE \
-	`steam` = 'STEAM_%i:%i:%i';"
+	`steam` = '%s';"
 
 #define SQL_UpdateCleanBanClient \
 "UPDATE `%s` SET\
@@ -120,14 +120,19 @@ void ConnectDB()
 		KeyValues hKv = new KeyValues(NULL_STRING, "driver", "sqlite");
 
 		hKv.SetString("database", "lr_base");
-		ConnectToDatabase(SQL_ConnectCustom(hKv, sError, sizeof(sError), false), sError, 0);
+
+		// For formatting sError. Reading function arguments from right to left about ConnectToDatabase().
+		Database hDatabase = SQL_ConnectCustom(hKv, sError, sizeof(sError), false);
+
+		ConnectToDatabase(hDatabase, sError, 0);
+
 		hKv.Close();
 	}
 }
 
 void ConnectToDatabase(Database hDatabase, const char[] sError, any NULL)
 {
-	char sIdent[2], sQuery[768];
+	static char sIdent[2], sQuery[768];
 
 	if(sError[0])
 	{
@@ -150,41 +155,27 @@ void ConnectToDatabase(Database hDatabase, const char[] sError, any NULL)
 
 	if(!g_bDatabaseSQLite)
 	{
-		FormatEx(sQuery, strlen(sQuery), "ALTER TABLE `%s` MODIFY COLUMN `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL default '' AFTER `steam`;", g_sTableName);
-		hDatabase.Query(SQL_Callback, sQuery);
+		FormatEx(sQuery, sizeof(sQuery), "ALTER TABLE `%s` MODIFY COLUMN `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL default '' AFTER `steam`;", g_sTableName);
+		hDatabase.Query(SQL_Callback, sQuery, -1);
 	}
 }
 
 void AuthAllPlayer()
 {
-	static char sSteamID[22];
-
 	for(int i = GetMaxPlayers(); --i;)
 	{
 		if(IsClientAuthorized(i) && !IsFakeClient(i))
 		{
 			g_iPlayerInfo[i] = g_iInfoNULL;
 
-			GetClientAuthId(i, AuthId_Steam2, sSteamID, sizeof(sSteamID));
-			OnClientAuthorized(i, sSteamID);
+			OnClientAuthorized(i, GetSteamID2(GetSteamAccountID(i)));
 		}
-	}
-}
-
-void GetPlacePlayer(int iClient)
-{
-	if(g_hDatabase)
-	{
-		static char sQuery[256];
-
-		FormatEx(sQuery, sizeof(sQuery), SQL_GetPlace, g_sTableName, g_iPlayerInfo[iClient].iStats[ST_EXP], g_sTableName, g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime());
-		g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | LR_GetPlacePlayer);
 	}
 }
 
 void OnCleanDB()
 {
-	if(g_Settings[LR_CleanDB_Days])
+	if(g_hDatabase && g_Settings[LR_CleanDB_Days])
 	{
 		static char sQuery[256];
 
@@ -195,23 +186,26 @@ void OnCleanDB()
 
 public void OnClientAuthorized(int iClient, const char[] sAuth)
 {
-	int iSteamIDType = 0;
-
-	if(sAuth[0] == 'S' && sAuth[7] == ':')
+	if(g_hDatabase)
 	{
-		iSteamIDType = 2;
-	}
-	else if(sAuth[0] == '[' && sAuth[1] == 'U')		// for CS:S v34
-	{
-		iSteamIDType = 3;
-	}
+		int iSteamIDType = 0;
 
-	if(iSteamIDType && g_hDatabase && (g_iPlayerInfo[iClient].iAccountID = iSteamIDType == 2 ? (StringToInt(sAuth[10]) << 1 | sAuth[8] - '0') : StringToInt(sAuth[5])))
-	{
-		static char sQuery[512];
+		if(sAuth[0] == 'S' && sAuth[7] == ':')
+		{
+			iSteamIDType = 2;
+		}
+		else if(sAuth[0] == '[' && sAuth[1] == 'U')		// for CS:S v34
+		{
+			iSteamIDType = 3;
+		}
 
-		FormatEx(sQuery, sizeof(sQuery), SQL_LoadData, g_sTableName, g_sTableName, g_sTableName, sAuth);
-		g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | LR_LoadDataPlayer);
+		if(iSteamIDType && (g_iPlayerInfo[iClient].iAccountID = iSteamIDType == 2 ? GetAccountID(sAuth) : StringToInt(sAuth[5])))
+		{
+			static char sQuery[512];
+
+			FormatEx(sQuery, sizeof(sQuery), SQL_LoadData, g_sTableName, g_sTableName, g_sTableName, sAuth);
+			g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | LR_LoadDataPlayer);
+		}
 	}
 }
 
@@ -225,7 +219,7 @@ public Action OnBanClient(int iClient, int iTime, int iFlags, const char[] sReas
 
 public Action OnBanIdentity(const char[] sIdEntity, int iTime, int iFlags, const char[] sReason, const char[] sCommand, any Source)
 {
-	if(g_Settings[LR_CleanDB_BanClient] && !strncmp(sIdEntity, "STEAM_", 6) && sIdEntity[7] == ':')
+	if(g_hDatabase && g_Settings[LR_CleanDB_BanClient] && !strncmp(sIdEntity, "STEAM_", 6) && sIdEntity[7] == ':')
 	{
 		static char sQuery[256];
 
@@ -243,13 +237,11 @@ void SaveDataPlayer(int iClient, bool bDisconnect = false)
 {
 	if(CheckStatus(iClient) && (g_hDatabase || bDisconnect))
 	{
-		int iAccountID = g_iPlayerInfo[iClient].iAccountID;
-
 		static char sQuery[1024];
 
 		Transaction hTransaction = g_hDatabase ? new Transaction() : g_hTransactionLossDB;
 
-		FormatEx(sQuery, sizeof(sQuery), SQL_UpdateData, g_sTableName, g_iPlayerInfo[iClient].iStats[ST_EXP], GetPlayerName(iClient), g_iPlayerInfo[iClient].iStats[ST_RANK], g_iPlayerInfo[iClient].iStats[ST_KILLS], g_iPlayerInfo[iClient].iStats[ST_DEATHS], g_iPlayerInfo[iClient].iStats[ST_SHOOTS], g_iPlayerInfo[iClient].iStats[ST_HITS], g_iPlayerInfo[iClient].iStats[ST_HEADSHOTS], g_iPlayerInfo[iClient].iStats[ST_ASSISTS], g_iPlayerInfo[iClient].iStats[ST_ROUNDSWIN], g_iPlayerInfo[iClient].iStats[ST_ROUNDSLOSE], g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime(), g_iPlayerInfo[iClient].iSessionStats[ST_PLAYTIME] == -1 ? 0 : GetTime(), g_iEngine == Engine_CSGO, iAccountID & 1, iAccountID >>> 1);
+		FormatEx(sQuery, sizeof(sQuery), SQL_UpdateData, g_sTableName, g_iPlayerInfo[iClient].iStats[ST_EXP], GetPlayerName(iClient), g_iPlayerInfo[iClient].iStats[ST_RANK], g_iPlayerInfo[iClient].iStats[ST_KILLS], g_iPlayerInfo[iClient].iStats[ST_DEATHS], g_iPlayerInfo[iClient].iStats[ST_SHOOTS], g_iPlayerInfo[iClient].iStats[ST_HITS], g_iPlayerInfo[iClient].iStats[ST_HEADSHOTS], g_iPlayerInfo[iClient].iStats[ST_ASSISTS], g_iPlayerInfo[iClient].iStats[ST_ROUNDSWIN], g_iPlayerInfo[iClient].iStats[ST_ROUNDSLOSE], g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime(), g_iPlayerInfo[iClient].iSessionStats[ST_PLAYTIME] == -1 ? 0 : GetTime(), GetSteamID2(g_iPlayerInfo[iClient].iAccountID));
 		hTransaction.AddQuery(sQuery);
 
 		CallForward_OnPlayerSaved(iClient, hTransaction);
@@ -265,7 +257,11 @@ void SaveDataPlayer(int iClient, bool bDisconnect = false)
 		}
 		else
 		{
-			GetPlacePlayer(iClient);
+			if(g_hDatabase)
+			{
+				FormatEx(sQuery, sizeof(sQuery), SQL_GetPlace, g_sTableName, g_iPlayerInfo[iClient].iStats[ST_EXP], g_sTableName, g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime());
+				g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | LR_GetPlacePlayer);
+			}
 		}
 	}
 }
@@ -275,8 +271,8 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 	if(!g_hDatabase)
 	{
 		LogError("Miss SQL request! Data: %i", iData);
-	} 
-	else if(!hResult && iData)
+	}
+	else if(!hResult && iData != -1)
 	{
 		if(StrContains(sError, g_sConnectionError, false) != -1)
 		{
@@ -354,11 +350,9 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 						}
 						else if(g_hDatabase)
 						{
-							int iAccountID = g_iPlayerInfo[iClient].iAccountID;
+							static char sQuery[256];
 
-							static char sQuery[512];
-
-							FormatEx(sQuery, sizeof(sQuery), SQL_CreateData, g_sTableName, g_iEngine == Engine_CSGO, iAccountID & 1, iAccountID >>> 1, GetPlayerName(iClient), g_Settings[LR_TypeStatistics] ? 1000 : 0, GetTime());
+							FormatEx(sQuery, sizeof(sQuery), SQL_CreateData, g_sTableName, GetSteamID2(g_iPlayerInfo[iClient].iAccountID), GetPlayerName(iClient), g_Settings[LR_TypeStatistics] ? 1000 : 0, GetTime());
 							g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | LR_CreateDataPlayer);
 						}
 					}
@@ -380,17 +374,18 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 
 					if(hResult.RowCount)
 					{
-						int iPlace = g_iPlayerInfo[iClient].iStats[ST_PLACEINTOP + view_as<int>(!bType)];
+						int iAccountID = g_iPlayerInfo[iClient].iAccountID;
 
 						for(int j = 1; hResult.FetchRow(); j++)
 						{
 							hResult.FetchString(0, sName, sizeof(sName));
-
-							FormatEx(sText[strlen(sText)], 64, iPlace == j ? "%T %T\n" : "%T\n", sFrase, iClient, j, bType ? hResult.FetchInt(1) : view_as<int>(hResult.FetchFloat(1)), sName, "You", iClient);
+							FormatEx(sText[strlen(sText)], 64, hResult.FetchInt(1) == iAccountID && !(iAccountID = 0) ? "%T %T\n" : "%T\n", sFrase, iClient, j, bType ? hResult.FetchInt(2) : view_as<int>(hResult.FetchFloat(2)), sName, "You", iClient);
 						}
 
-						if(iPlace > 10)
+						if(iAccountID)
 						{
+							int iPlace = g_iPlayerInfo[iClient].iStats[ST_PLACEINTOP + view_as<int>(!bType)];
+
 							GetClientName(iClient, sName, sizeof(sName));
 							FormatEx(sText[strlen(sText)], 64, "%s\n%T %T\n ", iPlace == 11 ? NULL_STRING : "...", sFrase, iClient, iPlace, g_iPlayerInfo[iClient].iStats[ST_EXP], sName, "You", iClient);
 						}

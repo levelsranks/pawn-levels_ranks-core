@@ -33,7 +33,7 @@ Action Call_ResetData(int iArgs)
 	{
 		int iType = -1;
 
-		static char sBuffer[512];
+		static char sBuffer[256];
 
 		GetCmdArg(1, sBuffer, 8);
 
@@ -104,7 +104,7 @@ Action Call_ResetPlayer(int iClient, int iArgs)
 
 		GetCmdArg(1, sBuffer, 65);
 
-		int iAccountID = (!strncmp(sBuffer, "STEAM_", 6) && sBuffer[7] == ':') ? (StringToInt(sBuffer[10]) << 1 | sBuffer[8] - '0') : 0;
+		int iAccountID = (!strncmp(sBuffer, "STEAM_", 6) && sBuffer[7] == ':') ? GetAccountID(sBuffer) : 0;
 
 		if((iTargets = ProcessTargetString(sBuffer, iClient, iTargetList, sizeof(iTargetList), COMMAND_FILTER_NO_BOTS, sBuffer, sizeof(sBuffer), bTargetIsMl)) < 1 && !iAccountID)
 		{

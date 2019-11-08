@@ -1,4 +1,4 @@
-#define SQL_PrintMenu "SELECT `name`, %s FROM `%s` WHERE `lastconnect` != 0 ORDER BY %.10s DESC LIMIT 10;"
+#define SQL_PrintMenu "SELECT `name`, SUBSTR(`steam`, 11) << 1 | SUBSTR(`steam`, 9, 1) AS `accountid`, %s FROM `%s` WHERE `lastconnect` ORDER BY %.10s DESC LIMIT 10;"
 
 void MainMenu(int iClient)
 {
@@ -125,11 +125,7 @@ int MenuAdmin_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 
 			if(GetForwardFunctionCount(g_hForward_SelectedMenu[LR_AdminMenu]))
 			{
-				static char sInfo[64];
-
-				hMenu.GetItem(iSlot, sInfo, sizeof(sInfo));
-
-				CallForward_MenuHook(LR_AdminMenu, iClient, null, sInfo);
+				CallForward_MenuHook(LR_AdminMenu, iClient, hMenu, iSlot);
 			}
 		}
 
@@ -308,7 +304,7 @@ void MyStats(int iClient)
 	{
 		int iCooldown = 0;
 
-		static char sData[12];
+		static char sData[16];
 
 		g_hLastResetMyStats.Get(iClient, sData, sizeof(sData));
 
@@ -338,7 +334,7 @@ int MyStats_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 	{
 		case MenuAction_Select:
 		{
-			char sInfo[2];
+			static char sInfo[2];
 
 			hMenu.GetItem(iSlot, sInfo, sizeof(sInfo));
 
@@ -373,11 +369,7 @@ int MyStatsSecondary_Callback(Menu hMenu, MenuAction mAction, int iClient, int i
 	{
 		case MenuAction_Select:
 		{
-			static char sInfo[64];
-
-			hMenu.GetItem(iSlot, sInfo, sizeof(sInfo));
-
-			CallForward_MenuHook(LR_MyStatsSecondary, iClient, null, sInfo);
+			CallForward_MenuHook(LR_MyStatsSecondary, iClient, hMenu, iSlot);
 		}
 
 		case MenuAction_Cancel: 
@@ -435,7 +427,7 @@ int MyStatsSession_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSl
 
 void MyStatsReset(int iClient)
 {
-	char sText[192];
+	static char sText[192];
 
 	Menu hMenu = new Menu(MyStatsReset_Callback);
 
@@ -490,11 +482,7 @@ int MyPrivilegesSettings_Callback(Menu hMenu, MenuAction mAction, int iClient, i
 	{
 		case MenuAction_Select:
 		{
-			static char sInfo[64];
-
-			hMenu.GetItem(iSlot, sInfo, sizeof(sInfo));
-
-			CallForward_MenuHook(LR_SettingMenu, iClient, null, sInfo);
+			CallForward_MenuHook(LR_SettingMenu, iClient, hMenu, iSlot);
 		}
 
 		case MenuAction_Cancel: 
@@ -535,7 +523,7 @@ int MenuTop_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 	{
 		case MenuAction_Select:
 		{
-			static char sInfo[64];
+			static char sInfo[2];
 
 			hMenu.GetItem(iSlot, sInfo, sizeof(sInfo));
 
@@ -553,7 +541,7 @@ int MenuTop_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 
 				default:
 				{
-					CallForward_MenuHook(LR_TopMenu, iClient, null, sInfo);
+					CallForward_MenuHook(LR_TopMenu, iClient, hMenu, iSlot);
 				}
 			}
 		}
@@ -577,7 +565,7 @@ void OverAllTopPlayers(int iClient, bool bType = true)
 {
 	if(CheckStatus(iClient))
 	{
-		static char sQuery[128];
+		static char sQuery[256];
 
 		static const char sTable[][] = 
 		{

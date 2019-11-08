@@ -206,7 +206,7 @@ int Native_ChangeClientValue(Handle hPlugin, int iArgs)
 
 int Native_RoundWithoutValue(Handle hPlugin, int iArgs)
 {
-	g_bRoundAllowExp = true;
+	g_bRoundAllowExp = false;
 }
 
 int Native_ShowMenu(Handle hPlugin, int iArgs)
@@ -321,15 +321,15 @@ void CallForward_OnPlayerSaved(int iClient, Transaction hTransaction)
 	Call_Finish();
 }
 
-void CallForward_MenuHook(int iMenuType, int iClient, Menu hMenu, char[] sInfo = NULL_STRING)
+void CallForward_MenuHook(int iMenuType, int iClient, Menu hMenu, int iSlot = -1)
 {
 	static int iSelectPosition = 0;
 
-	Call_StartForward(hMenu ? g_hForward_CreatedMenu[iMenuType] : g_hForward_SelectedMenu[iMenuType]);
+	Call_StartForward(iSlot == -1 ? g_hForward_CreatedMenu[iMenuType] : g_hForward_SelectedMenu[iMenuType]);
 	Call_PushCell(iMenuType);
 	Call_PushCell(iClient);
 
-	if(hMenu)
+	if(iSlot == -1)
 	{
 		Call_PushCell(hMenu);
 		Call_Finish();
@@ -339,7 +339,11 @@ void CallForward_MenuHook(int iMenuType, int iClient, Menu hMenu, char[] sInfo =
 	}
 	else
 	{
-		iSelectPosition = GetMenuSelectionPosition();
+		static char sInfo[64];
+
+		hMenu.GetItem(iSlot, sInfo, sizeof(sInfo));
+
+		iSelectPosition = hMenu.Selection;
 
 		Call_PushString(sInfo);
 		Call_Finish();

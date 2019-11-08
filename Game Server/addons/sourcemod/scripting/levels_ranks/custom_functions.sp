@@ -2,7 +2,8 @@ void LR_PrintMessage(int iClient, bool bPrefix, bool bNative, const char[] sForm
 {
 	if(iClient && IsClientInGame(iClient) && !IsFakeClient(iClient))
 	{
-		static char sMessage[384];
+		// Maximum size, in CS:GO Panorama.
+		static char sMessage[2048];
 
 		static const char sColorsBefore[][] =
 		{
@@ -97,7 +98,7 @@ void LR_PrintMessage(int iClient, bool bPrefix, bool bNative, const char[] sForm
 				}
 			}
 
-			Handle hMessage = StartMessageOne("SayText2", iClient, USERMSG_RELIABLE | USERMSG_BLOCKHOOKS);
+			Handle hMessage = StartMessageOne("SayText", iClient, USERMSG_RELIABLE);
 
 			if(hMessage)
 			{
@@ -105,22 +106,17 @@ void LR_PrintMessage(int iClient, bool bPrefix, bool bNative, const char[] sForm
 				{
 					Protobuf hProtobuf = view_as<Protobuf>(hMessage);
 
-					hProtobuf.SetInt("ent_idx", iClient);
+					hProtobuf.SetInt("ent_idx", 0);
+					hProtobuf.SetString("text", sMessage);
 					hProtobuf.SetBool("chat", true);
-					hProtobuf.SetString("msg_name", sMessage);
-
-					for(int i = 0; i != 4; i++)
-					{
-						hProtobuf.AddString("params", NULL_STRING);
-					}
 				}
 				else
 				{
 					BfWrite hMessageStack = view_as<BfWrite>(hMessage);
 
-					hMessageStack.WriteByte(iClient);
-					hMessageStack.WriteByte(true);
+					hMessageStack.WriteByte(0);
 					hMessageStack.WriteString(sMessage);
+					hMessageStack.WriteByte(true);
 				}
 
 				EndMessage();
@@ -136,6 +132,7 @@ int GetMaxPlayers()
 	return (iSlots < MaxClients + 1 ? iSlots : MaxClients) + 1;
 }
 
+
 char[] GetPlayerName(int iClient)
 {
 	static char sName[65];
@@ -144,6 +141,26 @@ char[] GetPlayerName(int iClient)
 	g_hDatabase.Escape(sName, sName, sizeof(sName));
 
 	return sName;
+}
+
+int GetAccountID(const char[] sSteamID2)
+{
+	return StringToInt(sSteamID2[10]) << 1 | sSteamID2[8] - '0';
+}
+
+char[] GetSteamID2(int iAccountID)
+{
+	static char sSteamID2[22] = "STEAM_";
+
+	if(!sSteamID2[6])
+	{
+		sSteamID2[6] = '0' + view_as<int>(g_iEngine == Engine_CSGO);
+		sSteamID2[7] = ':';
+	}
+
+	FormatEx(sSteamID2[8], 14, "%i:%i", iAccountID & 1, iAccountID >>> 1);
+
+	return sSteamID2;
 }
 
 bool NotifClient(int iClient, int iValue, char[] sTitlePhrase)
@@ -225,7 +242,7 @@ void CheckRank(int iClient, bool bActive = true)
 
 					if(0 < iNewRank < iMaxRanks && iNewRank != iOldRank)
 					{
-						iRank = iNewRank;
+						g_iPlayerInfo[iClient].iStats[ST_RANK] = iRank = iNewRank;
 					}
 					else
 					{
