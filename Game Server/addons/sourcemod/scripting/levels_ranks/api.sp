@@ -158,7 +158,7 @@ int Native_GetClientInfo(Handle hPlugin, int iArgs)
 {
 	int iType = GetNativeCell(2);
 
-	return iArgs == 3 && GetNativeCell(3) ? g_iPlayerInfo[GetNativeCell(1)].iSessionStats[iType] + (iType == ST_PLAYTIME ? GetTime() : 0) : g_iPlayerInfo[GetNativeCell(1)].iStats[iType];
+	return (iArgs == 3 && GetNativeCell(3) ? g_iPlayerInfo[GetNativeCell(1)].iSessionStats[iType] : g_iPlayerInfo[GetNativeCell(1)].iStats[iType]) + (iType == ST_PLAYTIME ? GetTime() : 0);
 }
 
 int Native_ResetPlayerStats(Handle hPlugin, int iArgs)
