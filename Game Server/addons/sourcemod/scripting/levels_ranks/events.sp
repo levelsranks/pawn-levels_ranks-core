@@ -128,8 +128,6 @@ void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 
 				case 'e':	// round_end
 				{
-					g_bRoundAllowExp = true;
-
 					int iWinTeam = GetEventInt(hEvent, "winner");
 
 					if(iWinTeam > 1)
@@ -194,7 +192,7 @@ void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 					bool bWarningMessage = iPlayers < g_Settings[LR_MinplayersCount];
 
 					g_bAllowStatistic = !bWarningMessage && !(g_Settings[LR_BlockWarmup] && g_iEngine == Engine_CSGO && GameRules_GetProp("m_bWarmupPeriod", 1));
-					g_bRoundEndGiveExp = true;
+					g_bRoundEndGiveExp = g_bRoundAllowExp = true;
 
 					if(g_Settings[LR_ShowSpawnMessage])
 					{
