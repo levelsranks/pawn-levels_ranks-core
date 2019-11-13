@@ -154,11 +154,11 @@ public void OnClientSayCommand_Post(int iClient, const char[] sCommand, const ch
 	{
 		if(!strcmp(sArgs, "top") || !strcmp(sArgs, "!top"))
 		{
-			OverAllTopPlayers(iClient);			// in menus.sp
+			OverAllTopPlayers(iClient, false);			// in menus.sp
 		}
 		else if(!strcmp(sArgs, "toptime") || !strcmp(sArgs, "!toptime"))
 		{
-			OverAllTopPlayers(iClient, false);	// in menus.sp
+			OverAllTopPlayers(iClient);	// in menus.sp
 		}
 		else if(!strcmp(sArgs, "session") || !strcmp(sArgs, "!session"))
 		{

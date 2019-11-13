@@ -42,8 +42,7 @@ void LR_PrintMessage(int iClient, bool bPrefix, bool bNative, const char[] sForm
 			}
 			else if(g_iEngine == Engine_CSGO)
 			{
-				strcopy(sMessage[1], sizeof(sMessage) - 1, sMessage);
-				sMessage[0] = ' ';
+				Format(sMessage, sizeof(sMessage), " %s",sMessage );
 			}
 
 			if(g_iEngine != Engine_SourceSDK2006)

@@ -1,8 +1,8 @@
 #define SQL_CreateTable \
 "CREATE TABLE IF NOT EXISTS `%s` \
 (\
-	`steam` varchar(22)%s NOT NULL PRIMARY KEY DEFAULT '', \
-	`name` varchar(32)%s NOT NULL DEFAULT '', \
+	`steam` varchar(22)%s PRIMARY KEY, \
+	`name` varchar(32)%s, \
 	`value` int NOT NULL DEFAULT 0, \
 	`rank` int NOT NULL DEFAULT 0, \
 	`kills` int NOT NULL DEFAULT 0, \
@@ -367,10 +367,10 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 
 					static char sName[32];
 
-					strcopy(sFrase[17], 8, bType ? "Exp" : "Time");
+					strcopy(sFrase[17], 8, bType ? "Time" : "Exp");
 					FormatEx(sText, sizeof(sText), "%s | %T\n \n", g_sPluginTitle, sFrase, iClient);
 
-					strcopy(sFrase[21 - view_as<int>(bType)], 8, "_Slot");
+					strcopy(sFrase[21 - view_as<int>(!bType)], 8, "_Slot");
 
 					if(hResult.RowCount)
 					{
@@ -379,15 +379,15 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 						for(int j = 1; hResult.FetchRow(); j++)
 						{
 							hResult.FetchString(0, sName, sizeof(sName));
-							FormatEx(sText[strlen(sText)], 64, hResult.FetchInt(1) == iAccountID && !(iAccountID = 0) ? "%T %T\n" : "%T\n", sFrase, iClient, j, bType ? hResult.FetchInt(2) : view_as<int>(hResult.FetchFloat(2)), sName, "You", iClient);
+							FormatEx(sText[strlen(sText)], 64, hResult.FetchInt(1) == iAccountID && !(iAccountID = 0) ? "%T %T\n" : "%T\n", sFrase, iClient, j, bType ? view_as<int>(hResult.FetchFloat(2)) : hResult.FetchInt(2), sName, "You", iClient);
 						}
 
 						if(iAccountID)
 						{
-							int iPlace = g_iPlayerInfo[iClient].iStats[ST_PLACEINTOP + view_as<int>(!bType)];
+							int iPlace = g_iPlayerInfo[iClient].iStats[ST_PLACEINTOP + view_as<int>(bType)];
 
 							GetClientName(iClient, sName, sizeof(sName));
-							FormatEx(sText[strlen(sText)], 64, "%s\n%T %T\n ", iPlace == 11 ? NULL_STRING : "...", sFrase, iClient, iPlace, g_iPlayerInfo[iClient].iStats[ST_EXP], sName, "You", iClient);
+							FormatEx(sText[strlen(sText)], 64, "%s\n%T %T\n ", iPlace == 11 ? NULL_STRING : "...", sFrase, iClient, iPlace, bType ? view_as<int>((g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime()) / 3600.0) : g_iPlayerInfo[iClient].iStats[ST_EXP], sName, "You", iClient);
 						}
 						else
 						{
@@ -430,6 +430,7 @@ public void SQL_TransactionCallback(Database hDatabase, int iType, int iQueries,
 
 			Call_StartForward(g_hForward_OnCoreIsReady);
 			Call_Finish();
+
 
 			delete g_hForward_OnCoreIsReady;
 		}

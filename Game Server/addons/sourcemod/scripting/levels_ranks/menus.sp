@@ -529,14 +529,9 @@ int MenuTop_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 
 			switch(sInfo[0])
 			{
-				case '0':
+				case '0', '1':
 				{
-					OverAllTopPlayers(iClient);
-				}
-
-				case '1':
-				{
-					OverAllTopPlayers(iClient, false);
+					OverAllTopPlayers(iClient, sInfo[0] == '1');
 				}
 
 				default:
@@ -561,7 +556,7 @@ int MenuTop_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 	}
 }
 
-void OverAllTopPlayers(int iClient, bool bType = true)
+void OverAllTopPlayers(int iClient, bool bPlaytime = true)
 {
 	if(CheckStatus(iClient))
 	{
@@ -569,12 +564,12 @@ void OverAllTopPlayers(int iClient, bool bType = true)
 
 		static const char sTable[][] = 
 		{
-			"`playtime` / 3600.0",
-			"`value`"
+			"`value`",
+			"`playtime` / 3600.0"
 		};
 
-		FormatEx(sQuery, sizeof(sQuery), SQL_PrintMenu, sTable[bType], g_sTableName, sTable[bType]);
-		g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | LR_TopPlayersExp + view_as<int>(bType));		// in database.sp
+		FormatEx(sQuery, sizeof(sQuery), SQL_PrintMenu, sTable[bPlaytime], g_sTableName, sTable[bPlaytime]);
+		g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | LR_TopPlayersExp + view_as<int>(bPlaytime));		// in database.sp
 	}
 }
 

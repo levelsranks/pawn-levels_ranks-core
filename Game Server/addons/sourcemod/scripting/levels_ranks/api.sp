@@ -121,7 +121,7 @@ int Native_GetDatabaseType(Handle hPlugin, int iArgs)
 
 int Native_GetCountPlayers(Handle hPlugin, int iArgs)
 {
-    return g_iDBCountPlayers;
+	return g_iDBCountPlayers;
 }
 
 int Native_GetTableName(Handle hPlugin, int iArgs)
@@ -148,6 +148,7 @@ int Native_GetRankNames(Handle hPlugin, int iArgs)
 {
 	return view_as<int>(g_hRankNames);
 }
+
 
 int Native_GetRankExp(Handle hPlugin, int iArgs)
 {
