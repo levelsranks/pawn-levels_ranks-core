@@ -1,0 +1,628 @@
+"Phrases"
+{
+	// This file only for CS:Source v34
+	// All Colors :
+	// 1) {DEFAULT}
+	// 2) {TEAM}
+	// 3) {GREEN}
+	
+	"Prefix"
+	{
+		"en"		"{TEAM}[LR]{DEFAULT}"
+		"ru"		"{TEAM}[LR]{DEFAULT}"
+		"ua"		"{TEAM}[LR]{DEFAULT}"
+		"es"		"{TEAM}[LR]{DEFAULT}"
+		"chi"		"{TEAM}[LR]{DEFAULT}"
+		"de"		"{TEAM}[LR]{DEFAULT}"
+	}
+	"MainMenu"
+	{
+		"#format"	"{1:T},{2:s},{3:i},{4:i}"
+		"en"		"Rank: {1}\nExp: {2}\nPlace: {3} of {4}\n "
+		"ru"		"Звание: {1}\nОпыт: {2}\nМесто: {3} из {4}\n "
+		"ua"		"Звання: {1}\nДосвід: {2}\nМісце: {3} из {4}\n "
+		"chi"		"段位: {1}\n经验值: {2}\n阶段: {3} of {4}\n "
+		"es"		"Rango: {1}\nExp: {2}\nPosición: {3} de {4}\n "
+		"de"		"Rang: {1}\nExp: {2}\nPlatz: {3} von {4}"
+	}
+	"MainMenu_IamAdmin"
+	{
+		"en"		"Admin's Panel"
+		"ru"		"Панель администратора"
+		"ua"		"Панель Адміністратора"
+		"chi"		"管理员菜单"
+		"es"		"Panel de admin"
+		"de"		"Admin Menü"
+	}
+	"ReloadAllConfigs"
+	{
+		"en"		"Reload plugin settings"
+		"ru"		"Перезагрузить настройки плагина"
+		"ua"		"Перезавантажити налаштування плагіна"
+		"chi"		"重载设定"
+		"es"		"Recargar la configuración del plugin"
+		"de"		"Neuladen der Plugin Einstellungen"
+	}
+	"ConfigUpdated"
+	{
+		"en"		"Configuration settings updated"
+		"ru"		"Конфигурационные настройки обновлены"
+		"ua"		"Конфігураційні налаштування оновлені"
+		"chi"		"设置已更新"
+		"es"		"Configuración actualitzada"
+		"de"		"Konfigurationseinstellungen aktualisiert"
+	}
+	"GiveTakeMenuExp"
+	{
+		"en"		"Give/Take exp. points"
+		"ru"		"Выдать/Забрать очки опыта"
+		"ua"		"Видати/Забрати поінти досвіду"
+		"chi"		"给予/拿走 经验值. 点数"
+		"es"		"Dar/Quitar puntos exp."
+		"de"		"Geben/Nehmen von Erfahrungspunkten"
+	}
+	"AdminGive"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} from the admin]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} от Админа]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} від Админа]"
+		"chi"		"你的经验值: {GREEN}{1} [管理员{2}]"
+		"es"		"Tu exp: {GREEN}{1} [{2} del admin]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} vom Admin]"
+	}
+	"AdminTake"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {DEFAULT}{1} [{2} from the admin]"
+		"ru"		"Ваш опыт: {DEFAULT}{1} [{2} от Админа]"
+		"ua"		"Ваш досвід: {DEFAULT}{1} [{2} від Админа]"
+		"chi"		"你的经验值: {DEFAULT}{1} [管理员{2}]"
+		"es"		"Tu exp: {GRAY}{1} [{2} del admin]"
+		"de"		"Deine Exp: {DEFAULT}{1} [{2} vom Admin]"
+	}
+	"ExpChange"
+	{
+		"#format"	"{1:N},{2:i},{3:s}"
+		"en"		"{1} - {GREEN}{2} ({3})"
+		"ru"		"{1} - {GREEN}{2} ({3})"
+		"ua"		"{1} - {GREEN}{2} ({3})"
+		"chi"		"{1} - {GREEN}{2} ({3})"
+		"es"		"{1} - {GRAY}{2} ({3})"
+		"de"		"{1} - {GREEN}{2} ({3})"
+	}
+	"MainMenu_MyStats"
+	{
+		"en"		"My stats"
+		"ru"		"Моя статистика"
+		"ua"		"Моя статистика"
+		"chi"		"我的数据"
+		"es"		"Mis estadísticas"
+		"de"		"Meine Statistiken"
+	}
+	"MyStatsInfo"
+	{
+		"#format"	"{1:02d},{2:02d},{3:02d},{4:i},{5:i},{6:i},{7:i},{8:i},{9:.2f},{10:i},{11:i}"
+		"en"		"My stats\n \nPlayed: {1} h. {2} m. {3} sec.\n \nKills: {4}\nDeaths: {5}\nAssists: {6}\nHeadshots: {7} ({8}%%) \nKDR: {9}\n \nAccuracy: {10}%%\nWinrate: {11}%%"
+		"ru"		"Моя статистика\n \nСыграно: {1} ч. {2} м. {3} сек.\n \nУбийств: {4}\nСмертей: {5}\nАссистов: {6}\nХедшотов: {7} ({8}%%)\nKDR: {9}\n \nТочность: {10}%%\nВинрейт: {11}%%"
+		"ua"		"Моя статистика\n \nзіграно: {1} ч. {2} м. {3} сек.\n \nВбивств: {4}\nСмертей: {5}\nСприянь: {6}\nПостріли в голову: {7} ({8}%%)\nKDR: {9}\n \nВлучність: {10}%%\nКоефіцієнт виграшу: {11}%%"
+		"chi"		"我的数据\n \n已游玩: {1} 小时 {2} 分 {3} 秒\n \n击杀: {4}\n死亡: {5}\n助攻: {6}\n爆头: {7} ({8}%%)\nK/D比: {9}\n \n精准度: {10}%%\n胜率: {11}%%"
+		"es"		"Mis estadísticas\n \nJugado: {1} h. {2} m. {3} seg.\n \nMatado: {4}\nMuerto: {5}\nAsistencias: {6}\nHeadshots: {7} ({8}%%)\nKDR: {9}\n \nPrecisión: {10}%%\nRatio de victorias: {11}%%"
+		"de"		"Meine Statistiken\n \nGespielt: {1} s {2} m {3} sek\n \nKills: {4}\nTode: {5}\nAssists: {6}\nKopfschüsse: {7} ({8}%%)\nKD: {9}\n \nGenauigkeit: {10}%%\nGewinnrate: {11}%%"
+	}
+	"MyStatsSession"
+	{
+		"en"		"Session data"
+		"ru"		"Данные за сессию"
+		"ua"		"Дані за сесію"
+		"chi"		"会话数据"
+		"es"		"Datos de la sesión"
+		"de"		"Sitzungsdaten"
+	}
+	"MyStatsSessionInfo"
+	{
+		"#format"	"{1:s},{2:s},{3:02d},{4:02d},{5:02d},{6:i},{7:i},{8:i},{9:i},{10:i},{11:.2f},{12:i},{13:i}"
+		"en"		"Session data\n \nExp. points: {1} \nPlace: {2}\n \nPlayed: {3} h {4} m {5} sec\n \nKills: {6}\nDeaths: {7}\nAssists: {8}\nHeadshots: {9} ({10}%%)\nKDR: {11}\n \nAccuracy: {12}%%\nWinrate: {13}%%"
+		"ru"		"Данные за сессию\n \nОчки опыта: {1}\nМесто в топе: {2}\n \nСыграно: {3} ч {4} м {5} сек\n \nУбийств: {6}\nСмертей: {7}\nАссистов: {8}\nХедшотов: {9} ({10}%%)\nKDR: {11}\n \nТочность: {12}%%\nВинрейт: {13}%%"
+		"ua"		"Дані за сесію\n \nПоинті досвіду: {1}\nМісце в топі: {2}\n \nЗіграно: {3} ч {4} м {5} сек\n \nВбивств: {6}\nСмертей: {7}\nСприянь: {8}\nПостріли в голову: {9} ({10}%%)\nKDR: {11}\n \nВлучність: {12}%%\nКоефіцієнт виграшу: {13}%%"
+		"chi"		"当前数据, 会话数据\n \n经验值. 点数: {1}\n放置在顶部: {2}\n \n已游玩: {3} 小时 {3} 分 {5} 秒\n \n击杀: {6}\n死亡: {7}\n助攻: {8}\n爆头: {9} ({10}%%)\nK/D比: {11}\n \n精准度: {12}%%\n胜率: {13}%%"
+		"es"		"Datos de la sesión\n \nPuntos exp.: {1}\nLugar: {2}\n \nJugado: {3} h {4} m {5} seg\n \nMatado: {6}\nMuerto: {7}\nAsistencias: {8}\nHeadshots: {9} ({10}%% \nKDR: {11}\n \nPrecisión: {12}%%\nRatio de victorias: {13}%%"
+		"de"		"Sitzungsdaten\n \nErfahrungspunkte: {1}\nPlatz: {2}\n \nGespielt: {3} s {4} m {5} sek\n \nKills: {6}\nTode: {7}\nAssists: {8}\nKopfschüsse: {9} ({10}%%)\nKD: {11}\n \nGenauigkeit: {12}%%\nGewinnrate: {13}%%"
+	}
+	"MyStatsReset"
+	{
+		"en"		"Reset my stats"
+		"ru"		"Сбросить статистику"
+		"ua"		"Скинути статистику"
+		"chi"		"重置我的数据"
+		"es"		"Resetear mis estadísticas"
+		"de"		"Meine Statistiken zurücksetzen"
+	}
+	"MyStatsResetCooldown"
+	{
+		"#format"	"{1:02d},{2:02d},{3:02d}"
+		"en"		"Reset my stats\n    Cooldown: {1} h. {2} m. {3} sec."
+		"ru"		"Сбросить статистику\n    Доступно через: {1} ч. {2} м. {3} сек."
+		"ua"		"Скинути статистику\n    Доступно через: {1} ч. {2} м. {3} сек."
+		"chi"		"重置我的数据\n    剩余时间 {1} 小时 {2} 分 {3} 秒"
+		"es"		"Resetear mis estadísticas\n    Queda: {1} h. {2} m. {3} seg."
+		"de"		"Meine Statistiken zurücksetzen\n    Abklingzeit: {1} h. {2} m. {3} sek."
+	}
+	"MyStatsResetInfo"
+	{
+		"en"		"Reset the statistics?\n \nYou reset all your options, \nlevels, frags and the like. \nYou are sure?"
+		"ru"		"Обнулить статистику?\n \nВы обнулите все свои параметры, \nуровни, фраги и тому подобное. \nВы точно уверены?"
+		"ua"		"Обнулити мою статистику?\n \nВи скинете всі свої параметри, \nРівні, фраги тощо. \nВи точно впевнені?"
+		"chi"		"重置自己的数据?\n \n你将重置你所有的选项, \n等级, 击杀 等等数据. \n你确定?"
+		"es"		"¿Resetear estadísticas?\n \nResetearas todas tu configuración, \nniveles, frags... etc. \n¿Estás seguro?"
+		"de"		"Alle Statistiken zurücksetzten?\n \nEs werden alle Optionen, \nLevel, Kills und Ähnliches zurückgesetzt. \nBist du sicher?"
+	}
+	"MainMenu_MyPrivilegesSettings"
+	{
+		"en"		"Privileges and settings"
+		"ru"		"Привилегии и настройки"
+		"ua"		"Привілеї та налаштування"
+		"chi"		"权限和设置"
+		"es"		"Privilegios y configuración"
+		"de"		"Keine Einstellungen"
+	}
+	"MainMenu_TopPlayers"
+	{
+		"en"		"TOP players"
+		"ru"		"TOP игроков"
+		"ua"		"TOP гравців"
+		"chi"		"顶尖选手"
+		"es"		"TOP jugadores"
+		"de"		"TOP Spieler"
+	}
+	"OverAllTopPlayersExp"
+	{
+		"en"		"TOP-10 by exp. points"
+		"ru"		"TOP-10 по очкам опыта"
+		"ua"		"TOP-10 за поінтами досвіду"
+		"chi"		"经验值排名前十"
+		"de"		"TOP-10 nach Erfahrungspunkten"
+	}
+	"OverAllTopPlayersExp_Slot"
+	{
+		"#format"	"{1:i},{2:i},{3:s}"
+		"en"		"{1} - [ {2} ] - {3}"
+		"ru"		"{1} - [ {2} ] - {3}"
+		"ua"		"{1} - [ {2} ] - {3}"
+		"chi"		"{1} - [ {2} ] - {3}"
+		"es"		"{1} - [ {2} ] - {3}"
+		"de"		"{1} - [ {2} ] - {3}"
+	}
+	"OverAllTopPlayersTime"
+	{
+		"en"		"TOP-10 by activity"
+		"ru"		"TOP-10 по активности"
+		"ua"		"TOP-10 за активністю"
+		"chi"		"活跃排名前十"
+		"es"		"TOP-10 por actividad"
+		"de"		"TOP-10 nach Spielzeit"
+	}
+	"OverAllTopPlayersTime_Slot"
+	{
+		"#format"	"{1:i},{2:.1f},{3:s}"
+		"en"		"{1} - [ {2} hours ] - {3}"
+		"ru"		"{1} - [ {2} часов ] - {3}"
+		"ua"		"{1} - [ {2} Годин ] - {3}"
+		"chi"		"{1} - [ {2} 小时 ] - {3}"
+		"es"		"{1} - [ {2} h. ] - {3}"
+		"de"		"{1} - [ {2} Stunden ] - {3}"
+	}
+	"You"
+	{
+		"en"		"(You)"
+		"ru"		"(Вы)"
+		"ua"		"(Ви)"
+		"chi"		"(你)"
+		"es"		"(Tú)"
+		"de"		"(Ihr)"
+	}
+	"NoData"
+	{
+		"en"		"No data!"
+		"ru"		"Нет данных!"
+		"ua"		"Ніякі дані!"
+		"chi"		"无数据."
+		"es"		"Sin datos."
+		"de"		"Keine Daten!"
+	}
+	"MainMenu_Ranks"
+	{
+		"en"		"All Ranks"
+		"ru"		"Все ранги"
+		"ua"		"Всі ранги"
+		"chi"		"全部段位"
+		"es"		"Todos los rangos"
+		"de"		"Alle Ränge"
+	}
+	"RankPlayer"
+	{
+		"#format"	"{1:N},{2:i},{3:i},{4:i},{5:i},{6:i},{7:.2f}"
+		"en"		"Player {GREEN}{1} {DEFAULT}is ranked at {GREEN}{2} / {3} {DEFAULT}with {GREEN}{4} {DEFAULT}exp, {GREEN}{5} {DEFAULT}kills, {GREEN}{6} {DEFAULT}deaths и KDR {GREEN}{7}"
+		"ru"		"Игрок {GREEN}{1} {DEFAULT}на {GREEN}{2} / {3} {DEFAULT}месте, с {GREEN}{4} {DEFAULT}очками, {GREEN}{5} {DEFAULT}убийствами, {GREEN}{6} {DEFAULT}смертями и KDR {GREEN}{7}"
+		"ua"		"Гравець {GREEN}{1} {DEFAULT}на {GREEN}{2} / {3} {DEFAULT}місці, з {GREEN}{4} {DEFAULT}поінтами, {GREEN}{5} {DEFAULT}вбивствами, {GREEN}{6} {DEFAULT}смертями і KDR {GREEN}{7}"
+		"chi"		"玩家 {GREEN}{1} {DEFAULT}的段位在 {GREEN}{2} / {3} {DEFAULT}共获得 {GREEN}{4} {DEFAULT}点经验者, {GREEN}{5} {DEFAULT}击杀, {GREEN}{6} {DEFAULT}死亡 и K/D比是 {GREEN}{7}"
+		"es"		"Jugador {GREEN}{1} {WHITE}está posicionado en {GREEN}{2} / {3} {WHITE}con {OLIVE}{4} {WHITE}exp, {OLIVE}{5} {WHITE}matado, {OLIVE}{6} {WHITE}muertes и KDR {OLIVE}{7}"
+		"de"		"Spieler {GREEN}{1} {DEFAULT}ist Platz {GREEN}{2} / {3} {DEFAULT}mit {GREEN}{4} {DEFAULT}EP, {GREEN}{5} {DEFAULT}Kills, {GREEN}{6} {DEFAULT}Toden и KD {GREEN}{7}"
+	}
+	"PlayerDataDeleted"
+	{
+		"#format"	"{1:s}"
+		"en"		"Deletion request sent successfully! STEAM_ID - {1}"
+		"ru"		"Запрос на удаление игрока прошел успешно! STEAM_ID - {1}"
+		"ua"		"Запит на видалення гравця пройшов успішно! STEAM_ID - {1}"
+		"chi"		"删除请求已成功发送! STEAM_ID - {1}"
+		"es"		"¡Petición de eliminación enviada correctamente! STEAM_ID - {1}"
+		"de"		"Löschungsanfrage erfolgreich gesendet! STEAM_ID - {1}"
+	}
+	"RoundStartCheckCount"
+	{
+		"#format"	"{1:i},{2:i}"
+		"en"		"There are only {TEAM}{1} {DEFAULT}players from {TEAM}{2}"
+		"ru"		"Присутствует только {TEAM}{1} {DEFAULT}игрока из {TEAM}{2}"
+		"ua"		"Присутні тільки {TEAM}{1} {DEFAULT}гравця з {TEAM}{2}"
+		"chi"		"这里只有 {TEAM}{1} {DEFAULT}名玩家 来自 {TEAM}{2}"
+		"es"		"Solo hay {RED}{1} {WHITE}jugadores de {RED}{2}"
+		"de"		"Es gibt nur {TEAM}{1} {DEFAULT}Spieler von {TEAM}{2}"
+	}
+	"RoundStartMessageRanks"
+	{
+		"en"		"Enter: {TEAM}!lvl {DEFAULT}- main menu"
+		"ru"		"Введи: {TEAM}!lvl {DEFAULT}- главное меню"
+		"ua"		"введи: {TEAM}!lvl {DEFAULT}- Головне меню"
+		"chi"		"输入: {TEAM}!lvl {DEFAULT}- 打开主菜单"
+		"es"		"Escribir: {PURPLE}!lvl {WHITE}- menú principal"
+		"de"		"Enter: {TEAM}!lvl {DEFAULT}- Hauptmenü"
+	}
+	"LevelUp"
+	{
+		"#format"	"{1:s}"
+		"en"		"Your rank has been promoted to {GREEN}{1}"
+		"ru"		"Вы повышены в звании до {GREEN}{1}"
+		"ua"		"Ви підвищені в званні до {GREEN}{1}"
+		"chi"		"你的段位已经升级为 {GREEN}{1}"
+		"es"		"Tu rango ha sido ascendido a {LIME}{1}"
+		"de"		"Du wurdest befördert zu {GREEN}{1}"
+	}
+	"LevelDown"
+	{
+		"#format"	"{1:s}"
+		"en"		"Your rank has been lowered to {GREEN}{1}"
+		"ru"		"Вы понижены в звании до {GREEN}{1}"
+		"ua"		"Ви знижені в званні до {GREEN}{1}"
+		"chi"		"你的段位已经降级为 {GREEN}{1}"
+		"es"		"Tu rango ha sido descendido a {RED}{1}"
+		"de"		"Du wurdest degradiert zu {GREEN}{1}"
+	}
+	"LevelUpAll"
+	{
+		"#format"	"{1:N},{2:s}"
+		"en"		"Player {TEAM}{1} {DEFAULT}raised his rank to {GREEN}{2}"
+		"ru"		"Игрок {TEAM}{1} {DEFAULT}повысил свое звание до {GREEN}{2}"
+		"ua"		"Гравець {TEAM}{1} {DEFAULT}підвищив своє звання до {GREEN}{2}"
+		"chi"		"玩家 {TEAM}{1} {DEFAULT}升段到了 {GREEN}{2}"
+		"es"		"El jugador {OLIVE}{1} {WHITE}ascendió su rango a {LIME}{2}"
+		"de"		"Spieler {TEAM}{1} {DEFAULT}hat einen Rang auf {GREEN}{2} erhöht"
+	}
+	"LevelDownAll"
+	{
+		"#format"	"{1:N},{2:s}"
+		"en"		"Player {TEAM}{1} {DEFAULT}lowered his rank to {GREEN}{2}"
+		"ru"		"Игрок {TEAM}{1} {DEFAULT}понизил свое звание до {GREEN}{2}"
+		"ua"		"Гравець {TEAM}{1} {DEFAULT}знизив своє звання до {GREEN}{2}"
+		"chi"		"玩家 {TEAM}{1} {DEFAULT}掉段到了 {GREEN}{2}"
+		"es"		"El jugador {OLIVE}{1} {WHITE}descendió su rango a {RED}{2}"
+		"de"		"Spieler {TEAM}{1} {DEFAULT}hat seinen Rang zu {GREEN}{2} verringert"
+	}
+	"Suicide"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {DEFAULT}{1} [{2} for suicide]"
+		"ru"		"Ваш опыт: {DEFAULT}{1} [{2} за самоубийство]"
+		"ua"		"Ваш досвід: {DEFAULT}{1} [{2} за самогубство]"
+		"chi"		"你的经验值: {DEFAULT}{1} [{2} 因为自杀]"
+		"es"		"Tu exp: {RED}{1} [{2} por suicidarte]"
+		"de"		"Deine Exp: {DEFAULT}{1} [{2} für Selbstmord]"
+	}
+	"Kill"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} for a kill]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} за убийство]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} за самогубство]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自击杀]"
+		"es"		"Tu exp: {GREEN}{1} [{2} por matar]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für einen Kill]"
+	}
+	"MyDeath"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {DEFAULT}{1} [{2} for dying]"
+		"ru"		"Ваш опыт: {DEFAULT}{1} [{2} за вашу смерть]"
+		"ua"		"Ваш досвід: {DEFAULT}{1} [{2} за вашу смерть]"
+		"chi"		"你的经验值: {DEFAULT}{1} [{2} 因为死亡]"
+		"es"		"Tu exp: {RED}{1} [{2} por morir]"
+		"de"		"Deine Exp: {DEFAULT}{1} [{2} fürs Sterben]"
+	}
+	"TeamKill"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {DEFAULT}{1} [{2} for teamkill]"
+		"ru"		"Ваш опыт: {DEFAULT}{1} [{2} за убийство товарища]"
+		"ua"		"Ваш досвід: {DEFAULT}{1} [{2} за вбивство товариша]"
+		"chi"		"你的经验值: {DEFAULT}{1} [{2} 因为击杀队友]"
+		"es"		"Tu exp: {RED}{1} [{2} por matar a compañer@s]"
+		"de"		"Deine Exp: {DEFAULT}{1} [{2} für einen Teamkill]"
+	}
+	"HeadShotKill"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} for a headshot]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} за убийство в голову]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} за вбивство в голову]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自爆头]"
+		"es"		"Tu exp: {GREEN}{1} [{2} por disparo a la cabeza]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für einen Kopfschuss]"
+	}
+	"AssisterKill"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} for an assist]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} за помощь в убийстве]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} за допомогу в убивстві]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自助攻]"
+		"es"		"Tu exp: {GREEN}{1} [{2} por asistencia]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für einen Unterstützung]"
+	}
+	"RoundWin"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} your team won]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} ваша команда выиграла]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} ваша команда виграла]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自团队胜利]"
+		"es"		"Tu exp: {GREEN}{1} [{2} tu equipo ganó]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} dein Team hat gewonnen]"
+	}
+	"RoundLose"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {DEFAULT}{1} [{2} your team lost]"
+		"ru"		"Ваш опыт: {DEFAULT}{1} [{2} ваша команда проиграла]"
+		"ua"		"Ваш досвід: {DEFAULT}{1} [{2} ваша команда програла]"
+		"chi"		"你的经验值: {DEFAULT}{1} [{2} 因为团队失败]"
+		"es"		"Your exp: {DEFAULT}{1} [{2} tu equipo perdió]"
+		"de"		"Deine Exp: {DEFAULT}{1} [{2} dein Team hat verloren]"
+	}
+	"BombPlanted"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} for planting the bomb]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} установка бомбы]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} установка бомби]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自安装炸弹]"
+		"es"		"Tu exp: {GREEN}{1} [{2} por plantar la bomba]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für das Legen der Bombe]"
+	}
+	"BombDefused"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} for defusing the bomb]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} разминирование бомбы]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} розмінування бомби]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自拆除炸弹]"
+		"es"		"Tu exp: {GREEN}{1} [{2} por desactivar la bomba]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für das Entschärfen der Bombe]"
+	}
+	"BombPickup"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} for bomb pickup]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} подобрали бомбу]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} підібрали бомбу]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自捡起炸弹]"
+		"es"		"Tu exp: {GREEN}{1} [{2} por coger la bomba]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für das Aufnehmen der Bombe]"
+	}
+	"BombDropped"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {DEFAULT}{1} [{2} for dropping the bomb]"
+		"ru"		"Ваш опыт: {DEFAULT}{1} [{2} потеряли бомбу]"
+		"ua"		"Ваш досвід: {DEFAULT}{1} [{2} втратили бомбу]"
+		"chi"		"你的经验值: {DEFAULT}{1} [{2} 因为掉落炸弹]"
+		"es"		"Tu exp: {DEFAULT}{1} [{2} por tirar la bomba]"
+		"de"		"Deine Exp: {DEFAULT}{1} [{2} für das fallenlassen der Bombe]"
+	}
+	"HostageRescued"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} you rescued the hostage]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} вы спасли заложника]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} ви врятували заручника]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自人质救援]"
+		"es"		"Tu exp: {GREEN}{1} [{2} por matar al rehén]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für das Retten einer Geisel]"
+	}
+	"HostageKilled"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {DEFAULT}{1} [{2} you killed the hostage]"
+		"ru"		"Ваш опыт: {DEFAULT}{1} [{2} вы убили заложника]"
+		"ua"		"Ваш досвід: {DEFAULT}{1} [{2} ви вбили заручника]"
+		"chi"		"你的经验值: {DEFAULT}{1} [{2} 因为击杀人质]"
+		"es"		"Tu exp: {DEFAULT}{1} [{2} por matar al rehén]"
+		"de"		"Deine Exp: {DEFAULT}{1} [{2} für das Töten einer Geisel]"
+	}
+	"DoubleKill"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} for DoubleKill]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} за DoubleKill]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Два вбивства поспіль]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自双杀]"
+		"es"		"Tu exp: {GREEN}{1} [{2} por Doble Kill]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für Doppelkill]"
+	}
+	"TripleKill"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} for TripleKill]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} за TripleKill]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Потрійне вбивство]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自三杀]"
+		"es"		"Tu exp: {GREEN}{1} [{2} por Triple Kill]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für einen TripleKill]"
+	}
+	"Domination"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} for Domination]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} за Domination]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Панування]"
+		"chi"		"你的经验值: {GREEEN}{1} [{2} 来自Domination]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für Domination]"
+	}
+	"Rampage"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} for Rampage]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} за Rampage]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Буянство]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自Rampage]"
+		"es"		"Tu exp: {GREEN}{1} [{2} por Rampage]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für Rampage]"
+	}
+	"MegaKill"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} for MegaKill]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} за MegaKill]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Мега вбивство]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自MegaKill]"
+		"es"		"Tu exp: {GREEN}{1} [{2} por Mega Kill]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für einen MegaKill]"
+	}
+	"Ownage"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} for Ownage]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} за Ownage]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Власність]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自Ownage]"
+		"es"		"Tu exp: {GREEN}{1} [{2} por Ownage]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für Ownage]"
+	}
+	"UltraKill"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} for UltraKill]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} за UltraKill]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} за ультра вбивство]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自UltraKill]"
+		"es"		"Tu exp: {GREEN}{1} [{2} por Ultra Kill]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für einen UltraKill]"
+	}
+	"KillingSpree"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} for Killing Spree]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} за Killing Spree]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Серія вбивств]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自Killing Spree]"
+		"es"		"Tu exp: {LIME}{1} [{2} por Matanza (Killing Spree)]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für einen Killing Spree]"
+	}
+	"MonsterKill"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} for MonsterKill]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} за MonsterKill]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Монстр-вбивця]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自MonsterKill]"
+		"es"		"Tu exp: {GREEN}{1} [{2} por Monster Kill]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für einen MonsterKill]"
+	}
+	"Unstoppable"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} for Unstoppable]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} за Unstoppable]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Нестримний]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自Unstoppable]"
+		"es"		"Tu exp: {GREEN}{1} [{2} por Imparable]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für Unstoppable]"
+	}
+	"GodLike"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} for God Like]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} за God Like]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Богоподібний]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自God Like]"
+		"es"		"Tu exp: {GREEN}{1} [{2} por God Like]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für God Like]"
+	}
+	"WickedSick"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} for WickedSick]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} за WickedSick]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Злий-хворий]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自WickedSick]"
+		"es"		"Tu exp: {GREEN}{1} [{2} por WickedSick]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für WickedSick]"
+	}
+	"HolyShit"
+	{
+		"#format"	"{1:i},{2:s}"
+		"en"		"Your exp: {GREEN}{1} [{2} for HolyShit]"
+		"ru"		"Ваш опыт: {GREEN}{1} [{2} за HolyShit]"
+		"ua"		"Ваш досвід: {GREEN}{1} [{2} за Святе лайно]"
+		"chi"		"你的经验值: {GREEN}{1} [{2} 来自HolyShit]"
+		"es"		"Tu exp: {GREEN}{1} [{2} por Invencible]"
+		"de"		"Deine Exp: {GREEN}{1} [{2} für HolyShit]"
+	}
+	"RoundExpResultGive"
+	{
+		"#format"	"{1:i}"
+		"en"		"You earned {GREEN}{1} {DEFAULT}experience points per round"
+		"ru"		"За раунд вы заработали {GREEN}{1} {DEFAULT}очков опыта"
+		"ua"		"За раунд ви заработали {GREEN}{1} {DEFAULT}поінти досвіду"
+		"chi"		"你每回合可获得 {GREEN}{1} {DEFAULT}点经验值"
+		"de"		"Du hast {GREEN}{1} {DEFAULT}Erfahrungspunkte pro Runde verdient"
+	}
+	"RoundExpResultTake"
+	{
+		"#format"	"{1:i}"
+		"en"		"You lost {TEAM}{1} {DEFAULT}experience points per round"
+		"ru"		"За раунд вы потеряли {TEAM}{1} {DEFAULT}очков опыта"
+		"ua"		"За раунд ви втратили {TEAM}{1} {DEFAULT}поінти досвіду"
+		"chi"		"你每回合将失去 {TEAM}{1} {DEFAULT}点经验值"
+		"es"		"Has perdido {TEAM}{1} {WHITE}puntos de experiencia por ronda"
+		"de"		"Du hast {TEAM}{1} {DEFAULT}Erfahrungspunkte pro Runde verloren"
+	}
+	"RoundExpResultNothing"
+	{
+		"en"		"You didn’t earn experience points in a round!"
+		"ru"		"За раунд вы не заработали очков опыта!"
+		"ua"		"За раунд ви не заробили поінти досвіду!"
+		"chi"		"你在这回合并没有获得任何经验值!"
+		"es"		"¡No has ganado puntos de experiencia en la ronda!"
+		"de"		"Du hast keine Erfahrungspunkte in einer Runde verdient!"
+	}
+	"RoundExpResultAll"
+	{
+		"#format"	"{1:i}"
+		"en"		"Total: {GREEN}{1} {DEFAULT}exp. points"
+		"ru"		"Всего: {GREEN}{1} {DEFAULT}очков опыта"
+		"ua"		"Всього: {GREEN}{1} {DEFAULT}поінти досвіду"
+		"chi"		"总共: {GREEN}{1} {DEFAULT}经验值. 点数"
+		"es"		"Total: {GREEN}{1} {WHITE}puntos exp."
+		"de"		"Gesamt: {GREEN}{1} {DEFAULT}Erfahrungspunkte"
+	}
+}
