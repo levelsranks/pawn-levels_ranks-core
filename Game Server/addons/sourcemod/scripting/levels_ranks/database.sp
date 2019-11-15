@@ -237,11 +237,13 @@ void SaveDataPlayer(int iClient, bool bDisconnect = false)
 {
 	if(CheckStatus(iClient) && (g_hDatabase || bDisconnect))
 	{
+		int iTime = GetTime();
+
 		static char sQuery[1024];
 
 		Transaction hTransaction = g_hDatabase ? new Transaction() : g_hTransactionLossDB;
 
-		FormatEx(sQuery, sizeof(sQuery), SQL_UpdateData, g_sTableName, g_iPlayerInfo[iClient].iStats[ST_EXP], GetPlayerName(iClient), g_iPlayerInfo[iClient].iStats[ST_RANK], g_iPlayerInfo[iClient].iStats[ST_KILLS], g_iPlayerInfo[iClient].iStats[ST_DEATHS], g_iPlayerInfo[iClient].iStats[ST_SHOOTS], g_iPlayerInfo[iClient].iStats[ST_HITS], g_iPlayerInfo[iClient].iStats[ST_HEADSHOTS], g_iPlayerInfo[iClient].iStats[ST_ASSISTS], g_iPlayerInfo[iClient].iStats[ST_ROUNDSWIN], g_iPlayerInfo[iClient].iStats[ST_ROUNDSLOSE], g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime(), g_iPlayerInfo[iClient].iSessionStats[ST_PLAYTIME] == -1 ? 0 : GetTime(), GetSteamID2(g_iPlayerInfo[iClient].iAccountID));
+		FormatEx(sQuery, sizeof(sQuery), SQL_UpdateData, g_sTableName, g_iPlayerInfo[iClient].iStats[ST_EXP], GetPlayerName(iClient), g_iPlayerInfo[iClient].iStats[ST_RANK], g_iPlayerInfo[iClient].iStats[ST_KILLS], g_iPlayerInfo[iClient].iStats[ST_DEATHS], g_iPlayerInfo[iClient].iStats[ST_SHOOTS], g_iPlayerInfo[iClient].iStats[ST_HITS], g_iPlayerInfo[iClient].iStats[ST_HEADSHOTS], g_iPlayerInfo[iClient].iStats[ST_ASSISTS], g_iPlayerInfo[iClient].iStats[ST_ROUNDSWIN], g_iPlayerInfo[iClient].iStats[ST_ROUNDSLOSE], g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + iTime, g_iPlayerInfo[iClient].iSessionStats[ST_PLAYTIME] == -1 ? 0 : iTime, GetSteamID2(g_iPlayerInfo[iClient].iAccountID));
 		hTransaction.AddQuery(sQuery);
 
 		CallForward_OnPlayerSaved(iClient, hTransaction);
@@ -255,13 +257,10 @@ void SaveDataPlayer(int iClient, bool bDisconnect = false)
 		{
 			g_iPlayerInfo[iClient] = g_iInfoNULL;
 		}
-		else
+		else if(g_hDatabase)
 		{
-			if(g_hDatabase)
-			{
-				FormatEx(sQuery, sizeof(sQuery), SQL_GetPlace, g_sTableName, g_iPlayerInfo[iClient].iStats[ST_EXP], g_sTableName, g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime());
-				g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | LR_GetPlacePlayer);
-			}
+			FormatEx(sQuery, sizeof(sQuery), SQL_GetPlace, g_sTableName, g_iPlayerInfo[iClient].iStats[ST_EXP], g_sTableName, g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + iTime);
+			g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | LR_GetPlacePlayer);
 		}
 	}
 }
@@ -370,7 +369,7 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 					strcopy(sFrase[17], 8, bType ? "Time" : "Exp");
 					FormatEx(sText, sizeof(sText), "%s | %T\n \n", g_sPluginTitle, sFrase, iClient);
 
-					strcopy(sFrase[21 - view_as<int>(!bType)], 8, "_Slot");
+					strcopy(sFrase[21 - int(!bType)], 8, "_Slot");
 
 					if(hResult.RowCount)
 					{
@@ -379,15 +378,15 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 						for(int j = 1; hResult.FetchRow(); j++)
 						{
 							hResult.FetchString(0, sName, sizeof(sName));
-							FormatEx(sText[strlen(sText)], 64, hResult.FetchInt(1) == iAccountID && !(iAccountID = 0) ? "%T %T\n" : "%T\n", sFrase, iClient, j, bType ? view_as<int>(hResult.FetchFloat(2)) : hResult.FetchInt(2), sName, "You", iClient);
+							FormatEx(sText[strlen(sText)], 64, hResult.FetchInt(1) == iAccountID && !(iAccountID = 0) ? "%T %T\n" : "%T\n", sFrase, iClient, j, bType ? int(hResult.FetchFloat(2)) : hResult.FetchInt(2), sName, "You", iClient);
 						}
 
 						if(iAccountID)
 						{
-							int iPlace = g_iPlayerInfo[iClient].iStats[ST_PLACEINTOP + view_as<int>(bType)];
+							int iPlace = g_iPlayerInfo[iClient].iStats[ST_PLACEINTOP + int(bType)];
 
 							GetClientName(iClient, sName, sizeof(sName));
-							FormatEx(sText[strlen(sText)], 64, "%s\n%T %T\n ", iPlace == 11 ? NULL_STRING : "...", sFrase, iClient, iPlace, bType ? view_as<int>((g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime()) / 3600.0) : g_iPlayerInfo[iClient].iStats[ST_EXP], sName, "You", iClient);
+							FormatEx(sText[strlen(sText)], 64, "%s\n%T %T\n ", iPlace == 11 ? NULL_STRING : "...", sFrase, iClient, iPlace, bType ? int((g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] + GetTime()) / 3600.0) : g_iPlayerInfo[iClient].iStats[ST_EXP], sName, "You", iClient);
 						}
 						else
 						{

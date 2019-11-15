@@ -568,8 +568,8 @@ void OverAllTopPlayers(int iClient, bool bPlaytime = true)
 			"`playtime` / 3600.0"
 		};
 
-		FormatEx(sQuery, sizeof(sQuery), SQL_PrintMenu, sTable[bPlaytime], g_sTableName, sTable[bPlaytime]);
-		g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | LR_TopPlayersExp + view_as<int>(bPlaytime));		// in database.sp
+		FormatEx(sQuery, sizeof(sQuery), SQL_PrintMenu, sTable[int(bPlaytime)], g_sTableName, sTable[int(bPlaytime)]);
+		g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | LR_TopPlayersExp + int(bPlaytime));		// in database.sp
 	}
 }
 

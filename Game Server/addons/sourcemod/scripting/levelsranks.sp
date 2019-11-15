@@ -2,7 +2,7 @@
 ****
 ****		Date of creation :			November 27, 2014
 ****		Date of official release :	April 12, 2015
-****		Last update :				October 24, 2019
+****		Last update :				November 15, 2019
 ****
 ****************************************************************************
 ****
@@ -66,6 +66,10 @@
 #pragma newdecls required
 
 #include <lvl_ranks>
+
+#if PLUGIN_INT_VERSION != 03010000
+	#error This plugin can only compile on lvl_ranks.inc v3.1.
+#endif
 
 #define PLUGIN_NAME "Levels Ranks"
 #define PLUGIN_AUTHORS "RoadSide Romeo & Wend4r"

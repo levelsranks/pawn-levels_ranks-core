@@ -4,6 +4,7 @@
 #define _levelsranks_included_
 
 #define PLUGIN_VERSION "v3.1"
+#define PLUGIN_INT_VERSION 03010000
 
 enum LR_HookType
 {
@@ -231,8 +232,10 @@ typedef LR_SelectedMenu = function void (LR_MenuType MenuType, int iClient, cons
 
 /**
  * Called after the core is fully loaded.
+ * @note Called not in the core startup thread.
  */
 forward void LR_OnCoreIsReady();
+
 
 /**
  * Return if core is loaded.
@@ -240,12 +243,18 @@ forward void LR_OnCoreIsReady();
 native bool LR_IsLoaded();
 
 /**
+ * Return the core version.
+ * Explame: 03010000 - v3.1.
+ */
+native int LR_GetVersion();
+
+/**
  * Hooks an LR events.
  * 
  * @param Type				Event type.
  * @param Callback			Callback function.
  *
- * @return 					Is hook successful.
+ * @return					Is hook successful.
  */
 native bool LR_Hook(LR_HookType Type, LR_HookCB Callback);
 
@@ -255,7 +264,7 @@ native bool LR_Hook(LR_HookType Type, LR_HookCB Callback);
  * @param Type				Event type.
  * @param Callback			Callback function.
  *
- * @return 					Is unhook successful.
+ * @return					Is unhook successful.
  */
 native bool LR_Unhook(LR_HookType Type, LR_HookCB Callback);
 
@@ -268,7 +277,7 @@ native bool LR_Unhook(LR_HookType Type, LR_HookCB Callback);
  * @param SelectedCallback	When opening a registered 
  *							item in the menu.
  *
- * @return 					Is hook successful.
+ * @return					Is hook successful.
  */
 native bool LR_MenuHook(LR_MenuType MenuType, LR_CreatedMenu CreatedCallback, LR_SelectedMenu SelectedCallback);
 
@@ -281,7 +290,7 @@ native bool LR_MenuHook(LR_MenuType MenuType, LR_CreatedMenu CreatedCallback, LR
  * @param SelectedCallback	When opening a registered 
  *							item in the menu.
  *
- * @return 					Is unhook successful.
+ * @return					Is unhook successful.
  */
 native bool LR_MenuUnhook(LR_MenuType MenuType, LR_CreatedMenu CreatedCallback, LR_SelectedMenu SelectedCallback);
 
@@ -347,7 +356,7 @@ native bool LR_GetClientStatus(int iClient);
 /**
  * Checks if enough players are in this round to activate statistics.
  * 
- * @return 					Is allow.
+ * @return					Is allow.
  */
 native bool LR_CheckCountPlayers();
 
@@ -372,9 +381,11 @@ native void LR_RoundWithoutValue();
  * Changes the amount of experience.
  * 
  * @param iClient			Client index.
- * @param iExp				Count Exp.
+ * @param iExp				Count experiences.
+ *
+ * @return					Is experiences have been issued.
  */
-native void LR_ChangeClientValue(int iClient, int iExp);
+native bool LR_ChangeClientValue(int iClient, int iExp);
 
 /**
  * Resets player stats. 
@@ -403,7 +414,7 @@ native void LR_ShowMenu(int iClient, LR_MenuType MenuType);
  *
  * @param iClient			Client index.
  * @param bPrefix			Whether to add [LR] prefix to message.
- * @param sFormat			Formatting rules and colors (https://levels-ranks.ru/wiki/sp_colors.php).
+ * @param sFormat			Formatting rules and colors.
  * @param ...				Variable number of format parameters.
  */
 native void LR_PrintToChat(int iClient, bool bPrefix, const char[] sFormat, any ...);
@@ -426,6 +437,7 @@ public SharedPlugin __pl_levelsranks =
 public void __pl_levelsranks_SetNTVOptional()
 {
 	MarkNativeAsOptional("LR_IsLoaded");
+	MarkNativeAsOptional("LR_GetVersion");
 	MarkNativeAsOptional("LR_Hook");
 	MarkNativeAsOptional("LR_Unhook");
 	MarkNativeAsOptional("LR_MenuHook");

@@ -67,7 +67,7 @@ void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 											iExpAttacker = 1;
 										}
 
-										if((iExpVictim = RoundToNearest(iExpAttacker * view_as<float>(g_Settings[LR_KillCoefficient]))) < 1)
+										if((iExpVictim = RoundToNearest(iExpAttacker * float(g_Settings[LR_KillCoefficient]))) < 1)
 										{
 											iExpVictim = 1;
 										}
@@ -142,8 +142,8 @@ void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 
 									if(bLose ? NotifClient(i, -g_Settings[LR_ExpRoundLose], "RoundLose") : NotifClient(i, g_Settings[LR_ExpRoundLose], "RoundWin"))
 									{
-										g_iPlayerInfo[i].iStats[ST_ROUNDSWIN + view_as<int>(bLose)]++;
-										g_iPlayerInfo[i].iSessionStats[ST_ROUNDSWIN + view_as<int>(bLose)]++;
+										g_iPlayerInfo[i].iStats[ST_ROUNDSWIN + int(bLose)]++;
+										g_iPlayerInfo[i].iSessionStats[ST_ROUNDSWIN + int(bLose)]++;
 									}
 								}
 

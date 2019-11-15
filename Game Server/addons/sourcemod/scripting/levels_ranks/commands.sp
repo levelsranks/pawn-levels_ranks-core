@@ -176,7 +176,6 @@ public void OnClientSayCommand_Post(int iClient, const char[] sCommand, const ch
 				int iPlaceInTop = g_iPlayerInfo[iClient].iStats[ST_PLACEINTOP],
 					iExp = g_iPlayerInfo[iClient].iStats[ST_EXP];
 
-
 				for(int i = GetMaxPlayers(); --i;)
 				{
 					if(CheckStatus(i)) 

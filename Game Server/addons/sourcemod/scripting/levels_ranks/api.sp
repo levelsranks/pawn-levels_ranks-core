@@ -26,6 +26,7 @@ public APLRes AskPluginLoad2(Handle hMySelf, bool bLate, char[] sError, int iErr
 	HookEvent("hostage_rescued", Events, EventHookMode_Pre);
 
 	CreateNative("LR_IsLoaded", Native_IsLoaded);
+	CreateNative("LR_GetVersion", Native_GetVersion);
 	CreateNative("LR_Hook", Native_Hook);
 	CreateNative("LR_Unhook", Native_Unhook);
 	CreateNative("LR_MenuHook", Native_MenuHook);
@@ -80,6 +81,11 @@ int Native_IsLoaded(Handle hPlugin, int iArgs)
 	return !g_hForward_OnCoreIsReady;
 }
 
+int Native_GetVersion(Handle hPlugin, int iArgs)
+{
+	return PLUGIN_INT_VERSION;
+}
+
 int Native_Hook(Handle hPlugin, int iArgs)
 {
 	return g_hForward_Hook[GetNativeCell(1)].AddFunction(hPlugin, GetNativeCell(2));
@@ -111,7 +117,7 @@ int Native_GetSettingsValue(Handle hPlugin, int iArgs)
 
 int Native_GetDatabase(Handle hPlugin, int iArgs)
 {
-	return g_hDatabase ? view_as<int>(CloneHandle(g_hDatabase, hPlugin)) : 0;
+	return g_hDatabase ? int(CloneHandle(g_hDatabase, hPlugin)) : 0;
 }
 
 int Native_GetDatabaseType(Handle hPlugin, int iArgs)
@@ -141,18 +147,17 @@ int Native_GetClientStatus(Handle hPlugin, int iArgs)
 
 int Native_CheckCountPlayers(Handle hPlugin, int iArgs)
 {
-	return g_bAllowStatistic && g_bRoundAllowExp && g_bRoundEndGiveExp;
+	return g_bAllowStatistic;
 }
 
 int Native_GetRankNames(Handle hPlugin, int iArgs)
 {
-	return view_as<int>(g_hRankNames);
+	return int(g_hRankNames);
 }
-
 
 int Native_GetRankExp(Handle hPlugin, int iArgs)
 {
-	return view_as<int>(g_hRankExp);
+	return int(g_hRankExp);
 }
 
 int Native_GetClientInfo(Handle hPlugin, int iArgs)
@@ -181,7 +186,7 @@ int Native_ChangeClientValue(Handle hPlugin, int iArgs)
 {
 	int iClient = GetNativeCell(1);
 
-	if(CheckStatus(iClient))
+	if(CheckStatus(iClient) && g_bRoundAllowExp && g_bRoundEndGiveExp)
 	{
 		int iExpChange = GetNativeCell(2),
 			iExpMin = 0;
@@ -202,7 +207,11 @@ int Native_ChangeClientValue(Handle hPlugin, int iArgs)
 		}
 
 		CheckRank(iClient);		// in custom_functions.sp
+
+		return true;
 	}
+
+	return false;
 }
 
 int Native_RoundWithoutValue(Handle hPlugin, int iArgs)
@@ -254,7 +263,7 @@ void CallForward_OnDatabaseCleanup(int iType, Transaction hTransaction)
 
 void CallForward_OnLevelChanged(int iClient, int& iNewRank, int iOldRank, bool bRef = true)
 {
-	Call_StartForward(g_hForward_Hook[LR_OnLevelChangedPre + view_as<int>(!bRef)]);
+	Call_StartForward(g_hForward_Hook[LR_OnLevelChangedPre + int(!bRef)]);
 	Call_PushCell(iClient);
 
 	if(bRef)
@@ -272,7 +281,7 @@ void CallForward_OnLevelChanged(int iClient, int& iNewRank, int iOldRank, bool b
 
 void CallForward_OnPlayerKilled(Event hEvent, int& iExpCaused, int iClient, int iAttacker, bool bRef = true)
 {
-	Call_StartForward(g_hForward_Hook[LR_OnPlayerKilledPre + view_as<int>(!bRef)]);
+	Call_StartForward(g_hForward_Hook[LR_OnPlayerKilledPre + int(!bRef)]);
 	Call_PushCell(hEvent);
 
 	if(bRef)

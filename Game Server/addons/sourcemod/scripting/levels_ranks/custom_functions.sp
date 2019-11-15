@@ -42,7 +42,7 @@ void LR_PrintMessage(int iClient, bool bPrefix, bool bNative, const char[] sForm
 			}
 			else if(g_iEngine == Engine_CSGO)
 			{
-				Format(sMessage, sizeof(sMessage), " %s",sMessage );
+				Format(sMessage, sizeof(sMessage), " %s", sMessage);
 			}
 
 			if(g_iEngine != Engine_SourceSDK2006)
@@ -153,7 +153,7 @@ char[] GetSteamID2(int iAccountID)
 
 	if(!sSteamID2[6])
 	{
-		sSteamID2[6] = '0' + view_as<int>(g_iEngine == Engine_CSGO);
+		sSteamID2[6] = '0' + int(g_iEngine == Engine_CSGO);
 		sSteamID2[7] = ':';
 	}
 
@@ -204,7 +204,7 @@ char[] GetSignValue(int iValue)
 		sValue[0] = '+';
 	}
 
-	IntToString(iValue, sValue[bPlus], sizeof(sValue) - view_as<int>(bPlus));
+	IntToString(iValue, sValue[int(bPlus)], sizeof(sValue) - int(bPlus));
 
 	return sValue;
 }
@@ -261,7 +261,7 @@ void CheckRank(int iClient, bool bActive = true)
 					EmitSoundToClient(iClient, bUp ? g_sSoundUp : g_sSoundDown, SOUND_FROM_PLAYER, 80);
 				}
 
-				if(g_Settings[LR_ShowLevelUpMessage + view_as<int>(bUp)])
+				if(g_Settings[LR_ShowLevelUpMessage + int(bUp)])
 				{
 					for(int i = GetMaxPlayers(); --i;)
 					{
