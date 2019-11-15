@@ -67,7 +67,7 @@ void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 											iExpAttacker = 1;
 										}
 
-										if((iExpVictim = RoundToNearest(iExpAttacker * float(g_Settings[LR_KillCoefficient]))) < 1)
+										if((iExpVictim = RoundToNearest(iExpAttacker * view_as<float>(g_Settings[LR_KillCoefficient]))) < 1)
 										{
 											iExpVictim = 1;
 										}

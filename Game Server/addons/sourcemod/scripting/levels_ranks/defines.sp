@@ -78,7 +78,6 @@
 
 #define bool(%0) view_as<bool>(%0)
 #define int(%0) view_as<int>(%0)
-#define float(%0) view_as<float>(%0)
 
 // for SQL Querys
 
