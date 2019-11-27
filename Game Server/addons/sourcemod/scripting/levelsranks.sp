@@ -67,8 +67,8 @@
 
 #include <lvl_ranks>
 
-#if PLUGIN_INT_VERSION != 03010000
-	#error This plugin can only compile on lvl_ranks.inc v3.1.
+#if !defined PLUGIN_INT_VERSION || PLUGIN_INT_VERSION != 03010100
+	#error This plugin can only compile on lvl_ranks.inc v3.1.1.
 #endif
 
 #define PLUGIN_NAME "Levels Ranks"
@@ -146,8 +146,6 @@ public void OnPluginStart()
 	LoadTranslations("common.phrases");
 	LoadTranslations(g_iEngine == Engine_SourceSDK2006 ? "lr_core_old.phrases" : "lr_core.phrases");
 	LoadTranslations("lr_core_ranks.phrases");
-
-	g_hLastResetMyStats = new Cookie("LR_LastResetMyStats", NULL_STRING, CookieAccess_Private);
 
 	RegConsoleCmd("sm_lvl", Call_MainMenu, "Opens the statistics menu");												// in commands.sp
 	RegAdminCmd("sm_lvl_reload", Call_ReloadSettings, ADMFLAG_ROOT, "Reloads core and module configuration files");		// in commands.sp

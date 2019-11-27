@@ -200,28 +200,14 @@ int ChangeExpPlayers_Callback(Menu hMenu, MenuAction mAction, int iClient, int i
 			int iRecipient = GetClientOfUserId(StringToInt(sInfo)),
 				iBuffer = StringToInt(sBuffer);
 
-			if(CheckStatus(iRecipient))
+			if(NotifClient(iClient, iBuffer, iBuffer > 0 ? "AdminGive" : "AdminTake", true))
 			{
-				GiveTakeValue(iClient, sInfo);
-
-				if((g_iPlayerInfo[iRecipient].iStats[ST_EXP] += iBuffer) < 0) 
-				{
-					g_iPlayerInfo[iRecipient].iStats[ST_EXP] = 0;
-				}
-
-				CheckRank(iRecipient);
-
 				int iExp = g_iPlayerInfo[iRecipient].iStats[ST_EXP];
 
-				sBuffer = GetSignValue(iBuffer);
-
-				if(iClient != iRecipient)
-				{
-					LR_PrintMessage(iRecipient, true, false, "%T", iBuffer > 0 ? "AdminGive" : "AdminTake", iRecipient, iExp, sBuffer);
-				}
-
 				LogAction(iRecipient, iClient, "%L %s exp (%i) from %L", iRecipient, sBuffer, iExp, iClient);
-				LR_PrintMessage(iClient, true, false, "%T", "ExpChange", iClient, iRecipient, iExp, sBuffer);
+				LR_PrintMessage(iClient, true, false, "%T", "ExpChange", iClient, iRecipient, iExp, GetSignValue(iBuffer));
+
+				GiveTakeValue(iClient, sInfo);
 			}
 			else
 			{
@@ -302,18 +288,26 @@ void MyStats(int iClient)
 
 	if(g_Settings[LR_ShowResetMyStats])
 	{
+		bool bIsNotCooldown = true;
+
 		int iCooldown = 0;
 
 		static char sData[16];
 
-		g_hLastResetMyStats.Get(iClient, sData, sizeof(sData));
-
-		if(!sData[0] || (iCooldown = (StringToInt(sData) + GetTime())) >= g_Settings[LR_ResetMyStatsCooldown])
+		if(g_hLastResetMyStats)
 		{
-			FormatEx(sText, sizeof(sText), "%T", "MyStatsReset", iClient);
-			hMenu.AddItem("2", sText);
+			g_hLastResetMyStats.Get(iClient, sData, sizeof(sData));
+
+			if(!sData[0] || (iCooldown = (StringToInt(sData) + GetTime())) >= g_Settings[LR_ResetMyStatsCooldown])
+			{
+				FormatEx(sText, sizeof(sText), "%T", "MyStatsReset", iClient);
+				hMenu.AddItem("2", sText);
+
+				bIsNotCooldown = false;
+			}
 		}
-		else
+		
+		if(bIsNotCooldown)
 		{
 			iCooldown = g_Settings[LR_ResetMyStatsCooldown] - iCooldown;
 
@@ -405,7 +399,7 @@ void MyStatsSession(int iClient)
 		iHeadshots = iSessionStats[ST_HEADSHOTS],
 		iShots = iSessionStats[ST_SHOOTS];
 
-	hMenu.SetTitle("%s | %T\n ", g_sPluginTitle, "MyStatsSessionInfo", iClient, GetSignValue(g_iPlayerInfo[iClient].iStats[ST_EXP] - iSessionStats[ST_EXP]), GetSignValue(iSessionStats[ST_PLACEINTOP]), iPlayTime / 3600, iPlayTime / 60 % 60, iPlayTime % 60, iKills, iDeaths, iSessionStats[ST_ASSISTS], iHeadshots, RoundToCeil(100.0 / (iKills ? iKills : 1) * iHeadshots), iKills / (iDeaths ? float(iDeaths) : 1.0), RoundToCeil(100.0 / (iShots ? iShots : 1) * iSessionStats[ST_HITS]), RoundToCeil(100.0 / (iRoundsAll ? iRoundsAll : 1) * iRoundsWin));
+	hMenu.SetTitle("%s | %T\n ", g_sPluginTitle, "MyStatsSessionInfo", iClient, GetSignValue(g_iPlayerInfo[iClient].iSessionStats[ST_EXP]), GetSignValue(iSessionStats[ST_PLACEINTOP]), iPlayTime / 3600, iPlayTime / 60 % 60, iPlayTime % 60, iKills, iDeaths, iSessionStats[ST_ASSISTS], iHeadshots, RoundToCeil(100.0 / (iKills ? iKills : 1) * iHeadshots), iKills / (iDeaths ? float(iDeaths) : 1.0), RoundToCeil(100.0 / (iShots ? iShots : 1) * iSessionStats[ST_HITS]), RoundToCeil(100.0 / (iRoundsAll ? iRoundsAll : 1) * iRoundsWin));
 
 	FormatEx(sText, sizeof(sText), "%T", "Back", iClient);
 	hMenu.AddItem(NULL_STRING, sText);
@@ -453,10 +447,13 @@ int MyStatsReset_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot
 		}
 		else
 		{
-			static char sLastResetMyStats[12];
+			if(g_hLastResetMyStats)
+			{
+				static char sLastResetMyStats[12];
 
-			IntToString(-GetTime(), sLastResetMyStats, sizeof(sLastResetMyStats));
-			g_hLastResetMyStats.Set(iClient, sLastResetMyStats);
+				IntToString(-GetTime(), sLastResetMyStats, sizeof(sLastResetMyStats));
+				g_hLastResetMyStats.Set(iClient, sLastResetMyStats);
+			}
 
 			ResetPlayerStats(iClient);
 		}

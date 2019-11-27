@@ -123,7 +123,7 @@ void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 			{
 				case 'm': 	// round_mvp
 				{
-					NotifClient(GetClientOfUserId(GetEventInt(hEvent, "userid")), g_Settings[LR_ExpRoundMVP], "RoundMVP");
+					NotifClient(iClient, g_Settings[LR_ExpRoundMVP], "RoundMVP");
 				}
 
 				case 'e':	// round_end
@@ -140,7 +140,7 @@ void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 								{
 									bool bLose = iTeam != iWinTeam;
 
-									if(bLose ? NotifClient(i, -g_Settings[LR_ExpRoundLose], "RoundLose") : NotifClient(i, g_Settings[LR_ExpRoundLose], "RoundWin"))
+									if(bLose ? NotifClient(i, -g_Settings[LR_ExpRoundLose], "RoundLose") : NotifClient(i, g_Settings[LR_ExpRoundWin], "RoundWin"))
 									{
 										g_iPlayerInfo[i].iStats[ST_ROUNDSWIN + int(bLose)]++;
 										g_iPlayerInfo[i].iSessionStats[ST_ROUNDSWIN + int(bLose)]++;
@@ -217,17 +217,17 @@ void Events(Event hEvent, char[] sName, bool bDontBroadcast)
 		{
 			switch(sName[6])
 			{
+				case 'e': 	// bomb_defused
+				{
+					NotifClient(iClient, g_Settings[LR_ExpBombDefused], "BombDefused");
+				}
+
 				case 'l': 	// bomb_planted
 				{
 					if(NotifClient(iClient, g_Settings[LR_ExpBombPlanted], "BombPlanted"))
 					{
 						g_iPlayerInfo[iClient].bHaveBomb = false;
 					}
-				}
-
-				case 'e': 	// bomb_defused
-				{
-					NotifClient(iClient, g_Settings[LR_ExpBombDefused], "BombDefused");
 				}
 
 				case 'r': 	// bomb_dropped

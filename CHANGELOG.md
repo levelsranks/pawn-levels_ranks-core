@@ -552,3 +552,9 @@ Change log (RU)
 	- удалён параметр lr_dbreconnect_time
 	- исправлена ошибка Duplicate entry 'STEAM_x:x:x' for key 'PRIMARY' при работе с медленными Базами Данных
 	- убран лимит у количества званий указанных в settings_ranks.ini
+
+[28.11.2019] - (v3.1.1) Исправления
+	- исправлена неработоспособность параметра "lr_winround" в settings_stats.ini
+	- теперь ядро не будет создавать таблицу LR_LastResetMyStats в Cookie, если параметр "lr_resetmystats_cooldown" в settings.ini неактивен
+	- исправлен конфликт со старой кодировкой в Базе Данных в таблице ядра
+	- исправлен неверный возврат значения у натива LR_ChangeClientValue из данных по сессии при ST_EXP и ST_RANK

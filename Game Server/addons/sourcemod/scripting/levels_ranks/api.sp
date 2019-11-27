@@ -189,7 +189,8 @@ int Native_ChangeClientValue(Handle hPlugin, int iArgs)
 	if(CheckStatus(iClient) && g_bRoundAllowExp && g_bRoundEndGiveExp)
 	{
 		int iExpChange = GetNativeCell(2),
-			iExpMin = 0;
+			iExpMin = 0,
+			iOldExp = g_iPlayerInfo[iClient].iStats[ST_EXP];
 
 		if(g_Settings[LR_TypeStatistics])
 		{
@@ -198,13 +199,11 @@ int Native_ChangeClientValue(Handle hPlugin, int iArgs)
 
 		if((g_iPlayerInfo[iClient].iStats[ST_EXP] += iExpChange) < iExpMin)
 		{
-			g_iPlayerInfo[iClient].iRoundExp += iExpChange - (iExpMin - g_iPlayerInfo[iClient].iStats[ST_EXP]);
 			g_iPlayerInfo[iClient].iStats[ST_EXP] = iExpMin;
 		}
-		else
-		{
-			g_iPlayerInfo[iClient].iRoundExp += iExpChange;
-		}
+
+		g_iPlayerInfo[iClient].iRoundExp += iExpChange = iOldExp - g_iPlayerInfo[iClient].iStats[ST_EXP];
+		g_iPlayerInfo[iClient].iSessionStats[ST_EXP] += iExpChange;
 
 		CheckRank(iClient);		// in custom_functions.sp
 

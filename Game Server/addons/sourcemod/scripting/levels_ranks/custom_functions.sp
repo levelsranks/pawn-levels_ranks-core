@@ -124,13 +124,17 @@ void LR_PrintMessage(int iClient, bool bPrefix, bool bNative, const char[] sForm
 	}
 }
 
+int GetAccountID(const char[] sSteamID2)
+{
+	return StringToInt(sSteamID2[10]) << 1 | sSteamID2[8] - '0';
+}
+
 int GetMaxPlayers()
 {
 	int iSlots = GetMaxHumanPlayers();
 
 	return (iSlots < MaxClients + 1 ? iSlots : MaxClients) + 1;
 }
-
 
 char[] GetPlayerName(int iClient)
 {
@@ -142,9 +146,20 @@ char[] GetPlayerName(int iClient)
 	return sName;
 }
 
-int GetAccountID(const char[] sSteamID2)
+char[] GetSignValue(int iValue)
 {
-	return StringToInt(sSteamID2[10]) << 1 | sSteamID2[8] - '0';
+	bool bPlus = iValue > 0;
+
+	static char sValue[16];
+
+	if(bPlus)
+	{
+		sValue[0] = '+';
+	}
+
+	IntToString(iValue, sValue[int(bPlus)], sizeof(sValue) - int(bPlus));
+
+	return sValue;
 }
 
 char[] GetSteamID2(int iAccountID)
@@ -162,23 +177,25 @@ char[] GetSteamID2(int iAccountID)
 	return sSteamID2;
 }
 
-bool NotifClient(int iClient, int iValue, char[] sTitlePhrase)
+bool NotifClient(int iClient, int iValue, const char[] sTitlePhrase, bool bAllow = false)
 {
-	if(g_bAllowStatistic && g_bRoundAllowExp && g_bRoundEndGiveExp && iValue && CheckStatus(iClient))
+	if(CheckStatus(iClient) && (bAllow || (g_bAllowStatistic && g_bRoundAllowExp && g_bRoundEndGiveExp && iValue)))
 	{
-		int iExpMin = 0;
+		int iExpBuffer = 0,
+			iOldExp = g_iPlayerInfo[iClient].iStats[ST_EXP];
 
 		if(g_Settings[LR_TypeStatistics])
 		{
-			iExpMin = 400;
+			iExpBuffer = 400;
 		}
 
-		g_iPlayerInfo[iClient].iRoundExp += iValue;
-
-		if((g_iPlayerInfo[iClient].iStats[ST_EXP] += iValue) < iExpMin)
+		if((g_iPlayerInfo[iClient].iStats[ST_EXP] += iValue) < iExpBuffer)
 		{
-			g_iPlayerInfo[iClient].iStats[ST_EXP] = iExpMin;
+			g_iPlayerInfo[iClient].iStats[ST_EXP] = iExpBuffer;
 		}
+
+		g_iPlayerInfo[iClient].iRoundExp += iExpBuffer = g_iPlayerInfo[iClient].iStats[ST_EXP] - iOldExp;
+		g_iPlayerInfo[iClient].iSessionStats[ST_EXP] += iExpBuffer;
 
 		CheckRank(iClient);
 
@@ -191,22 +208,6 @@ bool NotifClient(int iClient, int iValue, char[] sTitlePhrase)
 	}
 
 	return false;
-}
-
-char[] GetSignValue(int iValue)
-{
-	bool bPlus = iValue > 0;
-
-	static char sValue[16];
-
-	if(bPlus)
-	{
-		sValue[0] = '+';
-	}
-
-	IntToString(iValue, sValue[int(bPlus)], sizeof(sValue) - int(bPlus));
-
-	return sValue;
 }
 
 bool CheckStatus(int iClient)
@@ -251,6 +252,8 @@ void CheckRank(int iClient, bool bActive = true)
 
 				bool bUp = iRank > iOldRank;
 
+				g_iPlayerInfo[iClient].iSessionStats[ST_RANK] += iRank - iOldRank;
+
 				g_hRankNames.GetString(iRank - 1, sRank, sizeof(sRank));
 
 				FormatEx(sRank, sizeof(sRank), "%T", sRank, iClient);
@@ -284,9 +287,10 @@ void ResetPlayerData(int iClient)
 {
 	g_iPlayerInfo[iClient].iStats = g_iInfoNULL.iStats;
 	g_iPlayerInfo[iClient].iSessionStats = g_iInfoNULL.iSessionStats;
-	g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] = g_iPlayerInfo[iClient].iSessionStats[ST_PLAYTIME] -= GetTime();
-	g_iPlayerInfo[iClient].iStats[ST_EXP] = g_iPlayerInfo[iClient].iSessionStats[ST_EXP] = g_Settings[LR_TypeStatistics] ? 1000 : 0;
 	g_iPlayerInfo[iClient].iKillStreak = 0;
+	
+	g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] = g_iPlayerInfo[iClient].iSessionStats[ST_PLAYTIME] -= GetTime();
+	g_iPlayerInfo[iClient].iStats[ST_EXP] = g_Settings[LR_TypeStatistics] ? 1000 : 0;
 }
 
 void ResetPlayerStats(int iClient)

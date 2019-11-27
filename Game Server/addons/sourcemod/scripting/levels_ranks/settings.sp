@@ -58,7 +58,17 @@ void SetSettings()
 
 	g_Settings[LR_MinplayersCount] = hKv.GetNum("lr_minplayers_count", 4);
 	g_Settings[LR_ShowResetMyStats] = hKv.GetNum("lr_show_resetmystats", 1);
-	g_Settings[LR_ResetMyStatsCooldown] = hKv.GetNum("lr_resetmystats_cooldown", 86400);
+
+	if((g_Settings[LR_ResetMyStatsCooldown] = hKv.GetNum("lr_resetmystats_cooldown", 86400)))
+	{
+		if(g_hLastResetMyStats)
+		{
+			g_hLastResetMyStats.Close();
+		}
+
+		g_hLastResetMyStats = new Cookie("LR_LastResetMyStats", NULL_STRING, CookieAccess_Private);
+	}
+
 	g_Settings[LR_ShowUsualMessage] = hKv.GetNum("lr_show_usualmessage", 1);
 	g_Settings[LR_ShowSpawnMessage] = hKv.GetNum("lr_show_spawnmessage", 1);
 	g_Settings[LR_ShowLevelUpMessage] = hKv.GetNum("lr_show_levelup_message", 0);

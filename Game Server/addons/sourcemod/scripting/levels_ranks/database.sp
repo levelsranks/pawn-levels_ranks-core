@@ -149,15 +149,18 @@ void ConnectToDatabase(Database hDatabase, const char[] sError, any NULL)
 	hTransaction.AddQuery(sQuery);
 
 	FormatEx(sQuery, sizeof(sQuery), SQL_GetCountPlayers, g_sTableName);
-	hTransaction.AddQuery(sQuery, 1);
-
-	hDatabase.Execute(hTransaction, SQL_TransactionCallback, SQL_TransactionFailure, LR_ConnectToDB, DBPrio_High);
+	hTransaction.AddQuery(sQuery);
 
 	if(!g_bDatabaseSQLite)
 	{
+		FormatEx(sQuery, sizeof(sQuery), "ALTER TABLE `%s` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;", g_sTableName);
+		hTransaction.AddQuery(sQuery);
+
 		FormatEx(sQuery, sizeof(sQuery), "ALTER TABLE `%s` MODIFY COLUMN `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL default '' AFTER `steam`;", g_sTableName);
-		hDatabase.Query(SQL_Callback, sQuery, -1);
+		hTransaction.AddQuery(sQuery);
 	}
+
+	hDatabase.Execute(hTransaction, SQL_TransactionCallback, SQL_TransactionFailure, LR_ConnectToDB, DBPrio_High);
 }
 
 void AuthAllPlayer()
@@ -271,7 +274,7 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 	{
 		LogError("Miss SQL request! Data: %i", iData);
 	}
-	else if(!hResult && iData != -1)
+	else if(!hResult)
 	{
 		if(StrContains(sError, g_sConnectionError, false) != -1)
 		{
@@ -341,7 +344,6 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 								g_iPlayerInfo[iClient].iStats[i] = hResult.FetchInt(i);
 							}
 
-							g_iPlayerInfo[iClient].iSessionStats[ST_EXP] = g_iPlayerInfo[iClient].iStats[ST_EXP];
 							g_iPlayerInfo[iClient].iStats[ST_PLAYTIME] += g_iPlayerInfo[iClient].iSessionStats[ST_PLAYTIME] -= GetTime();
 							g_iPlayerInfo[iClient].bInitialized = true;
 
