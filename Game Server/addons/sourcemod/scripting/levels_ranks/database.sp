@@ -153,7 +153,10 @@ void ConnectToDatabase(Database hDatabase, const char[] sError, any NULL)
 
 	if(!g_bDatabaseSQLite)
 	{
-		FormatEx(sQuery, sizeof(sQuery), "ALTER TABLE `%s` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;", g_sTableName);
+		FormatEx(sQuery, sizeof(sQuery), "SET CHARACTER SET utf8mb4;", g_sTableName);
+		hTransaction.AddQuery(sQuery);
+
+		FormatEx(sQuery, sizeof(sQuery), "ALTER TABLE `%s` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;", g_sTableName);
 		hTransaction.AddQuery(sQuery);
 
 		FormatEx(sQuery, sizeof(sQuery), "ALTER TABLE `%s` MODIFY COLUMN `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL default '' AFTER `steam`;", g_sTableName);
