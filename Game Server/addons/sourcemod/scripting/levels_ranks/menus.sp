@@ -200,7 +200,7 @@ int ChangeExpPlayers_Callback(Menu hMenu, MenuAction mAction, int iClient, int i
 			int iRecipient = GetClientOfUserId(StringToInt(sInfo)),
 				iBuffer = StringToInt(sBuffer);
 
-			if(NotifClient(iClient, iBuffer, iBuffer > 0 ? "AdminGive" : "AdminTake", true))
+			if(NotifClient(iRecipient, iBuffer, iBuffer > 0 ? "AdminGive" : "AdminTake", true))
 			{
 				int iExp = g_iPlayerInfo[iRecipient].iStats[ST_EXP];
 

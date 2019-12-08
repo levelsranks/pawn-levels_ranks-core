@@ -67,8 +67,8 @@
 
 #include <lvl_ranks>
 
-#if !defined PLUGIN_INT_VERSION || PLUGIN_INT_VERSION != 03010100
-	#error This plugin can only compile on lvl_ranks.inc v3.1.1.
+#if !defined PLUGIN_INT_VERSION || PLUGIN_INT_VERSION != 03010200
+	#error This plugin can only compile on lvl_ranks.inc v3.1.2.
 #endif
 
 #define PLUGIN_NAME "Levels Ranks"
