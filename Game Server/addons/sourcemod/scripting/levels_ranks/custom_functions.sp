@@ -16,14 +16,16 @@ void LR_PrintMessage(int iClient, bool bPrefix, bool bNative, const char[] sForm
 			"{LIGHTRED}",
 			"{GRAY}",
 			"{LIGHTOLIVE}",
-			"{OLIVE}",
+			"{GRAYBLUE}",
 			"{LIGHTBLUE}",
 			"{BLUE}",
 			"{PURPLE}",
-			"{BRIGHTRED}"
+			"{PINK}",
+			"{BRIGHTRED}",
+			"{OLIVE}"
 		},
 
-		sColors[][] = {"\x01", "\x03", "\x04", "\x02", "\x05", "\x06", "\x07", "\x08", "\x09", "\x10", "\x0B", "\x0C", "\x0E", "\x0F"};
+		sColors[][] = {"\x01", "\x03", "\x04", "\x02", "\x05", "\x06", "\x07", "\x08", "\x09", "\x0A", "\x0B", "\x0C", "\x0D", "\x0E", "\x0F", "\x10"};
 
 		if(bNative)
 		{
@@ -62,7 +64,7 @@ void LR_PrintMessage(int iClient, bool bPrefix, bool bNative, const char[] sForm
 
 				case Engine_CSS:
 				{
-					static const int iColorsCSSOB[] = {0xFFFFFF, 0x000000, 0x00AD00, 0xFF0000, 0x00FF00, 0x99FF99, 0xFF4040, 0xCCCCCC, 0xFFBD6B, 0xFA8B00, 0x99CCFF, 0x3D46FF, 0xFA00FA, 0xFF6055};
+					static const int iColorsCSSOB[] = {0xFFFFFF, 0x000000, 0x00AD00, 0xFF0000, 0x00FF00, 0x99FF99, 0xFF4040, 0xCCCCCC, 0xFFBD6B, 0xC1D1E1, 0x99CCFF, 0x3D46FF, 0xD62BD6, 0xFA00FA, 0xFF8080, 0xFA8B00};
 
 					static char sColor[16];
 
@@ -141,9 +143,38 @@ char[] GetPlayerName(int iClient)
 	static char sName[65];
 
 	GetClientName(iClient, sName, 32);
+
 	g_hDatabase.Escape(sName, sName, sizeof(sName));
 
+	if(!g_Settings[LR_DB_Allow_UTF8MB4])
+	{
+		GetFixNamePlayer(sName);
+	}
+
 	return sName;
+}
+
+/**
+ * Fix name by Pheonix
+ */
+void GetFixNamePlayer(char[] sName)
+{
+	for(int i = 0, iLen = strlen(sName), iCharBytes; i < iLen;)
+	{
+		if((iCharBytes = GetCharBytes(sName[i])) == 4)
+		{
+			iLen -= iCharBytes;
+
+			for(int j = i; j <= iLen; j++)
+			{
+				sName[j] = sName[j + iCharBytes];
+			}
+		}
+		else
+		{
+			i += iCharBytes;
+		}
+	}
 }
 
 char[] GetSignValue(int iValue)
@@ -232,24 +263,24 @@ void CheckRank(int iClient, bool bActive = true)
 		{
 			g_iPlayerInfo[iClient].iStats[ST_RANK] = iRank;
 
+			if(GetForwardFunctionCount(g_hForward_Hook[LR_OnLevelChangedPre]))
+			{
+				int iNewRank = iRank;
+
+				CallForward_OnLevelChanged(iClient, iNewRank, iOldRank);
+
+				if(0 < iNewRank < iMaxRanks && iNewRank != iOldRank)
+				{
+					g_iPlayerInfo[iClient].iStats[ST_RANK] = iRank = iNewRank;
+				}
+				else
+				{
+					LogError("%i - invalid number rank.", iNewRank);
+				}
+			}
+
 			if(bActive)
 			{
-				if(GetForwardFunctionCount(g_hForward_Hook[LR_OnLevelChangedPre]))
-				{
-					int iNewRank = iRank;
-
-					CallForward_OnLevelChanged(iClient, iNewRank, iOldRank);
-
-					if(0 < iNewRank < iMaxRanks && iNewRank != iOldRank)
-					{
-						g_iPlayerInfo[iClient].iStats[ST_RANK] = iRank = iNewRank;
-					}
-					else
-					{
-						LogError("%i - invalid number rank.", iNewRank);
-					}
-				}
-
 				bool bUp = iRank > iOldRank;
 
 				g_iPlayerInfo[iClient].iSessionStats[ST_RANK] += iRank - iOldRank;
@@ -264,7 +295,7 @@ void CheckRank(int iClient, bool bActive = true)
 					EmitSoundToClient(iClient, bUp ? g_sSoundUp : g_sSoundDown, SOUND_FROM_PLAYER, 80);
 				}
 
-				if(g_Settings[LR_ShowLevelUpMessage + int(bUp)])
+				if(g_Settings[LR_ShowLevelUpMessage + int(!bUp)])
 				{
 					for(int i = GetMaxPlayers(); --i;)
 					{
@@ -275,10 +306,13 @@ void CheckRank(int iClient, bool bActive = true)
 					}
 				}
 
-				CallForward_OnLevelChanged(iClient, iRank, iOldRank, false);
+				if(g_Settings[LR_DB_SaveDataPlayer_Mode])
+				{
+					SaveDataPlayer(iClient);
+				}
 			}
 
-			SaveDataPlayer(iClient);		// in database.sp
+			CallForward_OnLevelChanged(iClient, iRank, iOldRank, false);
 		}
 	}
 }
@@ -296,8 +330,6 @@ void ResetPlayerData(int iClient)
 void ResetPlayerStats(int iClient)
 {
 	ResetPlayerData(iClient);
-
 	CheckRank(iClient, false);
-
 	CallForward_OnResetPlayerStats(iClient, g_iPlayerInfo[iClient].iAccountID);
 }

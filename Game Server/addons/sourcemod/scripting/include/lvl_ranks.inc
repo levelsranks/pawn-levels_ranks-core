@@ -3,8 +3,8 @@
 #endif
 #define _levelsranks_included_
 
-#define PLUGIN_VERSION "v3.1.2"
-#define PLUGIN_INT_VERSION 03010200
+#define PLUGIN_VERSION "v3.1.3"
+#define PLUGIN_INT_VERSION 03010300
 
 enum LR_HookType
 {
@@ -55,10 +55,15 @@ enum LR_SettingType
 	LR_AllAgainstAll,
 	LR_CleanDB_Days,
 	LR_CleanDB_BanClient,
+	LR_DB_SaveDataPlayer_Mode,
+	LR_DB_Allow_UTF8MB4
+};
 
+enum LR_SettingStatsType
+{
 	LR_ExpKill,					/**< If LR_TypeStatistics equal 0. **/
 	LR_ExpDeath,				/**< If LR_TypeStatistics equal 0. **/
-	LR_KillCoefficient,			/**< If LR_TypeStatistics equal 1. **/
+	LR_ExpKillCoefficient,		/**< If LR_TypeStatistics equal 1. **/
 	LR_ExpGiveHeadShot,
 	LR_ExpGiveAssist,
 	LR_ExpGiveSuicide,
@@ -236,7 +241,6 @@ typedef LR_SelectedMenu = function void (LR_MenuType MenuType, int iClient, cons
  */
 forward void LR_OnCoreIsReady();
 
-
 /**
  * Return if core is loaded.
  */
@@ -295,11 +299,18 @@ native bool LR_MenuHook(LR_MenuType MenuType, LR_CreatedMenu CreatedCallback, LR
 native bool LR_MenuUnhook(LR_MenuType MenuType, LR_CreatedMenu CreatedCallback, LR_SelectedMenu SelectedCallback);
 
 /**
- * Returns the value of a parameter from config.
+ * Returns the value of a parameter from settings.ini.
  *
  * @param Setting			Parameter.
  */
 native any LR_GetSettingsValue(LR_SettingType Setting);
+
+/**
+ * Returns the value of a parameter from settings_stats.ini.
+ *
+ * @param Setting			Parameter.
+ */
+native any LR_GetSettingsStatsValue(LR_SettingStatsType Setting);
 
 /**
  * Returns the connection to the database.
@@ -443,6 +454,7 @@ public void __pl_levelsranks_SetNTVOptional()
 	MarkNativeAsOptional("LR_MenuHook");
 	MarkNativeAsOptional("LR_MenuUnhook");
 	MarkNativeAsOptional("LR_GetSettingsValue");
+	MarkNativeAsOptional("LR_GetSettingsStatsValue");
 	MarkNativeAsOptional("LR_GetDatabase");
 	MarkNativeAsOptional("LR_GetDatabaseType");
 	MarkNativeAsOptional("LR_GetCountPlayers");

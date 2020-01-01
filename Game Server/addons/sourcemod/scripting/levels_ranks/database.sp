@@ -105,7 +105,7 @@ WHERE \
 	SELECT COUNT(`steam`) FROM `%s` WHERE `playtime` >= %d AND `lastconnect`\
 ) AS `timepos`;"
 
-static const char g_sConnectionError[] = "Lost connection";
+static const char g_sConnectionError[] = "Lost connection", g_sDBConfigName[] = "levels_ranks";
 
 void ConnectDB()
 {
@@ -145,7 +145,7 @@ void ConnectToDatabase(Database hDatabase, const char[] sError, any NULL)
 
 	Transaction hTransaction = new Transaction();
 
-	FormatEx(sQuery, sizeof(sQuery), SQL_CreateTable, g_sTableName, g_bDatabaseSQLite ? NULL_STRING : " COLLATE utf8_general_ci", g_bDatabaseSQLite ? NULL_STRING : " COLLATE utf8mb4_general_ci");
+	FormatEx(sQuery, sizeof(sQuery), SQL_CreateTable, g_sTableName, g_bDatabaseSQLite ? NULL_STRING : " COLLATE 'utf8_general_ci'", g_bDatabaseSQLite ? NULL_STRING : g_Settings[LR_DB_Allow_UTF8MB4] ? " COLLATE 'utf8mb4_general_ci'" : " COLLATE 'utf8_general_ci'");
 	hTransaction.AddQuery(sQuery);
 
 	FormatEx(sQuery, sizeof(sQuery), SQL_GetCountPlayers, g_sTableName);
@@ -153,13 +153,25 @@ void ConnectToDatabase(Database hDatabase, const char[] sError, any NULL)
 
 	if(!g_bDatabaseSQLite)
 	{
-		FormatEx(sQuery, sizeof(sQuery), "SET CHARACTER SET utf8mb4;", g_sTableName);
+		char sCharset[8];
+
+		sCharset = g_Settings[LR_DB_Allow_UTF8MB4] ? "utf8mb4" : "utf8";
+
+		if(!hDatabase.SetCharset(sCharset))
+		{
+			LogError("Set charset error (%s). Update dbi.mysql.ext for proper operation.", sCharset);
+		}
+
+		FormatEx(sQuery, sizeof(sQuery), "SET NAMES '%s';", sCharset);
 		hTransaction.AddQuery(sQuery);
 
-		FormatEx(sQuery, sizeof(sQuery), "ALTER TABLE `%s` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;", g_sTableName);
+		FormatEx(sQuery, sizeof(sQuery), "SET CHARSET '%s';", sCharset);
 		hTransaction.AddQuery(sQuery);
 
-		FormatEx(sQuery, sizeof(sQuery), "ALTER TABLE `%s` MODIFY COLUMN `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL default '' AFTER `steam`;", g_sTableName);
+		FormatEx(sQuery, sizeof(sQuery), "ALTER TABLE `%s` CHARACTER SET '%s' COLLATE '%s_general_ci';", g_sTableName, sCharset, sCharset);
+		hTransaction.AddQuery(sQuery);
+
+		FormatEx(sQuery, sizeof(sQuery), "ALTER TABLE `%s` MODIFY COLUMN `name` varchar(32) CHARACTER SET '%s' COLLATE '%s_general_ci' NOT NULL default '' AFTER `steam`;", g_sTableName, sCharset, sCharset);
 		hTransaction.AddQuery(sQuery);
 	}
 
@@ -403,7 +415,7 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 						FormatEx(sText[strlen(sText)], 16, "%T\n", "NoData", iClient);
 					}
 
-					Menu hMenu = new Menu(OverAllTopPlayers_Callback, MenuAction_Select);		// in menus.sp
+					Menu hMenu = new Menu(OverAllTopPlayers_Callback, MenuAction_Select);
 
 					hMenu.SetTitle(sText);
 

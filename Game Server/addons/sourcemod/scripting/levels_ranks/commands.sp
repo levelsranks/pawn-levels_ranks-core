@@ -2,8 +2,8 @@ Action Call_MainMenu(int iClient, int iArgs)
 {
 	if(CheckStatus(iClient) && g_hDatabase)
 	{
-		CheckRank(iClient);		// in custom_functions.sp
-		MainMenu(iClient);		// in menus.sp
+		CheckRank(iClient);
+		MainMenu(iClient);
 	}
 	else 
 	{
@@ -15,7 +15,7 @@ Action Call_MainMenu(int iClient, int iArgs)
 
 Action Call_ReloadSettings(int iClient, int iArgs)
 {
-	SetSettings();		// in settings.sp
+	SetSettings();
 
 	LR_PrintMessage(iClient, true, false, "%T", "ConfigUpdated", iClient);
 	PrintToServer("[LR] Settings cache has been refreshed.");
@@ -144,7 +144,7 @@ Action Call_ResetPlayer(int iClient, int iArgs)
 
 void ResetPlayerCommand(int iClient, int iTarget)
 {
-	ResetPlayerStats(iTarget);		// in custom_functions.sp
+	ResetPlayerStats(iTarget);
 	LogAction(iClient, iTarget, "[LR] %L reset statistics at %L!", iClient, iTarget);
 }
 
@@ -152,19 +152,19 @@ public void OnClientSayCommand_Post(int iClient, const char[] sCommand, const ch
 {
 	if(CheckStatus(iClient))
 	{
-		if(!strcmp(sArgs, "top") || !strcmp(sArgs, "!top"))
+		if(!strcmp(sArgs, "top", false) || !strcmp(sArgs, "!top", false))
 		{
-			OverAllTopPlayers(iClient, false);			// in menus.sp
+			OverAllTopPlayers(iClient, false);
 		}
-		else if(!strcmp(sArgs, "toptime") || !strcmp(sArgs, "!toptime"))
+		else if(!strcmp(sArgs, "toptime", false) || !strcmp(sArgs, "!toptime", false))
 		{
-			OverAllTopPlayers(iClient);	// in menus.sp
+			OverAllTopPlayers(iClient);
 		}
-		else if(!strcmp(sArgs, "session") || !strcmp(sArgs, "!session"))
+		else if(!strcmp(sArgs, "session", false) || !strcmp(sArgs, "!session", false))
 		{
-			MyStatsSession(iClient);			// in menus.sp
+			MyStatsSession(iClient);
 		}
-		else if(!strcmp(sArgs, "rank") || !strcmp(sArgs, "!rank"))
+		else if(!strcmp(sArgs, "rank", false) || !strcmp(sArgs, "!rank", false))
 		{
 			int iKills = g_iPlayerInfo[iClient].iStats[ST_KILLS],
 				iDeaths = g_iPlayerInfo[iClient].iStats[ST_DEATHS];

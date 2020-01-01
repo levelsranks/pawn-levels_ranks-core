@@ -8,7 +8,7 @@ void SetSettings()
 
 	KeyValues	hKv = new KeyValues("LR_Settings");
 
-	bool bFirstLoad = sPath[0] == '\0';
+	bool bFirstLoad = !sPath[0];
 
 	if(bFirstLoad)
 	{
@@ -37,7 +37,8 @@ void SetSettings()
 	{
 		hKv.GetString("lr_table", g_sTableName, sizeof(g_sTableName), "lvl_base");
 
-		iTypeStatistics = (g_Settings[LR_TypeStatistics] = hKv.GetNum("lr_type_statistics", 0));
+		iTypeStatistics = (g_SettingsStats[LR_TypeStatistics] = hKv.GetNum("lr_type_statistics", 0));
+		g_Settings[LR_DB_Allow_UTF8MB4] = hKv.GetNum("lr_db_allow_utf8mb4", 1);
 	}
 
 	hKv.GetString("lr_flag_adminmenu", sBuffer, 32, "z");
@@ -80,6 +81,7 @@ void SetSettings()
 	g_Settings[LR_AllAgainstAll] = hKv.GetNum("lr_allagainst_all", 0);
 	g_Settings[LR_CleanDB_Days] = hKv.GetNum("lr_cleandb_days", 30);
 	g_Settings[LR_CleanDB_BanClient] = hKv.GetNum("lr_cleandb_banclient", 1);
+	g_Settings[LR_DB_SaveDataPlayer_Mode] = hKv.GetNum("lr_db_savedataplayer_mode", 1);
 
 	hKv.Close();
 
@@ -100,8 +102,8 @@ void SetSettings()
 		{
 			hKv.JumpToKey("Funded_System"); /**/
 
-			g_Settings[LR_ExpKill] = hKv.GetNum("lr_kill");
-			g_Settings[LR_ExpDeath] = hKv.GetNum("lr_death");
+			g_SettingsStats[LR_ExpKill] = hKv.GetNum("lr_kill");
+			g_SettingsStats[LR_ExpDeath] = hKv.GetNum("lr_death");
 		}
 
 		case 1:
@@ -119,7 +121,7 @@ void SetSettings()
 				flKillCoefficient = 1.5;
 			}
 
-			g_Settings[LR_KillCoefficient] = flKillCoefficient;
+			g_SettingsStats[LR_ExpKillCoefficient] = flKillCoefficient;
 		}
 
 		case 2:
@@ -128,19 +130,19 @@ void SetSettings()
 		}
 	}
 
-	g_Settings[LR_ExpGiveHeadShot] = hKv.GetNum("lr_headshot", 1);
-	g_Settings[LR_ExpGiveAssist] = hKv.GetNum("lr_assist", 1);
-	g_Settings[LR_ExpGiveSuicide] = hKv.GetNum("lr_suicide", 0);
-	g_Settings[LR_ExpGiveTeamKill] = hKv.GetNum("lr_teamkill", 0);
-	g_Settings[LR_ExpRoundWin] = hKv.GetNum("lr_winround", 2);
-	g_Settings[LR_ExpRoundLose] = hKv.GetNum("lr_loseround", 2);
-	g_Settings[LR_ExpRoundMVP] = hKv.GetNum("lr_mvpround", 1);
-	g_Settings[LR_ExpBombPlanted] = hKv.GetNum("lr_bombplanted", 2);
-	g_Settings[LR_ExpBombDefused] = hKv.GetNum("lr_bombdefused", 2);
-	g_Settings[LR_ExpBombDropped] = hKv.GetNum("lr_bombdropped", 1);
-	g_Settings[LR_ExpBombPickup] = hKv.GetNum("lr_bombpickup", 1);
-	g_Settings[LR_ExpHostageKilled] = hKv.GetNum("lr_hostagekilled", 0);
-	g_Settings[LR_ExpHostageRescued] = hKv.GetNum("lr_hostagerescued", 2);
+	g_SettingsStats[LR_ExpGiveHeadShot] = hKv.GetNum("lr_headshot", 1);
+	g_SettingsStats[LR_ExpGiveAssist] = hKv.GetNum("lr_assist", 1);
+	g_SettingsStats[LR_ExpGiveSuicide] = hKv.GetNum("lr_suicide", 0);
+	g_SettingsStats[LR_ExpGiveTeamKill] = hKv.GetNum("lr_teamkill", 0);
+	g_SettingsStats[LR_ExpRoundWin] = hKv.GetNum("lr_winround", 2);
+	g_SettingsStats[LR_ExpRoundLose] = hKv.GetNum("lr_loseround", 2);
+	g_SettingsStats[LR_ExpRoundMVP] = hKv.GetNum("lr_mvpround", 1);
+	g_SettingsStats[LR_ExpBombPlanted] = hKv.GetNum("lr_bombplanted", 2);
+	g_SettingsStats[LR_ExpBombDefused] = hKv.GetNum("lr_bombdefused", 2);
+	g_SettingsStats[LR_ExpBombDropped] = hKv.GetNum("lr_bombdropped", 1);
+	g_SettingsStats[LR_ExpBombPickup] = hKv.GetNum("lr_bombpickup", 1);
+	g_SettingsStats[LR_ExpHostageKilled] = hKv.GetNum("lr_hostagekilled", 0);
+	g_SettingsStats[LR_ExpHostageRescued] = hKv.GetNum("lr_hostagerescued", 2);
 
 	if(iTypeStatistics != 2)
 	{

@@ -7,23 +7,23 @@ public APLRes AskPluginLoad2(Handle hMySelf, bool bLate, char[] sError, int iErr
 		return APLRes_SilentFailure;
 	}
 
-	if(!HookEventEx("weapon_fire", Events, EventHookMode_Pre))
+	if(!HookEventEx("weapon_fire", Events_Shots, EventHookMode_Pre))
 	{
 		strcopy(sError, iErrorSize, "Bug in event analysis engine!");
 
 		return APLRes_SilentFailure;
 	}
-	HookEvent("player_hurt", Events, EventHookMode_Pre);
-	HookEvent("player_death", Events, EventHookMode_Pre);
-	HookEventEx("round_mvp", Events, EventHookMode_Pre);	// Missing in CS:S v34.
-	HookEvent("round_end", Events, EventHookMode_Pre);
-	HookEvent("round_start", Events, EventHookMode_Pre);
-	HookEvent("bomb_planted", Events, EventHookMode_Pre);
-	HookEvent("bomb_defused", Events, EventHookMode_Pre);
-	HookEvent("bomb_dropped", Events, EventHookMode_Pre);
-	HookEvent("bomb_pickup", Events, EventHookMode_Pre);
-	HookEvent("hostage_killed", Events, EventHookMode_Pre);
-	HookEvent("hostage_rescued", Events, EventHookMode_Pre);
+	HookEvent("player_hurt", Events_Shots, EventHookMode_Pre);
+	HookEvent("player_death", Event_PlayerDeath, EventHookMode_Pre);
+	HookEvent("bomb_planted", Events_Bomb, EventHookMode_Pre);
+	HookEvent("bomb_defused", Events_Bomb, EventHookMode_Pre);
+	HookEvent("bomb_dropped", Events_Bomb, EventHookMode_Pre);
+	HookEvent("bomb_pickup", Events_Bomb, EventHookMode_Pre);
+	HookEvent("hostage_killed", Events_Hostage, EventHookMode_Pre);
+	HookEvent("hostage_rescued", Events_Hostage, EventHookMode_Pre);
+	HookEvent("round_start", Events_Rounds, EventHookMode_Pre);
+	HookEvent("round_end", Events_Rounds, EventHookMode_Pre);
+	HookEventEx("round_mvp", Events_Rounds, EventHookMode_Pre);	// Missing in CS:S v34.
 
 	CreateNative("LR_IsLoaded", Native_IsLoaded);
 	CreateNative("LR_GetVersion", Native_GetVersion);
@@ -32,6 +32,7 @@ public APLRes AskPluginLoad2(Handle hMySelf, bool bLate, char[] sError, int iErr
 	CreateNative("LR_MenuHook", Native_MenuHook);
 	CreateNative("LR_MenuUnhook", Native_MenuUnhook);
 	CreateNative("LR_GetSettingsValue", Native_GetSettingsValue);
+	CreateNative("LR_GetSettingsStatsValue", Native_GetSettingsStatsValue);
 	CreateNative("LR_GetDatabase", Native_GetDatabase);
 	CreateNative("LR_GetDatabaseType", Native_GetDatabaseType);
 	CreateNative("LR_GetCountPlayers", Native_GetCountPlayers);
@@ -113,6 +114,11 @@ int Native_MenuUnhook(Handle hPlugin, int iArgs)
 int Native_GetSettingsValue(Handle hPlugin, int iArgs)
 {
 	return g_Settings[GetNativeCell(1)];
+}
+
+int Native_GetSettingsStatsValue(Handle hPlugin, int iArgs)
+{
+	return g_SettingsStats[GetNativeCell(1)];
 }
 
 int Native_GetDatabase(Handle hPlugin, int iArgs)
@@ -205,7 +211,7 @@ int Native_ChangeClientValue(Handle hPlugin, int iArgs)
 		g_iPlayerInfo[iClient].iRoundExp += iExpChange = iOldExp - g_iPlayerInfo[iClient].iStats[ST_EXP];
 		g_iPlayerInfo[iClient].iSessionStats[ST_EXP] += iExpChange;
 
-		CheckRank(iClient);		// in custom_functions.sp
+		CheckRank(iClient);
 
 		return true;
 	}
@@ -224,7 +230,6 @@ int Native_ShowMenu(Handle hPlugin, int iArgs)
 
 	switch(GetNativeCell(2))
 	{
-		// functions in menus.sp
 		case LR_AdminMenu: MenuAdmin(iClient);
 		case LR_MyStatsSecondary: MyStatsSecondary(iClient);
 		case LR_SettingMenu: MyPrivilegesSettings(iClient);
@@ -234,7 +239,7 @@ int Native_ShowMenu(Handle hPlugin, int iArgs)
 
 int Native_PrintToChat(Handle hPlugin, int iArgs)
 {
-	LR_PrintMessage(GetNativeCell(1), GetNativeCell(2), true, NULL_STRING);		// in custom_functions.sp
+	LR_PrintMessage(GetNativeCell(1), GetNativeCell(2), true, NULL_STRING);
 }
 
 // Forwards

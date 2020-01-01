@@ -566,7 +566,7 @@ void OverAllTopPlayers(int iClient, bool bPlaytime = true)
 		};
 
 		FormatEx(sQuery, sizeof(sQuery), SQL_PrintMenu, sTable[int(bPlaytime)], g_sTableName, sTable[int(bPlaytime)]);
-		g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | LR_TopPlayersExp + int(bPlaytime));		// in database.sp
+		g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | LR_TopPlayersExp + int(bPlaytime));
 	}
 }
 

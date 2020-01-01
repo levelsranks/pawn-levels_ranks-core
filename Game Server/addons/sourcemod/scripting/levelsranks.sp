@@ -39,7 +39,7 @@
 ****
 ****		Translation assistance:
 ****
-****		Unity (aka valeologist)
+****		Unity (aka valeologist) & mika
 ****		( translation of phrases in Ukrainian )
 ****
 ****		LemonPAKA
@@ -64,11 +64,12 @@
 #endif
 
 #pragma newdecls required
+#pragma tabsize 4
 
 #include <lvl_ranks>
 
-#if !defined PLUGIN_INT_VERSION || PLUGIN_INT_VERSION != 03010200
-	#error This plugin can only compile on lvl_ranks.inc v3.1.2.
+#if !defined PLUGIN_INT_VERSION || PLUGIN_INT_VERSION != 03010300
+	#error This plugin can only compile on lvl_ranks.inc v3.1.3.
 #endif
 
 #define PLUGIN_NAME "Levels Ranks"
@@ -80,14 +81,16 @@ enum struct LR_PlayerInfo
 {
 	bool bHaveBomb;
 	bool bInitialized;
-	int iAccountID;
-	int iStats[LR_StatsType];
-	int iSessionStats[LR_StatsType];
-	int iRoundExp;
-	int iKillStreak;
+
+	int  iAccountID;
+	int  iStats[LR_StatsType];
+	int  iSessionStats[LR_StatsType];
+	int  iRoundExp;
+	int  iKillStreak;
 }
 
-any				g_Settings[LR_SettingType];
+any				g_Settings[LR_SettingType],
+				g_SettingsStats[LR_SettingStatsType];
 
 bool			g_bAllowStatistic,
 				g_bDatabaseSQLite,
@@ -98,8 +101,7 @@ int				g_iBonus[11],
 				g_iCountRetryConnect,
 				g_iDBCountPlayers;
 
-char			g_sDBConfigName[] = "levels_ranks",
-				g_sPluginName[] = PLUGIN_NAME,
+char			g_sPluginName[] = PLUGIN_NAME,
 				g_sPluginTitle[64],
 				g_sTableName[32],
 				g_sSoundUp[PLATFORM_MAX_PATH],
@@ -147,13 +149,13 @@ public void OnPluginStart()
 	LoadTranslations(g_iEngine == Engine_SourceSDK2006 ? "lr_core_old.phrases" : "lr_core.phrases");
 	LoadTranslations("lr_core_ranks.phrases");
 
-	RegConsoleCmd("sm_lvl", Call_MainMenu, "Opens the statistics menu");												// in commands.sp
-	RegAdminCmd("sm_lvl_reload", Call_ReloadSettings, ADMFLAG_ROOT, "Reloads core and module configuration files");		// in commands.sp
-	RegServerCmd("sm_lvl_reset", Call_ResetData, "Сlearing all data in the database");									// in commands.sp
-	RegAdminCmd("sm_lvl_del", Call_ResetPlayer, ADMFLAG_ROOT, "Resets player stats");									// in commands.sp
+	RegConsoleCmd("sm_lvl", Call_MainMenu, "Opens the statistics menu");
+	RegAdminCmd("sm_lvl_reload", Call_ReloadSettings, ADMFLAG_ROOT, "Reloads core and module configuration files");
+	RegServerCmd("sm_lvl_reset", Call_ResetData, "Сlearing all data in the database");
+	RegAdminCmd("sm_lvl_del", Call_ResetPlayer, ADMFLAG_ROOT, "Resets player stats");
 
-	SetSettings();		// in settings.sp
-	ConnectDB();		// in databases.sp
+	SetSettings();
+	ConnectDB();
 }
 
 public void OnMapStart()
@@ -191,7 +193,7 @@ public void OnPluginEnd()
 	{
 		if(g_iPlayerInfo[i].bInitialized)
 		{
-			SaveDataPlayer(i, true);		// in database.sp
+			SaveDataPlayer(i, true);
 		}
 	}
 }
