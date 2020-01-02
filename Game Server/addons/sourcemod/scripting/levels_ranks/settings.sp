@@ -37,7 +37,7 @@ void SetSettings()
 	{
 		hKv.GetString("lr_table", g_sTableName, sizeof(g_sTableName), "lvl_base");
 
-		iTypeStatistics = (g_SettingsStats[LR_TypeStatistics] = hKv.GetNum("lr_type_statistics", 0));
+		iTypeStatistics = (g_Settings[LR_TypeStatistics] = hKv.GetNum("lr_type_statistics", 0));
 		g_Settings[LR_DB_Allow_UTF8MB4] = hKv.GetNum("lr_db_allow_utf8mb4", 1);
 	}
 
