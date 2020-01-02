@@ -33,13 +33,13 @@ void Event_PlayerDeath(Event hEvent, const char[] sName, bool bDontBroadcast)
 	{
 		if(iAttacker == iClient)
 		{
-			NotifClient(iClient, -g_Settings[LR_ExpGiveSuicide], "Suicide");
+			NotifClient(iClient, -g_SettingsStats[LR_ExpGiveSuicide], "Suicide");
 		}
 		else
 		{
 			if(!g_Settings[LR_AllAgainstAll] && GetClientTeam(iClient) == GetClientTeam(iAttacker))
 			{
-				NotifClient(iAttacker, -g_Settings[LR_ExpGiveTeamKill], "TeamKill");
+				NotifClient(iAttacker, -g_SettingsStats[LR_ExpGiveTeamKill], "TeamKill");
 			}
 			else
 			{
@@ -49,8 +49,8 @@ void Event_PlayerDeath(Event hEvent, const char[] sName, bool bDontBroadcast)
 				{
 					case 0:
 					{
-						iExpAttacker = g_Settings[LR_ExpKill];
-						iExpVictim = g_Settings[LR_ExpDeath];
+						iExpAttacker = g_SettingsStats[LR_ExpKill];
+						iExpVictim = g_SettingsStats[LR_ExpDeath];
 
 						CallForward_OnPlayerKilled(hEvent, iExpAttacker, iClient, iAttacker);
 					}
@@ -66,7 +66,7 @@ void Event_PlayerDeath(Event hEvent, const char[] sName, bool bDontBroadcast)
 							iExpAttacker = 1;
 						}
 
-						if((iExpVictim = RoundToNearest(iExpAttacker * view_as<float>(g_Settings[LR_ExpKillCoefficient]))) < 1)
+						if((iExpVictim = RoundToNearest(iExpAttacker * view_as<float>(g_SettingsStats[LR_ExpKillCoefficient]))) < 1)
 						{
 							iExpVictim = 1;
 						}
@@ -93,7 +93,7 @@ void Event_PlayerDeath(Event hEvent, const char[] sName, bool bDontBroadcast)
 
 				if(NotifClient(iAttacker, iExpAttacker, "Kill") && NotifClient(iClient, -iExpVictim, "MyDeath"))
 				{
-					if(hEvent.GetBool("headshot") && NotifClient(iAttacker, g_Settings[LR_ExpGiveHeadShot], "HeadShotKill"))
+					if(hEvent.GetBool("headshot") && NotifClient(iAttacker, g_SettingsStats[LR_ExpGiveHeadShot], "HeadShotKill"))
 					{
 						g_iPlayerInfo[iAttacker].iStats[ST_HEADSHOTS]++;
 						g_iPlayerInfo[iAttacker].iSessionStats[ST_HEADSHOTS]++;
@@ -101,7 +101,7 @@ void Event_PlayerDeath(Event hEvent, const char[] sName, bool bDontBroadcast)
 
 					int iAssister = GetClientOfUserId(hEvent.GetInt("assister"));
 
-					if(NotifClient(iAssister, g_Settings[LR_ExpGiveAssist], "AssisterKill"))
+					if(NotifClient(iAssister, g_SettingsStats[LR_ExpGiveAssist], "AssisterKill"))
 					{
 						g_iPlayerInfo[iAssister].iStats[ST_ASSISTS]++;
 						g_iPlayerInfo[iAssister].iSessionStats[ST_ASSISTS]++;
@@ -131,12 +131,12 @@ void Events_Bomb(Event hEvent, const char[] sName, bool bDontBroadcast)
 	{
 		case 'e': 	// bomb_defused
 		{
-			NotifClient(iClient, g_Settings[LR_ExpBombDefused], "BombDefused");
+			NotifClient(iClient, g_SettingsStats[LR_ExpBombDefused], "BombDefused");
 		}
 
 		case 'l': 	// bomb_planted
 		{
-			if(NotifClient(iClient, g_Settings[LR_ExpBombPlanted], "BombPlanted"))
+			if(NotifClient(iClient, g_SettingsStats[LR_ExpBombPlanted], "BombPlanted"))
 			{
 				g_iPlayerInfo[iClient].bHaveBomb = false;
 			}
@@ -144,7 +144,7 @@ void Events_Bomb(Event hEvent, const char[] sName, bool bDontBroadcast)
 
 		case 'r': 	// bomb_dropped
 		{
-			if(g_iPlayerInfo[iClient].bHaveBomb && NotifClient(iClient, -g_Settings[LR_ExpBombDropped], "BombDropped"))
+			if(g_iPlayerInfo[iClient].bHaveBomb && NotifClient(iClient, -g_SettingsStats[LR_ExpBombDropped], "BombDropped"))
 			{
 				g_iPlayerInfo[iClient].bHaveBomb = false;
 			}
@@ -152,7 +152,7 @@ void Events_Bomb(Event hEvent, const char[] sName, bool bDontBroadcast)
 
 		default: 	// bomb_pickup
 		{
-			if(!g_iPlayerInfo[iClient].bHaveBomb && NotifClient(iClient, g_Settings[LR_ExpBombPickup], "BombPickup"))
+			if(!g_iPlayerInfo[iClient].bHaveBomb && NotifClient(iClient, g_SettingsStats[LR_ExpBombPickup], "BombPickup"))
 			{
 				g_iPlayerInfo[iClient].bHaveBomb = true;
 			}
@@ -166,11 +166,11 @@ void Events_Hostage(Event hEvent, const char[] sName, bool bDontBroadcast)
 
 	if(sName[8] == 'k')		// hostage_killed
 	{
-		NotifClient(iClient, -g_Settings[LR_ExpHostageKilled], "HostageKilled");
+		NotifClient(iClient, -g_SettingsStats[LR_ExpHostageKilled], "HostageKilled");
 	}
 	else					// hostage_rescued
 	{
-		NotifClient(iClient, g_Settings[LR_ExpHostageRescued], "HostageRescued");
+		NotifClient(iClient, g_SettingsStats[LR_ExpHostageRescued], "HostageRescued");
 	}
 }
 
@@ -223,7 +223,7 @@ void Events_Rounds(Event hEvent, const char[] sName, bool bDontBroadcast)
 					{
 						bool bLose = iTeam != iWinTeam;
 
-						if(bLose ? NotifClient(i, -g_Settings[LR_ExpRoundLose], "RoundLose") : NotifClient(i, g_Settings[LR_ExpRoundWin], "RoundWin"))
+						if(bLose ? NotifClient(i, -g_SettingsStats[LR_ExpRoundLose], "RoundLose") : NotifClient(i, g_SettingsStats[LR_ExpRoundWin], "RoundWin"))
 						{
 							g_iPlayerInfo[i].iStats[ST_ROUNDSWIN + int(bLose)]++;
 							g_iPlayerInfo[i].iSessionStats[ST_ROUNDSWIN + int(bLose)]++;
@@ -261,7 +261,7 @@ void Events_Rounds(Event hEvent, const char[] sName, bool bDontBroadcast)
 	}
 	else	// round_mvp
 	{
-		NotifClient(GetClientOfUserId(hEvent.GetInt("userid")), g_Settings[LR_ExpRoundMVP], "RoundMVP");
+		NotifClient(GetClientOfUserId(hEvent.GetInt("userid")), g_SettingsStats[LR_ExpRoundMVP], "RoundMVP");
 	}
 }
 
