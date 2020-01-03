@@ -27,6 +27,7 @@
 		"chi"		"{RED}[LR]{WHITE}"
 		"es"		"{RED}[LR]{WHITE}"
 		"de"		"{RED}[LR]{WHITE}"
+		"pl"		"{RED}[LR]{WHITE}"
 	}
 	"MainMenu"
 	{
@@ -37,6 +38,7 @@
 		"chi"		"段位: {1}\n经验值: {2}\n阶段: {3} of {4}\n "
 		"es"		"Rango: {1}\nExp: {2}\nPosición: {3} de {4}\n "
 		"de"		"Rang: {1}\nExp: {2}\nPlatz: {3} of {4}"
+		"pl"		"Ranga: {1}\nExp (Punkty doświadczenia): {2}\nMiejsce na serwerze na serwerze: {3} z {4}\n "
 	}
 	"MainMenu_Admin"
 	{
@@ -46,6 +48,7 @@
 		"chi"		"管理员菜单"
 		"es"		"Panel de admin"
 		"de"		"Admin Menü"
+		"pl"		"Panel Admina"
 	}
 	"ReloadAllConfigs"
 	{
@@ -55,6 +58,7 @@
 		"chi"		"重载设定"
 		"es"		"Recargar la configuración del plugin"
 		"de"		"Neuladen der Plugin Einstellungen"
+		"pl"		"Odśwież ustawienia pluginu"
 	}
 	"ConfigUpdated"
 	{
@@ -64,6 +68,7 @@
 		"chi"		"设置已更新"
 		"es"		"Configuración actualitzada"
 		"de"		"Konfigurationseinstellungen aktualisiert"
+		"pl"		"Zaktualizowano ustawienia konfiguracji"
 	}
 	"GiveTakeMenuExp"
 	{
@@ -73,6 +78,7 @@
 		"chi"		"给予/拿走 经验值. 点数"
 		"es"		"Dar/Quitar puntos exp."
 		"de"		"Geben/Nehmen von Erfahrungspunkten"
+		"pl"		"Odbierz punkty exp."
 	}
 	"AdminGive"
 	{
@@ -83,6 +89,7 @@
 		"chi"		"你的经验值: {GRAY}{1} [管理员{2}]"
 		"es"		"Tu exp: {GRAY}{1} [{2} del admin]"
 		"de"		"Deine EP: {GRAY}{1} [{2} vom Admin]"
+		"pl"		"Twój exp: {GRAY}{1} [{2} dodane przez Admina]"
 	}
 	"AdminTake"
 	{
@@ -93,6 +100,7 @@
 		"chi"		"你的经验值: {GRAY}{1} [管理员{2}]"
 		"es"		"Tu exp: {GRAY}{1} [{2} del admin]"
 		"de"		"Deine EP: {GRAY}{1} [{2} vom Admin]"
+		"pl"		"Twój exp: {GRAY}{1} [{2} zabrane przez Admina]"
 	}
 	"ExpChange"
 	{
@@ -103,6 +111,7 @@
 		"chi"		"{1} - {GRAY}{2} ({3})"
 		"es"		"{1} - {GRAY}{2} ({3})"
 		"de"		"{1} - {GRAY}{2} ({3})"
+		"pl"		"{1} - {GRAY}{2} ({3})"
 	}
 	"MainMenu_MyStats"
 	{
@@ -112,6 +121,7 @@
 		"chi"		"我的数据"
 		"es"		"Mis estadísticas"
 		"de"		"Meine Statistiken"
+		"pl"		"Moje statystyki"
 	}
 	"MyStatsInfo"
 	{
@@ -122,6 +132,7 @@
 		"chi"		"我的数据\n \n已游玩: {1} 小时 {2} 分 {3} 秒\n \n击杀: {4}\n死亡: {5}\n助攻: {6}\n爆头: {7} ({8}%%)\nK/D比: {9}\n \n精准度: {10}%%\n胜率: {11}%%"
 		"es"		"Mis estadísticas\n \nJugado: {1} h. {2} m. {3} seg.\n \nMatado: {4}\nMuerto: {5}\nAsistencias: {6}\nHeadshots: {7} ({8}%%)\nKDR: {9}\n \nPrecisión: {10}%%\nRatio de victorias: {11}%%"
 		"de"		"Meine Statistiken\n \nGespielt: {1} s {2} m {3} sek\n \nKills: {4}\nTode: {5}\nAssists: {6}\nKopfschüsse: {7} ({8}%%)\nKD: {9}\n \nGenauigkeit: {10}%%\nGewinnrate: {11}%%"
+		"pl"		"Moje statystyki\n \nCzas w grze: {1} h. {2} m. {3} sec.\n \nZabójstwa: {4}\nZgony: {5}\nAsysty: {6}\nHeadshoty: {7} ({8}%%) \nKDR: {9}\n \nPrecyzja: {10}%%\nWskaźnik wygranych: {11}%%"
 	}
 	"MyStatsSecondary"
 	{
@@ -131,6 +142,7 @@
 		"chi"		"其他统计"
 		"es"		"Estadísticas secundarias"
 		"de"		"Sekundäre Statistiken"
+		"pl"		"Drugorzędne statystyki"
 	}
 	"MyStatsSession"
 	{
@@ -140,6 +152,7 @@
 		"chi"		"当前数据, 会话数据"
 		"es"		"Datos de la sesión"
 		"de"		"Sitzungsdaten"
+		"pl"		"Dane sesji"
 	}
 	"MyStatsSessionInfo"
 	{
@@ -150,6 +163,7 @@
 		"chi"		"当前数据, 会话数据\n \n经验值. 点数: {1}\n放置在顶部: {2}\n \n已游玩: {3} 小时 {3} 分 {5} 秒\n \n击杀: {6}\n死亡: {7}\n助攻: {8}\n爆头: {9} ({10}%%)\nK/D比: {11}\n \n精准度: {12}%%\n胜率: {13}%%"
 		"es"		"Datos de la sesión\n \nPuntos exp.: {1}\nLugar: {2}\n \nJugado: {3} h {4} m {5} seg\n \nMatado: {6}\nMuerto: {7}\nAsistencias: {8}\nHeadshots: {9} ({10}%% \nKDR: {11}\n \nPrecisión: {12}%%\nRatio de victorias: {13}%%"
 		"de"		"Sitzungsdaten\n \nErfahrungspunkte: {1}\nPlatz: {2}\n \nGespielt: {3} s {4} m {5} sek\n \nKills: {6}\nTode: {7}\nAssists: {8}\nKopfschüsse: {9} ({10}%%)\nKD: {11}\n \nGenauigkeit: {12}%%\nGewinnrate: {13}%%"
+		"pl"		"Dane sesji\n \nPunkty Exp.: {1} \nMiejsce na serwerze: {2}\n \nCzas w grze: {3} h {4} m {5} sec\n \nZabójstwa: {6}\nZgony: {7}\nAsysty: {8}\nHeadshoty: {9} ({10}%%)\nKDR: {11}\n \nPrecyzja: {12}%%\nWskaźnik wygranych: {13}%%"
 	}
 	"MyStatsReset"
 	{
@@ -159,6 +173,7 @@
 		"chi"		"重置我的数据"
 		"es"		"Resetear mis estadísticas"
 		"de"		"Meine Statistiken zurücksetzen"
+		"pl"		"Zresetuj moje statystyki"
 	}
 	"MyStatsResetCooldown"
 	{
@@ -169,6 +184,7 @@
 		"chi"		"重置我的数据\n    剩余时间 {1} 小时 {2} 分 {3} 秒"
 		"es"		"Resetear mis estadísticas\n    Queda: {1} h. {2} m. {3} seg."
 		"de"		"Meine Statistiken zurücksetzen\n    Abklingzeit: {1} s. {2} m. {3} sek."
+		"pl"		"Zresetuj moje statystyki\n    Cooldown: {1} h. {2} m. {3} sec."
 	}
 	"MyStatsResetInfo"
 	{
@@ -178,6 +194,7 @@
 		"chi"		"重置自己的数据?\n \n你将重置你所有的选项, \n等级, 击杀 等等数据. \n你确定?"
 		"es"		"¿Resetear estadísticas?\n \nResetearas todas tu configuración, \nniveles, frags... etc. \n¿Estás seguro?"
 		"de"		"Alle Statistiken zurücksetzten?\n \nEs werden alle Optionen, \nLevel, Kills und Ähnliches zurückgesetzt. \nBist du sicher?"
+		"pl"		"Zresetować statystyki?\n \nZresetujesz wszystkie opcje, \npoziomy, fragi i tym podobne. \nJesteś pewien?"
 	}
 	"MainMenu_MyPrivilegesSettings"
 	{
@@ -187,6 +204,7 @@
 		"chi"		"权限和设置"
 		"es"		"Privilegios y configuración"
 		"de"		"Rechte und Einstellungen"
+		"pl"		"Uprawnienia i ustawienia"
 	}
 	"MainMenu_TopPlayers"
 	{
@@ -196,6 +214,7 @@
 		"chi"		"顶尖选手"
 		"es"		"TOP jugadores"
 		"de"		"TOP Spieler"
+		"pl"		"TOP graczy"
 	}
 	"OverAllTopPlayersExp"
 	{
@@ -205,6 +224,7 @@
 		"chi"		"经验值排名前十"
 		"es"		"TOP-10 por puntos exp."
 		"de"		"TOP-10 nach Erfahrungspunkten"
+		"pl"		"TOP-10 według punktów doświadczenia"
 	}
 	"OverAllTopPlayersExp_Slot"
 	{
@@ -215,6 +235,7 @@
 		"chi"		"{1} - [ {2} ] - {3}"
 		"es"		"{1} - [ {2} ] - {3}"
 		"de"		"{1} - [ {2} ] - {3}"
+		"pl"		"{1} - [ {2} ] - {3}"
 	}
 	"OverAllTopPlayersTime"
 	{
@@ -224,6 +245,7 @@
 		"chi"		"活跃排名前十"
 		"es"		"TOP-10 por actividad"
 		"de"		"TOP-10 nach Spielzeit"
+		"pl"		"TOP-10 według aktywności na serwerze"
 	}
 	"OverAllTopPlayersTime_Slot"
 	{
@@ -234,6 +256,7 @@
 		"chi"		"{1} - [ {2} 小时 ] - {3}"
 		"es"		"{1} - [ {2} h. ] - {3}"
 		"de"		"{1} - [ {2} s. ] - {3}"
+		"pl"		"{1} - [ {2} g. ] - {3}"
 	}
 	"You"
 	{
@@ -243,6 +266,7 @@
 		"chi"		"(你)"
 		"es"		"(Tú)"
 		"de"		"(Ihr)"
+		"pl"		"(Ty)"
 	}
 	"NoData"
 	{
@@ -252,6 +276,7 @@
 		"chi"		"无数据."
 		"es"		"Sin datos."
 		"de"		"Keine Daten!"
+		"pl"		"Brak danych!"
 	}
 	"MainMenu_Ranks"
 	{
@@ -261,6 +286,7 @@
 		"chi"		"全部段位"
 		"es"		"Todos los rangos"
 		"de"		"Alle Ränge"
+		"pl"		"Wszystkie Rangi"
 	}
 	"RankPlayer"
 	{
@@ -271,6 +297,7 @@
 		"chi"		"玩家 {GREEN}{1} {WHITE}的段位在 {GREEN}{2} / {3} {WHITE}共获得 {OLIVE}{4} {WHITE}点经验者, {OLIVE}{5} {WHITE}击杀, {OLIVE}{6} {WHITE}死亡 и K/D比是 {OLIVE}{7}"
 		"es"		"Jugador {GREEN}{1} {WHITE}está posicionado en {GREEN}{2} / {3} {WHITE}con {OLIVE}{4} {WHITE}exp, {OLIVE}{5} {WHITE}matado, {OLIVE}{6} {WHITE}muertes и KDR {OLIVE}{7}"
 		"de"		"Spieler {GREEN}{1} {WHITE}ist Platz {GREEN}{2} / {3} {WHITE}mit {OLIVE}{4} {WHITE}EP, {OLIVE}{5} {WHITE}Kills, {OLIVE}{6} {WHITE}Toden и KD {OLIVE}{7}"
+		"pl"		"Gracz {GREEN}{1} {WHITE}- miejsce w rankingu:  {GREEN}{2} / {3} {WHITE}z {OLIVE}{4} {WHITE}exp, {OLIVE}{5} {WHITE}zabójstw, {OLIVE}{6} {WHITE}zgonów i KDR {OLIVE}{7}"
 	}
 	"PlayerDataDeleted"
 	{
@@ -281,6 +308,7 @@
 		"chi"		"删除请求已成功发送! STEAM_ID - {1}"
 		"es"		"¡Petición de eliminación enviada correctamente! STEAM_ID - {1}"
 		"de"		"Löschauftrag erfolgreich gesendet! STEAM_ID - {1}"
+		"pl"		"Prośba o usunięcie została wysłana pomyślnie! STEAM_ID - {1}"
 	}
 	"RoundStartCheckCount"
 	{
@@ -291,6 +319,7 @@
 		"chi"		"这里只有 {RED}{1} {WHITE}名玩家 来自 {RED}{2}"
 		"es"		"Solo hay {RED}{1} {WHITE}jugadores de {RED}{2}"
 		"de"		"Es gibt nur {RED}{1} {WHITE}Spieler von {RED}{2}"
+		"pl"		"Ilość graczy w grze: {RED}{1} {WHITE}z wymaganych: {RED}{2}"
 	}
 	"RoundStartMessageRanks"
 	{
@@ -300,6 +329,7 @@
 		"chi"		"输入: {PINK}!lvl {WHITE}- 打开主菜单"
 		"es"		"Escribir: {PINK}!lvl {WHITE}- menú principal"
 		"de"		"Schreib: {PINK}!lvl {WHITE}- Hauptmenü"
+		"pl"		"Wpisz: {PINK}!lvl {WHITE}- menu Rang"
 	}
 	"LevelUp"
 	{
@@ -310,6 +340,7 @@
 		"chi"		"你的段位已经升级为 {LIME}{1}"
 		"es"		"Tu rango ha sido ascendido a {LIME}{1}"
 		"de"		"Du wurdest befördert zu {LIME}{1}"
+		"pl"		"Twoja ranga wzrosła do {LIME}{1}"
 	}
 	"LevelDown"
 	{
@@ -320,6 +351,7 @@
 		"chi"		"你的段位已经降级为 {LIME}{1}"
 		"es"		"Tu rango ha sido descendido a {RED}{1}"
 		"de"		"Du wurdest degradiert zu {RED}{1}"
+		"pl"		"Twoja ranga spadła do {RED}{1}"
 	}
 	"LevelUpAll"
 	{
@@ -330,6 +362,7 @@
 		"chi"		"玩家 {OLIVE}{1} {WHITE}升段到了 {LIME}{2}"
 		"es"		"El jugador {OLIVE}{1} {WHITE}ascendió su rango a {LIME}{2}"
 		"de"		"Spieler {OLIVE}{1} {WHITE}hat einen Rang auf {LIME}{2} erhöht"
+		"pl"		"Gracz {OLIVE}{1} {WHITE}awansował do {LIME}{2}"
 	}
 	"LevelDownAll"
 	{
@@ -340,6 +373,7 @@
 		"chi"		"玩家 {OLIVE}{1} {WHITE}掉段到了 {LIME}{2}"
 		"es"		"El jugador {OLIVE}{1} {WHITE}descendió su rango a {RED}{2}"
 		"de"		"Spieler {OLIVE}{1} {WHITE}hat seinen Rang zu {RED}{2} verringert"
+		"pl"		"Gracz {OLIVE}{1} {WHITE}spadł do {RED}{2}"
 	}
 	"Suicide"
 	{
@@ -350,6 +384,7 @@
 		"chi"		"你的经验值: {RED}{1} [{2} 因为自杀]"
 		"es"		"Tu exp: {RED}{1} [{2} por suicidarte]"
 		"de"		"Deine Exp: {RED}{1} [{2} für Selbstmord]"
+		"pl"		"Twój exp: {RED}{1} [{2} za samobójstwo]"
 	}
 	"Kill"
 	{
@@ -360,6 +395,7 @@
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自击杀]"
 		"es"		"Tu exp: {GREEN}{1} [{2} por matar]"
 		"de"		"Deine Exp: {GREEN}{1} [{2} für einen Kill]"
+		"pl"		"Twój exp: {GREEN}{1} [{2} za zabójstwo]"
 	}
 	"MyDeath"
 	{
@@ -370,6 +406,7 @@
 		"chi"		"你的经验值: {RED}{1} [{2} 因为死亡]"
 		"es"		"Tu exp: {RED}{1} [{2} por morir]"
 		"de"		"Deine Exp: {RED}{1} [{2} fürs Sterben]"
+		"pl"		"Twój exp: {RED}{1} [{2} za zgon]"
 	}
 	"TeamKill"
 	{
@@ -380,6 +417,7 @@
 		"chi"		"你的经验值: {RED}{1} [{2} 因为击杀队友]"
 		"es"		"Tu exp: {RED}{1} [{2} por matar a compañer@s]"
 		"de"		"Deine Exp: {RED}{1} [{2} für einen Teamkill]"
+		"pl"		"Twój exp: {RED}{1} [{2} za zabójstwo kolegi z drużyny]"
 	}
 	"HeadShotKill"
 	{
@@ -390,6 +428,7 @@
 		"chi"		"你的经验值: {OLIVE}{1} [{2} 来自爆头]"
 		"es"		"Tu exp: {OLIVE}{1} [{2} por disparo a la cabeza]"
 		"de"		"Deine Exp: {OLIVE}{1} [{2} für einen Kopfschuss]"
+		"pl"		"Twój exp: {OLIVE}{1} [{2} za strzał w głowę]"
 	}
 	"AssisterKill"
 	{
@@ -400,6 +439,7 @@
 		"chi"		"你的经验值: {BLUE}{1} [{2} 来自助攻]"
 		"es"		"Tu exp: {BLUE}{1} [{2} por asistencia]"
 		"de"		"Deine Exp: {BLUE}{1} [{2} für eine Unterstützung]"
+		"pl"		"Twój exp: {BLUE}{1} [{2} za asystę]"
 	}
 	"RoundWin"
 	{
@@ -410,6 +450,7 @@
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自团队胜利]"
 		"es"		"Tu exp: {GREEN}{1} [{2} tu equipo ganó]"
 		"de"		"Deine Exp: {GREEN}{1} [{2} dein Team hat gewonnen]"
+		"pl"		"Twój exp: {GREEN}{1} [{2} za wygraną Twojej drużyny]"
 	}
 	"RoundLose"
 	{
@@ -420,6 +461,7 @@
 		"chi"		"你的经验值: {RED}{1} [{2} 因为团队失败]"
 		"es"		"Your exp: {RED}{1} [{2} tu equipo perdió]"
 		"de"		"Deine Exp: {RED}{1} [{2} dein Team hat verloren]"
+		"pl"		"Twój exp: {RED}{1} [{2} za przegraną Twojej drużyny]"
 	}
 	"RoundMVP"
 	{
@@ -430,6 +472,7 @@
 		"chi"		"你的经验值: {BLUE}{1} [{2} MVP]"
 		"es"		"Tu exp: {BLUE}{1} [{2} JMV]"
 		"de"		"Deine Exp: {BLUE}{1} [{2} MVP]"
+		"pl"		"Twój exp: {BLUE}{1} [{2} za MVP]"
 	}
 	"BombPlanted"
 	{
@@ -440,6 +483,7 @@
 		"chi"		"你的经验值: {LIME}{1} [{2} 来自安装炸弹]"
 		"es"		"Tu exp: {LIME}{1} [{2} por plantar la bomba]"
 		"de"		"Deine Exp: {LIME}{1} [{2} für das Legen der Bombe]"
+		"pl"		"Twój exp: {LIME}{1} [{2} za podłożenie bomby]"
 	}
 	"BombDefused"
 	{
@@ -450,6 +494,7 @@
 		"chi"		"你的经验值: {LIME}{1} [{2} 来自拆除炸弹]"
 		"es"		"Tu exp: {LIME}{1} [{2} por desactivar la bomba]"
 		"de"		"Deine Exp: {LIME}{1} [{2} für das Entschärfen der Bombe]"
+		"pl"		"Twój exp: {LIME}{1} [{2} za rozbrojenie bomby]"
 	}
 	"BombPickup"
 	{
@@ -460,6 +505,7 @@
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自捡起炸弹]"
 		"es"		"Tu exp: {GREEN}{1} [{2} por coger la bomba]"
 		"de"		"Deine Exp: {GREEN}{1} [{2} für das Aufnehmen der Bombe]"
+		"pl"		"Twój exp: {GREEN}{1} [{2} za podniesienie bomby]"
 	}
 	"BombDropped"
 	{
@@ -470,6 +516,7 @@
 		"chi"		"你的经验值: {RED}{1} [{2} 因为掉落炸弹]"
 		"es"		"Tu exp: {RED}{1} [{2} por tirar la bomba]"
 		"de"		"Deine Exp: {RED}{1} [{2} für das fallenlassen der Bombe]"
+		"pl"		"Twój exp: {RED}{1} [{2} za upuszczenie bomby]"
 	}
 	"HostageRescued"
 	{
@@ -480,6 +527,7 @@
 		"chi"		"你的经验值: {LIGHTBLUE}{1} [{2} 来自人质救援]"
 		"es"		"Tu exp: {LIGHTBLUE}{1} [{2} por rescatar el rehén]"
 		"de"		"Deine Exp: {LIGHTBLUE}{1} [{2} für das Retten einer Geisel]"
+		"pl"		"Twój exp: {LIGHTBLUE}{1} [{2} za uratowanie zakładnika]"
 	}
 	"HostageKilled"
 	{
@@ -490,6 +538,7 @@
 		"chi"		"你的经验值: {RED}{1} [{2} 因为击杀人质]"
 		"es"		"Tu exp: {RED}{1} [{2} por matar al rehén]"
 		"de"		"Deine Exp: {RED}{1} [{2} für das Töten einer Geisel]"
+		"pl"		"Twój exp: {RED}{1} [{2} za zabicie zakładnika]"
 	}
 	"DoubleKill"
 	{
@@ -500,6 +549,7 @@
 		"chi"		"你的经验值: {PINK}{1} [{2} 来自双杀]"
 		"es"		"Tu exp: {PINK}{1} [{2} por Doble Kill]"
 		"de"		"Deine Exp: {PINK}{1} [{2} für Doppekill]"
+		"pl"		"Twój exp: {PINK}{1} [{2} za DoubleKill]"
 	}
 	"TripleKill"
 	{
@@ -510,6 +560,7 @@
 		"chi"		"你的经验值: {PINK}{1} [{2} 来自三杀]"
 		"es"		"Tu exp: {LIME}{1} [{2} por Triple Kill]"
 		"de"		"Deine Exp: {PINK}{1} [{2} für einen TripleKill]"
+		"pl"		"Twój exp: {PINK}{1} [{2} za TripleKill]"
 	}
 	"Domination"
 	{
@@ -520,6 +571,7 @@
 		"chi"		"你的经验值: {PINK}{1} [{2} 来自Domination]"
 		"es"		"Tu exp: {PINK}{1} [{2} por Dominación]"
 		"de"		"Dein Exp: {PINK}{1} [{2} für Domination]"
+		"pl"		"Twój exp: {PINK}{1} [{2} za Domination]"
 	}
 	"Rampage"
 	{
@@ -530,6 +582,7 @@
 		"chi"		"你的经验值: {PINK}{1} [{2} 来自Rampage]"
 		"es"		"Tu exp: {PINK}{1} [{2} por Rampage]"
 		"de"		"Dein Exp: {PINK}{1} [{2} für Rampage]"
+		"pl"		"Twój exp: {PINK}{1} [{2} za Rampage]"
 	}
 	"MegaKill"
 	{
@@ -540,6 +593,7 @@
 		"chi"		"你的经验值: {PINK}{1} [{2} 来自MegaKill]"
 		"es"		"Tu exp: {PINK}{1} [{2} por Mega Kill]"
 		"de"		"Dein Exp: {PINK}{1} [{2} für einen MegaKill]"
+		"pl"		"Twój exp: {PINK}{1} [{2} za MegaKill]"
 	}
 	"Ownage"
 	{
@@ -550,6 +604,7 @@
 		"chi"		"你的经验值: {PINK}{1} [{2} 来自Ownage]"
 		"es"		"Tu exp: {PINK}{1} [{2} por Ownage]"
 		"de"		"Dein Exp: {PINK}{1} [{2} für Ownage]"
+		"pl"		"Twój exp: {PINK}{1} [{2} za Ownage]"
 	}
 	"UltraKill"
 	{
@@ -560,6 +615,7 @@
 		"chi"		"你的经验值: {PINK}{1} [{2} 来自UltraKill]"
 		"es"		"Tu exp: {PINK}{1} [{2} por Ultra Kill]"
 		"de"		"Dein Exp: {PINK}{1} [{2} für einen UltraKill]"
+		"pl"		"Twój exp: {PINK}{1} [{2} za UltraKill]"
 	}
 	"KillingSpree"
 	{
@@ -570,6 +626,7 @@
 		"chi"		"你的经验值: {PINK}{1} [{2} 来自Killing Spree]"
 		"es"		"Tu exp: {PINK}{1} [{2} por Matanza (Killing Spree)]"
 		"de"		"Dein Exp: {PINK}{1} [{2} für einen Killing Spree]"
+		"pl"		"Twój exp: {PINK}{1} [{2} za Killing Spree]"
 	}
 	"MonsterKill"
 	{
@@ -580,6 +637,7 @@
 		"chi"		"你的经验值: {PINK}{1} [{2} 来自MonsterKill]"
 		"es"		"Tu exp: {PINK}{1} [{2} por Monster Kill]"
 		"de"		"Dein Exp: {PINK}{1} [{2} für einen MonsterKill]"
+		"pl"		"Twój exp: {PINK}{1} [{2} za MonsterKill]"
 	}
 	"Unstoppable"
 	{
@@ -590,6 +648,7 @@
 		"chi"		"你的经验值: {PINK}{1} [{2} 来自Unstoppable]"
 		"es"		"Tu exp: {PINK}{1} [{2} por Imparable]"
 		"de"		"Dein Exp: {PINK}{1} [{2} für Unstoppable]"
+		"pl"		"Twój exp: {PINK}{1} [{2} za Unstoppable]"
 	}
 	"GodLike"
 	{
@@ -600,6 +659,7 @@
 		"chi"		"你的经验值: {PINK}{1} [{2} 来自God Like]"
 		"es"		"Tu exp: {PINK}{1} [{2} por God Like]"
 		"de"		"Dein Exp: {PINK}{1} [{2} für God Like]"
+		"pl"		"Twój exp: {PINK}{1} [{2} za God Like]"
 	}
 	"WickedSick"
 	{
@@ -610,6 +670,7 @@
 		"chi"		"你的经验值: {PINK}{1} [{2} 来自WickedSick]"
 		"es"		"Tu exp: {PINK}{1} [{2} por WickedSick]"
 		"de"		"Dein Exp: {PINK}{1} [{2} für WickedSick]"
+		"pl"		"Twój exp: {PINK}{1} [{2} za WickedSick]"
 	}
 	"HolyShit"
 	{
@@ -620,6 +681,7 @@
 		"chi"		"你的经验值: {PINK}{1} [{2} 来自HolyShit]"
 		"es"		"Tu exp: {PINK}{1} [{2} por Invencible]"
 		"de"		"Dein Exp: {PINK}{1} [{2} für HolyShit]"
+		"pl"		"Twój exp: {PINK}{1} [{2} za HolyShit]"
 	}
 	"RoundExpResultGive"
 	{
@@ -630,6 +692,7 @@
 		"chi"		"你每回合可获得 {GREEN}{1} {WHITE}点经验值"
 		"es"		"Has ganado {GREEN}{1} {WHITE}puntos de experiencia por ronda"
 		"de"		"Du hast {GREEN}{1} {WHITE}Erfahrungspunkte pro Runde verdient"
+		"pl"		"Otrzymałeś {GREEN}{1} {WHITE}pkt. doświadczenia za rundę"
 	}
 	"RoundExpResultTake"
 	{
@@ -640,6 +703,7 @@
 		"chi"		"你每回合将失去 {RED}{1} {WHITE}点经验值"
 		"es"		"Has perdido {RED}{1} {WHITE}puntos de experiencia por ronda"
 		"de"		"Du hast {RED}{1} {WHITE} Erfahrungspunkte pro Runde verloren"
+		"pl"		"Straciłeś {RED}{1} {WHITE}pkt. doświadczenia za rundę"
 	}
 	"RoundExpResultNothing"
 	{
@@ -649,6 +713,7 @@
 		"chi"		"你在这回合并没有获得任何经验值!"
 		"es"		"¡No has ganado puntos de experiencia en la ronda!"
 		"de"		"Du hast keine Erfahrungspunkte in einer Runde verdient!"
+		"pl"		"W tej rundzie nie zdobyłeś punktów doświadczenia!"
 	}
 	"RoundExpResultAll"
 	{
@@ -659,5 +724,6 @@
 		"chi"		"总共: {PINK}{1} {WHITE}经验值. 点数"
 		"es"		"Total: {PINK}{1} {WHITE}puntos exp."
 		"de"		"Gesamt: {PINK}{1} {WHITE}Erfahrungspunkte"
+		"pl"		"Łącznie: {PINK}{1} {WHITE}pkt. doświadczenia"
 	}
 }
