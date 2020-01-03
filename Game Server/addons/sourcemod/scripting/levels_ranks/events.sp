@@ -190,7 +190,7 @@ void Events_Rounds(Event hEvent, const char[] sName, bool bDontBroadcast)
 
 		bool bWarningMessage = iPlayers < g_Settings[LR_MinplayersCount];
 
-		g_bAllowStatistic = !bWarningMessage && !(g_Settings[LR_BlockWarmup] && g_iEngine == Engine_CSGO && GameRules_GetProp("m_bWarmupPeriod", 1));
+		g_bAllowStatistic = !bWarningMessage && !(g_Settings[LR_BlockWarmup] && IsWarmup());
 		g_bRoundEndGiveExp = g_bRoundAllowExp = true;
 
 		if(g_Settings[LR_ShowSpawnMessage])
@@ -305,4 +305,20 @@ void GiveExpForStreakKills(int iClient)
 void NextFrameRound()
 {
 	g_bRoundEndGiveExp = false;
+}
+
+stock bool IsWarmup()
+{
+	bool result = false;
+
+	switch(g_iEngine)
+	{
+		case Engine_CSGO:
+			result = (GameRules_GetProp("m_bWarmupPeriod") > 0);
+
+		default:
+			result = lr_is_warmup.BoolValue;
+	}
+
+	return result;
 }

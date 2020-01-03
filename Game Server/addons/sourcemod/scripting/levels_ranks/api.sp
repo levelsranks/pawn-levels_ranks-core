@@ -50,6 +50,9 @@ public APLRes AskPluginLoad2(Handle hMySelf, bool bLate, char[] sError, int iErr
 	CreateNative("LR_ShowMenu", Native_ShowMenu);
 	CreateNative("LR_PrintToChat", Native_PrintToChat);
 
+	// Still, we can add Forwards but different plugins will have different Forwards, so at this point, the best way is to set ConVar instead of using Forwards.
+	lr_is_warmup = CreateConVar("lr_is_warmup", "0", "Defines warmup round state for different games than CSGO, set '1' in config before warmup start, set '0' after warmup ends.");
+
 	g_hForward_OnCoreIsReady = new GlobalForward("LR_OnCoreIsReady", ET_Ignore);
 
 	g_hForward_Hook[LR_OnSettingsModuleUpdate] = new PrivateForward(ET_Ignore);

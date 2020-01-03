@@ -107,6 +107,8 @@ char			g_sPluginName[] = PLUGIN_NAME,
 				g_sSoundUp[PLATFORM_MAX_PATH],
 				g_sSoundDown[PLATFORM_MAX_PATH];
 
+ConVar			lr_is_warmup = null;
+
 LR_PlayerInfo	g_iPlayerInfo[MAXPLAYERS+1],
 				g_iInfoNULL;
 
