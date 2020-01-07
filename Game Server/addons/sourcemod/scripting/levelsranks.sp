@@ -68,8 +68,8 @@
 
 #include <lvl_ranks>
 
-#if !defined PLUGIN_INT_VERSION || PLUGIN_INT_VERSION != 03010300
-	#error This plugin can only compile on lvl_ranks.inc v3.1.3.
+#if !defined PLUGIN_INT_VERSION || PLUGIN_INT_VERSION != 03010400
+	#error This plugin can only compile on lvl_ranks.inc v3.1.4.
 #endif
 
 #define PLUGIN_NAME "Levels Ranks"
@@ -97,7 +97,7 @@ bool			g_bAllowStatistic,
 				g_bRoundEndGiveExp = true,
 				g_bRoundAllowExp = true;
 
-int				g_iBonus[11],
+int				g_iBonus[10],
 				g_iCountRetryConnect,
 				g_iDBCountPlayers;
 

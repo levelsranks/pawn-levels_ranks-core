@@ -80,15 +80,6 @@ void Event_PlayerDeath(Event hEvent, const char[] sName, bool bDontBroadcast)
 
 						iExpVictim = iExpAttacker = iExpAttacker < 2 ? 2 : (iExpAttacker / 100) + 2;
 					}
-
-					// case 3:
-					// {
-					// 	iExpAttacker = g_iPlayerInfo[iClient].iStats[ST_EXP] - g_iPlayerInfo[iAttacker].iStats[ST_EXP];
-
-					// 	CallForward_OnPlayerKilled(hEvent, iExpAttacker, iClient, iAttacker);
-
-					// 	iExpVictim = iExpAttacker = iExpAttacker < 2 ? 2 : (iExpAttacker / 100) + 2;
-					// }
 				}
 
 				if(NotifClient(iAttacker, iExpAttacker, "Kill") && NotifClient(iClient, -iExpVictim, "MyDeath"))
@@ -286,9 +277,9 @@ void GiveExpForStreakKills(int iClient)
 			"GodLike"
 		};
 
-		if((iKillStreak -= 2) > 10)
+		if((iKillStreak -= 2) > 9)
 		{
-			iKillStreak = 10;
+			iKillStreak = 9;
 		}
 		
 		NotifClient(iClient, g_iBonus[iKillStreak], sPhrases[iKillStreak]);

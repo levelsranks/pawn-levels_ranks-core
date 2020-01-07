@@ -210,29 +210,32 @@ char[] GetSteamID2(int iAccountID)
 
 bool NotifClient(int iClient, int iValue, const char[] sTitlePhrase, bool bAllow = false)
 {
-	if(CheckStatus(iClient) && (bAllow || (g_bAllowStatistic && g_bRoundAllowExp && g_bRoundEndGiveExp && iValue)))
+	if(CheckStatus(iClient) && (bAllow || (g_bAllowStatistic && g_bRoundAllowExp && g_bRoundEndGiveExp)))
 	{
-		int iExpBuffer = 0,
-			iOldExp = g_iPlayerInfo[iClient].iStats[ST_EXP];
-
-		if(g_Settings[LR_TypeStatistics])
+		if(iValue)
 		{
-			iExpBuffer = 400;
-		}
+			int iExpBuffer = 0,
+				iOldExp = g_iPlayerInfo[iClient].iStats[ST_EXP];
 
-		if((g_iPlayerInfo[iClient].iStats[ST_EXP] += iValue) < iExpBuffer)
-		{
-			g_iPlayerInfo[iClient].iStats[ST_EXP] = iExpBuffer;
-		}
+			if(g_Settings[LR_TypeStatistics])
+			{
+				iExpBuffer = 400;
+			}
 
-		g_iPlayerInfo[iClient].iRoundExp += iExpBuffer = g_iPlayerInfo[iClient].iStats[ST_EXP] - iOldExp;
-		g_iPlayerInfo[iClient].iSessionStats[ST_EXP] += iExpBuffer;
+			if((g_iPlayerInfo[iClient].iStats[ST_EXP] += iValue) < iExpBuffer)
+			{
+				g_iPlayerInfo[iClient].iStats[ST_EXP] = iExpBuffer;
+			}
 
-		CheckRank(iClient);
+			g_iPlayerInfo[iClient].iRoundExp += iExpBuffer = g_iPlayerInfo[iClient].iStats[ST_EXP] - iOldExp;
+			g_iPlayerInfo[iClient].iSessionStats[ST_EXP] += iExpBuffer;
 
-		if(g_Settings[LR_ShowUsualMessage] == 1)
-		{
-			LR_PrintMessage(iClient, true, false, "%T", sTitlePhrase, iClient, g_iPlayerInfo[iClient].iStats[ST_EXP], GetSignValue(iValue));
+			CheckRank(iClient);
+
+			if(g_Settings[LR_ShowUsualMessage] == 1)
+			{
+				LR_PrintMessage(iClient, true, false, "%T", sTitlePhrase, iClient, g_iPlayerInfo[iClient].iStats[ST_EXP], GetSignValue(iValue));
+			}
 		}
 
 		return true;

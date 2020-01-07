@@ -149,7 +149,7 @@ void SetSettings()
 		hKv.Rewind();
 		hKv.JumpToKey("Special_Bonuses"); /**/
 
-		for(int i = 1; i != 11;)
+		for(int i = 0; i != 10;)
 		{
 			FormatEx(sBuffer, 32, "lr_bonus_%i", i + 1);
 			g_iBonus[i++] = hKv.GetNum(sBuffer, 0);

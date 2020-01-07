@@ -342,7 +342,7 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 						g_iDBCountPlayers++;
 						g_iPlayerInfo[iClient].bInitialized = true;
 
-						CheckRank(iClient);
+						CheckRank(iClient, false);
 
 						CallForward_OnPlayerLoaded(iClient);
 					}
