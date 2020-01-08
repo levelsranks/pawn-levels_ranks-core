@@ -150,6 +150,14 @@ public void OnPluginStart()
 	LoadTranslations("lr_core_ranks.phrases");
 
 	RegConsoleCmd("sm_lvl", Call_MainMenu, "Opens the statistics menu");
+	RegConsoleCmd("sm_stats", Call_MainMenu, "Opens the statistics menu");
+
+	RegConsoleCmd("sm_top", Call_Top, "Opens the top menu");
+	RegConsoleCmd("sm_toptime", Call_Top, "Opens the top menu");
+	
+	RegConsoleCmd("sm_session", Call_Session, "Opens the session menu");
+	RegConsoleCmd("sm_rank", Call_ChatRank, "Prints rank in chat");
+
 	RegAdminCmd("sm_lvl_reload", Call_ReloadSettings, ADMFLAG_ROOT, "Reloads core and module configuration files");
 	RegServerCmd("sm_lvl_reset", Call_ResetData, "Сlearing all data in the database");
 	RegAdminCmd("sm_lvl_del", Call_ResetPlayer, ADMFLAG_ROOT, "Resets player stats");
