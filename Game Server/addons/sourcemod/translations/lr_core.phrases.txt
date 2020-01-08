@@ -265,12 +265,12 @@
 	"RankPlayer"
 	{
 		"#format"	"{1:N},{2:i},{3:i},{4:i},{5:i},{6:i},{7:.2f}"
-		"en"		"Player {GREEN}{1} {WHITE}is ranked at {GREEN}{2} / {3} {WHITE}with {OLIVE}{4} {WHITE}exp, {OLIVE}{5} {WHITE}kills, {OLIVE}{6} {WHITE}deaths и KDR {OLIVE}{7}"
+		"en"		"Player {GREEN}{1} {WHITE}is ranked at {GREEN}{2} / {3} {WHITE}with {OLIVE}{4} {WHITE}exp, {OLIVE}{5} {WHITE}kills, {OLIVE}{6} {WHITE}deaths and KDR {OLIVE}{7}"
 		"ru"		"Игрок {GREEN}{1} {WHITE}на {GREEN}{2} / {3} {WHITE}месте, с {OLIVE}{4} {WHITE}очками, {OLIVE}{5} {WHITE}убийствами, {OLIVE}{6} {WHITE}смертями и KDR {OLIVE}{7}"
 		"ua"		"Гравець {GREEN}{1} {WHITE}на {GREEN}{2} / {3} {WHITE}місці, з {OLIVE}{4} {WHITE}поінтами, {OLIVE}{5} {WHITE}вбивствами, {OLIVE}{6} {WHITE}смертями і KDR {OLIVE}{7}"
-		"chi"		"玩家 {GREEN}{1} {WHITE}的段位在 {GREEN}{2} / {3} {WHITE}共获得 {OLIVE}{4} {WHITE}点经验者, {OLIVE}{5} {WHITE}击杀, {OLIVE}{6} {WHITE}死亡 и K/D比是 {OLIVE}{7}"
+		"chi"		"玩家 {GREEN}{1} {WHITE}的段位在 {GREEN}{2} / {3} {WHITE}共获得 {OLIVE}{4} {WHITE}点经验者, {OLIVE}{5} {WHITE}击杀, {OLIVE}{6} {WHITE}死亡 & K/D比是 {OLIVE}{7}"
 		"es"		"Jugador {GREEN}{1} {WHITE}está posicionado en {GREEN}{2} / {3} {WHITE}con {OLIVE}{4} {WHITE}exp, {OLIVE}{5} {WHITE}matado, {OLIVE}{6} {WHITE}muertes и KDR {OLIVE}{7}"
-		"de"		"Spieler {GREEN}{1} {WHITE}ist Platz {GREEN}{2} / {3} {WHITE}mit {OLIVE}{4} {WHITE}EP, {OLIVE}{5} {WHITE}Kills, {OLIVE}{6} {WHITE}Toden и KD {OLIVE}{7}"
+		"de"		"Spieler {GREEN}{1} {WHITE}ist Platz {GREEN}{2} / {3} {WHITE}mit {OLIVE}{4} {WHITE}EP, {OLIVE}{5} {WHITE}Kills, {OLIVE}{6} {WHITE}Toden & KD {OLIVE}{7}"
 	}
 	"PlayerDataDeleted"
 	{
