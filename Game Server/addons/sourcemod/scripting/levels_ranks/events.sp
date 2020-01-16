@@ -1,4 +1,22 @@
-// Hooks events in api.sp -> AskPluginLoad2().
+void HookEvents()
+{
+	if(!HookEventEx("weapon_fire", Events_Shots, EventHookMode_Pre))
+	{
+		SetFailState("Bug in event analysis engine!");
+	}
+
+	HookEvent("player_hurt", Events_Shots, EventHookMode_Pre);
+	HookEvent("player_death", Event_PlayerDeath, EventHookMode_Pre);
+	HookEvent("bomb_planted", Events_Bomb, EventHookMode_Pre);
+	HookEvent("bomb_defused", Events_Bomb, EventHookMode_Pre);
+	HookEvent("bomb_dropped", Events_Bomb, EventHookMode_Pre);
+	HookEvent("bomb_pickup", Events_Bomb, EventHookMode_Pre);
+	HookEvent("hostage_killed", Events_Hostage, EventHookMode_Pre);
+	HookEvent("hostage_rescued", Events_Hostage, EventHookMode_Pre);
+	HookEvent("round_start", Events_Rounds, EventHookMode_Pre);
+	HookEvent("round_end", Events_Rounds, EventHookMode_Pre);
+	HookEventEx("round_mvp", Events_Rounds, EventHookMode_Pre);	// Missing in CS:S v34.
+}
 
 void Events_Shots(Event hEvent, const char[] sName, bool bDontBroadcast)
 {
@@ -182,7 +200,6 @@ void Events_Rounds(Event hEvent, const char[] sName, bool bDontBroadcast)
 		bool bWarningMessage = iPlayers < g_Settings[LR_MinplayersCount];
 
 		g_bAllowStatistic = !bWarningMessage && !(g_Settings[LR_BlockWarmup] && g_iEngine == Engine_CSGO && GameRules_GetProp("m_bWarmupPeriod", 1));
-		g_bRoundEndGiveExp = g_bRoundAllowExp = true;
 
 		if(g_Settings[LR_ShowSpawnMessage])
 		{
@@ -295,5 +312,5 @@ void GiveExpForStreakKills(int iClient)
 
 void NextFrameRound()
 {
-	g_bRoundEndGiveExp = false;
+	g_bAllowStatistic = false;
 }

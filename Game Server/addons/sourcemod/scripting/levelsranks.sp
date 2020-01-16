@@ -68,8 +68,8 @@
 
 #include <lvl_ranks>
 
-#if !defined PLUGIN_INT_VERSION || PLUGIN_INT_VERSION != 03010400
-	#error This plugin can only compile on lvl_ranks.inc v3.1.4.
+#if !defined PLUGIN_INT_VERSION || PLUGIN_INT_VERSION != 03010500
+	#error This plugin can only compile on lvl_ranks.inc v3.1.5.
 #endif
 
 #define PLUGIN_NAME "Levels Ranks"
@@ -93,9 +93,7 @@ any				g_Settings[LR_SettingType],
 				g_SettingsStats[LR_SettingStatsType];
 
 bool			g_bAllowStatistic,
-				g_bDatabaseSQLite,
-				g_bRoundEndGiveExp = true,
-				g_bRoundAllowExp = true;
+				g_bDatabaseSQLite;
 
 int				g_iBonus[10],
 				g_iCountRetryConnect,
@@ -154,6 +152,7 @@ public void OnPluginStart()
 	RegServerCmd("sm_lvl_reset", Call_ResetData, "Сlearing all data in the database");
 	RegAdminCmd("sm_lvl_del", Call_ResetPlayer, ADMFLAG_ROOT, "Resets player stats");
 
+	HookEvents();
 	SetSettings();
 	ConnectDB();
 }

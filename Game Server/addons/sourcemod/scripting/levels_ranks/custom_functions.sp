@@ -210,7 +210,7 @@ char[] GetSteamID2(int iAccountID)
 
 bool NotifClient(int iClient, int iValue, const char[] sTitlePhrase, bool bAllow = false)
 {
-	if(CheckStatus(iClient) && (bAllow || (g_bAllowStatistic && g_bRoundAllowExp && g_bRoundEndGiveExp)))
+	if(CheckStatus(iClient) && (bAllow || g_bAllowStatistic))
 	{
 		if(iValue)
 		{

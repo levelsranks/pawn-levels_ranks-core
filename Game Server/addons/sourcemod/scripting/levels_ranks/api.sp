@@ -7,24 +7,6 @@ public APLRes AskPluginLoad2(Handle hMySelf, bool bLate, char[] sError, int iErr
 		return APLRes_SilentFailure;
 	}
 
-	if(!HookEventEx("weapon_fire", Events_Shots, EventHookMode_Pre))
-	{
-		strcopy(sError, iErrorSize, "Bug in event analysis engine!");
-
-		return APLRes_SilentFailure;
-	}
-	HookEvent("player_hurt", Events_Shots, EventHookMode_Pre);
-	HookEvent("player_death", Event_PlayerDeath, EventHookMode_Pre);
-	HookEvent("bomb_planted", Events_Bomb, EventHookMode_Pre);
-	HookEvent("bomb_defused", Events_Bomb, EventHookMode_Pre);
-	HookEvent("bomb_dropped", Events_Bomb, EventHookMode_Pre);
-	HookEvent("bomb_pickup", Events_Bomb, EventHookMode_Pre);
-	HookEvent("hostage_killed", Events_Hostage, EventHookMode_Pre);
-	HookEvent("hostage_rescued", Events_Hostage, EventHookMode_Pre);
-	HookEvent("round_start", Events_Rounds, EventHookMode_Pre);
-	HookEvent("round_end", Events_Rounds, EventHookMode_Pre);
-	HookEventEx("round_mvp", Events_Rounds, EventHookMode_Pre);	// Missing in CS:S v34.
-
 	CreateNative("LR_IsLoaded", Native_IsLoaded);
 	CreateNative("LR_GetVersion", Native_GetVersion);
 	CreateNative("LR_Hook", Native_Hook);
@@ -192,7 +174,7 @@ int Native_ChangeClientValue(Handle hPlugin, int iArgs)
 {
 	int iClient = GetNativeCell(1);
 
-	if(CheckStatus(iClient) && g_bRoundAllowExp && g_bRoundEndGiveExp)
+	if(CheckStatus(iClient) && g_bAllowStatistic)
 	{
 		int iExpChange = GetNativeCell(2),
 			iExpMin = 0,
@@ -221,7 +203,7 @@ int Native_ChangeClientValue(Handle hPlugin, int iArgs)
 
 int Native_RoundWithoutValue(Handle hPlugin, int iArgs)
 {
-	g_bRoundAllowExp = false;
+	g_bAllowStatistic = false;
 }
 
 int Native_ShowMenu(Handle hPlugin, int iArgs)

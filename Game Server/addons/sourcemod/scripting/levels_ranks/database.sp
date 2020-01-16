@@ -249,6 +249,7 @@ public Action OnBanIdentity(const char[] sIdEntity, int iTime, int iFlags, const
 public void OnClientDisconnect(int iClient)
 {
 	SaveDataPlayer(iClient, true);
+	g_iPlayerInfo[iClient].bInitialized = false;
 }
 
 void SaveDataPlayer(int iClient, bool bDisconnect = false)
