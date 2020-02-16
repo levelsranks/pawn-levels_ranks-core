@@ -25,7 +25,7 @@
 		"es"		"Rango: {1}\nExp: {2}\nPosición: {3} de {4}\n "
 		"de"		"Rang: {1}\nExp: {2}\nPlatz: {3} von {4}"
 	}
-	"MainMenu_IamAdmin"
+	"MainMenu_Admin"
 	{
 		"en"		"Admin's Panel"
 		"ru"		"Панель Администратора"
