@@ -18,16 +18,16 @@
 
 <details><summary>Скриншоты</summary>
 <p>
-	<a href="//levels-ranks.ru/content/core/MainMenu.jpg"><img src="https://levels-ranks.ru/content/core/MainMenu.jpg"/></a>
-	<a href="//levels-ranks.ru/content/core/MenuMyStats.jpg"><img src="https://levels-ranks.ru/content/core/MenuMyStats.jpg"/></a>
-	<a href="//levels-ranks.ru/content/core/MenuMySession.jpg"><img src="https://levels-ranks.ru/content/core/MenuMySession.jpg"/></a>
-	<a href="//levels-ranks.ru/content/core/MenuResetStats.jpg"><img src="https://levels-ranks.ru/content/core/MenuResetStats.jpg"/></a>
-	<a href="//levels-ranks.ru/content/core/MemuInventory.jpg"><img src="https://levels-ranks.ru/content/core/MemuInventory.jpg"/></a>
-	<a href="//levels-ranks.ru/content/core/MenuTop.jpg"><img src="https://levels-ranks.ru/content/core/MenuTop.jpg"/></a>
-	<a href="//levels-ranks.ru/content/core/MenuTop.jpg"><img src="https://levels-ranks.ru/content/core/MenuTopPoints.jpg"/></a>
-	<a href="//levels-ranks.ru/content/core/MenuTop.jpg"><img src="https://levels-ranks.ru/content/core/MenuTopActivity.jpg"/></a>
-	<a href="//levels-ranks.ru/content/core/MenuTop.jpg"><img src="https://levels-ranks.ru/content/core/MenuRanks.jpg"/></a>
-	<a href="//levels-ranks.ru/content/core/ChatRankStats.jpg"><img src="https://levels-ranks.ru/content/core/ChatRankStats.jpg"/></a>
+	<a href="//raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/MainMenu.jpg"><img src="https://raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/MainMenu.jpg"/></a>
+	<a href="//raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/MenuMyStats.jpg"><img src="https://raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/MenuMyStats.jpg"/></a>
+	<a href="//raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/MenuMySession.jpg"><img src="https://raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/MenuMySession.jpg"/></a>
+	<a href="//raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/MenuResetStats.jpg"><img src="https://raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/MenuResetStats.jpg"/></a>
+	<a href="//raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/MemuInventory.jpg"><img src="https://raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/MemuInventory.jpg"/></a>
+	<a href="//raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/MenuTop.jpg"><img src="https://raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/MenuTop.jpg"/></a>
+	<a href="//raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/MenuTop.jpg"><img src="https://raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/MenuTopPoints.jpg"/></a>
+	<a href="//raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/MenuTop.jpg"><img src="https://raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/MenuTopActivity.jpg"/></a>
+	<a href="//raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/MenuTop.jpg"><img src="https://raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/MenuRanks.jpg"/></a>
+	<a href="//raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/ChatRankStats.jpg"><img src="https://raw.githubusercontent.com/levelsranks/levels-ranks-core/master/.github/img/ChatRankStats.jpg"/></a>
 </p>
 </details>
 
