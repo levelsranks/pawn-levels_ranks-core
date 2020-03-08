@@ -27,6 +27,7 @@
 		"chi"		"{RED}[LR]{WHITE}"
 		"es"		"{RED}[LR]{WHITE}"
 		"de"		"{RED}[LR]{WHITE}"
+		"pt"		"{RED}[LR]{WHITE}"
 	}
 	"MainMenu"
 	{
@@ -37,6 +38,7 @@
 		"chi"		"段位: {1}\n经验值: {2}\n阶段: {3} of {4}\n "
 		"es"		"Rango: {1}\nExp: {2}\nPosición: {3} de {4}\n "
 		"de"		"Rang: {1}\nExp: {2}\nPlatz: {3} of {4}"
+		"pt"		"Rank: {1}\nExp: {2}\nPlace: {3} of {4}\n "
 	}
 	"MainMenu_Admin"
 	{
@@ -46,6 +48,7 @@
 		"chi"		"管理员菜单"
 		"es"		"Panel de admin"
 		"de"		"Admin Menü"
+		"pt"		"Painel Admin"
 	}
 	"ReloadAllConfigs"
 	{
@@ -55,6 +58,7 @@
 		"chi"		"重载设定"
 		"es"		"Recargar la configuración del plugin"
 		"de"		"Neuladen der Plugin Einstellungen"
+		"pt"		"Recarregar configurações do plugin"
 	}
 	"ConfigUpdated"
 	{
@@ -64,15 +68,17 @@
 		"chi"		"设置已更新"
 		"es"		"Configuración actualitzada"
 		"de"		"Konfigurationseinstellungen aktualisiert"
+		"pt"		"Configurações atualizada"
 	}
 	"GiveTakeMenuExp"
 	{
-		"en"		"Give/Take exp. points"
+		"en"		"Give/Take Exp. Points"
 		"ru"		"Выдать/Забрать очки опыта"
 		"ua"		"Видати/Забрати поінти досвіду"
 		"chi"		"给予/拿走 经验值. 点数"
 		"es"		"Dar/Quitar puntos exp."
 		"de"		"Geben/Nehmen von Erfahrungspunkten"
+		"pt"		"Give/Take Exp. Points"
 	}
 	"AdminGive"
 	{
@@ -106,12 +112,13 @@
 	}
 	"MainMenu_MyStats"
 	{
-		"en"		"My stats"
+		"en"		"My Stats"
 		"ru"		"Моя статистика"
 		"ua"		"Моя статистика"
 		"chi"		"我的数据"
 		"es"		"Mis estadísticas"
 		"de"		"Meine Statistiken"
+		"pt"		"Meu Stats"
 	}
 	"MyStatsInfo"
 	{
@@ -125,7 +132,7 @@
 	}
 	"MyStatsSecondary"
 	{
-		"en"		"Secondary stats"
+		"en"		"Secondary Stats"
 		"ru"		"Дополнительная статистика"
 		"ua"		"Додаткова статистика"
 		"chi"		"其他统计"
@@ -134,7 +141,7 @@
 	}
 	"MyStatsSession"
 	{
-		"en"		"Session data"
+		"en"		"Session Data"
 		"ru"		"Данные за сессию"
 		"ua"		"Дані за сесію"
 		"chi"		"当前数据, 会话数据"
@@ -153,12 +160,13 @@
 	}
 	"MyStatsReset"
 	{
-		"en"		"Reset my stats"
+		"en"		"Reset My Stats"
 		"ru"		"Сбросить статистику"
 		"ua"		"Скинути статистику"
 		"chi"		"重置我的数据"
 		"es"		"Resetear mis estadísticas"
 		"de"		"Meine Statistiken zurücksetzen"
+		"pt"		"Resetar meu Stats"
 	}
 	"MyStatsResetCooldown"
 	{
@@ -169,6 +177,7 @@
 		"chi"		"重置我的数据\n    剩余时间 {1} 小时 {2} 分 {3} 秒"
 		"es"		"Resetear mis estadísticas\n    Queda: {1} h. {2} m. {3} seg."
 		"de"		"Meine Statistiken zurücksetzen\n    Abklingzeit: {1} s. {2} m. {3} sek."
+		"pt"		"Reset my stats\n    Cooldown: {1} h. {2} m. {3} sec."
 	}
 	"MyStatsResetInfo"
 	{
@@ -178,19 +187,21 @@
 		"chi"		"重置自己的数据?\n \n你将重置你所有的选项, \n等级, 击杀 等等数据. \n你确定?"
 		"es"		"¿Resetear estadísticas?\n \nResetearas todas tu configuración, \nniveles, frags... etc. \n¿Estás seguro?"
 		"de"		"Alle Statistiken zurücksetzten?\n \nEs werden alle Optionen, \nLevel, Kills und Ähnliches zurückgesetzt. \nBist du sicher?"
+		"pt"		"Resetar estatísticas?\n\nVocê reseta todas as suas configurações,\nLevels, Kills e etc.\nTem certeza?"
 	}
 	"MainMenu_MyPrivilegesSettings"
 	{
-		"en"		"Privileges and settings"
+		"en"		"Privileges & Settings"
 		"ru"		"Привилегии и настройки"
 		"ua"		"Привілеї та налаштування"
 		"chi"		"权限和设置"
 		"es"		"Privilegios y configuración"
 		"de"		"Rechte und Einstellungen"
+		"pt"		"Privilégios & Configurações"
 	}
 	"MainMenu_TopPlayers"
 	{
-		"en"		"TOP players"
+		"en"		"TOP Players"
 		"ru"		"TOP игроков"
 		"ua"		"TOP гравців"
 		"chi"		"顶尖选手"
@@ -199,12 +210,12 @@
 	}
 	"OverAllTopPlayersExp"
 	{
-		"en"		"TOP-10 by exp. points"
-		"ru"		"TOP-10 по очкам опыта"
-		"ua"		"TOP-10 за поінтами досвіду"
+		"en"		"TOP 10 | Exp. Points"
+		"ru"		"TOP 10 | по очкам опыта"
+		"ua"		"TOP 10 | за поінтами досвіду"
 		"chi"		"经验值排名前十"
-		"es"		"TOP-10 por puntos exp."
-		"de"		"TOP-10 nach Erfahrungspunkten"
+		"es"		"TOP 10 | por puntos exp."
+		"de"		"TOP 10 | nach Erfahrungspunkten"
 	}
 	"OverAllTopPlayersExp_Slot"
 	{
@@ -218,12 +229,12 @@
 	}
 	"OverAllTopPlayersTime"
 	{
-		"en"		"TOP-10 by activity"
-		"ru"		"TOP-10 по активности"
-		"ua"		"TOP-10 за активністю"
+		"en"		"TOP 10 | Activity"
+		"ru"		"TOP 10 | по активности"
+		"ua"		"TOP 10 | за активністю"
 		"chi"		"活跃排名前十"
-		"es"		"TOP-10 por actividad"
-		"de"		"TOP-10 nach Spielzeit"
+		"es"		"TOP 10 | por actividad"
+		"de"		"TOP 10 | nach Spielzeit"
 	}
 	"OverAllTopPlayersTime_Slot"
 	{
@@ -243,6 +254,7 @@
 		"chi"		"(你)"
 		"es"		"(Tú)"
 		"de"		"(Ihr)"
+		"pt"		"(Você)"
 	}
 	"NoData"
 	{
@@ -271,6 +283,7 @@
 		"chi"		"玩家 {GREEN}{1} {WHITE}的段位在 {GREEN}{2} / {3} {WHITE}共获得 {OLIVE}{4} {WHITE}点经验者, {OLIVE}{5} {WHITE}击杀, {OLIVE}{6} {WHITE}死亡 & K/D比是 {OLIVE}{7}"
 		"es"		"Jugador {GREEN}{1} {WHITE}está posicionado en {GREEN}{2} / {3} {WHITE}con {OLIVE}{4} {WHITE}exp, {OLIVE}{5} {WHITE}matado, {OLIVE}{6} {WHITE}muertes и KDR {OLIVE}{7}"
 		"de"		"Spieler {GREEN}{1} {WHITE}ist Platz {GREEN}{2} / {3} {WHITE}mit {OLIVE}{4} {WHITE}EP, {OLIVE}{5} {WHITE}Kills, {OLIVE}{6} {WHITE}Toden & KD {OLIVE}{7}"
+		"pt"		"Jogador {GREEN}{1} {WHITE}esta no rank {GREEN}{2} / {3} {WHITE}com {OLIVE}{4} {WHITE}exp, {OLIVE}{5} {WHITE}kills, {OLIVE}{6} {WHITE}deaths and KDR {OLIVE}{7}"
 	}
 	"PlayerDataDeleted"
 	{
@@ -294,12 +307,13 @@
 	}
 	"RoundStartMessageRanks"
 	{
-		"en"		"Enter: {PINK}!lvl {WHITE}- main menu"
+		"en"		"Enter: {PINK}!lvl {WHITE}- Main Menu"
 		"ru"		"Введи: {PINK}!lvl {WHITE}- главное меню"
 		"ua"		"Введи: {PINK}!lvl {WHITE}- головне меню"
 		"chi"		"输入: {PINK}!lvl {WHITE}- 打开主菜单"
 		"es"		"Escribir: {PINK}!lvl {WHITE}- menú principal"
 		"de"		"Schreib: {PINK}!lvl {WHITE}- Hauptmenü"
+		"pt"		"Digite: {PINK}!lvl {WHITE}- Menu Principal"
 	}
 	"LevelUp"
 	{
@@ -310,6 +324,7 @@
 		"chi"		"你的段位已经升级为 {LIME}{1}"
 		"es"		"Tu rango ha sido ascendido a {LIME}{1}"
 		"de"		"Du wurdest befördert zu {LIME}{1}"
+		"pt"		"Seu rank subiu para {LIME}{1}"
 	}
 	"LevelDown"
 	{
@@ -320,6 +335,7 @@
 		"chi"		"你的段位已经降级为 {LIME}{1}"
 		"es"		"Tu rango ha sido descendido a {RED}{1}"
 		"de"		"Du wurdest degradiert zu {RED}{1}"
+		"pt"		"Seu rank caiu para {RED}{1}"
 	}
 	"LevelUpAll"
 	{
@@ -624,22 +640,24 @@
 	"RoundExpResultGive"
 	{
 		"#format"	"{1:i}"
-		"en"		"You earned {GREEN}{1} {WHITE}experience points per round"
-		"ru"		"За раунд вы заработали {GREEN}{1} {WHITE}очков опыта"
-		"ua"		"За раунд ви заробили {GREEN}{1} {WHITE}поінтів досвіду"
-		"chi"		"你每回合可获得 {GREEN}{1} {WHITE}点经验值"
-		"es"		"Has ganado {GREEN}{1} {WHITE}puntos de experiencia por ronda"
-		"de"		"Du hast {GREEN}{1} {WHITE}Erfahrungspunkte pro Runde verdient"
+		"en"		"You earned {GREEN}{1} {WHITE}experience points per round."
+		"ru"		"За раунд вы заработали {GREEN}{1} {WHITE}очков опыта."
+		"ua"		"За раунд ви заробили {GREEN}{1} {WHITE}поінтів досвіду."
+		"chi"		"你每回合可获得 {GREEN}{1} {WHITE}点经验值."
+		"es"		"Has ganado {GREEN}{1} {WHITE}puntos de experiencia por ronda."
+		"de"		"Du hast {GREEN}{1} {WHITE}Erfahrungspunkte pro Runde verdient."
+		"pt"		"Ganhou {GREEN}{1} {WHITE}pontos de experiência neste round."
 	}
 	"RoundExpResultTake"
 	{
 		"#format"	"{1:i}"
-		"en"		"You lost {RED}{1} {WHITE}experience points per round"
-		"ru"		"За раунд вы потеряли {RED}{1} {WHITE}очков опыта"
-		"ua"		"За раунд ви втратили {RED}{1} {WHITE}поінти досвіду"
-		"chi"		"你每回合将失去 {RED}{1} {WHITE}点经验值"
-		"es"		"Has perdido {RED}{1} {WHITE}puntos de experiencia por ronda"
-		"de"		"Du hast {RED}{1} {WHITE} Erfahrungspunkte pro Runde verloren"
+		"en"		"You lost {RED}{1} {WHITE}experience points per round."
+		"ru"		"За раунд вы потеряли {RED}{1} {WHITE}очков опыта."
+		"ua"		"За раунд ви втратили {RED}{1} {WHITE}поінти досвіду."
+		"chi"		"你每回合将失去 {RED}{1} {WHITE}点经验值."
+		"es"		"Has perdido {RED}{1} {WHITE}puntos de experiencia por ronda."
+		"de"		"Du hast {RED}{1} {WHITE}Erfahrungspunkte pro Runde verloren."
+		"pt"		"Perdeu {RED}{1} {WHITE}pontos de experiência neste round."
 	}
 	"RoundExpResultNothing"
 	{
@@ -649,6 +667,7 @@
 		"chi"		"你在这回合并没有获得任何经验值!"
 		"es"		"¡No has ganado puntos de experiencia en la ronda!"
 		"de"		"Du hast keine Erfahrungspunkte in einer Runde verdient!"
+		"pt"		"Não ganhou pontos de experiência neste round!"
 	}
 	"RoundExpResultAll"
 	{

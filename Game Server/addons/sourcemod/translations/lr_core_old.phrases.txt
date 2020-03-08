@@ -14,6 +14,7 @@
 		"es"		"{TEAM}[LR]{DEFAULT}"
 		"chi"		"{TEAM}[LR]{DEFAULT}"
 		"de"		"{TEAM}[LR]{DEFAULT}"
+		"pt"		"{TEAM}[LR]{DEFAULT}"
 	}
 	"MainMenu"
 	{
@@ -93,7 +94,7 @@
 	}
 	"MainMenu_MyStats"
 	{
-		"en"		"My stats"
+		"en"		"My Stats"
 		"ru"		"Моя статистика"
 		"ua"		"Моя статистика"
 		"chi"		"我的数据"
@@ -112,7 +113,7 @@
 	}
 	"MyStatsSession"
 	{
-		"en"		"Session data"
+		"en"		"Session Data"
 		"ru"		"Данные за сессию"
 		"ua"		"Дані за сесію"
 		"chi"		"会话数据"
@@ -131,7 +132,7 @@
 	}
 	"MyStatsReset"
 	{
-		"en"		"Reset my stats"
+		"en"		"Reset My Stats"
 		"ru"		"Сбросить статистику"
 		"ua"		"Скинути статистику"
 		"chi"		"重置我的数据"
@@ -159,7 +160,7 @@
 	}
 	"MainMenu_MyPrivilegesSettings"
 	{
-		"en"		"Privileges and settings"
+		"en"		"Privileges and Settings"
 		"ru"		"Привилегии и настройки"
 		"ua"		"Привілеї та налаштування"
 		"chi"		"权限和设置"
@@ -168,7 +169,7 @@
 	}
 	"MainMenu_TopPlayers"
 	{
-		"en"		"TOP players"
+		"en"		"TOP Players"
 		"ru"		"TOP игроков"
 		"ua"		"TOP гравців"
 		"chi"		"顶尖选手"
@@ -177,11 +178,11 @@
 	}
 	"OverAllTopPlayersExp"
 	{
-		"en"		"TOP-10 by exp. points"
-		"ru"		"TOP-10 по очкам опыта"
-		"ua"		"TOP-10 за поінтами досвіду"
+		"en"		"TOP 10 | Exp. Points"
+		"ru"		"TOP 10 | по очкам опыта"
+		"ua"		"TOP 10 | за поінтами досвіду"
 		"chi"		"经验值排名前十"
-		"de"		"TOP-10 nach Erfahrungspunkten"
+		"de"		"TOP 10 | nach Erfahrungspunkten"
 	}
 	"OverAllTopPlayersExp_Slot"
 	{
@@ -195,12 +196,12 @@
 	}
 	"OverAllTopPlayersTime"
 	{
-		"en"		"TOP-10 by activity"
-		"ru"		"TOP-10 по активности"
-		"ua"		"TOP-10 за активністю"
+		"en"		"TOP 10 | Activity"
+		"ru"		"TOP 10 | по активности"
+		"ua"		"TOP 10 | за активністю"
 		"chi"		"活跃排名前十"
-		"es"		"TOP-10 por actividad"
-		"de"		"TOP-10 nach Spielzeit"
+		"es"		"TOP 10 | por actividad"
+		"de"		"TOP 10 | nach Spielzeit"
 	}
 	"OverAllTopPlayersTime_Slot"
 	{
