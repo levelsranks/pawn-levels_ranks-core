@@ -76,7 +76,7 @@
 		"ru"		"Выдать/Забрать очки опыта"
 		"ua"		"Видати/Забрати поінти досвіду"
 		"chi"		"给予/拿走 经验值. 点数"
-		"es"		"Dar/Quitar puntos Exp.."
+		"es"		"Dar/Quitar Puntos Exp.."
 		"de"		"Geben/Nehmen von Erfahrungspunkten"
 		"pt"		"Give/Take Exp. Points"
 	}
