@@ -289,7 +289,7 @@
 		"chi"		"玩家 {GREEN}{1} {WHITE}的段位在 {GREEN}{2} / {3} {WHITE}共获得 {OLIVE}{4} {WHITE}点经验者, {OLIVE}{5} {WHITE}击杀, {OLIVE}{6} {WHITE}死亡 & K/D比是 {OLIVE}{7}"
 		"es"		"Jugador {GREEN}{1} {WHITE}está posicionado en {GREEN}{2} / {3} {WHITE}con {OLIVE}{4} {WHITE}Exp., {OLIVE}{5} {WHITE}matado, {OLIVE}{6} {WHITE}muertes и KDR {OLIVE}{7}"
 		"de"		"Spieler {GREEN}{1} {WHITE}ist Platz {GREEN}{2} / {3} {WHITE}mit {OLIVE}{4} {WHITE}EP, {OLIVE}{5} {WHITE}Kills, {OLIVE}{6} {WHITE}Toden & KD {OLIVE}{7}"
-		"pt"		"Jogador {GREEN}{1} {WHITE}esta no rank {GREEN}{2} / {3} {WHITE}com {OLIVE}{4} {WHITE}Exp, {OLIVE}{5} {WHITE}Kills, {OLIVE}{6} {WHITE}Deaths and KDR {OLIVE}{7}"
+		"pt"		"Player {GREEN}{1} {WHITE}esta no rank {GREEN}{2} / {3} {WHITE}com {OLIVE}{4} {WHITE}Exp, {OLIVE}{5} {WHITE}Kills, {OLIVE}{6} {WHITE}Deaths and KDR {OLIVE}{7}"
 	}
 	"PlayerDataDeleted"
 	{
@@ -311,7 +311,7 @@
 		"chi"		"这里只有 {RED}{1} {WHITE}名玩家 来自 {RED}{2}"
 		"es"		"Solo hay {RED}{1} {WHITE}jugadores de {RED}{2}"
 		"de"		"Es gibt nur {RED}{1} {WHITE}Spieler von {RED}{2}"
-		"pt"		"Existe apenas {RED}{1} {WHITE}jogadores de {RED}{2}"
+		"pt"		"Existe apenas {RED}{1} {WHITE}players de {RED}{2}"
 	}
 	"RoundStartMessageRanks"
 	{
@@ -354,7 +354,7 @@
 		"chi"		"玩家 {OLIVE}{1} {WHITE}升段到了 {LIME}{2}"
 		"es"		"El jugador {OLIVE}{1} {WHITE}ascendió su rango a {LIME}{2}"
 		"de"		"Spieler {OLIVE}{1} {WHITE}hat einen Rang auf {LIME}{2} erhöht"
-		"pt"		"Jogador {OLIVE}{1} {WHITE}subiu seu rank para {LIME}{2}"
+		"pt"		"Player {OLIVE}{1} {WHITE}subiu seu rank para {LIME}{2}"
 	}
 	"LevelDownAll"
 	{
@@ -365,7 +365,7 @@
 		"chi"		"玩家 {OLIVE}{1} {WHITE}掉段到了 {LIME}{2}"
 		"es"		"El jugador {OLIVE}{1} {WHITE}descendió su rango a {RED}{2}"
 		"de"		"Spieler {OLIVE}{1} {WHITE}hat seinen Rang zu {RED}{2} verringert"
-		"pt"		"Jogador {OLIVE}{1} {WHITE}desceu seu rank para {RED}{2}"
+		"pt"		"Player {OLIVE}{1} {WHITE}desceu seu rank para {RED}{2}"
 	}
 	"Suicide"
 	{
@@ -688,5 +688,6 @@
 		"chi"		"总共: {PINK}{1} {WHITE}经验值. 点数"
 		"es"		"Total: {PINK}{1} {WHITE}puntos Exp.."
 		"de"		"Gesamt: {PINK}{1} {WHITE}Erfahrungspunkte"
+		"pt"		"Total: {PINK}{1} {WHITE}Pontos de Exp."
 	}
 }
