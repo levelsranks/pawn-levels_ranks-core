@@ -140,18 +140,18 @@ int GetMaxPlayers()
 
 char[] GetPlayerName(int iClient)
 {
-	static char sName[65];
+	static char sName[32];
+	static char sEscapedName[65];
 
-	GetClientName(iClient, sName, 32);
+	GetClientName(iClient, sName, sizeof(sName));
 
-	g_hDatabase.Escape(sName, sName, sizeof(sName));
+	g_hDatabase.Escape(sName, sEscapedName, sizeof(sEscapedName));
 
-	if(!g_Settings[LR_DB_Allow_UTF8MB4])
-	{
-		GetFixNamePlayer(sName);
+	if (!g_Settings[LR_DB_Allow_UTF8MB4]) {
+		GetFixNamePlayer(sEscapedName);
 	}
 
-	return sName;
+	return sEscapedName;
 }
 
 /**
