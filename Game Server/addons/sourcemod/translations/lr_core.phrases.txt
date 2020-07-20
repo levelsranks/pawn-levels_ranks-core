@@ -48,7 +48,7 @@
 		"chi"		"管理员菜单"
 		"es"		"Panel de admin"
 		"de"		"Admin Menü"
-		"pt"		"Painel Admin"
+		"pt"		"Painel Administrador"
 	}
 	"ReloadAllConfigs"
 	{
@@ -89,7 +89,7 @@
 		"chi"		"你的经验值: {GRAY}{1} [管理员{2}]"
 		"es"		"Tu Exp.: {GRAY}{1} [{2} del admin]"
 		"de"		"Deine EP: {GRAY}{1} [{2} vom Admin]"
-		"pt"		"Sua Exp: {GRAY}{1} [{2} do admin]"
+		"pt"		"Sua Exp: {GRAY}{1} [{2} do administrador]"
 	}
 	"AdminTake"
 	{
@@ -100,7 +100,7 @@
 		"chi"		"你的经验值: {GRAY}{1} [管理员{2}]"
 		"es"		"Tu Exp.: {GRAY}{1} [{2} del admin]"
 		"de"		"Deine EP: {GRAY}{1} [{2} vom Admin]"
-		"pt"		"Sua Exp: {GRAY}{1} [{2} do admin]"
+		"pt"		"Sua Exp: {GRAY}{1} [{2} do administrador]"
 	}
 	"ExpChange"
 	{
@@ -396,12 +396,13 @@
 	"MyDeath"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"Your Exp.: {RED}{1} [{2} for dying]"
+		"en"		"Your Exp.: {RED}{1} [{2} for Dying]"
 		"ru"		"Ваш опыт: {RED}{1} [{2} за вашу смерть]"
 		"ua"		"Ваш досвід: {RED}{1} [{2} за вашу смерть]"
 		"chi"		"你的经验值: {RED}{1} [{2} 因为死亡]"
 		"es"		"Tu Exp.: {RED}{1} [{2} por morir]"
 		"de"		"Deine Exp: {RED}{1} [{2} fürs Sterben]"
+		"pt"		"Sua Exp: {RED}{1} [{2} por Death]"
 	}
 	"TeamKill"
 	{
@@ -428,32 +429,35 @@
 	"AssisterKill"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"Your Exp.: {BLUE}{1} [{2} for an assist]"
+		"en"		"Your Exp.: {BLUE}{1} [{2} for an Assist]"
 		"ru"		"Ваш опыт: {BLUE}{1} [{2} за помощь в убийстве]"
 		"ua"		"Ваш досвід: {BLUE}{1} [{2} за допомогу в убивстві]"
 		"chi"		"你的经验值: {BLUE}{1} [{2} 来自助攻]"
 		"es"		"Tu Exp.: {BLUE}{1} [{2} por asistencia]"
 		"de"		"Deine Exp: {BLUE}{1} [{2} für eine Unterstützung]"
+		"pt"		"Sua Exp: {BLUE}{1} [{2} por uma Assist]"
 	}
 	"RoundWin"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"Your Exp.: {GREEN}{1} [{2} your team won]"
+		"en"		"Your Exp.: {GREEN}{1} [{2} your Team Won]"
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} ваша команда выиграла]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} ваша команда виграла]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自团队胜利]"
 		"es"		"Tu Exp.: {GREEN}{1} [{2} tu equipo ganó]"
 		"de"		"Deine Exp: {GREEN}{1} [{2} dein Team hat gewonnen]"
+		"pt"		"Sua Exp: {GREEN}{1} [{2} seu Team Won]"
 	}
 	"RoundLose"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"Your Exp.: {RED}{1} [{2} your team lost]"
+		"en"		"Your Exp.: {RED}{1} [{2} your Team Lost]"
 		"ru"		"Ваш опыт: {RED}{1} [{2} ваша команда проиграла]"
 		"ua"		"Ваш досвід: {RED}{1} [{2} ваша команда програла]"
 		"chi"		"你的经验值: {RED}{1} [{2} 因为团队失败]"
 		"es"		"Your Exp.: {RED}{1} [{2} tu equipo perdió]"
 		"de"		"Deine Exp: {RED}{1} [{2} dein Team hat verloren]"
+		"pt"		"Sua Exp: {GREEN}{1} [{2} seu Team Lost]"
 	}
 	"RoundMVP"
 	{
@@ -469,63 +473,68 @@
 	"BombPlanted"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"Your Exp.: {LIME}{1} [{2} for planting the bomb]"
+		"en"		"Your Exp.: {LIME}{1} [{2} for Planting the Bomb]"
 		"ru"		"Ваш опыт: {LIME}{1} [{2} установка бомбы]"
 		"ua"		"Ваш досвід: {LIME}{1} [{2} установка бомби]"
 		"chi"		"你的经验值: {LIME}{1} [{2} 来自安装炸弹]"
 		"es"		"Tu Exp.: {LIME}{1} [{2} por plantar la bomba]"
 		"de"		"Deine Exp: {LIME}{1} [{2} für das Legen der Bombe]"
+		"pt"		"Sua Exp: {LIME}{1} [{2} por Planting the Bomb]"
 	}
 	"BombDefused"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"Your Exp.: {LIME}{1} [{2} for defusing the bomb]"
+		"en"		"Your Exp.: {LIME}{1} [{2} for Defusing the Bomb]"
 		"ru"		"Ваш опыт: {LIME}{1} [{2} разминирование бомбы]"
 		"ua"		"Ваш досвід: {LIME}{1} [{2} розмінування бомби]"
 		"chi"		"你的经验值: {LIME}{1} [{2} 来自拆除炸弹]"
 		"es"		"Tu Exp.: {LIME}{1} [{2} por desactivar la bomba]"
 		"de"		"Deine Exp: {LIME}{1} [{2} für das Entschärfen der Bombe]"
+		"pt"		"Sua Exp: {LIME}{1} [{2} por Defusing the Bomb]"
 	}
 	"BombPickup"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"Your Exp.: {GREEN}{1} [{2} for bomb pickup]"
+		"en"		"Your Exp.: {GREEN}{1} [{2} for Bomb Pickup]"
 		"ru"		"Ваш опыт: {GREEN}{1} [{2} подобрали бомбу]"
 		"ua"		"Ваш досвід: {GREEN}{1} [{2} підібрали бомбу]"
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自捡起炸弹]"
 		"es"		"Tu Exp.: {GREEN}{1} [{2} por coger la bomba]"
 		"de"		"Deine Exp: {GREEN}{1} [{2} für das Aufnehmen der Bombe]"
+		"pt"		"Sua Exp: {GREEN}{1} [{2} por Bomb Pickup]"
 	}
 	"BombDropped"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"Your Exp.: {RED}{1} [{2} for dropping the bomb]"
+		"en"		"Your Exp.: {RED}{1} [{2} for Dropping the Bomb]"
 		"ru"		"Ваш опыт: {RED}{1} [{2} потеряли бомбу]"
 		"ua"		"Ваш досвід: {RED}{1} [{2} втратили бомбу]"
 		"chi"		"你的经验值: {RED}{1} [{2} 因为掉落炸弹]"
 		"es"		"Tu Exp.: {RED}{1} [{2} por tirar la bomba]"
 		"de"		"Deine Exp: {RED}{1} [{2} für das fallenlassen der Bombe]"
+		"pt"		"Sua Exp: {RED}{1} [{2} por Dropping the Bomb]"
 	}
 	"HostageRescued"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"Your Exp.: {LIGHTBLUE}{1} [{2} you rescued the hostage]"
+		"en"		"Your Exp.: {LIGHTBLUE}{1} [{2} you rescued the Hostage]"
 		"ru"		"Ваш опыт: {LIGHTBLUE}{1} [{2} вы спасли заложника]"
 		"ua"		"Ваш досвід: {LIGHTBLUE}{1} [{2} ви врятували заручника]"
 		"chi"		"你的经验值: {LIGHTBLUE}{1} [{2} 来自人质救援]"
 		"es"		"Tu Exp.: {LIGHTBLUE}{1} [{2} por rescatar el rehén]"
 		"de"		"Deine Exp: {LIGHTBLUE}{1} [{2} für das Retten einer Geisel]"
+		"pt"		"Sua Exp: {LIGHTBLUE}{1} [{2} você resgatou um Hostage]"
 	}
 	"HostageKilled"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"Your Exp.: {RED}{1} [{2} you killed the hostage]"
+		"en"		"Your Exp.: {RED}{1} [{2} you killed the Hostage]"
 		"ru"		"Ваш опыт: {RED}{1} [{2} вы убили заложника]"
 		"ua"		"Ваш досвід: {RED}{1} [{2} ви вбили заручника]"
 		"chi"		"你的经验值: {RED}{1} [{2} 因为击杀人质]"
 		"es"		"Tu Exp.: {RED}{1} [{2} por matar al rehén]"
 		"de"		"Deine Exp: {RED}{1} [{2} für das Töten einer Geisel]"
-		"pt"		"Sua Exp: {RED}{1} [{2} you killed the hostage]"
+		"pt"		"Sua Exp: {RED}{1} [{2} você matou um Hostage]"
 	}
 	"DoubleKill"
 	{
