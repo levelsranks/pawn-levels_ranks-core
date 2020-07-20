@@ -48,7 +48,7 @@
 		"chi"		"管理员菜单"
 		"es"		"Panel de admin"
 		"de"		"Admin Menü"
-		"pt"		"Painel Administrador"
+		"pt"		"Painel Administrativo"
 	}
 	"ReloadAllConfigs"
 	{
@@ -380,7 +380,7 @@
 		"chi"		"你的经验值: {RED}{1} [{2} 因为自杀]"
 		"es"		"Tu Exp.: {RED}{1} [{2} por suicidarte]"
 		"de"		"Deine Exp: {RED}{1} [{2} für Selbstmord]"
-		"pt"		"Sua Exp: {RED}{1} [{2} por Suicide]"
+		"pt"		"Sua Exp: {RED}{1} [{2} por suicidar]"
 	}
 	"Kill"
 	{
@@ -391,7 +391,7 @@
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自击杀]"
 		"es"		"Tu Exp.: {GREEN}{1} [{2} por matar]"
 		"de"		"Deine Exp: {GREEN}{1} [{2} für einen Kill]"
-		"pt"		"Sua Exp: {GREEN}{1} [{2} por Kill]"
+		"pt"		"Sua Exp: {GREEN}{1} [{2} por matar]"
 	}
 	"MyDeath"
 	{
@@ -402,7 +402,7 @@
 		"chi"		"你的经验值: {RED}{1} [{2} 因为死亡]"
 		"es"		"Tu Exp.: {RED}{1} [{2} por morir]"
 		"de"		"Deine Exp: {RED}{1} [{2} fürs Sterben]"
-		"pt"		"Sua Exp: {RED}{1} [{2} por Death]"
+		"pt"		"Sua Exp: {RED}{1} [{2} por morrer]"
 	}
 	"TeamKill"
 	{
@@ -413,7 +413,7 @@
 		"chi"		"你的经验值: {RED}{1} [{2} 因为击杀队友]"
 		"es"		"Tu Exp.: {RED}{1} [{2} por matar a compañer@s]"
 		"de"		"Deine Exp: {RED}{1} [{2} für einen Team Kill]"
-		"pt"		"Sua Exp: {RED}{1} [{2} por Team Kill]"
+		"pt"		"Sua Exp: {RED}{1} [{2} por matar o time]"
 	}
 	"HeadShotKill"
 	{
@@ -424,18 +424,18 @@
 		"chi"		"你的经验值: {OLIVE}{1} [{2} 来自爆头]"
 		"es"		"Tu Exp.: {OLIVE}{1} [{2} por disparo a la cabeza]"
 		"de"		"Deine Exp: {OLIVE}{1} [{2} für einen Kopfschuss]"
-		"pt"		"Sua Exp: {OLIVE}{1} [{2} por HeadShot]"
+		"pt"		"Sua Exp: {OLIVE}{1} [{2} por um HeadShot]"
 	}
 	"AssisterKill"
 	{
 		"#format"	"{1:i},{2:s}"
-		"en"		"Your Exp.: {BLUE}{1} [{2} for an Assist]"
+		"en"		"Your Exp.: {BLUE}{1} [{2} for an Assistance]"
 		"ru"		"Ваш опыт: {BLUE}{1} [{2} за помощь в убийстве]"
 		"ua"		"Ваш досвід: {BLUE}{1} [{2} за допомогу в убивстві]"
 		"chi"		"你的经验值: {BLUE}{1} [{2} 来自助攻]"
 		"es"		"Tu Exp.: {BLUE}{1} [{2} por asistencia]"
 		"de"		"Deine Exp: {BLUE}{1} [{2} für eine Unterstützung]"
-		"pt"		"Sua Exp: {BLUE}{1} [{2} por uma Assist]"
+		"pt"		"Sua Exp: {BLUE}{1} [{2} por uma Assistência]"
 	}
 	"RoundWin"
 	{
@@ -446,7 +446,7 @@
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自团队胜利]"
 		"es"		"Tu Exp.: {GREEN}{1} [{2} tu equipo ganó]"
 		"de"		"Deine Exp: {GREEN}{1} [{2} dein Team hat gewonnen]"
-		"pt"		"Sua Exp: {GREEN}{1} [{2} seu Team Won]"
+		"pt"		"Sua Exp: {GREEN}{1} [{2} seu time ganhou]"
 	}
 	"RoundLose"
 	{
@@ -457,7 +457,7 @@
 		"chi"		"你的经验值: {RED}{1} [{2} 因为团队失败]"
 		"es"		"Your Exp.: {RED}{1} [{2} tu equipo perdió]"
 		"de"		"Deine Exp: {RED}{1} [{2} dein Team hat verloren]"
-		"pt"		"Sua Exp: {GREEN}{1} [{2} seu Team Lost]"
+		"pt"		"Sua Exp: {GREEN}{1} [{2} seu time perdeu]"
 	}
 	"RoundMVP"
 	{
@@ -479,7 +479,7 @@
 		"chi"		"你的经验值: {LIME}{1} [{2} 来自安装炸弹]"
 		"es"		"Tu Exp.: {LIME}{1} [{2} por plantar la bomba]"
 		"de"		"Deine Exp: {LIME}{1} [{2} für das Legen der Bombe]"
-		"pt"		"Sua Exp: {LIME}{1} [{2} por Planting the Bomb]"
+		"pt"		"Sua Exp: {LIME}{1} [{2} por Plantar a Bomba]"
 	}
 	"BombDefused"
 	{
@@ -490,7 +490,7 @@
 		"chi"		"你的经验值: {LIME}{1} [{2} 来自拆除炸弹]"
 		"es"		"Tu Exp.: {LIME}{1} [{2} por desactivar la bomba]"
 		"de"		"Deine Exp: {LIME}{1} [{2} für das Entschärfen der Bombe]"
-		"pt"		"Sua Exp: {LIME}{1} [{2} por Defusing the Bomb]"
+		"pt"		"Sua Exp: {LIME}{1} [{2} por Defusar a Bomba]"
 	}
 	"BombPickup"
 	{
@@ -501,7 +501,7 @@
 		"chi"		"你的经验值: {GREEN}{1} [{2} 来自捡起炸弹]"
 		"es"		"Tu Exp.: {GREEN}{1} [{2} por coger la bomba]"
 		"de"		"Deine Exp: {GREEN}{1} [{2} für das Aufnehmen der Bombe]"
-		"pt"		"Sua Exp: {GREEN}{1} [{2} por Bomb Pickup]"
+		"pt"		"Sua Exp: {GREEN}{1} [{2} por Pegar a Bomba]"
 	}
 	"BombDropped"
 	{
@@ -512,7 +512,7 @@
 		"chi"		"你的经验值: {RED}{1} [{2} 因为掉落炸弹]"
 		"es"		"Tu Exp.: {RED}{1} [{2} por tirar la bomba]"
 		"de"		"Deine Exp: {RED}{1} [{2} für das fallenlassen der Bombe]"
-		"pt"		"Sua Exp: {RED}{1} [{2} por Dropping the Bomb]"
+		"pt"		"Sua Exp: {RED}{1} [{2} por Dropar a Bomba]"
 	}
 	"HostageRescued"
 	{
@@ -523,7 +523,7 @@
 		"chi"		"你的经验值: {LIGHTBLUE}{1} [{2} 来自人质救援]"
 		"es"		"Tu Exp.: {LIGHTBLUE}{1} [{2} por rescatar el rehén]"
 		"de"		"Deine Exp: {LIGHTBLUE}{1} [{2} für das Retten einer Geisel]"
-		"pt"		"Sua Exp: {LIGHTBLUE}{1} [{2} você resgatou um Hostage]"
+		"pt"		"Sua Exp: {LIGHTBLUE}{1} [{2} você resgatou um Refém]"
 	}
 	"HostageKilled"
 	{
@@ -534,7 +534,7 @@
 		"chi"		"你的经验值: {RED}{1} [{2} 因为击杀人质]"
 		"es"		"Tu Exp.: {RED}{1} [{2} por matar al rehén]"
 		"de"		"Deine Exp: {RED}{1} [{2} für das Töten einer Geisel]"
-		"pt"		"Sua Exp: {RED}{1} [{2} você matou um Hostage]"
+		"pt"		"Sua Exp: {RED}{1} [{2} você matou um Refém]"
 	}
 	"DoubleKill"
 	{
