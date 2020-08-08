@@ -51,6 +51,9 @@
 ****		Hackmastr
 ****		( translation of phrases in Spanish )
 ****
+****		crashzk
+****		( translation of phrases in Português-BR )
+****
 ***************************************************************************/
 
 #pragma semicolon 1
