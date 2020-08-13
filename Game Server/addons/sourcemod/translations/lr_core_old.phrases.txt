@@ -111,6 +111,15 @@
 		"es"		"Mis estadísticas\n \nJugado: {1} h. {2} m. {3} seg.\n \nMatado: {4}\nMuerto: {5}\nAsistencias: {6}\nHeadshots: {7} ({8}%%)\nKDR: {9}\n \nPrecisión: {10}%%\nRatio de victorias: {11}%%"
 		"de"		"Meine Statistiken\n \nGespielt: {1} s {2} m {3} sek\n \nKills: {4}\nTode: {5}\nAssists: {6}\nKopfschüsse: {7} ({8}%%)\nKD: {9}\n \nGenauigkeit: {10}%%\nGewinnrate: {11}%%"
 	}
+	"MyStatsSecondary"
+	{
+		"en"		"Secondary Stats"
+		"ru"		"Дополнительная статистика"
+		"ua"		"Додаткова статистика"
+		"chi"		"其他统计"
+		"es"		"Estadísticas secundarias"
+		"de"		"Sekundäre Statistiken"
+	}
 	"MyStatsSession"
 	{
 		"en"		"Session Data"
