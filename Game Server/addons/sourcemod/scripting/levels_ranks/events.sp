@@ -45,9 +45,16 @@ void Events_Shots(Event hEvent, const char[] sName, bool bDontBroadcast)
 void Event_PlayerDeath(Event hEvent, const char[] sName, bool bDontBroadcast)
 {
 	int iClient = GetClientOfUserId(hEvent.GetInt("userid")),
-		iAttacker = GetClientOfUserId(hEvent.GetInt("attacker"));
+	    iAttacker = GetClientOfUserId(hEvent.GetInt("attacker")),
+	    iAssister = GetClientOfUserId(hEvent.GetInt("assister"));
 
-	if(CheckStatus(iAttacker) && CheckStatus(iClient))
+	if(NotifClient(iAssister, g_SettingsStats[LR_ExpGiveAssist], "AssisterKill"))
+	{
+		g_iPlayerInfo[iAssister].iStats[ST_ASSISTS]++;
+		g_iPlayerInfo[iAssister].iSessionStats[ST_ASSISTS]++;
+	}
+
+	if(iClient && iAttacker)
 	{
 		if(iAttacker == iClient)
 		{
@@ -61,19 +68,21 @@ void Event_PlayerDeath(Event hEvent, const char[] sName, bool bDontBroadcast)
 			}
 			else
 			{
-				int iExpAttacker, iExpVictim;
+				bool bFakeClient = IsFakeClient(iClient), 
+				     bFakeAttacker = IsFakeClient(iAttacker);
 
-				switch(g_Settings[LR_TypeStatistics])
+				int iExpAttacker = 0, iExpVictim = 0;
+
+				if(!g_Settings[LR_TypeStatistics])
 				{
-					case 0:
-					{
-						iExpAttacker = g_SettingsStats[LR_ExpKill];
-						iExpVictim = g_SettingsStats[LR_ExpDeath];
+					iExpAttacker = g_SettingsStats[LR_ExpKill + view_as<int>(bFakeClient)];		// LR_ExpKillIsBot
+					iExpVictim = g_SettingsStats[LR_ExpDeath + view_as<int>(bFakeAttacker)];		// LR_ExpDeathIsBot
 
-						CallForward_OnPlayerKilled(hEvent, iExpAttacker, iClient, iAttacker);
-					}
-
-					case 1:
+					CallForward_OnPlayerKilled(hEvent, iExpAttacker, iClient, iAttacker);
+				}
+				else if(!bFakeClient && !bFakeAttacker)
+				{
+					if(g_Settings[LR_TypeStatistics] == 1)
 					{
 						iExpAttacker = RoundToNearest(float(g_iPlayerInfo[iClient].iStats[ST_EXP]) / g_iPlayerInfo[iAttacker].iStats[ST_EXP] * 5.0);
 
@@ -89,39 +98,36 @@ void Event_PlayerDeath(Event hEvent, const char[] sName, bool bDontBroadcast)
 							iExpVictim = 1;
 						}
 					}
-
-					case 2:
+					else
 					{
 						iExpAttacker = g_iPlayerInfo[iClient].iStats[ST_EXP] - g_iPlayerInfo[iAttacker].iStats[ST_EXP];
 
 						CallForward_OnPlayerKilled(hEvent, iExpAttacker, iClient, iAttacker);
 
-						iExpVictim = iExpAttacker = iExpAttacker < 2 ? 2 : (iExpAttacker / 100) + 2;
+						iExpVictim = iExpAttacker = iExpAttacker < 3 ? 2 : (iExpAttacker / 100) + 2;
 					}
 				}
 
-				if(NotifClient(iAttacker, iExpAttacker, "Kill") && NotifClient(iClient, -iExpVictim, "MyDeath"))
+				if(NotifClient(iAttacker, iExpAttacker, "Kill") + NotifClient(iClient, -iExpVictim, "MyDeath"))
 				{
-					if(hEvent.GetBool("headshot") && NotifClient(iAttacker, g_SettingsStats[LR_ExpGiveHeadShot], "HeadShotKill"))
+					if(!bFakeAttacker)
 					{
-						g_iPlayerInfo[iAttacker].iStats[ST_HEADSHOTS]++;
-						g_iPlayerInfo[iAttacker].iSessionStats[ST_HEADSHOTS]++;
+						if(hEvent.GetBool("headshot") && NotifClient(iAttacker, g_SettingsStats[LR_ExpGiveHeadShot], "HeadShotKill"))
+						{
+							g_iPlayerInfo[iAttacker].iStats[ST_HEADSHOTS]++;
+							g_iPlayerInfo[iAttacker].iSessionStats[ST_HEADSHOTS]++;
+						}
+
+						g_iPlayerInfo[iAttacker].iStats[ST_KILLS]++;
+						g_iPlayerInfo[iAttacker].iSessionStats[ST_KILLS]++;
+						g_iPlayerInfo[iAttacker].iKillStreak++;
 					}
 
-					int iAssister = GetClientOfUserId(hEvent.GetInt("assister"));
-
-					if(NotifClient(iAssister, g_SettingsStats[LR_ExpGiveAssist], "AssisterKill"))
+					if(!bFakeClient)
 					{
-						g_iPlayerInfo[iAssister].iStats[ST_ASSISTS]++;
-						g_iPlayerInfo[iAssister].iSessionStats[ST_ASSISTS]++;
+						g_iPlayerInfo[iClient].iStats[ST_DEATHS]++;
+						g_iPlayerInfo[iClient].iSessionStats[ST_DEATHS]++;
 					}
-
-					g_iPlayerInfo[iAttacker].iStats[ST_KILLS]++;
-					g_iPlayerInfo[iAttacker].iSessionStats[ST_KILLS]++;
-					g_iPlayerInfo[iAttacker].iKillStreak++;
-
-					g_iPlayerInfo[iClient].iStats[ST_DEATHS]++;
-					g_iPlayerInfo[iClient].iSessionStats[ST_DEATHS]++;
 
 					CallForward_OnPlayerKilled(hEvent, iExpAttacker, iClient, iAttacker, false);
 				}
@@ -233,8 +239,8 @@ void Events_Rounds(Event hEvent, const char[] sName, bool bDontBroadcast)
 
 						if(bLose ? NotifClient(i, -g_SettingsStats[LR_ExpRoundLose], "RoundLose") : NotifClient(i, g_SettingsStats[LR_ExpRoundWin], "RoundWin"))
 						{
-							g_iPlayerInfo[i].iStats[ST_ROUNDSWIN + int(bLose)]++;
-							g_iPlayerInfo[i].iSessionStats[ST_ROUNDSWIN + int(bLose)]++;
+							g_iPlayerInfo[i].iStats[ST_ROUNDSWIN + view_as<int>(bLose)]++;
+							g_iPlayerInfo[i].iSessionStats[ST_ROUNDSWIN + view_as<int>(bLose)]++;
 						}
 					}
 

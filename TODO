@@ -1,0 +1,25 @@
+Priority ↓   Difficulty      Description
+----------------------------------------------------------------------------------
+Very high    High            Restore database table to a accountid primary key. And playback of the virtual old table.
+
+Very high    Very high       Create work with enum struct or methodmap methods concealment in files through static attrubutes. External file functions will be accessed from outside.
+
+Very high    Medium          Get rid of custom_functions.sp in the request process above.
+
+High         High            Get rid of KeyValues replaces to SMCParser.
+
+High         Medium          Making SQL requests to create table in a separate file.
+
+Medium       High            Support GameMe sync stats data (Request from the sponsor).
+
+Medium       Medium          Add optional progress bar in the main menu.
+
+Medium       Low             Get rid of define.sp with a 1.11 parser. Depends on AlliedModders.
+
+Medium       Low             Write the constants of the maximum name sizes to the beginning of the adjacent file.
+
+Medium       Medium          Create a build script.
+
+Medium       High            Make support for ClientMod (CS:S v34) a separate build.
+
+Medium       Thinking        Creating a new type of statistics based on https://www.maths.tcd.ie/~lebed/Galperin.%20Playing%20pool%20with%20pi.pdf .

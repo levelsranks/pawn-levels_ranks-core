@@ -2,11 +2,11 @@ void SetSettings()
 {
 	static int  iTypeStatistics;
 
-	char 		sBuffer[192];
+	char      sBuffer[192];
 
-	static char sPath[PLATFORM_MAX_PATH];
+	decl char sPath[PLATFORM_MAX_PATH];
 
-	KeyValues	hKv = new KeyValues("LR_Settings");
+	KeyValues hKv = new KeyValues("LR_Settings");
 
 	bool bFirstLoad = !sPath[0];
 
@@ -103,7 +103,9 @@ void SetSettings()
 			hKv.JumpToKey("Funded_System"); /**/
 
 			g_SettingsStats[LR_ExpKill] = hKv.GetNum("lr_kill");
+			g_SettingsStats[LR_ExpKillIsBot] = hKv.GetNum("lr_kill_is_bot");
 			g_SettingsStats[LR_ExpDeath] = hKv.GetNum("lr_death");
+			g_SettingsStats[LR_ExpDeathIsBot] = hKv.GetNum("lr_death_is_bot");
 		}
 
 		case 1:

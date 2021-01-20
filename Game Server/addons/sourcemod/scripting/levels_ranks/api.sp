@@ -45,6 +45,7 @@ public APLRes AskPluginLoad2(Handle hMySelf, bool bLate, char[] sError, int iErr
 	g_hForward_Hook[LR_OnResetPlayerStats] = new PrivateForward(ET_Ignore, Param_Cell, Param_Cell);
 	g_hForward_Hook[LR_OnPlayerPosInTop] = new PrivateForward(ET_Ignore, Param_Cell, Param_Cell, Param_Cell);
 	g_hForward_Hook[LR_OnPlayerSaved] = new PrivateForward(ET_Ignore, Param_Cell, Param_Cell);
+	g_hForward_Hook[LR_OnExpChanged] = new PrivateForward(ET_Ignore, Param_Cell, Param_Cell, Param_Cell);
 
 	for(int iMenuType = LR_AdminMenu; iMenuType != LR_MenuType;)
 	{
@@ -61,7 +62,7 @@ public APLRes AskPluginLoad2(Handle hMySelf, bool bLate, char[] sError, int iErr
 
 int Native_IsLoaded(Handle hPlugin, int iArgs)
 {
-	return !g_hForward_OnCoreIsReady;
+	return g_bCoreIsLoaded;
 }
 
 int Native_GetVersion(Handle hPlugin, int iArgs)
@@ -105,7 +106,7 @@ int Native_GetSettingsStatsValue(Handle hPlugin, int iArgs)
 
 int Native_GetDatabase(Handle hPlugin, int iArgs)
 {
-	return g_hDatabase ? int(CloneHandle(g_hDatabase, hPlugin)) : 0;
+	return g_hDatabase ? view_as<int>(CloneHandle(g_hDatabase, hPlugin)) : 0;
 }
 
 int Native_GetDatabaseType(Handle hPlugin, int iArgs)
@@ -140,12 +141,12 @@ int Native_CheckCountPlayers(Handle hPlugin, int iArgs)
 
 int Native_GetRankNames(Handle hPlugin, int iArgs)
 {
-	return int(g_hRankNames);
+	return view_as<int>(g_hRankNames);
 }
 
 int Native_GetRankExp(Handle hPlugin, int iArgs)
 {
-	return int(g_hRankExp);
+	return view_as<int>(g_hRankExp);
 }
 
 int Native_GetClientInfo(Handle hPlugin, int iArgs)
@@ -174,7 +175,7 @@ int Native_ChangeClientValue(Handle hPlugin, int iArgs)
 {
 	int iClient = GetNativeCell(1);
 
-	if(CheckStatus(iClient))
+	if(CheckStatus(iClient) && g_bAllowStatistic)
 	{
 		int iExpChange = GetNativeCell(2),
 			iExpMin = 0,
@@ -194,6 +195,7 @@ int Native_ChangeClientValue(Handle hPlugin, int iArgs)
 		g_iPlayerInfo[iClient].iSessionStats[ST_EXP] += iExpChange;
 
 		CheckRank(iClient);
+		CallForward_OnExpChanged(iClient, iExpChange, g_iPlayerInfo[iClient].iStats[ST_EXP]);
 
 		return true;
 	}
@@ -226,16 +228,32 @@ int Native_PrintToChat(Handle hPlugin, int iArgs)
 
 // Forwards
 
+void CallForward_OnCoreIsReady()
+{
+	g_bCoreIsLoaded = true;
+
+	Profiler hProfiler = new Profiler();
+
+	hProfiler.Start();
+
+	Call_StartForward(g_hForward_OnCoreIsReady);
+	Call_Finish();
+
+	hProfiler.Stop();
+
+	float fTime = hProfiler.Time;
+
+	if(fTime > 0.25)
+	{
+		LogWarning(false, "Warning: Lag occurred from LR modules in %f sec.", fTime);
+	}
+
+	hProfiler.Close();
+}
+
 void CallForward_OnSettingsModuleUpdate()
 {
 	Call_StartForward(g_hForward_Hook[LR_OnSettingsModuleUpdate]);
-	Call_Finish();
-}
-
-void CallForward_OnDisconnectionWithDB()
-{
-	Call_StartForward(g_hForward_Hook[LR_OnDisconnectionWithDB]);
-	Call_PushCellRef(g_hDatabase);
 	Call_Finish();
 }
 
@@ -249,7 +267,7 @@ void CallForward_OnDatabaseCleanup(int iType, Transaction hTransaction)
 
 void CallForward_OnLevelChanged(int iClient, int& iNewRank, int iOldRank, bool bRef = true)
 {
-	Call_StartForward(g_hForward_Hook[LR_OnLevelChangedPre + int(!bRef)]);
+	Call_StartForward(g_hForward_Hook[LR_OnLevelChangedPre + view_as<int>(!bRef)]);
 	Call_PushCell(iClient);
 
 	if(bRef)
@@ -267,7 +285,7 @@ void CallForward_OnLevelChanged(int iClient, int& iNewRank, int iOldRank, bool b
 
 void CallForward_OnPlayerKilled(Event hEvent, int& iExpCaused, int iClient, int iAttacker, bool bRef = true)
 {
-	Call_StartForward(g_hForward_Hook[LR_OnPlayerKilledPre + int(!bRef)]);
+	Call_StartForward(g_hForward_Hook[LR_OnPlayerKilledPre + view_as<int>(!bRef)]);
 	Call_PushCell(hEvent);
 
 	if(bRef)
@@ -317,6 +335,16 @@ void CallForward_OnPlayerSaved(int iClient, Transaction hTransaction)
 	Call_Finish();
 }
 
+
+void CallForward_OnExpChanged(int iClient, int iGiveExp, int iNewExpCount)
+{
+	Call_StartForward(g_hForward_Hook[LR_OnExpChanged]);
+	Call_PushCell(iClient);
+	Call_PushCell(iGiveExp);
+	Call_PushCell(iNewExpCount);
+	Call_Finish();
+}
+
 void CallForward_MenuHook(int iMenuType, int iClient, Menu hMenu, int iSlot = -1)
 {
 	static int iSelectPosition = 0;
@@ -335,7 +363,7 @@ void CallForward_MenuHook(int iMenuType, int iClient, Menu hMenu, int iSlot = -1
 	}
 	else
 	{
-		static char sInfo[64];
+		decl char sInfo[64];
 
 		hMenu.GetItem(iSlot, sInfo, sizeof(sInfo));
 

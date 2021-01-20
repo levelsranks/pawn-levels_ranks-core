@@ -1,3 +1,4 @@
+
 Action Call_MainMenu(int iClient, int iArgs)
 {
 	if(CheckStatus(iClient) && g_hDatabase)
@@ -33,7 +34,7 @@ Action Call_ResetData(int iArgs)
 	{
 		int iType = -1;
 
-		static char sBuffer[256];
+		decl char sBuffer[256];
 
 		GetCmdArg(1, sBuffer, 8);
 
@@ -98,13 +99,13 @@ Action Call_ResetPlayer(int iClient, int iArgs)
 		bool bTargetIsMl = false;
 
 		int iTargets = 0,
-			iTargetList[MAXPLAYERS+1];
+			iTargetList[MAXPLAYERS + 1];
 
 		char sBuffer[256];
 
 		GetCmdArg(1, sBuffer, 65);
 
-		int iAccountID = (!strncmp(sBuffer, "STEAM_", 6) && sBuffer[7] == ':') ? GetAccountID(sBuffer) : 0;
+		int iAccountID = (!strncmp(sBuffer, "STEAM_", 6) && sBuffer[7] == ':') ? GetAccountIDFromSteamID2(sBuffer) : 0;
 
 		if((iTargets = ProcessTargetString(sBuffer, iClient, iTargetList, sizeof(iTargetList), COMMAND_FILTER_NO_BOTS, sBuffer, sizeof(sBuffer), bTargetIsMl)) < 1 && !iAccountID)
 		{
@@ -131,7 +132,7 @@ Action Call_ResetPlayer(int iClient, int iArgs)
 
 				CallForward_OnResetPlayerStats(0, iAccountID);
 
-				Format(sBuffer, sizeof(sBuffer), SQL_UpdateResetData, g_sTableName, sBuffer);
+				Format(sBuffer, sizeof(sBuffer), SQL_UPDATE_RESET_DATA, g_sTableName, sBuffer);
 				g_hDatabase.Query(SQL_Callback, sBuffer, 0);
 
 				LogAction(iClient, 0, "[LR] %L reset statistics request has been sent at <0><STEAM_%i:%i:%i><>", iClient, g_iEngine == Engine_CSGO, iAccountID & 1, iAccountID >>> 1);

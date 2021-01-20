@@ -3,8 +3,8 @@
 #endif
 #define _levelsranks_included_
 
-#define PLUGIN_VERSION "v3.1.5"
-#define PLUGIN_INT_VERSION 03010500
+#define PLUGIN_VERSION "v3.1.6"
+#define PLUGIN_INT_VERSION 03010600
 
 enum LR_HookType
 {
@@ -18,7 +18,8 @@ enum LR_HookType
 	LR_OnPlayerLoaded,
 	LR_OnResetPlayerStats,
 	LR_OnPlayerPosInTop,
-	LR_OnPlayerSaved
+	LR_OnPlayerSaved,
+	LR_OnExpChanged
 };
 
 enum LR_MenuType
@@ -41,7 +42,7 @@ enum LR_SettingType
 	LR_FlagAdminmenu = 0,
 	LR_TypeStatistics,
 	LR_IsLevelSound,
-	LR_MinplayersCount,			/**< Use LR_CheckCountPlayers() to get is activate statistics. **/
+	LR_MinplayersCount,       /**< Use LR_CheckCountPlayers() to get is activate statistics. **/
 	LR_ShowResetMyStats,
 	LR_ResetMyStatsCooldown,
 	LR_ShowUsualMessage,
@@ -51,19 +52,22 @@ enum LR_SettingType
 	LR_ShowRankMessage,
 	LR_ShowRankList,
 	LR_GiveExpRoundEnd,
-	LR_BlockWarmup,				/**< Use LR_CheckCountPlayers() to get is activate statistics. **/
+	LR_BlockWarmup,           /**< Use LR_CheckCountPlayers() to get is activate statistics. **/
 	LR_AllAgainstAll,
 	LR_CleanDB_Days,
 	LR_CleanDB_BanClient,
 	LR_DB_SaveDataPlayer_Mode,
-	LR_DB_Allow_UTF8MB4
+	LR_DB_Allow_UTF8MB4,
+	LR_DB_Charset_Type
 };
 
 enum LR_SettingStatsType
 {
-	LR_ExpKill,					/**< If LR_TypeStatistics equal 0. **/
-	LR_ExpDeath,				/**< If LR_TypeStatistics equal 0. **/
-	LR_ExpKillCoefficient,		/**< If LR_TypeStatistics equal 1. **/
+	LR_ExpKill = 0,           /**< If LR_TypeStatistics equal 0. **/
+	LR_ExpKillIsBot,          /**< If LR_TypeStatistics equal 0. **/
+	LR_ExpDeath,              /**< If LR_TypeStatistics equal 0. **/
+	LR_ExpDeathIsBot,         /**< If LR_TypeStatistics equal 0. **/
+	LR_ExpKillCoefficient,    /**< If LR_TypeStatistics equal 1. **/
 	LR_ExpGiveHeadShot,
 	LR_ExpGiveAssist,
 	LR_ExpGiveSuicide,
@@ -110,18 +114,18 @@ typeset LR_HookCB
 	 *
 	 * Called when a MySQL connection is lost.
 	 *
-	 * @param hDatabase		Empty connection. Designed to force 
-	 *						the substitution.
+	 * @param hDatabase       Empty connection. Designed to force 
+	 *                        the substitution.
 	 */
-	function void (Database& hDatabase);
+	function void (Database &hDatabase);
 
 	/**
 	 * LR_OnDatabaseCleanup
 	 *
 	 * Called when clearing tables in the database.
 	 *
-	 * @param CleanupType	The type of cleaning.
-	 * @param hTransaction	Transaction for cleaning in thread.
+	 * @param CleanupType     The type of cleaning.
+	 * @param hTransaction    Transaction for cleaning in thread.
 	 */
 	function void (LR_CleanupType CleanupType, Transaction hTransaction);
 
@@ -130,20 +134,20 @@ typeset LR_HookCB
 	 *
 	 * Called before processing, when a player has upped or lowered his rank.
 	 *
-	 * @param iClient		Client index.
-	 * @param iNewLevel		New rank of the player.
-	 * @param iOldLevel		Rank, which was until obtain a new.
+	 * @param iClient         Client index.
+	 * @param iNewLevel       New rank of the player. Can change.
+	 * @param iOldLevel       Rank, which was until obtain a new.
 	 */
-	function void (int iClient, int& iNewLevel, int iOldLevel);
+	function void (int iClient, int &iNewLevel, int iOldLevel);
 
 	/**
 	 * LR_OnLevelChangedPost
 	 *
 	 * Called when a player has upped or lowered his rank.
 	 *
-	 * @param iClient		Client index.
-	 * @param iNewLevel		New rank of the player.
-	 * @param iOldLevel		Rank, which was until obtain a new.
+	 * @param iClient         Client index.
+	 * @param iNewLevel       New rank of the player.
+	 * @param iOldLevel       Rank, which was until obtain a new.
 	 */
 	function void (int iClient, int iNewLevel, int iOldLevel);
 
@@ -152,24 +156,24 @@ typeset LR_HookCB
 	 *
 	 * Called before processed the player_death event.
 	 *
-	 * @param hEvent		Handle player_death event.
-	 * @param iExpCaused	Experience points given and taken 
-	 *						depending on LR_TypeStatistics.
-	 * @param iExpVictim	Amount of experience the victim.
-	 * @param iExpAttacker	Amount of experience the attacker.
+	 * @param hEvent          Handle player_death event.
+	 * @param iExpCaused      Experience points given and taken
+	 *                        depending on LR_TypeStatistics. Can change.
+	 * @param iExpVictim      Amount of experience the victim.
+	 * @param iExpAttacker    Amount of experience the attacker.
 	 */
-	function void (Event hEvent, int& iExpCaused, int iExpVictim, int iExpAttacker);
+	function void (Event hEvent, int &iExpCaused, int iExpVictim, int iExpAttacker);
 
 	/**
 	 * LR_OnPlayerKilledPost
 	 *
 	 * Called after processing the player_death event.
 	 *
-	 * @param hEvent		Handle player_death event.
-	 * @param iExpCaused	Experience points given and taken 
-	 *						depending on LR_TypeStatistics.
-	 * @param iExpVictim	Amount of experience the victim.
-	 * @param iExpAttacker	Amount of experience the attacker.
+	 * @param hEvent          Handle player_death event.
+	 * @param iExpGive        Experience points given and taken 
+	 *                        depending on LR_TypeStatistics.
+	 * @param iExpVictim      Amount of experience the victim.
+	 * @param iExpAttacker    Amount of experience the attacker.
 	 */
 	function void (Event hEvent, int iExpGive, int iExpVictim, int iExpAttacker);
 
@@ -178,8 +182,8 @@ typeset LR_HookCB
 	 *
 	 * Called when the player has booted.
 	 *
-	 * @param iClient		Client index.
-	 * @param iAccountID	Client Steam AccountID.
+	 * @param iClient         Client index.
+	 * @param iAccountID      Client Steam Account ID.
 	 */
 	function void (int iClient, int iAccountID);
 
@@ -188,9 +192,9 @@ typeset LR_HookCB
 	 *
 	 * Called when reset statistics of player.
 	 *
-	 * @param iClient		Client index. Can be 0 if it 
-	 *						offline reset.
-	 * @param iAccountID	Client Steam AccountID.
+	 * @param iClient         Client index. Can be 0 if it
+	 *                        offline reset.
+	 * @param iAccountID      Client Steam AccountID.
 	 */
 	function void (int iClient, int iAccountID);
 
@@ -200,9 +204,9 @@ typeset LR_HookCB
 	 * Called when the updated the positions in the tops.
 	 * @note The earliest getting a position in the top occurs in LR_OnPlayerLoaded.
 	 *
-	 * @param iClient		Client index. 
-	 * @param iExpPos		Client position in the top by experiences.
-	 * @param iTimePos		Client position in the top by time.
+	 * @param iClient         Client index. 
+	 * @param iExpPos         Client position in the top by experiences.
+	 * @param iTimePos        Client position in the top by time.
 	 */
 	function void (int iClient, int iExpPos, int iTimePos);
 
@@ -211,27 +215,38 @@ typeset LR_HookCB
 	 *
 	 * Сalled when a player is saved data.
 	 *
-	 * @param iClient		Client index.
-	 * @param hTransaction	Transaction for saved in thread.
+	 * @param iClient         Client index.
+	 * @param hTransaction    Transaction for saved in thread.
 	 */
 	function void (int iClient, Transaction hTransaction);
+
+	/**
+	 * LR_OnExpChanged
+	 *
+	 * Called when experience points change.
+	 *
+	 * @param iClient         Client index.
+	 * @param iGiveExp        How much was added.
+	 * @param iNewExpCount    New experience count of the player.
+	 */
+	function void (int iClient, int iGiveExp, int iNewExpCount);
 }
 
 /**
  * Defines a LR_MenuHook Created Menu Callback.
  *
- * @param MenuType			Menu event type.
- * @param iClient			For whom the menu was created.
- * @param hMenu				Handle menu (no copy).
+ * @param MenuType            Menu event type.
+ * @param iClient             For whom the menu was created.
+ * @param hMenu	              Handle menu (no copy).
  */
 typedef LR_CreatedMenu = function void (LR_MenuType MenuType, int iClient, Menu hMenu);
 
 /**
  * Defines a LR_MenuHook Selected Menu Callback.
  *
- * @param MenuType			Menu event type.
- * @param iClient			Who selected item.
- * @param sItem				Item information string.
+ * @param MenuType            Menu event type.
+ * @param iClient             Who selected item.
+ * @param sItem               Item information string.
  */
 typedef LR_SelectedMenu = function void (LR_MenuType MenuType, int iClient, const char[] sItem);
 
@@ -247,7 +262,8 @@ forward void LR_OnCoreIsReady();
 native bool LR_IsLoaded();
 
 /**
- * Return the core version.
+ * Return the core version
+ * PLUGIN_INT_VERSION From [LR] Core.
  * Explame: 03010000 - v3.1.
  */
 native int LR_GetVersion();
@@ -255,74 +271,74 @@ native int LR_GetVersion();
 /**
  * Hooks an LR events.
  * 
- * @param Type				Event type.
- * @param Callback			Callback function.
+ * @param Type                Event type.
+ * @param Callback            Callback function.
  *
- * @return					Is hook successful.
+ * @return                    Is hook successful.
  */
 native bool LR_Hook(LR_HookType Type, LR_HookCB Callback);
 
 /**
  * Unooks an LR events.
  * 
- * @param Type				Event type.
- * @param Callback			Callback function.
+ * @param Type                Event type.
+ * @param Callback            Callback function.
  *
- * @return					Is unhook successful.
+ * @return                    Is unhook successful.
  */
 native bool LR_Unhook(LR_HookType Type, LR_HookCB Callback);
 
 /**
  * Hooks an LR menu events.
  * 
- * @param MenuType			Menu event type.
- * @param CreatedCallback	The function that will be called 
- * 							when the menu is created.
- * @param SelectedCallback	When opening a registered 
- *							item in the menu.
+ * @param MenuType            Menu event type.
+ * @param CreatedCallback     The function that will be called 
+ *                            when the menu is created.
+ * @param SelectedCallback    When opening a registered 
+ *                            item in the menu.
  *
- * @return					Is hook successful.
+ * @return                    Is hook successful.
  */
 native bool LR_MenuHook(LR_MenuType MenuType, LR_CreatedMenu CreatedCallback, LR_SelectedMenu SelectedCallback);
 
 /**
  * Unhooks an LR menu events.
  * 
- * @param MenuType			Menu event type.
- * @param CreatedCallback	The function that will be called 
- * 							when the menu is created.
- * @param SelectedCallback	When opening a registered 
- *							item in the menu.
+ * @param MenuType            Menu event type.
+ * @param CreatedCallback     The function that will be called 
+ *                            when the menu is created.
+ * @param SelectedCallback    When opening a registered 
+ *                            item in the menu.
  *
- * @return					Is unhook successful.
+ * @return                    Is unhook successful.
  */
 native bool LR_MenuUnhook(LR_MenuType MenuType, LR_CreatedMenu CreatedCallback, LR_SelectedMenu SelectedCallback);
 
 /**
  * Returns the value of a parameter from settings.ini.
  *
- * @param Setting			Parameter.
+ * @param Setting             Parameter.
  */
 native any LR_GetSettingsValue(LR_SettingType Setting);
 
 /**
  * Returns the value of a parameter from settings_stats.ini.
  *
- * @param Setting			Parameter.
+ * @param Setting             Parameter.
  */
 native any LR_GetSettingsStatsValue(LR_SettingStatsType Setting);
 
 /**
  * Returns the connection to the database.
- * 
- * @return					Database connection (copy). 0 if no connection.
+ *
+ * @return                    Database connection (copy). 0 if no connection.
  */
 native Database LR_GetDatabase();
 
 /**
  * Returns the type of database.
- * 
- * @return					True on SQLite, false if MySQL.
+ *
+ * @return                    True on SQLite, false if MySQL.
  */
 native bool LR_GetDatabaseType();
 
@@ -333,17 +349,17 @@ native int LR_GetCountPlayers();
 
 /**
  * Get the name of the table being used in the database.
- * 
- * @param sBuffer			Destination string buffer.
- * @param iMaxLen			Maximum length of output string buffer.
+ *
+ * @param sBuffer             Destination string buffer.
+ * @param iMaxLen             Maximum length of output string buffer.
  */
 native void LR_GetTableName(char[] sBuffer, int iMaxLen);
 
 /**
  * Get the name of the title being used in the menus.
- * 
- * @param sBuffer			Destination string buffer.
- * @param iMaxLen			Maximum length of output string buffer.
+ *
+ * @param sBuffer             Destination string buffer.
+ * @param iMaxLen             Maximum length of output string buffer.
  */
 native void LR_GetTitleMenu(char[] sBuffer, int iMaxLen);
 
@@ -358,27 +374,29 @@ native ArrayList LR_GetRankNames();
 native ArrayList LR_GetRankExp();
 
 /**
- * Returns client status.
- * 
- * @param iClient			Client index.
+ * Returns is client loaded in core.
+ *
+ * @param iClient             Client index.
+ *
+ * @return                    Is loaded.
  */
 native bool LR_GetClientStatus(int iClient);
 
 /**
  * Checks if enough players are in this round to activate statistics.
- * 
- * @return					Is allow.
+ *
+ * @return                    Is allow.
  */
 native bool LR_CheckCountPlayers();
 
 /**
  * Gets detailed statistics about the client.
- * 
- * @param iClient			Client index.
- * @param StatsType			Type data.
- * @param bSession			Output data from session.
  *
- * @return					Data value.
+ * @param iClient             Client index.
+ * @param StatsType           Type data.
+ * @param bSession            Output data from session.
+ *
+ * @return                    Data value.
  */
 native int LR_GetClientInfo(int iClient, LR_StatsType StatsType, bool bSession = false);
 
@@ -389,20 +407,20 @@ native int LR_GetClientInfo(int iClient, LR_StatsType StatsType, bool bSession =
 native void LR_RoundWithoutValue();
 
 /**
- * Changes the amount of experience.
- * 
- * @param iClient			Client index.
- * @param iExp				Count experiences.
+ * Adds the amount of experience.
  *
- * @return					Is experiences have been issued.
+ * @param iClient             Client index.
+ * @param iGiveExp            Give experiences count.
+ *
+ * @return                    Is experiences have been issued.
  */
-native bool LR_ChangeClientValue(int iClient, int iExp);
+native bool LR_ChangeClientValue(int iClient, int iGiveExp);
 
 /**
  * Resets player stats. 
  * DO NOT CALL IF YOU DO NOT UNDERSTAND THE CONSEQUENCES!
  *
- * @param iClient			Client index.
+ * @param iClient             Client index.
  */
 native void LR_ResetPlayerStats(int iClient);
 
@@ -413,9 +431,9 @@ native void LR_RefreshConfigs();
 
 /**
  * Shows a specific menu to the client.
- * 
- * @param iClient			Client index.
- * @param MenuType			Menu type.
+ *
+ * @param iClient             Client index.
+ * @param MenuType            Menu type.
  */
 native void LR_ShowMenu(int iClient, LR_MenuType MenuType);
 
@@ -423,10 +441,10 @@ native void LR_ShowMenu(int iClient, LR_MenuType MenuType);
  * Print a chat message to the client.
  * Not sensitive to the number of arguments in formatting.
  *
- * @param iClient			Client index.
- * @param bPrefix			Whether to add [LR] prefix to message.
- * @param sFormat			Formatting rules and colors.
- * @param ...				Variable number of format parameters.
+ * @param iClient             Client index.
+ * @param bPrefix             Whether to add [LR] prefix to message.
+ * @param sFormat             Formatting rules and colors.
+ * @param ...                 Variable number of format parameters.
  */
 native void LR_PrintToChat(int iClient, bool bPrefix, const char[] sFormat, any ...);
 

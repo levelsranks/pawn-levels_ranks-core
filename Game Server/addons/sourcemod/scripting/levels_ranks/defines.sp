@@ -1,6 +1,6 @@
 // For SourceMod 1.11.
 
-#define LR_HookType 11
+#define LR_HookType 12
 
 #define LR_OnSettingsModuleUpdate 0
 #define LR_OnDisconnectionWithDB 1
@@ -13,6 +13,7 @@
 #define LR_OnResetPlayerStats 8
 #define LR_OnPlayerPosInTop 9
 #define LR_OnPlayerSaved 10
+#define LR_OnExpChanged 11
 
 #define LR_MenuType 4
 
@@ -21,7 +22,7 @@
 #define LR_SettingMenu 2
 #define LR_TopMenu 3
 
-#define LR_SettingType 19
+#define LR_SettingType 20
 
 #define LR_FlagAdminmenu 0
 #define LR_TypeStatistics 1
@@ -42,25 +43,28 @@
 #define LR_CleanDB_BanClient 16
 #define LR_DB_SaveDataPlayer_Mode 17
 #define LR_DB_Allow_UTF8MB4 18
+#define LR_DB_Charset_Type 19
 
-#define LR_SettingStatsType 17
+#define LR_SettingStatsType 18
 
-#define LR_ExpKill 1
+#define LR_ExpKill 0
+#define LR_ExpKillIsBot 1
 #define LR_ExpDeath 2
-#define LR_ExpKillCoefficient 3
-#define LR_ExpGiveHeadShot 4
-#define LR_ExpGiveAssist 5
-#define LR_ExpGiveSuicide 6
-#define LR_ExpGiveTeamKill 7
-#define LR_ExpRoundWin 8
-#define LR_ExpRoundLose 9
-#define LR_ExpRoundMVP 10
-#define LR_ExpBombPlanted 11
-#define LR_ExpBombDefused 12
-#define LR_ExpBombDropped 13
-#define LR_ExpBombPickup 14
-#define LR_ExpHostageKilled 15
-#define LR_ExpHostageRescued 16
+#define LR_ExpDeathIsBot 3
+#define LR_ExpKillCoefficient 4
+#define LR_ExpGiveHeadShot 5
+#define LR_ExpGiveAssist 6
+#define LR_ExpGiveSuicide 7
+#define LR_ExpGiveTeamKill 8
+#define LR_ExpRoundWin 9
+#define LR_ExpRoundLose 10
+#define LR_ExpRoundMVP 11
+#define LR_ExpBombPlanted 12
+#define LR_ExpBombDefused 13
+#define LR_ExpBombDropped 14
+#define LR_ExpBombPickup 15
+#define LR_ExpHostageKilled 16
+#define LR_ExpHostageRescued 17
 
 #define LR_StatsType 13
 
@@ -77,11 +81,6 @@
 #define ST_PLAYTIME 10
 #define ST_PLACEINTOP 11
 #define ST_PLACEINTOPTIME 12
-
-// any(...) -> view_as<any>(...)
-
-#define bool(%0) view_as<bool>(%0)
-#define int(%0) view_as<int>(%0)
 
 // for SQL Querys
 

@@ -1,10 +1,10 @@
-#define SQL_PrintMenu "SELECT `name`, SUBSTR(`steam`, 11) << 1 | SUBSTR(`steam`, 9, 1) AS `accountid`, %s FROM `%s` WHERE `lastconnect` ORDER BY %.10s DESC LIMIT 10;"
+#define SQL_PRINT_TOP_MENU "SELECT `name`, SUBSTR(`steam`, 11) << 1 | SUBSTR(`steam`, 9, 1) AS `accountid`, %s FROM `%s` WHERE `lastconnect` ORDER BY %.10s DESC LIMIT 10;"
 
 void MainMenu(int iClient)
 {
 	int iRank = g_iPlayerInfo[iClient].iStats[ST_RANK];
 
-	static char sExp[32], sText[128], sRank[192];
+	decl char sExp[32], sText[128], sRank[192];
 
 	Menu hMenu = new Menu(MainMenu_Callback, MenuAction_Select);
 
@@ -35,7 +35,7 @@ void MainMenu(int iClient)
 	FormatEx(sText, sizeof(sText), "%T", "MainMenu_MyStats", iClient); 
 	hMenu.AddItem("1", sText);
 
-	if(GetForwardFunctionCount(g_hForward_CreatedMenu[LR_SettingMenu]))
+	if(g_hForward_CreatedMenu[LR_SettingMenu].FunctionCount)
 	{
 		FormatEx(sText, sizeof(sText), "%T\n ", "MainMenu_MyPrivilegesSettings", iClient); 
 		hMenu.AddItem("2", sText);
@@ -59,7 +59,7 @@ int MainMenu_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 	{
 		case MenuAction_Select:
 		{
-			static char sInfo[2];
+			decl char sInfo[2];
 
 			hMenu.GetItem(iSlot, sInfo, sizeof(sInfo));
 
@@ -82,7 +82,7 @@ int MainMenu_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 
 void MenuAdmin(int iClient)
 {
-	static char sText[192];
+	decl char sText[192];
 
 	Menu hMenu = new Menu(MenuAdmin_Callback, MenuAction_Select);
 
@@ -123,7 +123,7 @@ int MenuAdmin_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 				}
 			}
 
-			if(GetForwardFunctionCount(g_hForward_SelectedMenu[LR_AdminMenu]))
+			if(g_hForward_SelectedMenu[LR_AdminMenu].FunctionCount)
 			{
 				CallForward_MenuHook(LR_AdminMenu, iClient, hMenu, iSlot);
 			}
@@ -152,7 +152,7 @@ void GiveTakeValue(int iClient, const char sID[] = NULL_STRING)
 
 	if(sID[0] == '\0')
 	{
-		static char sUserID[8], sNickName[32];
+		decl char sUserID[8], sNickName[32];
 
 		for(int i = GetMaxPlayers(); --i;)
 		{
@@ -193,7 +193,7 @@ int ChangeExpPlayers_Callback(Menu hMenu, MenuAction mAction, int iClient, int i
 	{
 		case MenuAction_Select:
 		{
-			static char sInfo[32], sBuffer[32];
+			decl char sInfo[32], sBuffer[32];
 
 			hMenu.GetItem(iSlot, sInfo, sizeof(sInfo), _, sBuffer, sizeof(sBuffer));
 
@@ -236,7 +236,7 @@ int GiveTakeValue_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlo
 	{
 		case MenuAction_Select:
 		{
-			static char sID[8];
+			decl char sID[8];
 
 			hMenu.GetItem(iSlot, sID, sizeof(sID));
 			GiveTakeValue(iClient, sID);
@@ -264,23 +264,23 @@ void MyStats(int iClient)
 	iStats = g_iPlayerInfo[iClient].iStats;
 
 	int iRoundsWin = iStats[ST_ROUNDSWIN],
-		iRoundsAll = iRoundsWin + iStats[ST_ROUNDSLOSE],
-		iPlayTime = iStats[ST_PLAYTIME] + GetTime(),
-		iKills = iStats[ST_KILLS],
-		iDeaths = iStats[ST_DEATHS],
-		iHeadshots = iStats[ST_HEADSHOTS],
-		iShots = iStats[ST_SHOOTS];
+	    iRoundsAll = iRoundsWin + iStats[ST_ROUNDSLOSE],
+	    iPlayTime = iStats[ST_PLAYTIME] + GetTime(),
+	    iKills = iStats[ST_KILLS],
+	    iDeaths = iStats[ST_DEATHS],
+	    iHeadshots = iStats[ST_HEADSHOTS],
+	    iShots = iStats[ST_SHOOTS];
 
-	static char sText[128];
+	decl char sText[128];
 
 	Menu hMenu = new Menu(MyStats_Callback, MenuAction_Select);
 
-	hMenu.SetTitle("%s | %T\n ", g_sPluginTitle, "MyStatsInfo", iClient, iPlayTime / 3600, iPlayTime / 60 % 60, iPlayTime % 60, iKills, iDeaths, iStats[ST_ASSISTS], iHeadshots, RoundToCeil(100.0 / (iKills ? iKills : 1) * iHeadshots), iKills / (iDeaths ? float(iDeaths) : 1.0), RoundToCeil(100.0 / (iShots ? float(iShots) : 1.0) * iStats[ST_HITS]), RoundToCeil(100.00 / (iRoundsAll ? float(iRoundsAll) : 1.0) * iRoundsWin));
+	hMenu.SetTitle("%s | %T\n ", g_sPluginTitle, "MyStatsInfo", iClient, iPlayTime / 3600, iPlayTime / 60 % 60, iPlayTime % 60, iKills, iDeaths, iStats[ST_ASSISTS], iHeadshots, RoundToCeil(100.0 / (iKills ? iKills : 1) * iHeadshots), iKills / (iDeaths ? float(iDeaths) : 1.0), RoundToCeil(100.0 / (iShots ? float(iShots) : 1.0) * iStats[ST_HITS]), RoundToCeil(100.0 / (iRoundsAll ? float(iRoundsAll) : 1.0) * iRoundsWin));
 
 	FormatEx(sText, sizeof(sText), "%T", "MyStatsSession", iClient);
 	hMenu.AddItem("0", sText);
 
-	if(GetForwardFunctionCount(g_hForward_CreatedMenu[LR_MyStatsSecondary]))
+	if(g_hForward_CreatedMenu[LR_MyStatsSecondary].FunctionCount)
 	{
 		FormatEx(sText, sizeof(sText), "%T", "MyStatsSecondary", iClient);
 		hMenu.AddItem("1", sText);
@@ -292,7 +292,7 @@ void MyStats(int iClient)
 
 		int iCooldown = 0;
 
-		static char sData[16];
+		decl char sData[16];
 
 		if(g_hLastResetMyStats)
 		{
@@ -328,7 +328,7 @@ int MyStats_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 	{
 		case MenuAction_Select:
 		{
-			static char sInfo[2];
+			decl char sInfo[2];
 
 			hMenu.GetItem(iSlot, sInfo, sizeof(sInfo));
 
@@ -383,7 +383,7 @@ int MyStatsSecondary_Callback(Menu hMenu, MenuAction mAction, int iClient, int i
 
 void MyStatsSession(int iClient)
 {
-	static char sText[128];
+	decl char sText[128];
 
 	Menu hMenu = new Menu(MyStatsSession_Callback, MenuAction_Select);
 
@@ -421,7 +421,7 @@ int MyStatsSession_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSl
 
 void MyStatsReset(int iClient)
 {
-	static char sText[192];
+	decl char sText[192];
 
 	Menu hMenu = new Menu(MyStatsReset_Callback);
 
@@ -449,7 +449,7 @@ int MyStatsReset_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot
 		{
 			if(g_hLastResetMyStats)
 			{
-				static char sLastResetMyStats[12];
+				decl char sLastResetMyStats[16];
 
 				IntToString(-GetTime(), sLastResetMyStats, sizeof(sLastResetMyStats));
 				g_hLastResetMyStats.Set(iClient, sLastResetMyStats);
@@ -499,7 +499,7 @@ int MyPrivilegesSettings_Callback(Menu hMenu, MenuAction mAction, int iClient, i
 
 void MenuTop(int iClient)
 {
-	static char sText[128];
+	decl char sText[128];
 
 	Menu hMenu = new Menu(MenuTop_Callback);
 
@@ -520,7 +520,7 @@ int MenuTop_Callback(Menu hMenu, MenuAction mAction, int iClient, int iSlot)
 	{
 		case MenuAction_Select:
 		{
-			static char sInfo[2];
+			decl char sInfo[2];
 
 			hMenu.GetItem(iSlot, sInfo, sizeof(sInfo));
 
@@ -557,7 +557,7 @@ void OverAllTopPlayers(int iClient, bool bPlaytime = true)
 {
 	if(CheckStatus(iClient))
 	{
-		static char sQuery[256];
+		decl char sQuery[256];
 
 		static const char sTable[][] = 
 		{
@@ -565,8 +565,8 @@ void OverAllTopPlayers(int iClient, bool bPlaytime = true)
 			"`playtime` / 3600.0"
 		};
 
-		FormatEx(sQuery, sizeof(sQuery), SQL_PrintMenu, sTable[int(bPlaytime)], g_sTableName, sTable[int(bPlaytime)]);
-		g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | LR_TopPlayersExp + int(bPlaytime));
+		FormatEx(sQuery, sizeof(sQuery), SQL_PRINT_TOP_MENU, sTable[view_as<int>(bPlaytime)], g_sTableName, sTable[view_as<int>(bPlaytime)]);
+		g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | LR_TopPlayersExp + view_as<int>(bPlaytime));
 	}
 }
 
@@ -592,7 +592,7 @@ void OverAllRanks(int iClient)
 
 	if(iMaxRanks)
 	{
-		static char sText[96], sRank[192];
+		decl char sText[96], sRank[192];
 
 		g_hRankNames.GetString(0, sRank, sizeof(sRank));
 
