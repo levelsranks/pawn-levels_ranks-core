@@ -40,6 +40,16 @@ LIMIT 1;"
 
 #define SQL_COUNT_PLAYERS "SELECT COUNT(`steam`) FROM `%s` WHERE `lastconnect` LIMIT 1;"
 
+#define SQL_CREATE_DATA \
+"INSERT INTO `%s` \
+(\
+	`steam`, \
+	`name`, \
+	`value`, \
+	`lastconnect`\
+) \
+VALUES ('STEAM_%i:%i:%i', '%s', %i, %i);"
+
 #define SQL_REPLACE_DATA \
 "REPLACE INTO `%s` \
 (\
@@ -265,10 +275,7 @@ void SaveDataPlayer(int iClient, bool bDisconnect = false)
 
 		CallForward_OnPlayerSaved(iClient, hTransaction);
 
-		if(g_hDatabase)
-		{
-			g_hDatabase.Execute(hTransaction, _, SQL_TransactionFailure, 1, DBPrio_High);
-		}
+		g_hDatabase.Execute(hTransaction, _, SQL_TransactionFailure, 1, DBPrio_High);
 
 		if(bDisconnect)
 		{
@@ -355,6 +362,15 @@ public void SQL_Callback(Database hDatabase, DBResultSet hResult, const char[] s
 							g_iPlayerInfo[iClient].bInitialized = true;
 
 							CallForward_OnPlayerLoaded(iClient);
+						}
+						else
+						{
+							int iAccountID = g_iPlayerInfo[iClient].iAccountID;
+
+							decl char sQuery[1024];
+
+							FormatEx(sQuery, sizeof(sQuery), SQL_CREATE_DATA, g_sTableName, g_iEngine == Engine_CSGO, iAccountID & 1, iAccountID >>> 1, GetPlayerName(iClient), g_Settings[LR_TypeStatistics] ? 1000 : 0, GetTime());
+							g_hDatabase.Query(SQL_Callback, sQuery, GetClientUserId(iClient) << 4 | LR_CreateDataPlayer);
 						}
 					}
 				}
