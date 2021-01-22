@@ -4,7 +4,7 @@ void SetSettings()
 
 	char      sBuffer[192];
 
-	decl char sPath[PLATFORM_MAX_PATH];
+	static char sPath[PLATFORM_MAX_PATH];
 
 	KeyValues hKv = new KeyValues("LR_Settings");
 
