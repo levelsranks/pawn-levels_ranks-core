@@ -82,6 +82,7 @@ void SetSettings()
 	g_Settings[LR_CleanDB_Days] = hKv.GetNum("lr_cleandb_days", 30);
 	g_Settings[LR_CleanDB_BanClient] = hKv.GetNum("lr_cleandb_banclient", 1);
 	g_Settings[LR_DB_SaveDataPlayer_Mode] = hKv.GetNum("lr_db_savedataplayer_mode", 1);
+	g_Settings[LR_DB_Charset_Type] = hKv.GetNum("lr_db_character_type", 0);
 
 	hKv.Close();
 
