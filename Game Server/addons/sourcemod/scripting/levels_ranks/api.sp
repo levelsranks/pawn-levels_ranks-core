@@ -175,7 +175,7 @@ int Native_ChangeClientValue(Handle hPlugin, int iArgs)
 {
 	int iClient = GetNativeCell(1);
 
-	if(CheckStatus(iClient) && g_bAllowStatistic)
+	if(CheckStatus(iClient))
 	{
 		int iExpChange = GetNativeCell(2),
 			iExpMin = 0,
