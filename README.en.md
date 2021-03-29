@@ -1,7 +1,7 @@
 [Levels Ranks] Core 3.1.6
 ===========================
 
-** [Levels Ranks] Core ** is a statistics plugin that will be a great replacement for other statistics like RankMe, Sod Stats and the like. The essence of it is simple, you perform various game actions and gain / lose experience points for it, at accumulation / loss of a certain number of which, you receive a certain rank.
+**[Levels Ranks] Core** is a statistics plugin that will be a great replacement for other statistics like RankMe, Sod Stats and the like. The essence of it is simple, you perform various game actions and gain / lose experience points for it, at accumulation / loss of a certain number of which, you receive a certain rank.
 
 
 Types of statistics:
@@ -41,13 +41,13 @@ Requirements:
 
 Teams:
 -------
-- ** sm_lvl ** - opens the main statistics menu.
-- ** sm_lvl_reload ** - reloads all plug-in configuration files.
-- ** sm_lvl_reset ** - resets statistics for all players.
-- ** all ** - will reset all data.
-- ** exp ** - will reset the experience points data (`value`,` rank`).
-- ** stats ** - reset statistics data (`kills`,` deaths`, `shoots`,` hits`, `headshots`,` assists`, `round_win`,` round_lose`).
-- ** sm_lvl_del ** - resets statistics for a specific player.
+- **sm_lvl** - opens the main statistics menu.
+- **sm_lvl_reload** - reloads all plug-in configuration files.
+- **sm_lvl_reset** - resets statistics for all players.
+- **all** - will reset all data.
+- **exp** - will reset the experience points data (`value`,` rank`).
+- **stats** - reset statistics data (`kills`,` deaths`, `shoots`,` hits`, `headshots`,` assists`, `round_win`,` round_lose`).
+- ** sm_lvl_del** - resets statistics for a specific player.
 
 Installation:
 ---------
