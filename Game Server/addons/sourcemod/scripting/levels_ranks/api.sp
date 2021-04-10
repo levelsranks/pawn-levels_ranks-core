@@ -188,10 +188,10 @@ int Native_ChangeClientValue(Handle hPlugin, int iArgs)
 
 		if((g_iPlayerInfo[iClient].iStats[ST_EXP] += iExpChange) < iExpMin)
 		{
-			g_iPlayerInfo[iClient].iStats[ST_EXP] = iExpMin;
+			iExpChange = (g_iPlayerInfo[iClient].iStats[ST_EXP] = iExpMin) - iOldExp;
 		}
 
-		g_iPlayerInfo[iClient].iRoundExp += iExpChange = iOldExp - g_iPlayerInfo[iClient].iStats[ST_EXP];
+		g_iPlayerInfo[iClient].iRoundExp += iExpChange;
 		g_iPlayerInfo[iClient].iSessionStats[ST_EXP] += iExpChange;
 
 		CheckRank(iClient);
