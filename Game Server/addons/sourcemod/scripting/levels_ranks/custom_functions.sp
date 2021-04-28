@@ -163,9 +163,10 @@ int GetMaxPlayers()
 
 char[] GetPlayerName(int iClient)
 {
-	decl char sName[65];
+	// https://github.com/alliedmodders/sourcemod/blob/1fbe5e1daaee9ba44164078fe7f59d862786e612/plugins/include/dbi.inc#L385
+	decl char sName[MAX_NAME_LENGTH * 2 + 1];
 
-	GetClientName(iClient, sName, 32);
+	GetClientName(iClient, sName, MAX_NAME_LENGTH);
 
 	g_hDatabase.Escape(sName, sName, sizeof(sName));
 
