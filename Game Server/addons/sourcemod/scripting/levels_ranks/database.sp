@@ -181,6 +181,9 @@ void ConnectToDatabase(Database hDatabase, const char[] sError, any NULL)
 
 		FormatEx(sQuery, sizeof(sQuery), "ALTER TABLE `%s` MODIFY COLUMN `name` varchar(%i) CHARACTER SET '%s' COLLATE '%s%s' NOT NULL default '' AFTER `steam`;", g_sTableName, MAX_NAME_LENGTH, sCharset, sCharset, sCharsetType);
 		hTransaction.AddQuery(sQuery);
+
+		FormatEx(sQuery, sizeof(sQuery), "ALTER TABLE `%s` MODIFY COLUMN `steam` varchar(%i) CHARACTER SET '%s' COLLATE '%s%s' NOT NULL default '';", g_sTableName, 22, sCharset, sCharset, sCharsetType);
+		hTransaction.AddQuery(sQuery);
 	}
 
 	hDatabase.Execute(hTransaction, SQL_TransactionCallback, SQL_TransactionFailure, LR_ConnectToDB, DBPrio_High);
