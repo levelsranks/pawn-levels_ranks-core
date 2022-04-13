@@ -40,8 +40,8 @@
 	#define decl static
 #endif
 
-#if !defined PLUGIN_INT_VERSION || PLUGIN_INT_VERSION != 03010701
-	#error This plugin can only compile on lvl_ranks.inc v3.1.7 Beta 1.
+#if !defined PLUGIN_INT_VERSION || PLUGIN_INT_VERSION != 03010702
+	#error This plugin can only compile on lvl_ranks.inc v3.1.7 Beta 2.
 #endif
 
 #define PLUGIN_NAME "Levels Ranks"
